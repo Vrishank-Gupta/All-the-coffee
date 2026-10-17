@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>The Founding Batch — Instagram Ad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #fbf5ec;
+    --espresso-950: #241711;
+    --espresso-900: #33221a;
+    --espresso-800: #43291d;
+    --espresso-700: #5a3523;
+    --caramel-900: #5e2d16;
+    --caramel-700: #a35a1f;
+    --caramel-500: #d9872f;
+    --caramel-400: #e9a24f;
+    --caramel-300: #f2bd7c;
+    --caramel-200: #f7d7a8;
+    --caramel-100: #fbe9ce;
+    --caramel-50: #fdf3e4;
+    --sage-500: #6cb66d;
+    --sage-300: #b0d8ab;
+    --sage-100: #e5f1e3;
+    --brick-600: #b14b3f;
+    --brick-400: #d67a6a;
+    --brick-200: #f0c4bc;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    width: 1080px;
+    height: 1350px;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(242, 189, 124, 0.3), transparent 45%),
+      radial-gradient(circle at 92% 0%, rgba(111, 182, 109, 0.10), transparent 38%),
+      radial-gradient(circle at 50% 100%, rgba(217, 135, 47, 0.16), transparent 55%),
+      linear-gradient(160deg, var(--espresso-950) 0%, var(--espresso-900) 55%, var(--espresso-800) 100%);
+    color: var(--caramel-50);
+  }
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .frame {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 54px 68px 38px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Brand row */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand .mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--caramel-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .brand .word {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--caramel-50);
+  }
+  .brand .word b { color: var(--caramel-400); font-weight: 700; }
+
+  /* Tags */
+  .tags {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tag.gold { background: var(--caramel-500); color: var(--espresso-950); }
+  .tag.red { background: var(--brick-600); color: #fff2ee; }
+
+  /* Emotional hook */
+  .eyebrow {
+    margin-top: 30px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(251, 233, 206, 0.48);
+  }
+  .headline {
+    margin-top: 14px;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 66px;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #fff;
+    max-width: 880px;
+  }
+  .headline .hl { color: var(--caramel-300); }
+  .break-line {
+    margin-top: 16px;
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 1.3;
+    color: var(--caramel-200);
+    max-width: 760px;
+  }
+  .sub {
+    margin-top: 16px;
+    font-size: 21px;
+    line-height: 1.5;
+    color: rgba(251, 233, 206, 0.8);
+    max-width: 720px;
+    font-weight: 400;
+  }
+  .sub b { color: var(--caramel-100); font-weight: 700; }
+
+  /* Reassurance chips */
+  .chips {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--caramel-50);
+  }
+
+  /* spacer pushes price card down but keeps footer pinned */
+  .spacer { flex: 1 1 auto; min-height: 10px; }
+
+  /* Price card */
+  .price-card {
+    margin-top: 24px;
+    border-radius: 28px;
+    border: 1px solid rgba(242, 189, 124, 0.35);
+    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+    padding: 28px 36px;
+  }
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .was {
+    font-family: "Inter", sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: rgba(251, 233, 206, 0.42);
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+  }
+  .now {
+    font-family: "Inter", sans-serif;
+    font-size: 86px;
+    font-weight: 800;
+    color: var(--caramel-200);
+    letter-spacing: -0.02em;
+  }
+  .save-pill {
+    margin-left: auto;
+    align-self: center;
+    background: var(--sage-500);
+    color: #0d2410;
+    font-weight: 800;
+    font-size: 19px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transform: rotate(-4deg);
+    box-shadow: 0 8px 18px -4px rgba(108, 182, 109, 0.5);
+  }
+  .gst-note {
+    margin-top: 10px;
+    font-size: 17px;
+    color: rgba(251, 233, 206, 0.6);
+  }
+  .urgency {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brick-200);
+  }
+  .urgency:first-of-type { margin-top: 18px; }
+
+  /* Free banner */
+  .free-banner {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 20px;
+    background: var(--sage-100);
+    padding: 20px 26px;
+  }
+  .free-banner .check {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: var(--sage-500);
+    color: #0d2410;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .free-banner .txt {
+    color: var(--espresso-950);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .free-banner .txt span {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--espresso-700);
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .cta {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 22px;
+    background: var(--caramel-500);
+    padding: 26px 34px;
+  }
+  .cta .txt {
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--espresso-950);
+  }
+  .cta .arrow {
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    background: var(--espresso-950);
+    color: var(--caramel-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .footer {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 16px;
+    color: rgba(251, 233, 206, 0.5);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="frame">
+    <div class="brand">
+      <div class="mark">☕</div>
+      <div class="word">All The <b>Coffee</b></div>
+    </div>
+
+    <p class="eyebrow">The thought stopping you right now</p>
+    <h1 class="headline">&ldquo;I'm just <span class="hl">not a tech person.</span>&rdquo;</h1>
+    <p class="break-line">You've told yourself that for years. It was never true.</p>
+    <p class="sub">
+      <b>All The Coffee breaks that exact fear</b> &mdash; no jargon, no installs, no judgment. Just your first
+      real, working AI tool, twenty minutes from now.
+    </p>
+
+    <div class="chips">
+      <span class="chip">🚫 Zero coding background</span>
+      <span class="chip">🌐 Runs in your browser</span>
+      <span class="chip">🙅 No judgment, ever</span>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="tags">
+      <span class="tag gold">👑 The Founding Batch</span>
+      <span class="tag red">🔒 Only 100 seats, ever</span>
+    </div>
+
+    <div class="price-card">
+      <div class="price-row">
+        <span class="was">₹999</span>
+        <span class="now">₹599<span style="font-size:0.42em;vertical-align:top;">*</span></span>
+        <span class="save-pill">Save ₹400</span>
+      </div>
+      <p class="gst-note">*inclusive of GST &middot; one-time payment, no subscription</p>
+      <p class="urgency">⏳ Reverts to ₹999 the moment Module C ships</p>
+      <p class="urgency">🔒 Capped at 100 founding members, no exceptions</p>
+    </div>
+
+    <div class="free-banner">
+      <div class="check">✓</div>
+      <div class="txt">Chapters 0&ndash;3 are completely free<span>No card needed. Start building before you decide anything.</span></div>
+    </div>
+
+    <div class="cta">
+      <span class="txt">Start free, no card, no catch</span>
+      <span class="arrow">→</span>
+    </div>
+
+    <p class="footer">For HR, finance, ops, sales &amp; marketing people who think it's too late to learn this. It isn't.</p>
+  </div>
+</body>
+</html>
