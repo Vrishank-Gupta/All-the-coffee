@@ -95,6 +95,11 @@ export default function Signup() {
           Log in
         </Link>
       </p>
+      <p className="mt-3 text-center text-xs text-espresso-700/50">
+        By creating an account, you agree to our{" "}
+        <Link to="/terms" className="underline underline-offset-2 hover:text-espresso-700">Terms</Link> and{" "}
+        <Link to="/privacy" className="underline underline-offset-2 hover:text-espresso-700">Privacy Policy</Link>.
+      </p>
     </AuthLayout>
   );
 }

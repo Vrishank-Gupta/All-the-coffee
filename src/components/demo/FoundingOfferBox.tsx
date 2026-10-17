@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Check, Crown, Flame } from "lucide-react";
 import { RazorpayCheckoutButton } from "./RazorpayCheckoutButton";
 import { FoundingSeatsBadge } from "./FoundingSeatsBadge";
@@ -29,9 +30,9 @@ export function FoundingOfferBox() {
       </div>
       <div className="mt-3 flex flex-wrap items-baseline gap-3">
         <span className="font-display text-xl font-medium text-caramel-100/50 line-through">₹999</span>
-        <span className="font-display text-4xl font-bold text-caramel-50">₹599*</span>
+        <span className="font-display text-4xl font-bold text-caramel-50">₹599</span>
       </div>
-      <p className="mt-1 text-sm text-caramel-100/70">*inclusive of GST. Unlocks Module B: four more real tools.</p>
+      <p className="mt-1 text-sm text-caramel-100/70">All-inclusive, no hidden charges. Unlocks Module B: four more real tools.</p>
       <p className="mt-2 text-sm font-medium text-brick-200">
         Capped at 100 founding seats, ever, and reverts to ₹999 the moment Module C launches.
       </p>
@@ -60,7 +61,11 @@ export function FoundingOfferBox() {
       </div>
 
       <p className="mt-5 border-t border-white/10 pt-4 text-xs text-caramel-100/60">
-        Refund promise: 30 days, or until you finish Module B, whichever is later.
+        Refund promise: 30 days, or until you finish Module B, whichever is later. See the{" "}
+        <Link to="/refund-policy" className="underline underline-offset-2 hover:text-caramel-100">
+          full refund policy
+        </Link>
+        . Questions first? <a href="mailto:hello@allthecoffee.in" className="underline underline-offset-2 hover:text-caramel-100">hello@allthecoffee.in</a>
       </p>
       <div className="mt-4">
         <RazorpayCheckoutButton />

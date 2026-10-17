@@ -2,7 +2,7 @@
 
 Two functions, both called from the browser via `supabase.functions.invoke(...)`, which automatically forwards the signed-in user's session token:
 
-- `create-razorpay-order` — creates a ₹599 (inclusive of GST) Razorpay order for the signed-in user, after checking `get_founding_seats_remaining()` and rejecting the order with a 410 once the real 100-seat Founding Batch cap is hit.
+- `create-razorpay-order` — creates a ₹599 Razorpay order for the signed-in user, after checking `get_founding_seats_remaining()` and rejecting the order with a 410 once the real 100-seat Founding Batch cap is hit.
 - `verify-razorpay-payment` — verifies the Razorpay payment signature server-side (never trust the client-side success callback alone) and, only if valid, flips that user's `profiles.tier` to `'paid'`.
 
 Both run as the calling user's own identity against Postgres, relying on the Row Level Security policies in `supabase/schema.sql` ("a user may only update their own row") — so neither function needs or uses the Supabase `service_role` key.

@@ -6,6 +6,7 @@ import {
   ChevronDown, Lock,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
+import { SiteFooter } from "../components/layout/SiteFooter";
 import { CHAPTERS, MODULES } from "../lib/courseData";
 
 const STATS = [
@@ -288,9 +289,7 @@ export default function Overview() {
         </section>
       </div>
 
-      <footer className="border-t border-espresso-900/10 px-5 py-8 text-center text-xs text-espresso-700/60">
-        All The Coffee: From AI-Anxious to Builder. A proof of concept for Modules A and B.
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

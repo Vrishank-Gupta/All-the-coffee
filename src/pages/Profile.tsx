@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Coffee, Download, NotebookPen, MessageSquareHeart, RotateCcw, ArrowLeft } from "lucide-react";
+import { Coffee, Download, NotebookPen, MessageSquareHeart, RotateCcw, ArrowLeft, Crown } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { EditableAnswerCard } from "../components/profile/EditableAnswerCard";
 import { NervousTrend } from "../components/profile/NervousTrend";
@@ -28,6 +28,7 @@ export default function Profile() {
     completed,
     isComplete,
     isUnlocked,
+    hasPaid,
     boringTask,
     setBoringTask,
     usedAtWork,
@@ -66,13 +67,30 @@ export default function Profile() {
             <Coffee className="h-6 w-6 text-caramel-300" />
           </div>
           <div>
-            <h1 className="font-display text-3xl font-semibold text-espresso-950">Your profile</h1>
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="font-display text-3xl font-semibold text-espresso-950">Your profile</h1>
+              {hasPaid && (
+                <span className="flex items-center gap-1 rounded-full bg-caramel-100 px-2.5 py-1 text-xs font-bold text-caramel-700">
+                  <Crown className="h-3 w-3" /> Founding Member
+                </span>
+              )}
+            </div>
             <p className="text-sm text-espresso-700/70">
               {completed.length} of {TOTAL_CHAPTERS} chapters complete. Signed in as {user?.email}, synced to your
               account.
             </p>
           </div>
         </div>
+
+        {hasPaid && (
+          <div className="mt-4 rounded-2xl border border-caramel-300/50 bg-caramel-50 p-4 text-sm text-espresso-800">
+            <p className="font-semibold text-espresso-950">You're a founding member of Module B.</p>
+            <p className="mt-1 text-espresso-700/80">
+              Your ₹599 payment unlocked permanent access to Chapters 4–7. Questions about your payment?{" "}
+              <a href="mailto:hello@allthecoffee.in" className="font-semibold underline underline-offset-2">hello@allthecoffee.in</a>.
+            </p>
+          </div>
+        )}
 
         <section className="mt-10">
           <h2 className="font-display text-xl font-semibold text-espresso-950">Your answers</h2>

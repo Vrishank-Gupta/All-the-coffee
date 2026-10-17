@@ -8,7 +8,7 @@ import { CORS_HEADERS, json } from "../_shared/cors.ts";
 
 const RAZORPAY_KEY_ID = Deno.env.get("RAZORPAY_KEY_ID")!;
 const RAZORPAY_KEY_SECRET = Deno.env.get("RAZORPAY_KEY_SECRET")!;
-const FOUNDING_PRICE_PAISE = 59900; // ₹599, in paise, matching the founding-member price (inclusive of GST)
+const FOUNDING_PRICE_PAISE = 59900; // ₹599, in paise, matching the founding-member price
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: CORS_HEADERS });

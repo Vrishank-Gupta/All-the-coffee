@@ -7,6 +7,7 @@ import {
   Clock, ArrowRight, XCircle, Crown, Flame,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
+import { SiteFooter } from "../components/layout/SiteFooter";
 import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
 import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
@@ -205,9 +206,9 @@ export default function Landing() {
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
                 <span className="font-display text-2xl font-medium text-caramel-100/50 line-through">₹999</span>
-                <span className="font-display text-5xl font-bold text-caramel-50">₹599*</span>
+                <span className="font-display text-5xl font-bold text-caramel-50">₹599</span>
               </div>
-              <p className="mt-2 text-sm text-caramel-100/70">*inclusive of GST. One-time payment, no subscription.</p>
+              <p className="mt-2 text-sm text-caramel-100/70">All-inclusive, no hidden charges. One-time payment, no subscription.</p>
               <p className="mt-3 text-sm font-medium text-brick-200">
                 Capped at 100 founding seats, ever, and reverts to ₹999 the moment Module C launches.
               </p>
@@ -263,9 +264,7 @@ export default function Landing() {
         </Link>
       </section>
 
-      <footer className="border-t border-espresso-900/10 px-5 py-8 text-center text-xs text-espresso-700/60">
-        All The Coffee: From AI-Anxious to Builder. A proof of concept for Modules A and B.
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

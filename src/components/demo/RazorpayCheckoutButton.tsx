@@ -63,7 +63,7 @@ export function RazorpayCheckoutButton() {
             },
           });
           if (verifyError || verify?.error) {
-            const fallback = "Payment went through, but we couldn't confirm it. Contact support with your payment ID: " + response.razorpay_payment_id;
+            const fallback = "Payment went through, but we couldn't confirm it. Email hello@allthecoffee.in with your payment ID: " + response.razorpay_payment_id;
             setError(verify?.error ?? (await extractFunctionError(verifyError, fallback)));
             setStatus("error");
             return;

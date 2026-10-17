@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>All The Coffee — Instagram Profile Picture</title>
+<style>
+  :root {
+    --espresso-950: #241711;
+    --espresso-900: #33221a;
+    --espresso-800: #43291d;
+    --caramel-500: #d9872f;
+    --caramel-400: #e9a24f;
+    --caramel-200: #f7d7a8;
+    --caramel-50: #fdf3e4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 32% 26%, rgba(242, 189, 124, 0.35), transparent 52%),
+      radial-gradient(circle at 78% 85%, rgba(217, 135, 47, 0.18), transparent 50%),
+      linear-gradient(160deg, var(--espresso-950) 0%, var(--espresso-900) 55%, var(--espresso-800) 100%);
+  }
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  svg { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <svg viewBox="0 0 1080 1080" width="1080" height="1080">
+    <g transform="translate(-60, 15)">
+      <!-- steam -->
+      <g stroke="url(#steamGrad)" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.9">
+        <path d="M 430 330 C 400 290, 460 260, 430 220 C 400 180, 460 150, 440 110" />
+        <path d="M 540 340 C 510 300, 570 270, 540 230 C 510 190, 570 160, 550 120" />
+        <path d="M 650 330 C 620 290, 680 260, 650 220 C 620 180, 680 150, 660 110" />
+      </g>
+
+      <!-- saucer -->
+      <ellipse cx="540" cy="830" rx="300" ry="42" fill="var(--espresso-900)" stroke="var(--caramel-500)" stroke-width="10" />
+
+      <!-- cup body -->
+      <path d="M 350 440
+               L 390 760
+               C 394 792, 420 812, 452 812
+               L 628 812
+               C 660 812, 686 792, 690 760
+               L 730 440
+               Z"
+            fill="var(--caramel-500)" stroke="var(--espresso-950)" stroke-width="14" stroke-linejoin="round" />
+
+      <!-- cup rim -->
+      <ellipse cx="540" cy="440" rx="190" ry="46" fill="var(--caramel-400)" stroke="var(--espresso-950)" stroke-width="14" />
+      <ellipse cx="540" cy="434" rx="150" ry="30" fill="var(--espresso-950)" />
+
+      <!-- handle -->
+      <path d="M 726 500 C 860 500, 860 680, 726 680"
+            fill="none" stroke="var(--caramel-500)" stroke-width="42" stroke-linecap="round" />
+    </g>
+
+    <defs>
+      <linearGradient id="steamGrad" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="var(--caramel-200)" stop-opacity="0" />
+        <stop offset="60%" stop-color="var(--caramel-200)" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="var(--caramel-50)" stop-opacity="0.95" />
+      </linearGradient>
+    </defs>
+  </svg>
+</body>
+</html>
