@@ -20,6 +20,7 @@ interface AdminStatsData {
   unique_visitors_last_24h: number;
   chapter_completions: Record<string, number>;
   top_pages: { path: string; views: number }[];
+  top_locations: { city: string; country: string; views: number }[];
   users: { email: string; created_at: string; tier: "free" | "paid"; chapters_completed: number }[];
 }
 
@@ -174,6 +175,20 @@ export default function AdminStats() {
                   <div key={p.path} className="flex items-center justify-between rounded-xl bg-cream px-4 py-2.5 text-sm">
                     <span className="font-mono text-espresso-800">{p.path}</span>
                     <span className="font-semibold text-espresso-950">{p.views}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="mt-10">
+              <h2 className="font-display text-xl font-semibold text-espresso-950">Visitor locations</h2>
+              <p className="mt-1 text-sm text-espresso-700/70">Coarse city/country only, derived from IP at the moment of each visit; the IP itself is never stored.</p>
+              <div className="mt-4 space-y-2">
+                {stats.top_locations.length === 0 && <p className="text-sm text-espresso-700/60">No locations logged yet.</p>}
+                {stats.top_locations.map((l) => (
+                  <div key={`${l.city}-${l.country}`} className="flex items-center justify-between rounded-xl bg-cream px-4 py-2.5 text-sm">
+                    <span className="text-espresso-800">{l.city}, {l.country}</span>
+                    <span className="font-semibold text-espresso-950">{l.views}</span>
                   </div>
                 ))}
               </div>

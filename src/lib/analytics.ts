@@ -18,7 +18,7 @@ function getVisitorId(): string {
 
 export function logPageView(path: string) {
   if (!isSupabaseConfigured) return;
-  supabase.rpc("log_page_view", { p_path: path, p_visitor_id: getVisitorId() }).then(
+  supabase.functions.invoke("log-visit", { body: { path, visitorId: getVisitorId() } }).then(
     () => {},
     () => {} // visit tracking failing silently should never surface to the user
   );

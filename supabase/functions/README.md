@@ -1,11 +1,12 @@
 # Edge Functions
 
-Two functions, both called from the browser via `supabase.functions.invoke(...)`, which automatically forwards the signed-in user's session token:
+Three functions, all called from the browser via `supabase.functions.invoke(...)`, which automatically forwards the signed-in user's session token (or just the anon key, for `log-visit`, which runs for signed-out visitors too):
 
 - `create-razorpay-order` — creates a ₹599 Razorpay order for the signed-in user, after checking `get_founding_seats_remaining()` and rejecting the order with a 410 once the real 100-seat Founding Batch cap is hit.
 - `verify-razorpay-payment` — verifies the Razorpay payment signature server-side (never trust the client-side success callback alone) and, only if valid, flips that user's `profiles.tier` to `'paid'`.
+- `log-visit` — logs an anonymous page view for the `/admin` stats page. Resolves a coarse city/country from the request's IP via ip-api.com, then calls the `log_page_view` RPC with only that resolved location, never the IP itself. This is why visit logging is an Edge Function rather than a plain database RPC: a SQL function has no way to see the caller's IP at all.
 
-Both run as the calling user's own identity against Postgres, relying on the Row Level Security policies in `supabase/schema.sql` ("a user may only update their own row") — so neither function needs or uses the Supabase `service_role` key.
+All three run as the calling user's own identity (or anonymously) against Postgres, relying on the Row Level Security policies and security-definer functions in `supabase/schema.sql` — none of them need or use the Supabase `service_role` key.
 
 ## The Founding Batch seat cap
 
@@ -24,6 +25,7 @@ supabase secrets set RAZORPAY_KEY_SECRET=your_test_key_secret
 
 supabase functions deploy create-razorpay-order
 supabase functions deploy verify-razorpay-payment
+supabase functions deploy log-visit
 ```
 
 `SUPABASE_URL` and `SUPABASE_ANON_KEY` don't need to be set manually — every Edge Function gets them injected automatically by the platform.

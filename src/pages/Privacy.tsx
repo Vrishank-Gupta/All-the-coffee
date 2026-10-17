@@ -22,6 +22,11 @@ export default function Privacy() {
           tracked by a random ID stored in your browser, never linked to your email or identity. This is ours alone,
           built specifically for this site; no third-party analytics script runs here.
         </li>
+        <li>
+          A coarse location (city/country) for each visit, worked out from your IP address at that moment. The IP
+          address itself is never stored anywhere, not even briefly in a log; only the resulting city/country is
+          kept.
+        </li>
       </ul>
       <p>
         We never see or store your card number, UPI ID, or other payment instrument details. Razorpay handles that
@@ -48,6 +53,7 @@ export default function Privacy() {
         <li><strong>Razorpay</strong> — processes payments</li>
         <li><strong>Resend</strong> — sends account emails (confirmation, password reset)</li>
         <li><strong>Google</strong> — only if you choose "Sign in with Google"</li>
+        <li><strong>ip-api.com</strong> — resolves your visit's coarse city/country from your IP address; we only keep their answer, never the IP we sent them</li>
       </ul>
 
       <h2>How long we keep it</h2>

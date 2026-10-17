@@ -71,6 +71,10 @@ create table public.page_views (
   id bigint generated always as identity primary key,
   path text not null,
   visitor_id uuid not null,
+  -- Coarse city/country only, resolved from IP by the log-visit Edge
+  -- Function at write time. The IP itself is never stored here or anywhere.
+  country text,
+  city text,
   created_at timestamptz not null default now()
 );
 
@@ -83,15 +87,15 @@ alter table public.page_views enable row level security;
 -- log a view but never read anyone else's, and only the site owner can see
 -- the aggregate numbers.
 
-create function public.log_page_view(p_path text, p_visitor_id uuid)
+create function public.log_page_view(p_path text, p_visitor_id uuid, p_country text default null, p_city text default null)
 returns void
 language sql
 security definer set search_path = public
 as $$
-  insert into public.page_views (path, visitor_id) values (p_path, p_visitor_id);
+  insert into public.page_views (path, visitor_id, country, city) values (p_path, p_visitor_id, p_country, p_city);
 $$;
 
-grant execute on function public.log_page_view(text, uuid) to anon, authenticated;
+grant execute on function public.log_page_view(text, uuid, text, text) to anon, authenticated;
 
 -- Single source of truth for the /admin stats page. Hard-checks the caller's
 -- own email server-side (not just a client-side route guard) before
@@ -128,6 +132,15 @@ begin
     'top_pages', (
       select coalesce(json_agg(row_to_json(t)), '[]'::json) from (
         select path, count(*) as views from public.page_views group by path order by views desc limit 10
+      ) t
+    ),
+    'top_locations', (
+      select coalesce(json_agg(row_to_json(t)), '[]'::json) from (
+        select coalesce(city, 'Unknown') as city, coalesce(country, 'Unknown') as country, count(*) as views
+        from public.page_views
+        group by city, country
+        order by views desc
+        limit 10
       ) t
     ),
     'users', (
