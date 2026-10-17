@@ -9,7 +9,7 @@ import {
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
 import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
-import { CHAPTERS, MODULES, type ChapterMeta } from "../lib/courseData";
+import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
 import { useProgress } from "../lib/progress";
 
 const DIFFERENTIATORS = [
@@ -34,7 +34,9 @@ const PRINCIPLES = [
 ];
 
 export default function Landing() {
-  const { isComplete, isUnlocked } = useProgress();
+  const { isComplete, isUnlocked, hasPaid, completed } = useProgress();
+  const next = nextLiveChapter(completed);
+  const continuePath = next ? next.path : "/profile";
 
   return (
     <div className="min-h-screen bg-paper bg-grain">
@@ -167,42 +169,66 @@ export default function Landing() {
       {/* Pricing / offer */}
       <section className="mx-auto max-w-5xl px-5 py-14">
         <div className="overflow-hidden rounded-3xl border border-caramel-400/40 bg-gradient-to-br from-espresso-950 to-espresso-800 p-8 text-center text-caramel-50 sm:p-12">
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="flex items-center gap-1.5 rounded-full bg-caramel-500 px-3.5 py-1.5 text-xs font-bold text-espresso-950 uppercase">
-              <Crown className="h-3.5 w-3.5" /> The Founding Batch
-            </span>
-            <span className="flex items-center gap-1 rounded-full bg-brick-600/80 px-3 py-1.5 text-[11px] font-bold tracking-wide text-white uppercase">
-              <Flame className="h-3 w-3" /> Limited time
-            </span>
-            <FoundingSeatsBadge />
-          </div>
-          <h2 className="mt-5 font-display text-3xl font-semibold sm:text-4xl">
-            Module A is free, always. Module B is ₹599, for now.
-          </h2>
-          <div className="mt-5 flex items-center justify-center gap-3">
-            <span className="font-display text-2xl font-medium text-caramel-100/50 line-through">₹999</span>
-            <span className="font-display text-5xl font-bold text-caramel-50">₹599*</span>
-          </div>
-          <p className="mt-2 text-sm text-caramel-100/70">*inclusive of GST. One-time payment, no subscription.</p>
-          <p className="mt-3 text-sm font-medium text-brick-200">
-            Capped at 100 founding seats, ever, and reverts to ₹999 the moment Module C launches.
-          </p>
-          <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
-            Start free: Chapters 0–3 are yours with no card and no catch. Pay only when you're ready to unlock
-            Module B's four more real tools.
-          </p>
-          <Link
-            to="/chapter/0"
-            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-caramel-500 px-7 py-3.5 font-semibold text-espresso-950 shadow-lift transition hover:bg-caramel-400"
-          >
-            Start free, no card needed <ArrowRight className="h-4 w-4" />
-          </Link>
-          <p className="mt-4 text-sm text-caramel-100/55">
-            Already sure?{" "}
-            <Link to="/chapter/4" className="font-semibold text-caramel-200 underline underline-offset-2 hover:text-caramel-100">
-              Skip ahead and go straight to Module B
-            </Link>
-          </p>
+          {hasPaid ? (
+            <>
+              <div className="flex items-center justify-center gap-2 rounded-full bg-sage-500/20 px-4 py-1.5 text-sage-200">
+                <CheckCircle2 className="h-4 w-4" />
+                <span className="text-xs font-bold tracking-wide uppercase">You're a founding member</span>
+              </div>
+              <h2 className="mt-5 font-display text-3xl font-semibold sm:text-4xl">
+                Module B is already yours. Let's keep going.
+              </h2>
+              <p className="mx-auto mt-3 max-w-lg text-sm text-caramel-100/75">
+                You locked in the founding price, full access to all eight live chapters. No more payment screens
+                between you and the rest of the course.
+              </p>
+              <Link
+                to={continuePath}
+                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-caramel-500 px-7 py-3.5 font-semibold text-espresso-950 shadow-lift transition hover:bg-caramel-400"
+              >
+                Continue the course <ArrowRight className="h-4 w-4" />
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <span className="flex items-center gap-1.5 rounded-full bg-caramel-500 px-3.5 py-1.5 text-xs font-bold text-espresso-950 uppercase">
+                  <Crown className="h-3.5 w-3.5" /> The Founding Batch
+                </span>
+                <span className="flex items-center gap-1 rounded-full bg-brick-600/80 px-3 py-1.5 text-[11px] font-bold tracking-wide text-white uppercase">
+                  <Flame className="h-3 w-3" /> Limited time
+                </span>
+                <FoundingSeatsBadge />
+              </div>
+              <h2 className="mt-5 font-display text-3xl font-semibold sm:text-4xl">
+                Module A is free, always. Module B is ₹599, for now.
+              </h2>
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <span className="font-display text-2xl font-medium text-caramel-100/50 line-through">₹999</span>
+                <span className="font-display text-5xl font-bold text-caramel-50">₹599*</span>
+              </div>
+              <p className="mt-2 text-sm text-caramel-100/70">*inclusive of GST. One-time payment, no subscription.</p>
+              <p className="mt-3 text-sm font-medium text-brick-200">
+                Capped at 100 founding seats, ever, and reverts to ₹999 the moment Module C launches.
+              </p>
+              <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
+                Start free: Chapters 0–3 are yours with no card and no catch. Pay only when you're ready to unlock
+                Module B's four more real tools.
+              </p>
+              <Link
+                to="/chapter/0"
+                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-caramel-500 px-7 py-3.5 font-semibold text-espresso-950 shadow-lift transition hover:bg-caramel-400"
+              >
+                Start free, no card needed <ArrowRight className="h-4 w-4" />
+              </Link>
+              <p className="mt-4 text-sm text-caramel-100/55">
+                Already sure?{" "}
+                <Link to="/chapter/4" className="font-semibold text-caramel-200 underline underline-offset-2 hover:text-caramel-100">
+                  Skip ahead and go straight to Module B
+                </Link>
+              </p>
+            </>
+          )}
         </div>
       </section>
 
