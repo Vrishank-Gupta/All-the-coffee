@@ -8,6 +8,24 @@ import { useFoundingSeatsRemaining } from "../../lib/foundingSeats";
 
 type Status = "idle" | "loading" | "error" | "success";
 
+// When a Supabase Edge Function returns a non-2xx status, supabase-js hands back
+// a generic "Edge Function returned a non-2xx status code" message and puts the
+// actual response (with our real { error: "..." } body) on `error.context`
+// instead. Without this, every server-side error message we carefully write
+// gets replaced by that one generic string before it ever reaches the user.
+async function extractFunctionError(err: unknown, fallback: string): Promise<string> {
+  const context = (err as { context?: Response })?.context;
+  if (context && typeof context.json === "function") {
+    try {
+      const body = await context.clone().json();
+      if (body?.error) return body.error;
+    } catch {
+      // response body wasn't JSON; fall through to the generic message below
+    }
+  }
+  return err instanceof Error ? err.message : fallback;
+}
+
 export function RazorpayCheckoutButton() {
   const { user, configured } = useAuth();
   const { hasPaid, refreshProfile } = useProgress();
@@ -23,7 +41,9 @@ export function RazorpayCheckoutButton() {
       await loadRazorpayScript();
 
       const { data: order, error: orderError } = await supabase.functions.invoke("create-razorpay-order");
-      if (orderError || order?.error) throw new Error(order?.error ?? orderError?.message ?? "Could not start checkout.");
+      if (orderError || order?.error) {
+        throw new Error(order?.error ?? (await extractFunctionError(orderError, "Could not start checkout.")));
+      }
 
       const razorpay = new window.Razorpay!({
         key: order.keyId,
@@ -43,7 +63,8 @@ export function RazorpayCheckoutButton() {
             },
           });
           if (verifyError || verify?.error) {
-            setError(verify?.error ?? verifyError?.message ?? "Payment went through, but we couldn't confirm it. Contact support with your payment ID: " + response.razorpay_payment_id);
+            const fallback = "Payment went through, but we couldn't confirm it. Contact support with your payment ID: " + response.razorpay_payment_id;
+            setError(verify?.error ?? (await extractFunctionError(verifyError, fallback)));
             setStatus("error");
             return;
           }

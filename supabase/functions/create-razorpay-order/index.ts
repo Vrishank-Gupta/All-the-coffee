@@ -41,7 +41,10 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         amount: FOUNDING_PRICE_PAISE,
         currency: "INR",
-        receipt: `founding_${user.id}_${Date.now()}`,
+        // Razorpay caps receipt at 56 chars; a full UUID plus prefix/timestamp
+        // overflows that, so only a short slice of the user id goes in here.
+        // Full traceability still lives in `notes` below.
+        receipt: `fb_${Date.now()}_${user.id.slice(0, 8)}`,
         notes: { user_id: user.id, email: user.email ?? "" },
       }),
     });
