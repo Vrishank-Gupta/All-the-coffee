@@ -20,6 +20,7 @@ interface AdminStatsData {
   unique_visitors_last_24h: number;
   chapter_completions: Record<string, number>;
   top_pages: { path: string; views: number }[];
+  users: { email: string; created_at: string; tier: "free" | "paid"; chapters_completed: number }[];
 }
 
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | number }) {
@@ -129,6 +130,39 @@ export default function AdminStats() {
                     </div>
                   );
                 })}
+              </div>
+            </section>
+
+            <section className="mt-10">
+              <h2 className="font-display text-xl font-semibold text-espresso-950">Signups</h2>
+              <p className="mt-1 text-sm text-espresso-700/70">Every account, most recent first.</p>
+              <div className="mt-4 overflow-x-auto rounded-xl border border-espresso-900/10">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-cream text-xs font-semibold text-espresso-700/70 uppercase">
+                    <tr>
+                      <th className="px-4 py-2.5">Email</th>
+                      <th className="px-4 py-2.5">Signed up</th>
+                      <th className="px-4 py-2.5">Tier</th>
+                      <th className="px-4 py-2.5">Chapters done</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {stats.users.map((u) => (
+                      <tr key={u.email} className="border-t border-espresso-900/10">
+                        <td className="px-4 py-2.5 text-espresso-900">{u.email}</td>
+                        <td className="px-4 py-2.5 text-espresso-700/70">{new Date(u.created_at).toLocaleDateString()}</td>
+                        <td className="px-4 py-2.5">
+                          {u.tier === "paid" ? (
+                            <span className="rounded-full bg-caramel-100 px-2 py-0.5 text-xs font-bold text-caramel-700">Founding member</span>
+                          ) : (
+                            <span className="rounded-full bg-espresso-900/5 px-2 py-0.5 text-xs font-semibold text-espresso-600">Free</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-2.5 text-espresso-700/70">{u.chapters_completed}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </section>
 

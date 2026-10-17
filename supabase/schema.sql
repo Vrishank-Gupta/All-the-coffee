@@ -129,6 +129,18 @@ begin
       select coalesce(json_agg(row_to_json(t)), '[]'::json) from (
         select path, count(*) as views from public.page_views group by path order by views desc limit 10
       ) t
+    ),
+    'users', (
+      select coalesce(json_agg(row_to_json(u)), '[]'::json) from (
+        select
+          au.email,
+          p.created_at,
+          p.tier,
+          coalesce(array_length(p.completed, 1), 0) as chapters_completed
+        from public.profiles p
+        join auth.users au on au.id = p.id
+        order by p.created_at desc
+      ) u
     )
   ) into result;
 
