@@ -7,6 +7,14 @@
 // Function rather than a plain database RPC: a SQL function has no way to
 // see the caller's IP at all, but it also can't be trusted to discard it
 // correctly on every path the way this function is written to.
+//
+// IP extraction: Supabase Edge Functions sit behind Cloudflare, which sets
+// `cf-connecting-ip` to the true client IP on every request. That header is
+// used first; `x-forwarded-for` is an unreliable fallback only, since it can
+// contain intermediate infrastructure hops (confirmed by debugging real
+// requests — one observed chain was "<real client ip>,<real client ip>,
+// 13.248.x.x", an AWS-owned range, not the visitor) in an order that isn't
+// guaranteed to put the real client IP first.
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { CORS_HEADERS, json } from "../_shared/cors.ts";
@@ -18,7 +26,11 @@ Deno.serve(async (req) => {
     const { path, visitorId } = await req.json();
     if (!path || !visitorId) return json({ error: "Missing path or visitorId" }, 400);
 
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || null;
+    const ip =
+      req.headers.get("cf-connecting-ip") ||
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      req.headers.get("x-real-ip") ||
+      null;
 
     let country: string | null = null;
     let city: string | null = null;
