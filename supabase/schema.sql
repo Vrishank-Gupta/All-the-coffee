@@ -62,3 +62,78 @@ as $$
 $$;
 
 grant execute on function public.get_founding_seats_remaining() to anon, authenticated;
+
+-- First-party visit tracking. No third-party analytics script runs on this
+-- site; this is the entire mechanism. visitor_id is a random UUID generated
+-- client-side and kept in localStorage, never tied to an email or account,
+-- so it only approximates "unique visitors," not identity.
+create table public.page_views (
+  id bigint generated always as identity primary key,
+  path text not null,
+  visitor_id uuid not null,
+  created_at timestamptz not null default now()
+);
+
+create index page_views_created_at_idx on public.page_views (created_at);
+create index page_views_visitor_id_idx on public.page_views (visitor_id);
+
+alter table public.page_views enable row level security;
+-- Deliberately no select/insert policies for anon/authenticated: all access
+-- goes through the two security-definer functions below, so a visitor can
+-- log a view but never read anyone else's, and only the site owner can see
+-- the aggregate numbers.
+
+create function public.log_page_view(p_path text, p_visitor_id uuid)
+returns void
+language sql
+security definer set search_path = public
+as $$
+  insert into public.page_views (path, visitor_id) values (p_path, p_visitor_id);
+$$;
+
+grant execute on function public.log_page_view(text, uuid) to anon, authenticated;
+
+-- Single source of truth for the /admin stats page. Hard-checks the caller's
+-- own email server-side (not just a client-side route guard) before
+-- returning anything, since this aggregates data across every user.
+create function public.get_admin_stats()
+returns json
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  caller_email text;
+  result json;
+begin
+  select email into caller_email from auth.users where id = auth.uid();
+  if caller_email is distinct from 'vrishank98@gmail.com' then
+    raise exception 'not authorized';
+  end if;
+
+  select json_build_object(
+    'total_signups', (select count(*) from public.profiles),
+    'paid_members', (select count(*) from public.profiles where tier = 'paid'),
+    'seats_remaining', public.get_founding_seats_remaining(),
+    'signups_last_24h', (select count(*) from public.profiles where created_at > now() - interval '24 hours'),
+    'signups_last_7d', (select count(*) from public.profiles where created_at > now() - interval '7 days'),
+    'total_page_views', (select count(*) from public.page_views),
+    'unique_visitors', (select count(distinct visitor_id) from public.page_views),
+    'views_last_24h', (select count(*) from public.page_views where created_at > now() - interval '24 hours'),
+    'unique_visitors_last_24h', (select count(distinct visitor_id) from public.page_views where created_at > now() - interval '24 hours'),
+    'chapter_completions', (
+      select coalesce(json_object_agg(chapter_id, cnt order by chapter_id), '{}'::json) from (
+        select unnest(completed) as chapter_id, count(*) as cnt from public.profiles group by chapter_id
+      ) t
+    ),
+    'top_pages', (
+      select coalesce(json_agg(row_to_json(t)), '[]'::json) from (
+        select path, count(*) as views from public.page_views group by path order by views desc limit 10
+      ) t
+    )
+  ) into result;
+
+  return result;
+end;
+$$;
+
+grant execute on function public.get_admin_stats() to authenticated;

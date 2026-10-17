@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./lib/auth";
 import { ProgressProvider } from "./lib/progress";
 import { RequireAuth } from "./components/auth/RequireAuth";
+import { VisitTracker } from "./components/layout/VisitTracker";
 import Landing from "./pages/Landing";
 import Overview from "./pages/Overview";
 import Login from "./pages/Login";
@@ -20,6 +21,7 @@ import ChapterFive from "./pages/ChapterFive";
 import ChapterSix from "./pages/ChapterSix";
 import ChapterSeven from "./pages/ChapterSeven";
 import Profile from "./pages/Profile";
+import AdminStats from "./pages/AdminStats";
 
 function Protected({ children }: { children: React.ReactNode }) {
   return <RequireAuth>{children}</RequireAuth>;
@@ -30,6 +32,7 @@ export default function App() {
     <AuthProvider>
       <ProgressProvider>
         <BrowserRouter>
+          <VisitTracker />
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/overview" element={<Overview />} />
@@ -49,6 +52,7 @@ export default function App() {
             <Route path="/chapter/6" element={<Protected><ChapterSix /></Protected>} />
             <Route path="/chapter/7" element={<Protected><ChapterSeven /></Protected>} />
             <Route path="/profile" element={<Protected><Profile /></Protected>} />
+            <Route path="/admin" element={<Protected><AdminStats /></Protected>} />
           </Routes>
         </BrowserRouter>
       </ProgressProvider>

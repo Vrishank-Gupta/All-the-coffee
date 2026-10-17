@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Coffee, UserCircle2, LogOut } from "lucide-react";
+import { Coffee, UserCircle2, LogOut, BarChart3 } from "lucide-react";
 import { useProgress, TOTAL_CHAPTERS } from "../../lib/progress";
 import { useAuth } from "../../lib/auth";
 import { nextLiveChapter } from "../../lib/courseData";
@@ -40,6 +40,15 @@ export function SiteHeader() {
               className="hidden items-center gap-1.5 rounded-full bg-caramel-100 px-3 py-1 text-xs font-semibold text-caramel-700 hover:bg-caramel-200 sm:flex"
             >
               <UserCircle2 className="h-3.5 w-3.5" /> {completed.length} of {TOTAL_CHAPTERS} chapters done
+            </Link>
+          )}
+          {user?.email === "vrishank98@gmail.com" && (
+            <Link
+              to="/admin"
+              className="hidden items-center gap-1.5 text-sm font-medium text-espresso-700/60 hover:text-espresso-900 sm:flex"
+              title="Live stats"
+            >
+              <BarChart3 className="h-4 w-4" />
             </Link>
           )}
           {user ? (

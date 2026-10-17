@@ -17,6 +17,11 @@ export default function Privacy() {
           prompts (e.g. the "boring task" from Chapter 0, nervousness check-ins)
         </li>
         <li>Whether you've paid for Module B, and the Razorpay order/payment ID associated with that payment</li>
+        <li>
+          Anonymous visit counts: which pages get viewed and roughly how many distinct visitors the site gets,
+          tracked by a random ID stored in your browser, never linked to your email or identity. This is ours alone,
+          built specifically for this site; no third-party analytics script runs here.
+        </li>
       </ul>
       <p>
         We never see or store your card number, UPI ID, or other payment instrument details. Razorpay handles that
@@ -29,10 +34,11 @@ export default function Privacy() {
         <li>To save your progress and answers so they're there when you come back</li>
         <li>To unlock Module B once your payment is verified</li>
         <li>To send you account emails: signup confirmation, password reset</li>
+        <li>To understand which pages get visited and roughly how much traffic the site gets</li>
       </ul>
       <p>
-        We don't sell your data, and we don't use any third-party advertising trackers or analytics scripts on this
-        site, at the time of writing.
+        We don't sell your data, and we don't use any third-party advertising trackers or analytics scripts (Google
+        Analytics, Meta Pixel, or similar) on this site.
       </p>
 
       <h2>Who else sees it</h2>
