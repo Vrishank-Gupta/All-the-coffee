@@ -175,7 +175,7 @@ export default function Landing() {
                 <CheckCircle2 className="h-4 w-4" />
                 <span className="text-xs font-bold tracking-wide uppercase">You're a founding member</span>
               </div>
-              <h2 className="mt-5 font-display text-3xl font-semibold sm:text-4xl">
+              <h2 className="mt-5 font-display text-3xl font-semibold text-caramel-50 sm:text-4xl">
                 Module B is already yours. Let's keep going.
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-sm text-caramel-100/75">
@@ -200,7 +200,7 @@ export default function Landing() {
                 </span>
                 <FoundingSeatsBadge />
               </div>
-              <h2 className="mt-5 font-display text-3xl font-semibold sm:text-4xl">
+              <h2 className="mt-5 font-display text-3xl font-semibold text-caramel-50 sm:text-4xl">
                 Module A is free, always. Module B is ₹599, for now.
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
