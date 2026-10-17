@@ -197,6 +197,12 @@ export default function Landing() {
           >
             Start free, no card needed <ArrowRight className="h-4 w-4" />
           </Link>
+          <p className="mt-4 text-sm text-caramel-100/55">
+            Already sure?{" "}
+            <Link to="/chapter/4" className="font-semibold text-caramel-200 underline underline-offset-2 hover:text-caramel-100">
+              Skip ahead and go straight to Module B
+            </Link>
+          </p>
         </div>
       </section>
 

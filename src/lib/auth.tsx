@@ -10,9 +10,9 @@ interface AuthContextValue {
   session: Session | null;
   loading: boolean;
   configured: boolean;
-  signUpWithPassword: (email: string, password: string) => Promise<{ error: string | null; needsEmailConfirmation: boolean }>;
+  signUpWithPassword: (email: string, password: string, redirectPath?: string) => Promise<{ error: string | null; needsEmailConfirmation: boolean }>;
   signInWithPassword: (email: string, password: string) => Promise<{ error: string | null }>;
-  signInWithGoogle: () => Promise<{ error: string | null }>;
+  signInWithGoogle: (redirectPath?: string) => Promise<{ error: string | null }>;
   sendPasswordReset: (email: string) => Promise<{ error: string | null }>;
   updatePassword: (password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
@@ -48,12 +48,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     session,
     loading,
     configured: isSupabaseConfigured,
-    async signUpWithPassword(email, password) {
+    async signUpWithPassword(email, password, redirectPath = "/") {
       if (!isSupabaseConfigured) return { error: NOT_CONFIGURED_ERROR, needsEmailConfirmation: false };
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: window.location.origin },
+        options: { emailRedirectTo: window.location.origin + redirectPath },
       });
       // If email confirmation is required in the Supabase project settings,
       // signUp succeeds but returns no active session until they click the link.
@@ -65,11 +65,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       return { error: error?.message ?? null };
     },
-    async signInWithGoogle() {
+    async signInWithGoogle(redirectPath = "/") {
       if (!isSupabaseConfigured) return { error: NOT_CONFIGURED_ERROR };
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: window.location.origin },
+        options: { redirectTo: window.location.origin + redirectPath },
       });
       return { error: error?.message ?? null };
     },

@@ -30,7 +30,7 @@ export default function Login() {
 
   return (
     <AuthLayout title="Welcome back" subtitle="Log in to pick up where you left off.">
-      <GoogleButton />
+      <GoogleButton redirectPath={from} />
       <div className="my-5 flex items-center gap-3">
         <span className="h-px flex-1 bg-espresso-900/10" />
         <span className="text-xs font-semibold text-espresso-700/50 uppercase">or</span>
@@ -73,7 +73,7 @@ export default function Login() {
       </form>
       <p className="mt-5 text-center text-sm text-espresso-700/70">
         New here?{" "}
-        <Link to="/signup" className="font-semibold text-caramel-700 underline underline-offset-2">
+        <Link to="/signup" state={location.state} className="font-semibold text-caramel-700 underline underline-offset-2">
           Create a free account
         </Link>
       </p>

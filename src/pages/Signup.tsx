@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, type Location } from "react-router-dom";
 import { MailCheck } from "lucide-react";
 import { AuthLayout } from "../components/auth/AuthLayout";
 import { GoogleButton } from "../components/auth/GoogleButton";
@@ -8,17 +8,20 @@ import { useAuth } from "../lib/auth";
 export default function Signup() {
   const { signUpWithPassword } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [needsConfirmation, setNeedsConfirmation] = useState(false);
 
+  const from = (location.state as { from?: Location })?.from?.pathname ?? "/chapter/0";
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
-    const { error, needsEmailConfirmation } = await signUpWithPassword(email, password);
+    const { error, needsEmailConfirmation } = await signUpWithPassword(email, password, from);
     setSubmitting(false);
     if (error) {
       setError(error);
@@ -28,7 +31,7 @@ export default function Signup() {
       setNeedsConfirmation(true);
       return;
     }
-    navigate("/chapter/0");
+    navigate(from, { replace: true });
   }
 
   if (needsConfirmation) {
@@ -39,7 +42,7 @@ export default function Signup() {
           <p className="text-sm text-espresso-800">
             We sent a confirmation link to <strong>{email}</strong>. Click it, then come back here and log in.
           </p>
-          <Link to="/login" className="mt-2 text-sm font-semibold text-caramel-700 underline underline-offset-2">
+          <Link to="/login" state={location.state} className="mt-2 text-sm font-semibold text-caramel-700 underline underline-offset-2">
             Go to login
           </Link>
         </div>
@@ -49,7 +52,7 @@ export default function Signup() {
 
   return (
     <AuthLayout title="Create your free account" subtitle="Chapters 0–3 are free. No card needed.">
-      <GoogleButton label="Sign up with Google" />
+      <GoogleButton label="Sign up with Google" redirectPath={from} />
       <div className="my-5 flex items-center gap-3">
         <span className="h-px flex-1 bg-espresso-900/10" />
         <span className="text-xs font-semibold text-espresso-700/50 uppercase">or</span>
@@ -88,7 +91,7 @@ export default function Signup() {
       </form>
       <p className="mt-5 text-center text-sm text-espresso-700/70">
         Already have an account?{" "}
-        <Link to="/login" className="font-semibold text-caramel-700 underline underline-offset-2">
+        <Link to="/login" state={location.state} className="font-semibold text-caramel-700 underline underline-offset-2">
           Log in
         </Link>
       </p>

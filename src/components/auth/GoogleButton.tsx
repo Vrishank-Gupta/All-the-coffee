@@ -12,13 +12,13 @@ function GoogleIcon() {
   );
 }
 
-export function GoogleButton({ label = "Continue with Google" }: { label?: string }) {
+export function GoogleButton({ label = "Continue with Google", redirectPath }: { label?: string; redirectPath?: string }) {
   const { signInWithGoogle } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
   async function handleClick() {
     setError(null);
-    const { error } = await signInWithGoogle();
+    const { error } = await signInWithGoogle(redirectPath);
     if (error) setError(error);
   }
 
