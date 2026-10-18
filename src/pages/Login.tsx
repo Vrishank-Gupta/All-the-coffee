@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate, type Location } from "react-router-dom"
 import { AuthLayout } from "../components/auth/AuthLayout";
 import { GoogleButton } from "../components/auth/GoogleButton";
 import { useAuth } from "../lib/auth";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export default function Login() {
+  useDocumentMeta("Log In");
   const { signInWithPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

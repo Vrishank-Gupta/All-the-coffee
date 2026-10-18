@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
+import { useDocumentMeta } from "../../lib/useDocumentMeta";
 
 export function LegalPageLayout({ title, lastUpdated, children }: { title: string; lastUpdated: string; children: ReactNode }) {
+  useDocumentMeta(title);
   return (
     <div className="min-h-screen bg-paper bg-grain">
       <SiteHeader />

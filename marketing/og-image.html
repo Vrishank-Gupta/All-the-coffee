@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>All The Coffee — Social Share Image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --espresso-950: #241711;
+    --espresso-900: #33221a;
+    --espresso-800: #43291d;
+    --caramel-500: #d9872f;
+    --caramel-400: #e9a24f;
+    --caramel-200: #f7d7a8;
+    --caramel-50: #fdf3e4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    overflow: hidden;
+    font-family: "Inter", sans-serif;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(242, 189, 124, 0.3), transparent 50%),
+      radial-gradient(circle at 92% 85%, rgba(217, 135, 47, 0.16), transparent 50%),
+      linear-gradient(160deg, var(--espresso-950) 0%, var(--espresso-900) 55%, var(--espresso-800) 100%);
+  }
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .frame {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 70px;
+    gap: 56px;
+  }
+  .cup { flex: 0 0 auto; width: 260px; height: 260px; }
+  .copy { flex: 1 1 auto; }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .brand .mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--caramel-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .brand .word {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--caramel-50);
+  }
+  .brand .word b { color: var(--caramel-400); font-weight: 700; }
+  h1 {
+    margin: 0;
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 1.08;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  h1 .hl { color: var(--caramel-300); }
+  p {
+    margin: 18px 0 0;
+    font-size: 21px;
+    line-height: 1.5;
+    color: rgba(251, 233, 206, 0.8);
+    max-width: 640px;
+  }
+  .chips {
+    margin-top: 26px;
+    display: flex;
+    gap: 10px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--caramel-50);
+  }
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="frame">
+    <svg class="cup" viewBox="0 0 1080 1080">
+      <g transform="translate(-60, 15)">
+        <g stroke="url(#steamGrad)" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.9">
+          <path d="M 430 330 C 400 290, 460 260, 430 220 C 400 180, 460 150, 440 110" />
+          <path d="M 540 340 C 510 300, 570 270, 540 230 C 510 190, 570 160, 550 120" />
+          <path d="M 650 330 C 620 290, 680 260, 650 220 C 620 180, 680 150, 660 110" />
+        </g>
+        <ellipse cx="540" cy="830" rx="300" ry="42" fill="var(--espresso-900)" stroke="var(--caramel-500)" stroke-width="10" />
+        <path d="M 350 440 L 390 760 C 394 792, 420 812, 452 812 L 628 812 C 660 812, 686 792, 690 760 L 730 440 Z"
+              fill="var(--caramel-500)" stroke="var(--espresso-950)" stroke-width="14" stroke-linejoin="round" />
+        <ellipse cx="540" cy="440" rx="190" ry="46" fill="var(--caramel-400)" stroke="var(--espresso-950)" stroke-width="14" />
+        <ellipse cx="540" cy="434" rx="150" ry="30" fill="var(--espresso-950)" />
+        <path d="M 726 500 C 860 500, 860 680, 726 680" fill="none" stroke="var(--caramel-500)" stroke-width="42" stroke-linecap="round" />
+      </g>
+      <defs>
+        <linearGradient id="steamGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="var(--caramel-200)" stop-opacity="0" />
+          <stop offset="60%" stop-color="var(--caramel-200)" stop-opacity="0.85" />
+          <stop offset="100%" stop-color="var(--caramel-50)" stop-opacity="0.95" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="copy">
+      <div class="brand">
+        <div class="mark">☕</div>
+        <div class="word">All The <b>Coffee</b></div>
+      </div>
+      <h1>From AI-anxious to<br /><span class="hl">builder</span>, one coffee break at a time.</h1>
+      <p>Build your first real AI tool in 20 minutes. No coding background. No jargon. Nobody judging you.</p>
+      <div class="chips">
+        <span class="chip">✓ Free to start</span>
+        <span class="chip">✓ No card needed</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

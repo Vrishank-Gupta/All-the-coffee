@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Coffee, ShieldCheck, Target, Briefcase, Globe, MessagesSquare,
   Trophy, Lightbulb, MessageCircleQuestion, Bug, BookOpenText,
   EyeOff, Bot, MousePointerClick, Sparkles, CheckCircle2, Lock,
-  Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp,
+  Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp, ChevronDown,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
@@ -13,6 +14,7 @@ import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
 import { useProgress } from "../lib/progress";
 import { useAuth } from "../lib/auth";
+import { useJsonLd } from "../lib/useJsonLd";
 
 const INSIGHTS = [
   {
@@ -29,6 +31,33 @@ const INSIGHTS = [
     stat: "3×",
     finding: "higher the real share of employees using AI daily is, compared to what their own leaders estimate.",
     source: "McKinsey, \"Superagency in the Workplace,\" Jan 2025",
+  },
+];
+
+const FAQS = [
+  {
+    q: "Do I need any coding experience to start?",
+    a: "No. Chapters 0–3 are built specifically for people who've never written a line of code. You'll use AI to build a real, working tool without typing any code yourself.",
+  },
+  {
+    q: "How much time does this actually take?",
+    a: "About 20–45 minutes per chapter. Most people finish Module A, the free part, over a few sittings across a week or two, at their own pace.",
+  },
+  {
+    q: "Do I need to install any software?",
+    a: "No. Everything runs in your browser, including on locked-down work laptops where you can't install anything.",
+  },
+  {
+    q: "What happens to my data?",
+    a: "We store your email, your progress, and whatever you type into the course's own exercises. We never sell it, and we don't run third-party advertising trackers. Full details in our Privacy Policy.",
+  },
+  {
+    q: "What if I pay for Module B and don't like it?",
+    a: "You're covered for 30 days from payment, or until you finish Module B, whichever is later. Email us, no reason required. See our Refund Policy for the exact process.",
+  },
+  {
+    q: "Is this a bootcamp, or will it get me a developer job?",
+    a: "No. This is for HR, finance, ops, sales and marketing professionals who want to build small tools for their own work, not people prepping for a developer role. If that's what you're after, this isn't the right fit.",
   },
 ];
 
@@ -54,6 +83,16 @@ const PRINCIPLES = [
 ];
 
 export default function Landing() {
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  });
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { user } = useAuth();
   const { isComplete, isUnlocked, hasPaid, completed } = useProgress();
   const next = nextLiveChapter(completed);
@@ -315,6 +354,28 @@ export default function Landing() {
               <p className="mt-1 text-xs leading-snug text-espresso-700/70">{p.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mx-auto max-w-3xl px-5 py-14">
+        <h2 className="font-display text-3xl font-semibold text-espresso-950">Questions before you start</h2>
+        <div className="mt-6 divide-y divide-espresso-900/10 rounded-2xl border border-espresso-900/10 bg-cream">
+          {FAQS.map((f, idx) => {
+            const open = openFaq === idx;
+            return (
+              <div key={f.q}>
+                <button
+                  onClick={() => setOpenFaq(open ? null : idx)}
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                >
+                  <span className="font-semibold text-espresso-950">{f.q}</span>
+                  <ChevronDown className={`h-4 w-4 shrink-0 text-espresso-500 transition-transform ${open ? "rotate-180" : ""}`} />
+                </button>
+                {open && <p className="px-5 pb-4 text-sm leading-relaxed text-espresso-700/80">{f.a}</p>}
+              </div>
+            );
+          })}
         </div>
       </section>
 

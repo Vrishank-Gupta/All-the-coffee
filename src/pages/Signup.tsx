@@ -4,8 +4,10 @@ import { MailCheck } from "lucide-react";
 import { AuthLayout } from "../components/auth/AuthLayout";
 import { GoogleButton } from "../components/auth/GoogleButton";
 import { useAuth } from "../lib/auth";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export default function Signup() {
+  useDocumentMeta("Create Your Free Account", "Chapters 0–3 are free, no card needed. Start building your first AI tool in 20 minutes.");
   const { signUpWithPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

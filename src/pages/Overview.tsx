@@ -9,6 +9,7 @@ import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { CHAPTERS, MODULES } from "../lib/courseData";
 import { useAuth } from "../lib/auth";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 const STATS = [
   { value: "20 min", label: "to your first working tool", icon: Clock },
@@ -63,6 +64,10 @@ const TOOL_TIERS = [
 ];
 
 export default function Overview() {
+  useDocumentMeta(
+    "Course Overview",
+    "What All The Coffee teaches, who it's for, and what you'll be able to build by the end. No coding background needed."
+  );
   const { user } = useAuth();
   // /chapter/0 is a protected route: a logged-out visitor clicking it gets
   // bounced to /login instead of /signup. Route logged-out visitors straight
