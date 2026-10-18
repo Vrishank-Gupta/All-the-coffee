@@ -4,7 +4,7 @@ import {
   Coffee, ShieldCheck, Target, Briefcase, Globe, MessagesSquare,
   Trophy, Lightbulb, MessageCircleQuestion, Bug, BookOpenText,
   EyeOff, Bot, MousePointerClick, Sparkles, CheckCircle2, Lock,
-  Clock, ArrowRight, XCircle, Crown, Flame,
+  Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
@@ -13,6 +13,24 @@ import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
 import { useProgress } from "../lib/progress";
 import { useAuth } from "../lib/auth";
+
+const INSIGHTS = [
+  {
+    stat: "75%",
+    finding: "of knowledge workers already use AI at work, not just the technical ones.",
+    source: "Microsoft & LinkedIn, 2024 Work Trend Index",
+  },
+  {
+    stat: "~25%",
+    finding: "of Indian companies say their workforce is actually ready for AI, a 12-point drop from the year before, even as the tools got easier to use.",
+    source: "Kyndryl, 2026 workforce readiness report",
+  },
+  {
+    stat: "3×",
+    finding: "higher the real share of employees using AI daily is, compared to what their own leaders estimate.",
+    source: "McKinsey, \"Superagency in the Workplace,\" Jan 2025",
+  },
+];
 
 const DIFFERENTIATORS = [
   { icon: ShieldCheck, title: "Fear-first design", desc: "Every chapter targets a moment you expect to fail, and shows you that you didn't." },
@@ -102,6 +120,48 @@ export default function Landing() {
               You'll build this exact tool in Chapter 6. Paste your own notes above and watch it work.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Data-backed insight */}
+      <section className="mx-auto max-w-6xl px-5 py-14">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-espresso-900/5 px-3.5 py-1.5 text-xs font-bold tracking-wide text-espresso-700 uppercase">
+            <TrendingUp className="h-3.5 w-3.5" /> The gap, in numbers
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
+            This isn't just a feeling. It's measured every year.
+          </h2>
+          <p className="mt-3 text-espresso-700/75">
+            Independent workplace research keeps finding the same pattern: the gap isn't intelligence or ability.
+            It's that almost nobody gets shown the first step.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {INSIGHTS.map((i) => (
+            <div key={i.stat} className="rounded-2xl border border-espresso-900/10 bg-cream p-6 shadow-soft">
+              <p className="font-display text-4xl font-bold text-caramel-700">{i.stat}</p>
+              <p className="mt-2 text-sm leading-snug text-espresso-800">{i.finding}</p>
+              <p className="mt-3 text-xs text-espresso-600/60">{i.source}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-3xl border border-sage-200 bg-sage-50 p-6 text-center sm:p-8">
+          <p className="font-display text-xl font-semibold text-espresso-950">
+            The confidence gap is the one thing a course can actually fix.
+          </p>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-espresso-700/80">
+            You don't have to take our word for it, or theirs. Chapters 0–3 are completely free, no card required.
+            Build a real, working tool first, then decide whether Module B is worth ₹599 to you.
+          </p>
+          <Link
+            to={startCtaPath}
+            className="mt-5 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
+          >
+            Try it free, no card needed <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
