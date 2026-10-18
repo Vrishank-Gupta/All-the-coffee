@@ -31,6 +31,46 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://allthecoffee.in/blog/ai-data-privacy-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/ai-hiring-hr-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/prompt-engineering-is-dying</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/ai-subscription-costs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/ai-sales-without-sounding-robotic</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/ai-cant-do-your-job-yet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/skills-that-matter-ai-world</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/ai-marketing-practical-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://allthecoffee.in/login</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

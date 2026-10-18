@@ -5,6 +5,7 @@ import { SiteFooter } from "../components/layout/SiteFooter";
 import { useDocumentMeta } from "../lib/useDocumentMeta";
 import { BLOG_POSTS } from "../lib/blogData";
 import { useAuth } from "../lib/auth";
+import { useProgress } from "../lib/progress";
 
 export default function BlogList() {
   useDocumentMeta(
@@ -12,6 +13,7 @@ export default function BlogList() {
     "Weekly, practical AI insights for HR, finance, ops, sales and marketing professionals. No hype, no jargon."
   );
   const { user } = useAuth();
+  const { hasPaid } = useProgress();
 
   return (
     <div className="min-h-screen bg-paper bg-grain">
@@ -41,7 +43,9 @@ export default function BlogList() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {BLOG_POSTS.map((post) => {
-            const locked = !post.free && !user;
+            const needsSignup = !user;
+            const needsPayment = Boolean(user) && !post.free && !hasPaid;
+            const locked = needsSignup || needsPayment;
             return (
               <Link
                 key={post.slug}
@@ -64,7 +68,8 @@ export default function BlogList() {
                   {post.title}
                 </p>
                 <p className="mt-1.5 flex-1 text-sm leading-snug text-espresso-700/75">{post.excerpt}</p>
-                {locked && <p className="mt-3 text-xs font-semibold text-caramel-700">Sign up free to read &rarr;</p>}
+                {needsSignup && <p className="mt-3 text-xs font-semibold text-caramel-700">Sign up free to read &rarr;</p>}
+                {needsPayment && <p className="mt-3 text-xs font-semibold text-caramel-700">Unlock with Module B &rarr;</p>}
               </Link>
             );
           })}
