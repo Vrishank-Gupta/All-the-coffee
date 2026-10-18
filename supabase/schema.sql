@@ -1,6 +1,10 @@
 -- Run this once in your Supabase project's SQL Editor (Dashboard -> SQL Editor -> New query).
 -- Mirrors the old localStorage ProgressState shape, one row per user.
 
+-- Needed for the new-signup notification trigger further down, which calls
+-- an Edge Function via an async HTTP request rather than blocking signup.
+create extension if not exists pg_net with schema extensions;
+
 create table public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   completed int[] not null default '{}',
@@ -29,15 +33,39 @@ create policy "Users can update their own profile"
 -- table owner, which bypasses RLS) and should never be deleted by a client.
 
 -- Auto-create a profile row the moment someone signs up, so the app never
--- has to handle a signed-in user with no profile row.
+-- has to handle a signed-in user with no profile row. Also fires a
+-- fire-and-forget notification to notify-new-signup via pg_net, for both
+-- email/password and Google sign-ups (both insert into auth.users the same
+-- way), so the site owner gets an email the moment someone real signs up.
+--
+-- SECURITY NOTE: replace <DB_WEBHOOK_SECRET> below with the exact same
+-- value set via `supabase secrets set DB_WEBHOOK_SECRET=...` for the
+-- notify-new-signup function (see supabase/functions/README.md). This
+-- value lives in the function body here because Postgres has no way to
+-- read an Edge Function's own secret store directly; never commit the
+-- real value to this file, keep the placeholder in version control and
+-- substitute the real one only when running this against your project.
 create function public.handle_new_user()
 returns trigger
 language plpgsql
-security definer set search_path = public
+security definer set search_path = public, extensions
 as $$
 begin
   insert into public.profiles (id)
   values (new.id);
+
+  perform net.http_post(
+    url := 'https://inomysctlfdtheglsdso.supabase.co/functions/v1/notify-new-signup',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-webhook-secret', '<DB_WEBHOOK_SECRET>'
+    ),
+    body := jsonb_build_object(
+      'email', new.email,
+      'provider', new.raw_app_meta_data->>'provider'
+    )
+  );
+
   return new;
 end;
 $$;
