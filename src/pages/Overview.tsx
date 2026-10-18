@@ -8,6 +8,7 @@ import {
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { CHAPTERS, MODULES } from "../lib/courseData";
+import { useAuth } from "../lib/auth";
 
 const STATS = [
   { value: "20 min", label: "to your first working tool", icon: Clock },
@@ -62,6 +63,12 @@ const TOOL_TIERS = [
 ];
 
 export default function Overview() {
+  const { user } = useAuth();
+  // /chapter/0 is a protected route: a logged-out visitor clicking it gets
+  // bounced to /login instead of /signup. Route logged-out visitors straight
+  // to signup instead.
+  const startCtaPath = user ? "/chapter/0" : "/signup";
+
   return (
     <div className="min-h-screen bg-paper bg-grain">
       <SiteHeader />
@@ -82,7 +89,7 @@ export default function Overview() {
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <Link
-              to="/chapter/0"
+              to={startCtaPath}
               className="flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3.5 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
             >
               Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />
@@ -281,7 +288,7 @@ export default function Overview() {
             Chapters 0–3 are completely free. No card, no catch, just open the first one and see for yourself.
           </p>
           <Link
-            to="/chapter/0"
+            to={startCtaPath}
             className="mt-7 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-7 py-4 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
           >
             Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />

@@ -12,6 +12,7 @@ import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
 import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
 import { useProgress } from "../lib/progress";
+import { useAuth } from "../lib/auth";
 
 const DIFFERENTIATORS = [
   { icon: ShieldCheck, title: "Fear-first design", desc: "Every chapter targets a moment you expect to fail, and shows you that you didn't." },
@@ -35,9 +36,15 @@ const PRINCIPLES = [
 ];
 
 export default function Landing() {
+  const { user } = useAuth();
   const { isComplete, isUnlocked, hasPaid, completed } = useProgress();
   const next = nextLiveChapter(completed);
   const continuePath = next ? next.path : "/profile";
+  // /chapter/0 is a protected route: a logged-out visitor clicking it gets
+  // bounced to /login (a form asking for existing credentials) instead of
+  // /signup, which was silently killing conversion from every CTA on this
+  // page. Route logged-out visitors to /signup directly instead.
+  const startCtaPath = !user ? "/signup" : completed.length === 0 ? "/chapter/0" : continuePath;
 
   return (
     <div className="min-h-screen bg-paper bg-grain">
@@ -59,7 +66,7 @@ export default function Landing() {
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
-                to="/chapter/0"
+                to={startCtaPath}
                 className="flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3.5 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
               >
                 Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />
@@ -217,7 +224,7 @@ export default function Landing() {
                 Module B's four more real tools.
               </p>
               <Link
-                to="/chapter/0"
+                to={startCtaPath}
                 className="mt-7 inline-flex items-center gap-2 rounded-xl bg-caramel-500 px-7 py-3.5 font-semibold text-espresso-950 shadow-lift transition hover:bg-caramel-400"
               >
                 Start free, no card needed <ArrowRight className="h-4 w-4" />
@@ -257,7 +264,7 @@ export default function Landing() {
           Your first tool is twenty minutes away.
         </h2>
         <Link
-          to="/chapter/0"
+          to={startCtaPath}
           className="mt-6 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-7 py-4 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
         >
           Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />
