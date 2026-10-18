@@ -71,7 +71,7 @@ export default function Terms() {
 
       <h2>Contact</h2>
       <p>
-        Questions about these terms: <a href="mailto:hello@allthecoffee.in">hello@allthecoffee.in</a>
+        Questions about these terms: <a href="mailto:info@allthecoffee.in">info@allthecoffee.in</a>
       </p>
     </LegalPageLayout>
   );

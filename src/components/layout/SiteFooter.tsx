@@ -8,7 +8,7 @@ export function SiteFooter() {
         <Link to="/terms" className="hover:text-espresso-900 hover:underline">Terms of Service</Link>
         <Link to="/privacy" className="hover:text-espresso-900 hover:underline">Privacy Policy</Link>
         <Link to="/refund-policy" className="hover:text-espresso-900 hover:underline">Refund Policy</Link>
-        <a href="mailto:hello@allthecoffee.in" className="hover:text-espresso-900 hover:underline">hello@allthecoffee.in</a>
+        <a href="mailto:info@allthecoffee.in" className="hover:text-espresso-900 hover:underline">info@allthecoffee.in</a>
       </div>
     </footer>
   );

@@ -17,7 +17,7 @@ export default function RefundPolicy() {
 
       <h2>How to request one</h2>
       <p>
-        Email <a href="mailto:hello@allthecoffee.in">hello@allthecoffee.in</a> from the email address on your
+        Email <a href="mailto:info@allthecoffee.in">info@allthecoffee.in</a> from the email address on your
         account, with your Razorpay payment ID if you have it handy (it's fine if you don't, we can look it up by
         your account email). Tell us you'd like a refund. No reason required, though we're always glad to hear what
         didn't work for you.
@@ -39,7 +39,7 @@ export default function RefundPolicy() {
 
       <h2>Contact</h2>
       <p>
-        Questions before you decide either way: <a href="mailto:hello@allthecoffee.in">hello@allthecoffee.in</a>
+        Questions before you decide either way: <a href="mailto:info@allthecoffee.in">info@allthecoffee.in</a>
       </p>
     </LegalPageLayout>
   );

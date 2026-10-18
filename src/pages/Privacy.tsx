@@ -65,7 +65,7 @@ export default function Privacy() {
       <h2>Your rights</h2>
       <p>
         You can ask to see what data we have on you, correct it, or have it deleted at any time by emailing{" "}
-        <a href="mailto:hello@allthecoffee.in">hello@allthecoffee.in</a>.
+        <a href="mailto:info@allthecoffee.in">info@allthecoffee.in</a>.
       </p>
 
       <h2>Security</h2>
@@ -82,7 +82,7 @@ export default function Privacy() {
 
       <h2>Contact</h2>
       <p>
-        Questions about your data: <a href="mailto:hello@allthecoffee.in">hello@allthecoffee.in</a>
+        Questions about your data: <a href="mailto:info@allthecoffee.in">info@allthecoffee.in</a>
       </p>
     </LegalPageLayout>
   );

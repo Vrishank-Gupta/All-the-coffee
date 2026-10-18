@@ -65,7 +65,7 @@ export function FoundingOfferBox() {
         <Link to="/refund-policy" className="underline underline-offset-2 hover:text-caramel-100">
           full refund policy
         </Link>
-        . Questions first? <a href="mailto:hello@allthecoffee.in" className="underline underline-offset-2 hover:text-caramel-100">hello@allthecoffee.in</a>
+        . Questions first? <a href="mailto:info@allthecoffee.in" className="underline underline-offset-2 hover:text-caramel-100">info@allthecoffee.in</a>
       </p>
       <div className="mt-4">
         <RazorpayCheckoutButton />

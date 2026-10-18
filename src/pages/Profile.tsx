@@ -87,7 +87,7 @@ export default function Profile() {
             <p className="font-semibold text-espresso-950">You're a founding member of Module B.</p>
             <p className="mt-1 text-espresso-700/80">
               Your ₹599 payment unlocked permanent access to Chapters 4–7. Questions about your payment?{" "}
-              <a href="mailto:hello@allthecoffee.in" className="font-semibold underline underline-offset-2">hello@allthecoffee.in</a>.
+              <a href="mailto:info@allthecoffee.in" className="font-semibold underline underline-offset-2">info@allthecoffee.in</a>.
             </p>
           </div>
         )}
