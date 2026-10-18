@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <LegalPageLayout title="Privacy Policy" lastUpdated="17 October 2026">
       <p>
-        All The Coffee is run by Vrishank Gupta, an individual based in India. This page explains what information
+        All The Coffee is run by an individual based in India, not a registered company. This page explains what information
         is collected when you use the site, and what happens to it.
       </p>
 
