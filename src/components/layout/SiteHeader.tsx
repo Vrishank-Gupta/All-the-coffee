@@ -34,6 +34,9 @@ export function SiteHeader() {
           <a href="/#course-map" className="hidden text-sm font-medium text-espresso-700/70 hover:text-espresso-900 sm:block">
             Course map
           </a>
+          <Link to="/blog" className="hidden text-sm font-medium text-espresso-700/70 hover:text-espresso-900 sm:block">
+            Blog
+          </Link>
           {user && (
             <Link
               to="/profile"

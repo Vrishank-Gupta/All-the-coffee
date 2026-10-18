@@ -5,13 +5,14 @@ import {
   Coffee, ShieldCheck, Target, Briefcase, Globe, MessagesSquare,
   Trophy, Lightbulb, MessageCircleQuestion, Bug, BookOpenText,
   EyeOff, Bot, MousePointerClick, Sparkles, CheckCircle2, Lock,
-  Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp, ChevronDown,
+  Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp, ChevronDown, Mail,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
 import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
+import { BLOG_POSTS } from "../lib/blogData";
 import { useProgress } from "../lib/progress";
 import { useAuth } from "../lib/auth";
 import { useJsonLd } from "../lib/useJsonLd";
@@ -354,6 +355,45 @@ export default function Landing() {
               <p className="mt-1 text-xs leading-snug text-espresso-700/70">{p.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Blog teaser */}
+      <section className="mx-auto max-w-6xl px-5 py-14">
+        <div className="overflow-hidden rounded-3xl border border-espresso-900/10 bg-cream p-6 sm:p-10">
+          <div className="flex flex-wrap items-start justify-between gap-6">
+            <div className="max-w-xl">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-espresso-950 px-3.5 py-1.5 text-xs font-bold tracking-wide text-caramel-200 uppercase">
+                <Mail className="h-3.5 w-3.5" /> Stay current, for free
+              </span>
+              <h2 className="mt-4 font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
+                The AI world moves fast. We'll keep you caught up, one coffee break a week.
+              </h2>
+              <p className="mt-3 text-espresso-700/75">
+                A free weekly article on what's actually happening in AI, written for people who don't have time
+                to follow it full-time. No hype, no jargon, nothing that takes longer than a coffee break to
+                read. Your free account gets you in.
+              </p>
+              <Link
+                to="/blog"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
+              >
+                Read the blog <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="grid flex-1 gap-3 sm:min-w-[280px]">
+              {BLOG_POSTS.slice(0, 3).map((post) => (
+                <Link
+                  key={post.slug}
+                  to={`/blog/${post.slug}`}
+                  className="group rounded-xl border border-espresso-900/10 bg-paper px-4 py-3 transition hover:border-caramel-400/60"
+                >
+                  <p className="text-[11px] font-bold tracking-wide text-caramel-700 uppercase">{post.topic}</p>
+                  <p className="mt-0.5 text-sm font-semibold text-espresso-900 group-hover:text-caramel-700">{post.title}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

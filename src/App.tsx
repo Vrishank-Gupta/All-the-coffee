@@ -12,6 +12,8 @@ import ResetPassword from "./pages/ResetPassword";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import RefundPolicy from "./pages/RefundPolicy";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
 import ChapterZero from "./pages/ChapterZero";
 import ChapterOne from "./pages/ChapterOne";
 import ChapterTwo from "./pages/ChapterTwo";
@@ -43,6 +45,8 @@ export default function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/chapter/0" element={<Protected><ChapterZero /></Protected>} />
             <Route path="/chapter/1" element={<Protected><ChapterOne /></Protected>} />
             <Route path="/chapter/2" element={<Protected><ChapterTwo /></Protected>} />

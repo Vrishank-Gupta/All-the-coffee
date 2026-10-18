@@ -16,6 +16,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://allthecoffee.in/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/ai-agents-explained</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://allthecoffee.in/blog/shadow-ai-your-team</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://allthecoffee.in/login</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
