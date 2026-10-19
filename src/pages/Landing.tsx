@@ -6,6 +6,7 @@ import {
   Trophy, Lightbulb, MessageCircleQuestion, Bug, BookOpenText,
   EyeOff, Bot, MousePointerClick, Sparkles, CheckCircle2, Lock,
   Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp, ChevronDown, Mail,
+  Megaphone, Wallet, Users, Handshake,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
@@ -68,6 +69,33 @@ const DIFFERENTIATORS = [
   { icon: Briefcase, title: "Work-relevant projects", desc: "No to-do apps or calculators as filler. You build things you could show your manager." },
   { icon: Globe, title: "Browser first, installs later", desc: "Your first win happens with zero installation, locked-down work laptops included." },
   { icon: MessagesSquare, title: "Talk to tech people", desc: "Every chapter ends with the words you can now use confidently in a meeting." },
+];
+
+const ROLES = [
+  {
+    role: "Marketing",
+    icon: Megaphone,
+    desc: "Paste in raw survey or campaign feedback, get a clean one-page summary out, no manual read-through required.",
+    chapter: "Chapter 6 · live now",
+  },
+  {
+    role: "Finance",
+    icon: Wallet,
+    desc: "Hand it a messy vendor expense sheet, get back something you can actually forward to your boss.",
+    chapter: "Chapter 5 · live now",
+  },
+  {
+    role: "HR",
+    icon: Users,
+    desc: "A tracker that remembers exactly who you still owe a follow-up to, so nobody falls through the cracks.",
+    chapter: "Chapter 4 · live now",
+  },
+  {
+    role: "Sales & ops",
+    icon: Handshake,
+    desc: "A calculator that puts a real rupee number on your next “quick call,” so the recurring meeting finally dies.",
+    chapter: "Chapter 1 · live now",
+  },
 ];
 
 const PRINCIPLES = [
@@ -284,6 +312,29 @@ export default function Landing() {
               Saying this out loud builds trust with the people this course is actually for.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Role-specific proof */}
+      <section className="mx-auto max-w-6xl px-5 py-14">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
+            Built for your actual desk, not just &ldquo;tech people&rdquo;
+          </h2>
+          <p className="mt-3 text-espresso-700/75">
+            Marketing, finance, HR, sales, ops: same AI skillset, pointed at your real work. Every example below
+            is a chapter that's live right now, not a plan for later.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {ROLES.map((r) => (
+            <div key={r.role} className="rounded-2xl border border-espresso-900/10 bg-cream p-5 shadow-soft">
+              <r.icon className="h-6 w-6 text-caramel-600" strokeWidth={1.7} />
+              <p className="mt-3 font-display text-base font-semibold text-espresso-950">{r.role}</p>
+              <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">{r.desc}</p>
+              <p className="mt-2.5 text-xs font-semibold text-caramel-700">{r.chapter}</p>
+            </div>
+          ))}
         </div>
       </section>
 
