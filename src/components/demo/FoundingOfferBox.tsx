@@ -14,6 +14,10 @@ const UNLOCKS_NOW = [
   "Chapter 5: Taming messy spreadsheets",
   "Chapter 6: Putting AI inside your tool",
   "Chapter 7: Sharing what you built",
+  "Chapter 8: Setting up your workshop",
+  "Chapter 9: Your first automation script",
+  "Chapter 10: Reading code like a recipe",
+  "Chapter 11: Capstone, plus your certificate",
 ];
 
 export function FoundingOfferBox() {
@@ -33,8 +37,8 @@ export function FoundingOfferBox() {
         <span className="font-display text-4xl font-bold text-caramel-50">₹599</span>
       </div>
       <p className="mt-1 text-sm text-caramel-100/70">
-        All-inclusive, no hidden charges. Unlocks the rest of Module B: three more real tools, plus publishing one
-        of them live.
+        All-inclusive, no hidden charges. Unlocks Modules B and C together: three more real tools, publishing one
+        live, a real coding workshop, and your own capstone project.
       </p>
       <p className="mt-2 text-sm font-medium text-brick-200">
         Capped at 100 founding seats, ever. This founding price is limited-time, not guaranteed to last.

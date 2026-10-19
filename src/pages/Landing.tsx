@@ -251,8 +251,8 @@ export default function Landing() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-espresso-950 font-display text-sm font-bold text-caramel-100">2</span>
             <p className="mt-3 font-display text-base font-semibold text-espresso-950">Decide if it's worth it</p>
             <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
-              If it clicks, unlock the rest of Module B for ₹599: three more tools, plus publishing one of them
-              live.
+              If it clicks, unlock Modules B and C for ₹599: three more tools, publishing one live, and your own
+              coding workshop.
             </p>
           </div>
           <div className="rounded-2xl border border-caramel-300/50 bg-caramel-50 p-5">
@@ -425,7 +425,7 @@ export default function Landing() {
         <div className="mt-8 space-y-5">
           <ModuleBlock moduleKey="A" live chapters={CHAPTERS.filter((c) => c.module === "A")} isComplete={isComplete} isUnlocked={isUnlocked} />
           <ModuleBlock moduleKey="B" live chapters={CHAPTERS.filter((c) => c.module === "B")} isComplete={isComplete} isUnlocked={isUnlocked} />
-          <ModuleBlock moduleKey="C" chapters={CHAPTERS.filter((c) => c.module === "C")} isComplete={isComplete} isUnlocked={isUnlocked} />
+          <ModuleBlock moduleKey="C" live chapters={CHAPTERS.filter((c) => c.module === "C")} isComplete={isComplete} isUnlocked={isUnlocked} />
         </div>
 
         <div className="mt-6 rounded-2xl border border-dashed border-espresso-900/15 bg-cream/60 p-6 text-center">
@@ -447,11 +447,11 @@ export default function Landing() {
                 <span className="text-xs font-bold tracking-wide uppercase">You're a founding member</span>
               </div>
               <h2 className="mt-5 font-display text-3xl font-semibold text-caramel-50 sm:text-4xl">
-                Module B is already yours. Let's keep going.
+                Modules B and C are already yours. Let's keep going.
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-sm text-caramel-100/75">
-                You locked in the founding price, full access to all eight live chapters. No more payment screens
-                between you and the rest of the course.
+                You locked in the founding price, full access to all twelve live chapters, right through the
+                capstone and your certificate. No more payment screens between you and the rest of the course.
               </p>
               <Link
                 to={continuePath}
@@ -472,7 +472,7 @@ export default function Landing() {
                 <FoundingSeatsBadge />
               </div>
               <h2 className="mt-5 font-display text-3xl font-semibold text-caramel-50 sm:text-4xl">
-                Module A is free, always. Module B is ₹599, for now.
+                Module A is free, always. Modules B and C are ₹599, for now.
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
                 <span className="font-display text-2xl font-medium text-caramel-100/50 line-through">₹999</span>
@@ -483,11 +483,12 @@ export default function Landing() {
                 Capped at 100 founding seats, ever. This founding price is limited-time, not guaranteed to last.
               </p>
               <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
-                Start free: Chapters 0–3 are yours with no card and no catch. Pay only when you're ready to unlock
-                the rest of Module B: three more real tools, plus publishing one of them live.
+                Start free: Chapters 0–3 are yours with no card and no catch. Pay once and unlock Modules B and C
+                together: three more real tools, publishing one live, a real coding workshop, an automation script,
+                and your own capstone project, finished with a certificate.
               </p>
               <p className="mx-auto mt-2 max-w-lg text-xs text-caramel-100/60">
-                And if Module B isn't for you: full refund, 30 days or until you finish it, whichever is later.{" "}
+                And if it isn't for you: full refund, 30 days or until you finish Module B, whichever is later.{" "}
                 <Link to="/refund-policy" className="underline underline-offset-2 hover:text-caramel-100">Details</Link>.
               </p>
               <Link

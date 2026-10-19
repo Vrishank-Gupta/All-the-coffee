@@ -185,13 +185,12 @@ export default function ChapterSeven() {
       <ModuleCompleteBadge
         title="Module B: Building useful things, complete"
         desc="A tool that remembers, a cleaner that catches a real data bug, AI inside your own tool, and something a real person has actually used."
-        next="Module C: Your own computer, unlocking soon"
+        next="Module C: Your own computer, live now"
       />
 
       <NextUpTeaser
         label="Module C: Your own computer"
         hook="You'll set up a real coding workshop, and write a script that does an afternoon of spreadsheet work in seconds."
-        locked
       />
 
       <ChapterComplete

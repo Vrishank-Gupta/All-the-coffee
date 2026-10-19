@@ -51,7 +51,7 @@ export function RazorpayCheckoutButton() {
         currency: order.currency,
         order_id: order.orderId,
         name: "All The Coffee",
-        description: "Founding member: Module B",
+        description: "Founding member: Modules B and C",
         prefill: { email: user?.email ?? "" },
         theme: { color: "#241711" },
         handler: async (response) => {

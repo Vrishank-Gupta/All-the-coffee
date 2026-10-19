@@ -12,10 +12,10 @@ export default function Terms() {
       <h2>What you're getting</h2>
       <p>
         All The Coffee is an online course. Chapters 0–3 (Module A) are free for anyone with an account, no payment
-        required. Chapters 4–7 (Module B) require a one-time payment, currently ₹599 as part of a capped, 100-seat
-        Founding Batch. Module C is planned but not yet built; see the Course Map for current status. Nothing on
-        this site promises Module C access to past Module B buyers at any particular price — if that changes, it
-        will be announced here first.
+        required. Chapters 4–11 (Modules B and C) unlock with the same one-time payment, currently ₹599 as part of
+        a capped, 100-seat Founding Batch; see the Course Map for current status. A further Tier 2 is planned but
+        not yet built. Nothing on this site promises Tier 2 access to past buyers at any particular price — if that
+        changes, it will be announced here first.
       </p>
 
       <h2>Accounts</h2>

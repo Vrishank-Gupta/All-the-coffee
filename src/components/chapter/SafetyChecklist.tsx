@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CheckSquare, Square, ShieldCheck } from "lucide-react";
 
-export function SafetyChecklist({ items }: { items: string[] }) {
+export function SafetyChecklist({ items, title = "Before you share: run through this" }: { items: string[]; title?: string }) {
   const [checked, setChecked] = useState<Set<number>>(new Set());
   const allChecked = checked.size === items.length;
 
@@ -18,7 +18,7 @@ export function SafetyChecklist({ items }: { items: string[] }) {
     <div className="not-prose my-6 rounded-2xl border border-espresso-900/10 bg-cream p-5">
       <div className="mb-3 flex items-center gap-2">
         <ShieldCheck className="h-4.5 w-4.5 text-caramel-700" />
-        <span className="font-display text-base font-semibold text-espresso-950">Before you share: run through this</span>
+        <span className="font-display text-base font-semibold text-espresso-950">{title}</span>
       </div>
       <div className="space-y-2">
         {items.map((item, i) => {

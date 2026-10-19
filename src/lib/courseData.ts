@@ -25,10 +25,10 @@ export const CHAPTERS: ChapterMeta[] = [
   { id: 5, title: "Taming messy spreadsheets", short: "Build a Data Cleaner", minutes: "45 min", device: "Laptop needed", free: false, module: "B", path: "/chapter/5", live: true },
   { id: 6, title: "Putting AI inside your tool", short: "Build a Meeting Notes Summariser", minutes: "45 min", device: "Laptop needed", free: false, module: "B", path: "/chapter/6", live: true },
   { id: 7, title: "Sharing what you built", short: "Publish a link", minutes: "30 min", device: "Laptop needed, phone helpful", free: false, module: "B", path: "/chapter/7", live: true },
-  { id: 8, title: "Setting up your workshop", short: "Install, without fear", minutes: "45 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/8", live: false },
-  { id: 9, title: "Your first automation script", short: "Merge 12 sales sheets", minutes: "50 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/9", live: false },
-  { id: 10, title: "Reading code like a recipe", short: "Spot the four building blocks", minutes: "40 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/10", live: false },
-  { id: 11, title: "Capstone: build it for your job", short: "The sentence from Chapter 0, built", minutes: "90–120 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/11", live: false },
+  { id: 8, title: "Setting up your workshop", short: "Install, without fear", minutes: "45 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/8", live: true },
+  { id: 9, title: "Your first automation script", short: "Merge 12 sales sheets", minutes: "50 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/9", live: true },
+  { id: 10, title: "Reading code like a recipe", short: "Spot the four building blocks", minutes: "40 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/10", live: true },
+  { id: 11, title: "Capstone: build it for your job", short: "The sentence from Chapter 0, built", minutes: "90–120 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/11", live: true },
 ];
 
 export function chapterById(id: number) {

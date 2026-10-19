@@ -80,7 +80,7 @@ export default function BlogPost() {
       <LockedShell meta={meta}>
         <div className="mt-8">
           <p className="mb-3 text-center text-sm font-semibold text-espresso-700">
-            This one's part of the Founding Batch. Unlock it, and the rest of Module B, together.
+            This one's part of the Founding Batch. Unlock it, and all of Modules B and C, together.
           </p>
           <FoundingOfferBox />
         </div>
