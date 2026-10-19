@@ -38,7 +38,7 @@ export function OsToggle() {
           <button
             key={opt}
             onClick={() => setOs(opt)}
-            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition ${
+            className={`min-h-10 rounded-full px-4 text-sm font-semibold transition ${
               os === opt ? "bg-espresso-950 text-caramel-100" : "text-espresso-700/70 hover:text-espresso-900"
             }`}
           >

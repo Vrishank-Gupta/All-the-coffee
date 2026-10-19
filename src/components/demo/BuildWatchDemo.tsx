@@ -79,7 +79,7 @@ export function BuildWatchDemo() {
               <span className="h-2 w-2 rounded-full bg-sage-400 animate-pulse" />
               <span className="font-mono text-[11px] text-caramel-200/70">generating index.html…</span>
             </div>
-            <div ref={scrollRef} className="h-56 overflow-hidden px-4 py-3">
+            <div ref={scrollRef} className="h-56 overflow-x-auto overflow-y-hidden px-4 py-3">
               <pre className="font-mono text-[12px] leading-relaxed">
                 {LINES.slice(0, visibleLines).map((line, i) => (
                   <div key={i} className="whitespace-pre text-caramel-50/90">

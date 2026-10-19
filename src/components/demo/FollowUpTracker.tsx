@@ -25,7 +25,7 @@ function daysFromNow(n: number) {
 
 function sampleEntries(): Entry[] {
   return [
-    { id: "a", task: "Send revised proposal", person: "Rahul", due: daysFromNow(1), done: false },
+    { id: "a", task: "Send revised proposal", person: "Rahul", due: daysFromNow(-2), done: false },
     { id: "b", task: "Share Q3 numbers", person: "Priya", due: daysFromNow(3), done: false },
     { id: "c", task: "Book team lunch", person: "Anita", due: daysFromNow(7), done: false },
   ];
@@ -63,6 +63,7 @@ export function FollowUpTracker({
   const [entries, setEntries] = useState<Entry[]>(() => (persist ? readStorage(storageKey) : []));
   const [task, setTask] = useState("");
   const [person, setPerson] = useState("");
+  const [dueInDays, setDueInDays] = useState("2");
   const [filterPerson, setFilterPerson] = useState<string | null>(null);
 
   useEffect(() => {
@@ -81,9 +82,14 @@ export function FollowUpTracker({
 
   function addEntry() {
     if (!task.trim()) return;
-    setEntries((e) => [...e, { id: crypto.randomUUID(), task: task.trim(), person: person.trim() || "Me", due: daysFromNow(2), done: false }]);
+    const days = Number(dueInDays);
+    setEntries((e) => [
+      ...e,
+      { id: crypto.randomUUID(), task: task.trim(), person: person.trim() || "Me", due: daysFromNow(Number.isFinite(days) ? days : 2), done: false },
+    ]);
     setTask("");
     setPerson("");
+    setDueInDays("2");
   }
 
   function toggleDone(id: string) {
@@ -130,6 +136,18 @@ export function FollowUpTracker({
             className="w-full rounded-lg border border-espresso-900/15 bg-white px-2.5 py-1.5 text-sm"
           />
         </div>
+        {features.overdue && (
+          <div className="w-28">
+            <label className="mb-1 block text-xs font-semibold text-espresso-700/70">Due in (days)</label>
+            <input
+              type="number"
+              value={dueInDays}
+              onChange={(e) => setDueInDays(e.target.value)}
+              placeholder="-2 = overdue"
+              className="w-full rounded-lg border border-espresso-900/15 bg-white px-2.5 py-1.5 text-sm"
+            />
+          </div>
+        )}
         <button onClick={addEntry} className="flex items-center gap-1 rounded-lg bg-espresso-950 px-3 py-1.5 text-sm font-semibold text-caramel-100 hover:bg-espresso-800">
           <Plus className="h-3.5 w-3.5" /> Add
         </button>

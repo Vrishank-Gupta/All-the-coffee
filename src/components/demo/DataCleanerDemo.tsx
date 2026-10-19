@@ -2,7 +2,22 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Upload, Wand2, Download, CheckCircle2, AlertTriangle } from "lucide-react";
 import { AppFrame } from "./AppFrame";
-import { cleanSalesData, MESSY_SALES_CSV, type DateStyle } from "../../lib/messySales";
+import { cleanSalesData, MESSY_SALES_CSV, type CleanedRow, type DateStyle } from "../../lib/messySales";
+
+function downloadCleanCsv(rows: CleanedRow[]) {
+  const header = "Name,Region,Amount,Date";
+  const lines = rows.map((r) => `${r.name},${r.region},${r.amount},${r.date}`);
+  const csv = [header, ...lines].join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "clean-sales.csv";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 export function DataCleanerDemo() {
   const [uploaded, setUploaded] = useState(false);
@@ -88,7 +103,10 @@ export function DataCleanerDemo() {
                     </table>
                   </div>
 
-                  <button className="mt-3 flex items-center gap-1.5 rounded-lg border border-espresso-900/15 px-3 py-1.5 text-xs font-semibold text-espresso-700 hover:bg-latte/50">
+                  <button
+                    onClick={() => downloadCleanCsv(result.rows)}
+                    className="mt-3 flex min-h-10 items-center gap-1.5 rounded-lg border border-espresso-900/15 px-3 text-xs font-semibold text-espresso-700 hover:bg-latte/50"
+                  >
                     <Download className="h-3.5 w-3.5" /> Download clean-sales.csv
                   </button>
                 </motion.div>

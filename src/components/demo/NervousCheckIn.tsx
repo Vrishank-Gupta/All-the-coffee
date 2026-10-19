@@ -25,7 +25,7 @@ export function NervousCheckIn({ point }: { point: Point }) {
       <div className="mb-3 flex items-center gap-2">
         <Gauge className="h-4.5 w-4.5 text-caramel-700" />
         <span className="font-display text-base font-semibold text-espresso-950">
-          How {point === "start" ? "scared" : "nervous"} of tech do you feel right now?
+          How nervous of tech do you feel right now?
         </span>
       </div>
 

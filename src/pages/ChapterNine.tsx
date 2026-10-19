@@ -37,7 +37,7 @@ What to avoid: keep it simple. Put a short plain-English comment above
 each part of the code. Tell me exactly which libraries I need and the
 exact command to install them.`;
 
-const FIX_PROMPT = `I expected: 96 rows and a grand total of 43,92,000.
+const FIX_PROMPT = `I expected: 96 rows and a grand total of ₹43,92,000.
 What happened instead: [paste the error, or your totals].
 
 I found the cause: in sales_2026_07.xlsx the column is called "Amt"
@@ -69,6 +69,12 @@ export default function ChapterNine() {
 
         <SectionEyebrow n="02" label="Set up the project" />
         <OsToggle />
+        <Callout variant="hint">
+          Had to use <code className="rounded bg-latte px-1">py</code> instead of{" "}
+          <code className="rounded bg-latte px-1">python</code> in Chapter 8? Keep swapping in{" "}
+          <code className="rounded bg-latte px-1">py</code> everywhere you see{" "}
+          <code className="rounded bg-latte px-1">python</code> below, same as before.
+        </Callout>
         <Step n={1} title="Make a folder for this project">
           Inside your <code className="rounded bg-latte px-1">ai-course</code> folder, create a new folder called{" "}
           <code className="rounded bg-latte px-1">sales-merge</code>.
@@ -86,7 +92,8 @@ export default function ChapterNine() {
         <Step n={3} title="Look inside a couple of files">
           Open <code className="rounded bg-latte px-1">sales_2026_01.xlsx</code> in Excel. You'll see three columns:
           Region, Salesperson and Amount, with eight rows. Every month's file looks like this. Close Excel when
-          you're done; this matters later.
+          you're done looking: a script can't write to a file that's still open elsewhere, and you'll see exactly
+          that error later in this chapter if a file gets left open.
         </Step>
         <Step n={4} title="Open the project in VS Code">
           In VS Code, choose <strong>File → Open Folder</strong> and select{" "}
@@ -305,7 +312,6 @@ export default function ChapterNine() {
             { word: "Run", meaning: "Tell the computer to carry out the instructions in a script", sample: "Who runs the script, and how often?" },
             { word: "Library", meaning: "Ready-made code that your code can use", sample: "Is there a library that already does this?" },
             { word: "Automation", meaning: "Getting a computer to do a repetitive task for you", sample: "This report is a good candidate for automation." },
-            { word: "Traceback", meaning: "Python's error report, read from the last line up", sample: "Can you send me the full traceback?" },
           ]}
         />
 

@@ -27,7 +27,7 @@ export function ToolCollage() {
         ))}
       </div>
       <figcaption className="mt-3 text-center text-sm text-espresso-700/70">
-        Four tools you'll have built with your own hands by the end of this course.
+        Four tools you'll have built with your own hands by the end of Module B, with more to come after that.
       </figcaption>
     </figure>
   );

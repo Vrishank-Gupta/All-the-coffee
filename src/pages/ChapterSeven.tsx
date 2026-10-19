@@ -131,9 +131,9 @@ export default function ChapterSeven() {
 
       <SectionEyebrow n="08" label="What you can skip" />
       <p>
-        Domain names, servers, hosting companies and costs. In Tier 2, you'll see the full range of hosting options,
-        from free and simple to big cloud platforms. For now, one-button publishing from your AI tool is all you need
-        for personal tools.
+        Domain names, servers, hosting companies and costs. In the advanced track that comes after this course,
+        you'll see the full range of hosting options, from free and simple to big cloud platforms. For now,
+        one-button publishing from your AI tool is all you need for personal tools.
       </p>
 
       <Troubleshooting

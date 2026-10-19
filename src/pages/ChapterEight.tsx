@@ -180,7 +180,7 @@ export default function ChapterEight() {
           as <code className="rounded bg-latte px-1">.xlsx</code> says Excel.
         </Step>
         <Step n={9} title="Paste these two lines into it">
-          <pre className="not-prose rounded-xl bg-espresso-950 px-4 py-3 font-mono text-[13px] text-caramel-50">
+          <pre className="not-prose overflow-x-auto rounded-xl bg-espresso-950 px-4 py-3 font-mono text-[13px] text-caramel-50">
 {`print("Hello! My workshop is ready.")
 print("Today is the day I stopped being scared of code.")`}
           </pre>
@@ -198,7 +198,7 @@ print("Today is the day I stopped being scared of code.")`}
 
         <Checkpoint>
           The terminal should show your two lines:
-          <pre className="not-prose mt-2 rounded-lg bg-white/60 px-3 py-2 font-mono text-[13px] text-espresso-900">
+          <pre className="not-prose mt-2 overflow-x-auto rounded-lg bg-white/60 px-3 py-2 font-mono text-[13px] text-espresso-900">
 {`Hello! My workshop is ready.
 Today is the day I stopped being scared of code.`}
           </pre>

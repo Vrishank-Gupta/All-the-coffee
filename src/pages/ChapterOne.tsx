@@ -86,8 +86,8 @@ export default function ChapterOne() {
       </Step>
       <CopyBlock label="Prompt for Chapter 1">{PROMPT}</CopyBlock>
       <Callout variant="tip" title="Where does 2,000 hours come from?">
-        It's a common rule of thumb: 40 hours a week &times; 50 working weeks a year (minus a couple for holidays)
-        &asymp; 2,000 hours. Finance and ops teams use this approximation constantly to turn a yearly salary into an
+        It's a common rule of thumb: 40 hours a week &times; 50 working weeks a year (that 50 already assumes about
+        two weeks off) &asymp; 2,000 hours. Finance and ops teams use this approximation constantly to turn a yearly salary into an
         hourly rate. It's not exact for every role, and that's fine; it's close enough to make the point.
       </Callout>
 

@@ -79,7 +79,7 @@ export function NotesSummariserDemo({ autoPlay = false }: { autoPlay?: boolean }
           className="mt-3 flex items-center gap-2 rounded-xl bg-espresso-950 px-4 py-2.5 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800 disabled:opacity-70"
         >
           {status === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
-          {status === "loading" ? "Working on it…" : "Summarise"}
+          {status === "loading" ? "AI is working on it…" : "Summarise with AI"}
         </button>
 
         <AnimatePresence mode="wait">

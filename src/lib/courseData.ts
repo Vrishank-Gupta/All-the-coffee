@@ -18,7 +18,7 @@ export const MODULES = {
 
 export const CHAPTERS: ChapterMeta[] = [
   { id: 0, title: "You're not behind", short: "The starting line", minutes: "15 min", device: "No laptop needed", free: true, module: "A", path: "/chapter/0", live: true },
-  { id: 1, title: "Your first tool in 20 minutes", short: "Build a Meeting Cost Calculator", minutes: "25 min", device: "Laptop recommended", free: true, module: "A", path: "/chapter/1", live: true },
+  { id: 1, title: "Your first tool in 20 minutes", short: "Build a Meeting Cost Calculator", minutes: "20 min", device: "Laptop recommended", free: true, module: "A", path: "/chapter/1", live: true },
   { id: 2, title: "What just happened?", short: "How software works", minutes: "30 min", device: "Laptop recommended", free: true, module: "A", path: "/chapter/2", live: true },
   { id: 3, title: "When things break", short: "And why that's normal", minutes: "35–40 min", device: "Laptop needed", free: true, module: "A", path: "/chapter/3", live: true },
   { id: 4, title: "A tool that remembers", short: "Build a Follow-up Tracker", minutes: "40 min", device: "Laptop needed", free: false, module: "B", path: "/chapter/4", live: true },

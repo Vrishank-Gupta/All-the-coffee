@@ -43,7 +43,7 @@ const TOOL_TIERS = [
   {
     when: "By the end of Tier 1: Module C",
     icon: Terminal,
-    tools: ["VS Code + an AI coding assistant", "Python"],
+    tools: ["VS Code", "Python", "an AI coding assistant (optional)"],
     desc: "A real code editor stops being scary, and you can automate a genuinely boring spreadsheet task on your own computer.",
     live: false,
   },

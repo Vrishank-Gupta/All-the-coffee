@@ -12,7 +12,7 @@ import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { ApiRestaurant } from "../components/diagrams/ApiRestaurant";
 import { AiBuilderVsWorker } from "../components/diagrams/AiBuilderVsWorker";
 import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
-import { VENDOR_NOTES } from "../lib/vendorNotes";
+import { VENDOR_NOTES, SEATING_NOTES } from "../lib/vendorNotes";
 import { chapterById } from "../lib/courseData";
 
 const meta = chapterById(6)!;
@@ -100,17 +100,21 @@ export default function ChapterSix() {
       <CopyBlock label="Prompt for Chapter 6">{SUMMARISER_PROMPT}</CopyBlock>
 
       <Step n={3} title="Try it">
-        Paste the sample notes into your tool's box and click Summarise. Wait a few seconds. Try it below. It's
-        preloaded with the same notes.
+        Paste the sample notes into your own tool's box (the one you just built) and click Summarise. Wait a few
+        seconds.
       </Step>
+      <p className="text-sm text-espresso-700/70">
+        Here's a reference copy of the finished tool, preloaded with the same notes, so you can compare your result
+        against it:
+      </p>
       <NotesSummariserDemo />
 
       <Checkpoint>
-        Your result won't be word-for-word the same as anyone else's, since AI writes slightly differently each time. But
-        the facts should match: Rahul sends the revised quote by Friday, Priya confirms budget with the CFO by next
-        Wednesday, Anita shares delivery data with Rahul tomorrow. The decision should mention both conditions: the
-        two-year price at ₹16.5 lakh <strong>and</strong> the penalty clause. If it misses the "and," that's a
-        meaningful error: use the fix loop.
+        In <strong>your own tool</strong>, the result won't be word-for-word the same as anyone else's, since AI
+        writes slightly differently each time. But the facts should match: Rahul sends the revised quote by Friday,
+        Priya confirms budget with the CFO by next Wednesday, Anita shares delivery data with Rahul tomorrow. The
+        decision should mention both conditions: the two-year price at ₹16.5 lakh <strong>and</strong> the penalty
+        clause. If it misses the "and," that's a meaningful error: use the fix loop.
       </Checkpoint>
 
       <SectionEyebrow n="05" label="What just happened" />
@@ -126,18 +130,29 @@ export default function ChapterSix() {
       <AiBuilderVsWorker />
 
       <SectionEyebrow n="06" label="Build it, part 2: two important tests" />
+      <p>
+        Run both of these tests in <strong>your own tool</strong>, not the reference copy above. The reference copy
+        is hardcoded to always behave well, which makes it useless for finding real problems. Your tool, running
+        real AI, can actually fail these in a way worth catching.
+      </p>
       <Step n={4} title="Test 1: the empty box">
-        Clear the notes box completely and click Summarise above. What happened? An error, a strange summary of
-        nothing, or a freeze? Real people click buttons at the wrong time, so good tools plan for it. Unusual
-        situations like this are called <strong>edge cases</strong>.
+        Clear the notes box completely and click Summarise. What happened? An error, a strange summary of nothing, or
+        a freeze? Real people click buttons at the wrong time, so good tools plan for it. Unusual situations like
+        this are called <strong>edge cases</strong>.
       </Step>
       <CopyBlock label="Fix the empty-box edge case">{EMPTY_BOX_FIX}</CopyBlock>
 
       <Step n={5} title="Test 2: the honesty test">
-        Load the honesty-test notes above (deliberately no owners or dates) and click Summarise. Check the action
-        items carefully. Do they say "Not mentioned," or did the AI invent names and deadlines?
+        Paste these deliberately vague notes (no owners, no dates) into your own tool and click Summarise.
       </Step>
+      <CopyBlock label="honesty-test-notes.txt" mono>
+        {SEATING_NOTES}
+      </CopyBlock>
       <p>
+        Check the action items carefully. Do they say "Not mentioned," or did the AI invent names and deadlines that
+        aren't in the notes?
+      </p>
+      <p className="mt-3">
         AI models sometimes make things up and present them confidently. This is called a{" "}
         <strong>hallucination</strong>. Your "what to avoid" instruction makes it much less likely, but it's always
         worth checking AI output against the source, especially before you send it to anyone.
@@ -159,7 +174,7 @@ export default function ChapterSix() {
           },
           {
             problem: "It asks me for an API key.",
-            answer: <>If you're in Claude, ask: <em>"Please build this so it works inside this chat without an API key."</em> Using another tool that can't do this? Skip the hands-on build for now, read the rest of this chapter for the concepts, and you'll wire up a real API key properly in Tier 2.</>,
+            answer: <>If you're in Claude, ask: <em>"Please build this so it works inside this chat without an API key."</em> Using another tool that can't do this? Skip the hands-on build for now, read the rest of this chapter for the concepts, and you'll wire up a real API key properly in the advanced track that comes after this course.</>,
           },
           { problem: "The action items table is missing or messy.", answer: "Use the fix loop and show exactly the table you expected, using the checkpoint table above." },
         ]}
@@ -171,7 +186,7 @@ export default function ChapterSix() {
         <p className="mb-2">2. Add a dropdown to choose the summary length: one line, short or detailed.</p>
         <p>
           3. <strong>Bonus:</strong> write a few lines of notes from a real meeting you attended, leaving out anything
-          confidential, and test your tool on them in the demo above. Check every action item against your notes.
+          confidential, and test your own tool on them. Check every action item against your notes.
         </p>
       </TryItYourself>
 

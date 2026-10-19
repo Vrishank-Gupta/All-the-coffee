@@ -43,7 +43,7 @@ const FAQS = [
   },
   {
     q: "How much time does this actually take?",
-    a: "About 20–45 minutes per chapter. Most people finish Module A, the free part, over a few sittings across a week or two, at their own pace.",
+    a: "About 15–45 minutes per chapter. Most people finish Module A, the free part, over a few sittings across a week or two, at their own pace.",
   },
   {
     q: "Do I need to install any software?",
@@ -66,7 +66,7 @@ const FAQS = [
 const DIFFERENTIATORS = [
   { icon: ShieldCheck, title: "Fear-first design", desc: "Every chapter targets a moment you expect to fail, and shows you that you didn't." },
   { icon: Target, title: "Need-to-know only", desc: "Every concept earns its place by unlocking something you're about to build. The rest, we skip on purpose." },
-  { icon: Briefcase, title: "Work-relevant projects", desc: "No to-do apps or calculators as filler. You build things you could show your manager." },
+  { icon: Briefcase, title: "Work-relevant projects", desc: "Every project maps to a real recurring task, not a generic tutorial exercise. You build things you could show your manager." },
   { icon: Globe, title: "Browser first, installs later", desc: "Your first win happens with zero installation, locked-down work laptops included." },
   { icon: MessagesSquare, title: "Talk to tech people", desc: "Every chapter ends with the words you can now use confidently in a meeting." },
 ];
@@ -180,18 +180,21 @@ export default function Landing() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
-            <div className="mb-2 flex items-center justify-center gap-2">
+            <p className="text-center text-sm font-semibold text-espresso-800">
+              This is an AI-powered tool. You'll learn to build ones like it, with real AI doing the thinking inside.
+            </p>
+            <div className="mt-2 mb-2 flex items-center justify-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-sage-500" />
               </span>
               <p className="text-center text-xs font-semibold tracking-wide text-espresso-700/60 uppercase">
-                Real AI, running right now, not a recording
+                A live, interactive preview, not a video
               </p>
             </div>
             <NotesSummariserDemo autoPlay />
             <p className="mt-2.5 text-center text-sm text-espresso-700/65">
-              You'll build this exact tool in Chapter 6. Paste your own notes above and watch it work.
+              You'll build this exact tool, wired to real AI, in Chapter 6. Try the examples above.
             </p>
           </motion.div>
         </div>
@@ -408,7 +411,7 @@ export default function Landing() {
               </p>
               <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
                 Start free: Chapters 0–3 are yours with no card and no catch. Pay only when you're ready to unlock
-                Module B's four more real tools.
+                the rest of Module B: three more real tools, plus publishing one of them live.
               </p>
               <p className="mx-auto mt-2 max-w-lg text-xs text-caramel-100/60">
                 And if Module B isn't for you: full refund, 30 days or until you finish it, whichever is later.{" "}

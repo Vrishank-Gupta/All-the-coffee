@@ -230,7 +230,7 @@ else:
 
         <Step n={5} title="Experiment 3: Switch off the safety net">
           Find this line in the mini-recipe:
-          <pre className="not-prose mt-2 rounded-xl bg-espresso-950 px-4 py-3 font-mono text-[13px] text-caramel-50">
+          <pre className="not-prose mt-2 overflow-x-auto rounded-xl bg-espresso-950 px-4 py-3 font-mono text-[13px] text-caramel-50">
 {`    table = table.rename(columns={"Amt": "Amount"})`}
           </pre>
           Type a <code className="rounded bg-latte px-1">#</code> at the very start of it, turning it into a comment,
@@ -306,9 +306,10 @@ else:
             like a recipe."</em> Then read through it and find the four building blocks.
           </p>
           <p>
-            3. Spot the blocks in a new script. Ask your AI for any short script (for example, a Python script that
-            renames all files in a folder to add today's date) and, before running it, mark where the variables,
-            condition, loop and function are. Then ask the AI whether you got them right.
+            3. Spot the blocks in a new script. Ask your AI for a short script (for example, "rename every file in a
+            folder to add today's date, but skip any file that already has today's date in the name") and, before
+            running it, mark where the variables, condition, loop and function are. Not every script will have all
+            four; noticing which ones are missing, and why, is useful too. Then ask the AI whether you got it right.
           </p>
         </TryItYourself>
 
@@ -320,6 +321,7 @@ else:
             { word: "Loop", meaning: "Repeat steps for each item in a list", sample: "Does it loop through every customer, or just active ones?" },
             { word: "Function", meaning: "A named mini-recipe that can be reused", sample: "Is there already a function that does the date formatting?" },
             { word: "Comment", meaning: "A note in the code for humans, ignored by the computer", sample: "Can we add comments so the next person understands it?" },
+            { word: "Traceback", meaning: "Python's error report, read from the last line up", sample: "Can you send me the full traceback?" },
           ]}
         />
 
