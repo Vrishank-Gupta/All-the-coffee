@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { HeartHandshake, Lightbulb, AlertTriangle, MessageCircleQuestion, Sparkles } from "lucide-react";
+import { HeartHandshake, Lightbulb, AlertTriangle, MessageCircleQuestion, Sparkles, PartyPopper } from "lucide-react";
 
-type Variant = "worry" | "tip" | "warning" | "reassurance" | "hint";
+type Variant = "worry" | "tip" | "warning" | "reassurance" | "hint" | "celebration";
 
 const STYLES: Record<Variant, { wrap: string; icon: ReactNode; label: string }> = {
   worry: {
@@ -28,6 +28,11 @@ const STYLES: Record<Variant, { wrap: string; icon: ReactNode; label: string }> 
     wrap: "bg-caramel-100/60 border-caramel-200 text-espresso-900",
     icon: <Sparkles className="h-5 w-5 text-caramel-700" />,
     label: "Hint",
+  },
+  celebration: {
+    wrap: "bg-gradient-to-br from-caramel-100/70 to-cream border-caramel-300 text-espresso-900",
+    icon: <PartyPopper className="h-5 w-5 text-caramel-700" />,
+    label: "Take a moment",
   },
 };
 

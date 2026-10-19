@@ -8,12 +8,14 @@ export function CodeExplorer({
   label = "index.html",
   heightClass = "max-h-80",
   onSearch,
+  lang = "js",
 }: {
   code: string;
   searchable?: boolean;
   label?: string;
   heightClass?: string;
   onSearch?: (query: string) => void;
+  lang?: "js" | "python";
 }) {
   const [query, setQuery] = useState("");
   const lines = useMemo(() => code.split("\n"), [code]);
@@ -80,7 +82,7 @@ export function CodeExplorer({
               >
                 <span className="w-6 shrink-0 select-none text-right text-caramel-100/25">{i + 1}</span>
                 <span className="whitespace-pre text-caramel-50/90">
-                  {tokenizeLine(line).map((t, j) => (
+                  {tokenizeLine(line, lang).map((t, j) => (
                     <span key={j} className={t.cls}>
                       {t.text}
                     </span>

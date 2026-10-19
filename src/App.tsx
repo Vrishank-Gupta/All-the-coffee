@@ -22,6 +22,9 @@ import ChapterFour from "./pages/ChapterFour";
 import ChapterFive from "./pages/ChapterFive";
 import ChapterSix from "./pages/ChapterSix";
 import ChapterSeven from "./pages/ChapterSeven";
+import ChapterEight from "./pages/ChapterEight";
+import ChapterNine from "./pages/ChapterNine";
+import ChapterTen from "./pages/ChapterTen";
 import Profile from "./pages/Profile";
 import AdminStats from "./pages/AdminStats";
 
@@ -55,6 +58,9 @@ export default function App() {
             <Route path="/chapter/5" element={<Protected><ChapterFive /></Protected>} />
             <Route path="/chapter/6" element={<Protected><ChapterSix /></Protected>} />
             <Route path="/chapter/7" element={<Protected><ChapterSeven /></Protected>} />
+            <Route path="/chapter/8" element={<Protected><ChapterEight /></Protected>} />
+            <Route path="/chapter/9" element={<Protected><ChapterNine /></Protected>} />
+            <Route path="/chapter/10" element={<Protected><ChapterTen /></Protected>} />
             <Route path="/profile" element={<Protected><Profile /></Protected>} />
             <Route path="/admin" element={<Protected><AdminStats /></Protected>} />
           </Routes>

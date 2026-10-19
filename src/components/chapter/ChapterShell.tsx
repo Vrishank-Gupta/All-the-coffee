@@ -80,10 +80,10 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
             <div className="not-prose rounded-2xl border-2 border-dashed border-caramel-400/50 bg-caramel-100/30 p-6 text-center">
               <Lock className="mx-auto h-6 w-6 text-caramel-700" />
               <p className="mt-2 font-display text-xl font-semibold text-espresso-950">
-                This chapter is part of Module B
+                This chapter is part of {MODULES[meta.module].name}
               </p>
               <p className="mt-1 text-sm text-espresso-700/75">
-                Finish Module A for free, then join as a founding member to unlock this and three more chapters.
+                Finish Module A for free, then join as a founding member to unlock this and the rest of the course.
               </p>
             </div>
             <FoundingOfferBox />
