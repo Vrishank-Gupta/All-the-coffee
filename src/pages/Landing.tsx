@@ -112,7 +112,13 @@ export default function Landing() {
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-10 sm:pt-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-caramel-100 px-3.5 py-1.5 text-xs font-semibold text-caramel-700">
+            <p className="font-display text-xl italic text-espresso-700/70 sm:text-2xl">
+              &ldquo;I'm just not a tech person.&rdquo;
+            </p>
+            <p className="mt-1 font-display text-base font-bold text-caramel-700 sm:text-lg">
+              You've told yourself that for years. It was never true.
+            </p>
+            <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-caramel-100 px-3.5 py-1.5 text-xs font-semibold text-caramel-700">
               <Coffee className="h-3.5 w-3.5" /> 20–45 minutes a day, in your browser
             </span>
             <h1 className="mt-5 font-display text-5xl leading-[1.05] font-semibold text-espresso-950 sm:text-6xl">
