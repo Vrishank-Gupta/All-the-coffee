@@ -478,17 +478,12 @@ export default function Landing() {
                 <span className="font-display text-2xl font-medium text-caramel-100/50 line-through">₹999</span>
                 <span className="font-display text-5xl font-bold text-caramel-50">₹599</span>
               </div>
-              <p className="mt-2 text-sm text-caramel-100/70">All-inclusive, no hidden charges. One-time payment, no subscription.</p>
-              <p className="mt-3 text-sm font-medium text-brick-200">
-                Capped at 100 founding seats, ever. This founding price is limited-time, not guaranteed to last.
+              <p className="mt-2 text-sm text-caramel-100/70">All-inclusive, one-time payment. Capped at 100 founding seats, ever.</p>
+              <p className="mx-auto mt-4 max-w-md text-sm text-caramel-100/75">
+                Chapters 0–3 are free, no card needed. Pay once for everything after that.
               </p>
-              <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
-                Start free: Chapters 0–3 are yours with no card and no catch. Pay once and unlock Modules B and C
-                together: three more real tools, publishing one live, a real coding workshop, an automation script,
-                and your own capstone project, finished with a certificate.
-              </p>
-              <p className="mx-auto mt-2 max-w-lg text-xs text-caramel-100/60">
-                And if it isn't for you: full refund, 30 days or until you finish Module B, whichever is later.{" "}
+              <p className="mx-auto mt-2 text-xs text-caramel-100/55">
+                30-day refund, no questions asked.{" "}
                 <Link to="/refund-policy" className="underline underline-offset-2 hover:text-caramel-100">Details</Link>.
               </p>
               <Link
