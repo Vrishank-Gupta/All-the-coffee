@@ -93,7 +93,7 @@ export function RazorpayCheckoutButton() {
   if (soldOut) {
     return (
       <div className="rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-center font-semibold text-caramel-100">
-        The Founding Batch is sold out. We'll open the next cohort once Module C ships.
+        The Founding Batch is sold out. Future cohorts will be announced here.
       </div>
     );
   }

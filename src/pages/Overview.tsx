@@ -13,7 +13,7 @@ import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 const STATS = [
   { value: "20 min", label: "to your first working tool", icon: Clock },
-  { value: "4", label: "real tools built by Chapter 7", icon: Sparkles },
+  { value: "4", label: "real tools built by Chapter 6", icon: Sparkles },
   { value: "30+", label: "tech words you'll finally understand", icon: Flame },
   { value: "₹599", label: "founding price, less than a dinner out", icon: Wallet },
 ];
@@ -139,7 +139,8 @@ export default function Overview() {
                 <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-bold text-sage-700">12 chapters · ~8–10 hrs</span>
               </div>
               <p className="mt-2 text-sm text-espresso-700/75">
-                By the end, you'll have built a real tool for your actual job, not a to-do list demo.
+                By the end, you'll have built real tools for your actual job, tested against numbers you already
+                know are right, not a generic tutorial exercise.
               </p>
               <div className="mt-4 space-y-3">
                 {(["A", "B", "C"] as const).map((key) => (

@@ -32,9 +32,12 @@ export function FoundingOfferBox() {
         <span className="font-display text-xl font-medium text-caramel-100/50 line-through">₹999</span>
         <span className="font-display text-4xl font-bold text-caramel-50">₹599</span>
       </div>
-      <p className="mt-1 text-sm text-caramel-100/70">All-inclusive, no hidden charges. Unlocks Module B: four more real tools.</p>
+      <p className="mt-1 text-sm text-caramel-100/70">
+        All-inclusive, no hidden charges. Unlocks the rest of Module B: three more real tools, plus publishing one
+        of them live.
+      </p>
       <p className="mt-2 text-sm font-medium text-brick-200">
-        Capped at 100 founding seats, ever, and reverts to ₹999 the moment Module C launches.
+        Capped at 100 founding seats, ever. This founding price is limited-time, not guaranteed to last.
       </p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">

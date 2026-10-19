@@ -448,7 +448,7 @@ export default function Landing() {
               </div>
               <p className="mt-2 text-sm text-caramel-100/70">All-inclusive, no hidden charges. One-time payment, no subscription.</p>
               <p className="mt-3 text-sm font-medium text-brick-200">
-                Capped at 100 founding seats, ever, and reverts to ₹999 the moment Module C launches.
+                Capped at 100 founding seats, ever. This founding price is limited-time, not guaranteed to last.
               </p>
               <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
                 Start free: Chapters 0–3 are yours with no card and no catch. Pay only when you're ready to unlock
@@ -464,12 +464,6 @@ export default function Landing() {
               >
                 Start free, no card needed <ArrowRight className="h-4 w-4" />
               </Link>
-              <p className="mt-4 text-sm text-caramel-100/55">
-                Already sure?{" "}
-                <Link to="/chapter/4" className="font-semibold text-caramel-200 underline underline-offset-2 hover:text-caramel-100">
-                  Skip ahead and go straight to Module B
-                </Link>
-              </p>
             </>
           )}
         </div>

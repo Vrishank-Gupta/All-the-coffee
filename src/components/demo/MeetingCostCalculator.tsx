@@ -66,8 +66,9 @@ export function MeetingCostCalculator({
           <input
             type="number"
             min={1}
+            max={100}
             value={people}
-            onChange={(e) => setPeople(Math.max(1, Number(e.target.value) || 0))}
+            onChange={(e) => setPeople(Math.min(100, Math.max(1, Number(e.target.value) || 0)))}
             className="w-full rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-sm font-medium text-espresso-950 focus:border-caramel-500"
           />
         </Field>
@@ -75,9 +76,10 @@ export function MeetingCostCalculator({
           <input
             type="number"
             min={0}
+            max={5000000}
             step={10000}
             value={salary}
-            onChange={(e) => setSalary(Math.max(0, Number(e.target.value) || 0))}
+            onChange={(e) => setSalary(Math.min(5000000, Math.max(0, Number(e.target.value) || 0)))}
             className="w-full rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-sm font-medium text-espresso-950 focus:border-caramel-500"
           />
         </Field>
@@ -111,8 +113,9 @@ export function MeetingCostCalculator({
             <input
               type="number"
               min={1}
+              max={240}
               value={minutes}
-              onChange={(e) => setMinutes(Math.max(1, Number(e.target.value) || 0))}
+              onChange={(e) => setMinutes(Math.min(240, Math.max(1, Number(e.target.value) || 0)))}
               className="w-full rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-sm font-medium text-espresso-950 focus:border-caramel-500"
             />
           </Field>
@@ -139,7 +142,9 @@ export function MeetingCostCalculator({
 
       <div className="flex flex-col justify-center rounded-2xl bg-gradient-to-br from-latte/60 to-caramel-100/40 p-5 text-center">
         <p className="font-display text-sm font-medium text-espresso-700/80">{heading}</p>
-        <p className={`mt-2 font-display text-4xl font-bold tabular-nums ${resultTone}`}>{fmt(totalINR)}</p>
+        <p className={`mt-2 font-display font-bold tabular-nums break-all ${fmt(totalINR).length > 10 ? "text-2xl" : "text-4xl"} ${resultTone}`}>
+          {fmt(totalINR)}
+        </p>
         <p className="mt-1 text-xs text-espresso-700/60">this meeting cost</p>
         {features.perMinute && (
           <p className="mt-3 border-t border-espresso-900/10 pt-3 text-sm font-medium text-espresso-700/80">
