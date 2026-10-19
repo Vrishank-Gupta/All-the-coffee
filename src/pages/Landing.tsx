@@ -234,6 +234,38 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* How it works */}
+      <section className="mx-auto max-w-5xl px-5 py-10">
+        <h2 className="text-center font-display text-2xl font-semibold text-espresso-950 sm:text-3xl">
+          Exactly what happens if you start today
+        </h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          <div className="rounded-2xl border border-espresso-900/10 bg-cream p-5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-espresso-950 font-display text-sm font-bold text-caramel-100">1</span>
+            <p className="mt-3 font-display text-base font-semibold text-espresso-950">Start free, right now</p>
+            <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
+              Chapters 0–3, no card needed. Build your first real tool in about 20 minutes.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-espresso-900/10 bg-cream p-5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-espresso-950 font-display text-sm font-bold text-caramel-100">2</span>
+            <p className="mt-3 font-display text-base font-semibold text-espresso-950">Decide if it's worth it</p>
+            <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
+              If it clicks, unlock the rest of Module B for ₹599: three more tools, plus publishing one of them
+              live.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-caramel-300/50 bg-caramel-50 p-5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-caramel-500 font-display text-sm font-bold text-espresso-950">3</span>
+            <p className="mt-3 font-display text-base font-semibold text-espresso-950">Finish, walk away with proof</p>
+            <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
+              Complete all 12 chapters and earn a certificate in Practical AI &amp; Automation, specific enough to
+              actually show someone.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Data-backed insight */}
       <section className="mx-auto max-w-6xl px-5 py-14">
         <div className="mx-auto max-w-2xl text-center">
