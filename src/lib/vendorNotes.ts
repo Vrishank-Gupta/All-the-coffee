@@ -1,15 +1,8 @@
-export const VENDOR_NOTES = `Vendor review call - Tue
-attendees: me, rahul (procurement), priya (finance), anita (ops), Suresh from BrightPack
-- BrightPack quote came in at 18L, 2L over budget
-- suresh said they can maybe do 16.5L if we sign for 2 yrs
-- priya not sure finance will approve a 2 yr commitment, will check w/ CFO
-- anita worried about delivery delays last quarter (3 late shipments)
-- suresh promised a penalty clause for late deliveries
-- decided: go ahead IF 2 yr price is 16.5L AND penalty clause is in contract
-- rahul to send revised quote request to BrightPack by Friday
-- priya to confirm budget approval with CFO by next Wed
-- anita to share delivery delay data with rahul tomorrow
-- next call in 2 weeks`;
+export const VENDOR_NOTES = `Vendor review (BrightPack) - attendees: me, Rahul, Priya, Anita, Suresh (BrightPack)
+- Quote: 18L, 2L over budget. Suresh can do 16.5L for a 2-yr deal + penalty clause for late deliveries.
+- Priya needs CFO sign-off for a 2-yr commitment. Anita: 3 late shipments last quarter, worried about delays.
+- Decided: go ahead IF 16.5L (2-yr) AND penalty clause signed.
+- Rahul: send revised quote by Fri. Priya: confirm budget w/ CFO by next Wed. Anita: share delay data w/ Rahul tmrw.`;
 
 export const SEATING_NOTES = `Discussed new office seating plan. Need quotes from two furniture vendors.
 Also need to check fire safety rules for the new layout.`;

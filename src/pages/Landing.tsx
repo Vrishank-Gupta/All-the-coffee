@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
-import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
+import { MeetingCostCalculator } from "../components/demo/MeetingCostCalculator";
+import { AppFrame } from "../components/demo/AppFrame";
 import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
 import { BLOG_POSTS } from "../lib/blogData";
@@ -140,19 +141,19 @@ export default function Landing() {
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-10 sm:pt-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <p className="font-display text-xl italic text-espresso-700/70 sm:text-2xl">
+            <h1 className="font-display text-5xl leading-[1.05] font-semibold text-espresso-950 sm:text-6xl">
               &ldquo;I'm just not a tech person.&rdquo;
-            </p>
-            <p className="mt-1 font-display text-base font-bold text-caramel-700 sm:text-lg">
+            </h1>
+            <p className="mt-3 font-display text-2xl font-bold text-caramel-700 sm:text-3xl">
               You've told yourself that for years. It was never true.
             </p>
             <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-caramel-100 px-3.5 py-1.5 text-xs font-semibold text-caramel-700">
               <Coffee className="h-3.5 w-3.5" /> 20–45 minutes a day, in your browser
             </span>
-            <h1 className="mt-5 font-display text-5xl leading-[1.05] font-semibold text-espresso-950 sm:text-6xl">
+            <p className="mt-5 font-display text-xl font-semibold text-espresso-900 sm:text-2xl">
               From AI-anxious to builder, one coffee break at a time.
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-espresso-800/85">
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-espresso-800/85">
               Build your first useful tool in 20 minutes. No coding background. No jargon you don't need. Nobody
               judging you.
             </p>
@@ -181,7 +182,8 @@ export default function Landing() {
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <p className="text-center text-sm font-semibold text-espresso-800">
-              This is an AI-powered tool. You'll learn to build ones like it, with real AI doing the thinking inside.
+              Nobody ever put a number on what that recurring meeting costs. You're about to build the tool that
+              does.
             </p>
             <div className="mt-2 mb-2 flex items-center justify-center gap-2">
               <span className="relative flex h-2 w-2">
@@ -189,12 +191,14 @@ export default function Landing() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-sage-500" />
               </span>
               <p className="text-center text-xs font-semibold tracking-wide text-espresso-700/60 uppercase">
-                A live, interactive preview, not a video
+                Live and interactive. Change the numbers.
               </p>
             </div>
-            <NotesSummariserDemo autoPlay />
+            <AppFrame label="meeting-cost-calculator.ai">
+              <MeetingCostCalculator features={{ projection: true, perMinute: true }} />
+            </AppFrame>
             <p className="mt-2.5 text-center text-sm text-espresso-700/65">
-              You'll build this exact tool, wired to real AI, in Chapter 6. Try the examples above.
+              Built with AI, by someone with zero coding background, in Chapter 1. Try your own team's numbers above.
             </p>
           </motion.div>
         </div>
