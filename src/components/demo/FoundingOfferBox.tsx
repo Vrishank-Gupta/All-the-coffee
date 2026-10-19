@@ -68,7 +68,8 @@ export function FoundingOfferBox() {
       </div>
 
       <p className="mt-5 border-t border-white/10 pt-4 text-xs text-caramel-100/60">
-        Refund promise: 30 days, or until you finish Module B, whichever is later. See the{" "}
+        Refund promise, covering your full ₹599 (Modules B and C together): 30 days, or until you finish Module B,
+        whichever is later. See the{" "}
         <Link to="/refund-policy" className="underline underline-offset-2 hover:text-caramel-100">
           full refund policy
         </Link>

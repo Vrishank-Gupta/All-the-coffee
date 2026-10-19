@@ -55,8 +55,8 @@ const FAQS = [
     a: "We store your email, your progress, and whatever you type into the course's own exercises. We never sell it, and we don't run third-party advertising trackers. Full details in our Privacy Policy.",
   },
   {
-    q: "What if I pay for Module B and don't like it?",
-    a: "You're covered for 30 days from payment, or until you finish Module B, whichever is later. Email us, no reason required. See our Refund Policy for the exact process.",
+    q: "What if I pay and don't like it?",
+    a: "You're covered for 30 days from payment, or until you finish Module B, whichever is later. This covers your full ₹599 payment, Modules B and C together. Email us, no reason required. See our Refund Policy for the exact process.",
   },
   {
     q: "Is this a bootcamp, or will it get me a developer job?",
@@ -297,7 +297,7 @@ export default function Landing() {
           </p>
           <p className="mx-auto mt-2 max-w-xl text-sm text-espresso-700/80">
             You don't have to take our word for it, or theirs. Chapters 0–3 are completely free, no card required.
-            Build a real, working tool first, then decide whether Module B is worth ₹599 to you.
+            Build a real, working tool first, then decide whether Modules B and C are worth ₹599 to you.
           </p>
           <Link
             to={startCtaPath}

@@ -4,7 +4,8 @@ export default function RefundPolicy() {
   return (
     <LegalPageLayout title="Refund Policy" lastUpdated="17 October 2026">
       <p>
-        If Module B isn't for you, you can get your ₹599 back. This page explains exactly how and what to expect.
+        If it isn't for you, you can get your ₹599 back. That one payment unlocks both Module B and Module C
+        together, and this policy covers all of it. This page explains exactly how and what to expect.
       </p>
 
       <h2>The promise</h2>
@@ -13,6 +14,8 @@ export default function RefundPolicy() {
         later</strong>. In practice: if you pay and finish all four Module B chapters in a week, you still have the
         remaining time in that 30-day window to ask for a refund if you change your mind. If you're still working
         through Module B after 30 days, you're still covered until you either finish it or decide it's not for you.
+        This window applies to your whole ₹599 payment, so Module C is covered by it too, whether or not you've
+        started it yet.
       </p>
 
       <h2>How to request one</h2>

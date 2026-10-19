@@ -27,7 +27,7 @@ export default function Terms() {
 
       <h2>Payment</h2>
       <p>
-        Module B's ₹599 is a one-time payment, not a subscription. Payments are processed by Razorpay; we never see
+        Modules B and C's ₹599 is a one-time payment, not a subscription. Payments are processed by Razorpay; we never see
         or store your card or UPI details ourselves. See the <a href="/refund-policy">Refund Policy</a> for what
         happens if you want your money back.
       </p>
