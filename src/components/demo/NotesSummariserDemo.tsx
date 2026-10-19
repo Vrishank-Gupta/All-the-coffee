@@ -39,7 +39,7 @@ export function NotesSummariserDemo({ autoPlay = false }: { autoPlay?: boolean }
             setNotes(VENDOR_NOTES);
             setStatus("idle");
           }}
-          className="rounded-full border border-caramel-400/50 bg-cream px-3 py-1.5 text-xs font-semibold text-caramel-700 hover:bg-caramel-100"
+          className="rounded-full border border-caramel-400/50 bg-cream px-3 py-2 text-xs font-semibold text-caramel-700 hover:bg-caramel-100"
         >
           Load the vendor meeting notes
         </button>
@@ -48,7 +48,7 @@ export function NotesSummariserDemo({ autoPlay = false }: { autoPlay?: boolean }
             setNotes(SEATING_NOTES);
             setStatus("idle");
           }}
-          className="rounded-full border border-caramel-400/50 bg-cream px-3 py-1.5 text-xs font-semibold text-caramel-700 hover:bg-caramel-100"
+          className="rounded-full border border-caramel-400/50 bg-cream px-3 py-2 text-xs font-semibold text-caramel-700 hover:bg-caramel-100"
         >
           Load the honesty-test notes
         </button>
@@ -57,7 +57,7 @@ export function NotesSummariserDemo({ autoPlay = false }: { autoPlay?: boolean }
             setNotes("");
             setStatus("idle");
           }}
-          className="rounded-full border border-espresso-900/15 bg-cream px-3 py-1.5 text-xs font-semibold text-espresso-700 hover:bg-latte/50"
+          className="rounded-full border border-espresso-900/15 bg-cream px-3 py-2 text-xs font-semibold text-espresso-700 hover:bg-latte/50"
         >
           Clear the box
         </button>

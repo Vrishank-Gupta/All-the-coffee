@@ -496,18 +496,21 @@ function ModuleBlock({
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-espresso-900">{c.title}</p>
                 <p className="flex items-center gap-1 text-xs text-espresso-700/60">
-                  <Clock className="h-3 w-3" /> {c.minutes} {!c.live && <span className="ml-1">&middot; not yet written</span>}
+                  <Clock className="h-3 w-3 shrink-0" />
+                  <span className="min-w-0 truncate">
+                    {c.minutes} {!c.live && <>&middot; not yet written</>}
+                  </span>
                 </p>
               </div>
               {!unlocked && <Lock className="h-3.5 w-3.5 shrink-0 text-espresso-400" />}
             </div>
           );
           return unlocked ? (
-            <Link key={c.id} to={c.path}>
+            <Link key={c.id} to={c.path} className="min-w-0">
               {content}
             </Link>
           ) : (
-            <div key={c.id}>{content}</div>
+            <div key={c.id} className="min-w-0">{content}</div>
           );
         })}
       </div>

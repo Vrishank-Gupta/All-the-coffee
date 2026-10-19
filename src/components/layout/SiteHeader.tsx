@@ -72,13 +72,13 @@ export function SiteHeader() {
           )}
           <Link
             to={ctaPath}
-            className="rounded-full bg-espresso-950 px-4 py-2 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800"
+            className="flex min-h-11 items-center rounded-full bg-espresso-950 px-4 py-2 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800"
           >
             {ctaLabel}
           </Link>
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full text-espresso-800 hover:bg-espresso-900/5 sm:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-espresso-800 hover:bg-espresso-900/5 sm:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
