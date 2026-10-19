@@ -218,3 +218,31 @@ as $$
 $$;
 
 grant execute on function public.get_certificate(uuid) to anon, authenticated;
+
+-- Migration (run after initial setup): close a real privilege gap.
+-- A user's own "update their own row" RLS policy above covers every
+-- column, including `tier` — meaning anyone technical enough could call
+-- the Supabase REST API directly and set their own tier to 'paid',
+-- bypassing Razorpay entirely. RLS gates rows, not columns, so this needs
+-- column-level privileges on top of it: revoke table-level update, then
+-- re-grant it only for the columns a user should actually be able to
+-- change themselves.
+revoke update on public.profiles from authenticated;
+grant update (completed, boring_task, used_at_work, nervous_start, nervous_ch3, nervous_ch7, full_name, course_completed_at)
+  on public.profiles to authenticated;
+
+-- The only legitimate way `tier` becomes 'paid': the verify-razorpay-payment
+-- Edge Function, after it has independently verified the Razorpay HMAC
+-- signature server-side (see supabase/functions/verify-razorpay-payment).
+-- That function runs with the caller's own JWT, not service_role, so it
+-- needs this security-definer escape hatch now that direct column access
+-- is revoked.
+create or replace function public.mark_tier_paid(p_user_id uuid)
+returns void
+language sql
+security definer set search_path = public
+as $$
+  update public.profiles set tier = 'paid' where id = p_user_id;
+$$;
+
+grant execute on function public.mark_tier_paid(uuid) to authenticated;

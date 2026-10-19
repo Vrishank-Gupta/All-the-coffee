@@ -47,9 +47,13 @@ Deno.serve(async (req) => {
       return json({ error: "Payment could not be verified" }, 400);
     }
 
-    // RLS lets a user update only their own row (see supabase/schema.sql),
-    // so this is safe to run with the caller's own JWT, no service_role key.
-    const { error: updateError } = await supabase.from("profiles").update({ tier: "paid" }).eq("id", user.id);
+    // `tier` is no longer directly client-updatable (see supabase/schema.sql):
+    // a user's own RLS policy covers every other column, but updating `tier`
+    // specifically now requires this security-definer RPC, so that paying
+    // is the only path to it. Safe to call with the caller's own JWT, no
+    // service_role key, since the function only ever sets the caller's own
+    // row and this point is only reached after the HMAC check above passes.
+    const { error: updateError } = await supabase.rpc("mark_tier_paid", { p_user_id: user.id });
     if (updateError) return json({ error: updateError.message }, 500);
 
     return json({ success: true });
