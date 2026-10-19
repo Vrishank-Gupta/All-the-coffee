@@ -28,7 +28,7 @@ export const CHAPTERS: ChapterMeta[] = [
   { id: 8, title: "Setting up your workshop", short: "Install, without fear", minutes: "45 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/8", live: true },
   { id: 9, title: "Your first automation script", short: "Merge 12 sales sheets", minutes: "50 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/9", live: true },
   { id: 10, title: "Reading code like a recipe", short: "Spot the four building blocks", minutes: "40 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/10", live: true },
-  { id: 11, title: "Capstone: build it for your job", short: "The sentence from Chapter 0, built", minutes: "90–120 min", device: "Laptop needed", free: false, module: "C", path: "/chapter/11", live: true },
+  { id: 11, title: "Capstone: build it for your job", short: "The sentence from Chapter 0, built", minutes: "2–3 hours", device: "Laptop needed", free: false, module: "C", path: "/chapter/11", live: true },
 ];
 
 export function chapterById(id: number) {

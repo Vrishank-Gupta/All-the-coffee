@@ -13,6 +13,7 @@ import { DownloadButton } from "../components/chapter/DownloadButton";
 import { BoringTaskRecall } from "../components/demo/BoringTaskRecall";
 import { ModuleCompleteBadge } from "../components/demo/ModuleCompleteBadge";
 import { chapterById } from "../lib/courseData";
+import { useProgress } from "../lib/progress";
 
 const meta = chapterById(11)!;
 
@@ -172,6 +173,9 @@ Monthly newsletter,Rahul,Not started,2026-10-20
 `;
 
 export default function ChapterEleven() {
+  const { isComplete } = useProgress();
+  const finished = isComplete(11);
+
   return (
     <ChapterShell meta={meta}>
       <SectionEyebrow n="01" label="Where you are" />
@@ -303,7 +307,7 @@ export default function ChapterEleven() {
               <td className="px-4 py-2.5 text-espresso-800">You want it to produce new files (Excel, CSV, images)</td>
             </tr>
             <tr>
-              <td className="px-4 py-2.5 text-espresso-800">Examples: a tracker, a calculator, a summariser, a reply drafter</td>
+              <td className="px-4 py-2.5 text-espresso-800">Examples: a tracker, a data cleaner, a summariser, a reply drafter</td>
               <td className="px-4 py-2.5 text-espresso-800">Examples: merging files, renaming files, building a report from exports</td>
             </tr>
           </tbody>
@@ -434,6 +438,11 @@ export default function ChapterEleven() {
       <p className="mt-6 font-display text-lg font-semibold text-espresso-950">Starter C: Weekly Status Report Generator (Python script)</p>
       <CopyBlock label="Starter C brief" mono>{STARTER_C_BRIEF}</CopyBlock>
       <DownloadButton filename="tasks.csv" content={STARTER_C_CSV} label="Download tasks.csv" />
+      <Callout variant="tip">
+        The sample file has an owner on every row, so your first run should match the test case exactly. To check
+        the "Unassigned" edge case from the brief, try deleting one row's owner afterward and re-running: that task
+        should still show up, just grouped as "Unassigned" instead of disappearing.
+      </Callout>
 
       <SectionEyebrow n="13" label="Words you can now use" />
       <WordsTable
@@ -463,12 +472,16 @@ export default function ChapterEleven() {
         <p className="max-w-md text-[14.5px] text-espresso-700/80">
           Specific, verifiable, and yours to share: it names exactly what you built, not a vague participation badge.
         </p>
-        <Link
-          to="/certificate"
-          className="mt-1 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3 font-semibold text-caramel-100 transition hover:bg-espresso-800"
-        >
-          Get your certificate
-        </Link>
+        {finished ? (
+          <Link
+            to="/certificate"
+            className="mt-1 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3 font-semibold text-caramel-100 transition hover:bg-espresso-800"
+          >
+            Get your certificate
+          </Link>
+        ) : (
+          <p className="mt-1 text-sm font-semibold text-caramel-700">Finish the checklist below to unlock it.</p>
+        )}
       </div>
 
       <NextUpTeaser
