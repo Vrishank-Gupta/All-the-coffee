@@ -174,7 +174,7 @@ export default function ChapterSix() {
           },
           {
             problem: "It asks me for an API key.",
-            answer: <>If you're in Claude, ask: <em>"Please build this so it works inside this chat without an API key."</em> Using another tool that can't do this? Skip the hands-on build for now, read the rest of this chapter for the concepts, and you'll wire up a real API key properly in the advanced track that comes after this course.</>,
+            answer: <>If you're in Claude, ask: <em>"Please build this so it works inside this chat without an API key."</em> Using another tool that asks for one anyway? The quickest fix is a free Claude account just for this chapter: claude.ai, sign up, paste the same prompt from Step 2. You can go back to your usual tool from Chapter 7 onward. Or skip the hands-on build for now and read the rest of this chapter for the concepts; you'll wire up a real API key properly in the advanced track that comes after this course.</>,
           },
           { problem: "The action items table is missing or messy.", answer: "Use the fix loop and show exactly the table you expected, using the checkpoint table above." },
         ]}

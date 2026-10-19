@@ -63,10 +63,9 @@ export default function ChapterOne() {
       <ChatToolMockup highlight="signup" />
       <Callout variant="tip" title="Using a different tool?">
         This course uses Claude because its "Preview" panel shows your tool running right next to the chat, which
-        makes the next few chapters easier to follow. ChatGPT (with Canvas switched on) and Gemini (with Canvas) can
-        build the same kind of tool the same way: describe what you want, look for a preview or canvas panel next to
-        the chat. The button names differ and change over time. If yours looks different, just ask the AI: "Where can
-        I see a live preview of this?"
+        makes the next few chapters easier to follow. ChatGPT and Gemini can build similar tools too, but exactly how
+        varies by tool and changes often: look for a preview, canvas or app panel next to the chat, or just ask
+        directly: "Can you show this to me as a live, interactive page I can use right here, not just code?"
       </Callout>
       <Step n={2} title="Create a free account">
         Sign up with your personal email address, not your work one. You'll get a code by email to confirm it's you.
