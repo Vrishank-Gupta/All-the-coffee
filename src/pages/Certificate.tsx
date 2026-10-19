@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Copy, Check, ExternalLink, Printer, Lock } from "lucide-react";
+import { ArrowLeft, Copy, Check, ExternalLink, Printer, Download, Lock } from "lucide-react";
+import { toPng } from "html-to-image";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { CertificateCard } from "../components/certificate/CertificateCard";
 import { useAuth } from "../lib/auth";
 import { useProgress, TOTAL_CHAPTERS } from "../lib/progress";
-import { certificateId, certificateUrl, linkedInAddToProfileUrl } from "../lib/certificate";
+import { certificateId, certificateUrl, linkedInAddToProfileUrl, twitterShareUrl } from "../lib/certificate";
 import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export default function Certificate() {
@@ -17,6 +18,8 @@ export default function Certificate() {
 
   const done = completed.includes(TOTAL_CHAPTERS - 1) && !!courseCompletedAt;
 
+  const [downloading, setDownloading] = useState(false);
+
   async function handleCopyLink() {
     if (!user) return;
     try {
@@ -26,6 +29,24 @@ export default function Certificate() {
     }
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
+  }
+
+  async function handleDownloadPng() {
+    const node = document.getElementById("certificate-card");
+    if (!node) return;
+    setDownloading(true);
+    try {
+      const dataUrl = await toPng(node, { pixelRatio: 2, backgroundColor: "#ffffff" });
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      a.download = "all-the-coffee-certificate.png";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch {
+      // image export unsupported in this browser; print/PDF still works
+    }
+    setDownloading(false);
   }
 
   function handleSaveName() {
@@ -91,7 +112,7 @@ export default function Certificate() {
             <p className="mt-2 mb-6 text-sm text-espresso-700/70 print:hidden">
               You finished all 12 chapters. Here's your proof of it.
             </p>
-            <CertificateCard name={fullName} completedAt={courseCompletedAt!} certId={certificateId(user!.id)} />
+            <CertificateCard name={fullName} completedAt={courseCompletedAt!} certId={certificateId(user!.id)} userId={user!.id} />
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 print:hidden">
               <button
@@ -109,6 +130,21 @@ export default function Certificate() {
               >
                 <ExternalLink className="h-4 w-4" /> Add to LinkedIn
               </a>
+              <a
+                href={twitterShareUrl(user!.id)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 rounded-xl bg-espresso-950 px-4 py-2.5 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800"
+              >
+                Share on X
+              </a>
+              <button
+                onClick={handleDownloadPng}
+                disabled={downloading}
+                className="flex items-center gap-1.5 rounded-xl border border-espresso-900/15 bg-cream px-4 py-2.5 text-sm font-semibold text-espresso-800 transition hover:bg-latte/50 disabled:opacity-60"
+              >
+                <Download className="h-4 w-4" /> {downloading ? "Preparing…" : "Download PNG"}
+              </button>
               <button
                 onClick={() => window.print()}
                 className="flex items-center gap-1.5 rounded-xl border border-espresso-900/15 bg-cream px-4 py-2.5 text-sm font-semibold text-espresso-800 transition hover:bg-latte/50"
@@ -116,6 +152,11 @@ export default function Certificate() {
                 <Printer className="h-4 w-4" /> Print / save as PDF
               </button>
             </div>
+            <p className="mx-auto mt-4 max-w-md text-center text-xs text-espresso-700/50 print:hidden">
+              Anyone can verify this certificate at{" "}
+              <span className="font-semibold text-espresso-700/70">{certificateUrl(user!.id)}</span> — no account
+              needed.
+            </p>
           </>
         )}
       </main>

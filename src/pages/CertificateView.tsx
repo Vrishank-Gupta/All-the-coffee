@@ -65,7 +65,7 @@ export default function CertificateView() {
             <p className="mt-2 mb-6 text-center text-sm text-espresso-700/70 print:hidden">
               Verified certificate from All The Coffee.
             </p>
-            <CertificateCard name={data.full_name} completedAt={data.completed_at} certId={certificateId(userId!)} />
+            <CertificateCard name={data.full_name} completedAt={data.completed_at} certId={certificateId(userId!)} userId={userId!} />
           </>
         )}
       </main>

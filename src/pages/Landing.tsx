@@ -290,6 +290,43 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Certificate */}
+      <section className="mx-auto max-w-5xl px-5 py-14">
+        <div className="overflow-hidden rounded-3xl border border-espresso-900/10 bg-cream p-8 sm:p-10">
+          <div className="grid items-center gap-8 lg:grid-cols-2">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-espresso-900/5 px-3.5 py-1.5 text-xs font-bold tracking-wide text-espresso-700 uppercase">
+                <Award className="h-3.5 w-3.5" /> Finish it, get proof of it
+              </span>
+              <h2 className="mt-4 font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
+                A real certificate in Practical AI &amp; Automation.
+              </h2>
+              <p className="mt-3 text-espresso-700/75">
+                Complete the full Core course and you get a certificate that names exactly what you did, not a
+                vague participation badge: a cost calculator, a follow-up tracker, a data cleaner, a tool with real
+                AI wired in, one published live, and a repetitive task automated with code.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3 rounded-2xl border border-espresso-900/10 bg-white p-4">
+                <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-caramel-600" />
+                <p className="text-sm text-espresso-800">
+                  <strong className="text-espresso-950">Specific, not generic.</strong> It states what you actually
+                  built, because that's what makes it worth showing someone.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 rounded-2xl border border-espresso-900/10 bg-white p-4">
+                <Link2 className="mt-0.5 h-5 w-5 shrink-0 text-caramel-600" />
+                <p className="text-sm text-espresso-800">
+                  <strong className="text-espresso-950">A real, shareable link.</strong> A certificate ID, a
+                  verification link, add it to LinkedIn directly, no download needed.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Who it's for */}
       <section className="mx-auto max-w-6xl px-5 py-14">
         <div className="grid gap-6 lg:grid-cols-2">
@@ -365,43 +402,6 @@ export default function Landing() {
             10 chapters, one growing project: servers, databases, integrations and deployment. Unlocks once Tier 1
             shows learners are finishing it.
           </p>
-        </div>
-      </section>
-
-      {/* Certificate */}
-      <section className="mx-auto max-w-5xl px-5 py-14">
-        <div className="overflow-hidden rounded-3xl border border-espresso-900/10 bg-cream p-8 sm:p-10">
-          <div className="grid items-center gap-8 lg:grid-cols-2">
-            <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-espresso-900/5 px-3.5 py-1.5 text-xs font-bold tracking-wide text-espresso-700 uppercase">
-                <Award className="h-3.5 w-3.5" /> Finish it, get proof of it
-              </span>
-              <h2 className="mt-4 font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
-                Finish all 12 chapters, and this course certifies it.
-              </h2>
-              <p className="mt-3 text-espresso-700/75">
-                Complete the full Core course and you get a certificate that names exactly what you did, not a
-                vague participation badge: 12 chapters across three modules, real tools built, one published live,
-                and a repetitive task automated on your own computer.
-              </p>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3 rounded-2xl border border-espresso-900/10 bg-white p-4">
-                <ListChecks className="mt-0.5 h-5 w-5 shrink-0 text-caramel-600" />
-                <p className="text-sm text-espresso-800">
-                  <strong className="text-espresso-950">Specific, not generic.</strong> It states what you actually
-                  built, because that's what makes it worth showing someone.
-                </p>
-              </div>
-              <div className="flex items-start gap-3 rounded-2xl border border-espresso-900/10 bg-white p-4">
-                <Link2 className="mt-0.5 h-5 w-5 shrink-0 text-caramel-600" />
-                <p className="text-sm text-espresso-800">
-                  <strong className="text-espresso-950">A real, shareable link.</strong> Add it to LinkedIn directly,
-                  or send the link to anyone, no download needed.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
