@@ -169,6 +169,36 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Pain recognition */}
+      <section className="mx-auto max-w-3xl px-5 py-10">
+        <div className="rounded-3xl border border-espresso-900/10 bg-cream p-6 sm:p-9">
+          <h2 className="text-center font-display text-2xl font-semibold text-espresso-950 sm:text-3xl">
+            Does any of this sound familiar?
+          </h2>
+          <ul className="mt-6 space-y-3 text-[15px] text-espresso-800/85">
+            <li className="flex items-start gap-2.5">
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-caramel-500" />
+              Someone says "just ask the AI" like it's obvious, and you smile and nod.
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-caramel-500" />
+              You've bookmarked three "learn AI in a weekend" videos and watched none of them.
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-caramel-500" />
+              You've opened ChatGPT, stared at the blank box, and closed the tab without typing anything.
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-caramel-500" />
+              You said "I should really learn this" out loud, to yourself, months ago.
+            </li>
+          </ul>
+          <p className="mt-6 text-center text-sm font-semibold text-caramel-700">
+            None of that means you're behind. It means nobody's shown you the first step yet.
+          </p>
+        </div>
+      </section>
+
       {/* Data-backed insight */}
       <section className="mx-auto max-w-6xl px-5 py-14">
         <div className="mx-auto max-w-2xl text-center">
@@ -328,6 +358,10 @@ export default function Landing() {
               <p className="mx-auto mt-5 max-w-lg text-sm text-caramel-100/75">
                 Start free: Chapters 0–3 are yours with no card and no catch. Pay only when you're ready to unlock
                 Module B's four more real tools.
+              </p>
+              <p className="mx-auto mt-2 max-w-lg text-xs text-caramel-100/60">
+                And if Module B isn't for you: full refund, 30 days or until you finish it, whichever is later.{" "}
+                <Link to="/refund-policy" className="underline underline-offset-2 hover:text-caramel-100">Details</Link>.
               </p>
               <Link
                 to={startCtaPath}
