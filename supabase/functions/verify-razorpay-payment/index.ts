@@ -47,13 +47,28 @@ Deno.serve(async (req) => {
       return json({ error: "Payment could not be verified" }, 400);
     }
 
+    // A valid HMAC only proves this triple came from a real Razorpay payment.
+    // It doesn't prove THIS order belongs to the calling user, or that it
+    // hasn't already been used. Without this check, a triple visible
+    // client-side in Razorpay's own success callback could be replayed from
+    // any number of different accounts off a single real payment.
+    // consume_payment_order() atomically claims the order for auth.uid() and
+    // only succeeds once, for the user who originally created it.
+    const { data: consumed, error: consumeError } = await supabase.rpc("consume_payment_order", { p_order_id: orderId });
+    if (consumeError) return json({ error: consumeError.message }, 500);
+    if (!consumed) return json({ error: "This order has already been used or doesn't belong to this account." }, 400);
+
     // `tier` is no longer directly client-updatable (see supabase/schema.sql):
     // a user's own RLS policy covers every other column, but updating `tier`
     // specifically now requires this security-definer RPC, so that paying
-    // is the only path to it. Safe to call with the caller's own JWT, no
-    // service_role key, since the function only ever sets the caller's own
-    // row and this point is only reached after the HMAC check above passes.
-    const { error: updateError } = await supabase.rpc("mark_tier_paid", { p_user_id: user.id });
+    // is the only path to it. mark_tier_paid() takes no argument by design
+    // and only ever updates auth.uid()'s own row server-side. An earlier
+    // version took a caller-supplied target id with no check that it matched
+    // the caller, which would have let any authenticated user mark ANY row
+    // paid via a direct RPC call, bypassing this HMAC check entirely. Safe to
+    // call with the caller's own JWT, no service_role key, since this point
+    // is only reached after that HMAC check above passes.
+    const { error: updateError } = await supabase.rpc("mark_tier_paid");
     if (updateError) return json({ error: updateError.message }, 500);
 
     return json({ success: true });

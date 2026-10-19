@@ -53,6 +53,14 @@ Deno.serve(async (req) => {
       return json({ error: order?.error?.description ?? "Could not create the order" }, 400);
     }
 
+    // Record which user this order belongs to, so verify-razorpay-payment can
+    // confirm the caller submitting a (orderId, paymentId, signature) triple
+    // is the same user who created this order, and that it's only ever
+    // consumed once. Without this, a valid triple (visible client-side in
+    // Razorpay's own success callback) could be replayed from any account.
+    const { error: recordError } = await supabase.rpc("record_payment_order", { p_order_id: order.id });
+    if (recordError) return json({ error: "Could not start checkout. Please try again." }, 500);
+
     return json({ orderId: order.id, amount: order.amount, currency: order.currency, keyId: RAZORPAY_KEY_ID });
   } catch (e) {
     return json({ error: String(e) }, 500);

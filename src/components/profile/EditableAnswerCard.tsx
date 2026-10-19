@@ -8,6 +8,7 @@ export function EditableAnswerCard({
   value,
   onSave,
   placeholder,
+  maxLength,
 }: {
   icon: React.ReactNode;
   label: string;
@@ -15,6 +16,7 @@ export function EditableAnswerCard({
   value: string;
   onSave: (next: string) => void;
   placeholder: string;
+  maxLength?: number;
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(value);
@@ -47,6 +49,7 @@ export function EditableAnswerCard({
             onChange={(e) => setDraft(e.target.value)}
             rows={2}
             placeholder={placeholder}
+            maxLength={maxLength}
             autoFocus
             className="w-full resize-none rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-[13.5px] text-espresso-900 focus:border-caramel-500"
           />

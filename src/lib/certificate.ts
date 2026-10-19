@@ -8,6 +8,10 @@ export function certificateUrl(userId: string) {
 
 // LinkedIn's documented "Add to Profile" deep link for certifications:
 // https://www.linkedin.com/help/linkedin/answer/a566216
+// Note: LinkedIn keys the issuing organization off `organizationId`, a
+// numeric Company Page ID — not a free-text name — so without a real page
+// ID for "All The Coffee" that field is left for the person to fill in
+// themselves; the certification name below still pre-fills correctly.
 export function linkedInAddToProfileUrl({
   userId,
   completedAt,
@@ -18,8 +22,7 @@ export function linkedInAddToProfileUrl({
   const d = new Date(completedAt);
   const params = new URLSearchParams({
     startTask: "CERTIFICATION_NAME",
-    name: "Practical AI & Automation — All The Coffee Core Course",
-    organizationName: "All The Coffee",
+    name: "Practical AI & Automation (All The Coffee)",
     issueYear: String(d.getFullYear()),
     issueMonth: String(d.getMonth() + 1),
     certUrl: certificateUrl(userId),

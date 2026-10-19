@@ -221,7 +221,7 @@ grant execute on function public.get_certificate(uuid) to anon, authenticated;
 
 -- Migration (run after initial setup): close a real privilege gap.
 -- A user's own "update their own row" RLS policy above covers every
--- column, including `tier` — meaning anyone technical enough could call
+-- column, including `tier`, meaning anyone technical enough could call
 -- the Supabase REST API directly and set their own tier to 'paid',
 -- bypassing Razorpay entirely. RLS gates rows, not columns, so this needs
 -- column-level privileges on top of it: revoke table-level update, then
@@ -237,12 +237,74 @@ grant update (completed, boring_task, used_at_work, nervous_start, nervous_ch3, 
 -- That function runs with the caller's own JWT, not service_role, so it
 -- needs this security-definer escape hatch now that direct column access
 -- is revoked.
-create or replace function public.mark_tier_paid(p_user_id uuid)
+--
+-- Deliberately takes NO argument: it can only ever update auth.uid()'s own
+-- row. An earlier version took a caller-supplied p_user_id with no check
+-- that it matched the caller: since this function is security definer
+-- (it bypasses RLS) and EXECUTE was granted to the whole authenticated
+-- role, that version let any logged-in user call it directly from the
+-- browser with an arbitrary target id and mark ANY row 'paid', with no
+-- payment check at all. Fixed by removing the parameter entirely rather
+-- than adding a guard clause, so there is no argument left to misuse.
+create or replace function public.mark_tier_paid()
 returns void
 language sql
 security definer set search_path = public
 as $$
-  update public.profiles set tier = 'paid' where id = p_user_id;
+  update public.profiles set tier = 'paid' where id = auth.uid();
 $$;
 
-grant execute on function public.mark_tier_paid(uuid) to authenticated;
+grant execute on function public.mark_tier_paid() to authenticated;
+
+-- Migration: closes a payment-replay gap. verify-razorpay-payment only
+-- checked that an (orderId, paymentId, signature) triple was a REAL
+-- Razorpay payment (valid HMAC), never that the order belonged to the
+-- calling user or had not already been used. Since these values are
+-- visible client-side in the Razorpay Checkout success callback, one real
+-- ₹599 payment's triple could be replayed from any number of different
+-- accounts, each one getting tier='paid' for free.
+create table public.payment_orders (
+  order_id text primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  consumed boolean not null default false,
+  created_at timestamptz not null default now()
+);
+
+alter table public.payment_orders enable row level security;
+-- Deliberately no select/insert/update policies for anon/authenticated:
+-- all access goes through the two security-definer functions below, same
+-- pattern as page_views/log_page_view above.
+
+create or replace function public.record_payment_order(p_order_id text)
+returns void
+language sql
+security definer set search_path = public
+as $$
+  insert into public.payment_orders (order_id, user_id) values (p_order_id, auth.uid());
+$$;
+
+grant execute on function public.record_payment_order(text) to authenticated;
+
+-- Atomically claims an order for the caller: succeeds (returns true) only if
+-- a row exists with this order_id, belonging to the CALLER (auth.uid()), not
+-- already consumed. The update+row-count check happens in one statement, so
+-- two concurrent calls for the same order can't both succeed.
+create or replace function public.consume_payment_order(p_order_id text)
+returns boolean
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  v_updated int;
+begin
+  update public.payment_orders
+  set consumed = true
+  where order_id = p_order_id
+    and user_id = auth.uid()
+    and consumed = false;
+  get diagnostics v_updated = row_count;
+  return v_updated > 0;
+end;
+$$;
+
+grant execute on function public.consume_payment_order(text) to authenticated;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import QRCode from "qrcode";
-import { Coffee } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { certificateUrl } from "../../lib/certificate";
 
 const SKILLS = [
@@ -62,7 +62,7 @@ export function CertificateCard({ name, completedAt, certId, userId }: { name: s
 
       <div className="px-8 pt-16 pb-11 text-center sm:px-14">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-espresso-950">
-          <Coffee className="h-7 w-7 text-caramel-300" strokeWidth={2} />
+          <Sparkles className="h-7 w-7 text-caramel-300" strokeWidth={2} />
         </div>
 
         <p className="mt-4.5 text-xs font-bold tracking-[0.28em] text-caramel-700 uppercase">Certificate of Completion</p>

@@ -123,6 +123,15 @@
     size: landscape;
     margin: 1cm;
   }
+
+  /* Without this, Chrome/Edge/Firefox strip background colors on print by
+     default (unless the visitor manually enables "Background graphics"),
+     which would drop the certificate's espresso badge, caramel skill pills
+     and accent bar on exactly the output most likely to be sent to someone. */
+  #certificate-card, #certificate-card * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
 
 @keyframes caret-blink {

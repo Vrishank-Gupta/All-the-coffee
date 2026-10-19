@@ -16,7 +16,8 @@ export default function Certificate() {
   const [draftName, setDraftName] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const done = completed.includes(TOTAL_CHAPTERS - 1) && !!courseCompletedAt;
+  const allChaptersDone = Array.from({ length: TOTAL_CHAPTERS }, (_, i) => i).every((id) => completed.includes(id));
+  const done = allChaptersDone && !!courseCompletedAt;
 
   const [downloading, setDownloading] = useState(false);
 
@@ -96,6 +97,7 @@ export default function Certificate() {
                 value={draftName}
                 onChange={(e) => setDraftName(e.target.value)}
                 placeholder="Your full name"
+                maxLength={80}
                 className="flex-1 rounded-lg border border-espresso-900/15 bg-white px-3.5 py-3 text-sm text-espresso-900 focus:border-caramel-500"
               />
               <button

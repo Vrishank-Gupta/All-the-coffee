@@ -119,6 +119,7 @@ export default function Profile() {
               value={fullName ?? ""}
               onSave={setFullName}
               placeholder="Your full name…"
+              maxLength={80}
             />
             <EditableAnswerCard
               icon={<NotebookPen className="h-4 w-4" />}
