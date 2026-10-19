@@ -26,6 +26,8 @@ import ChapterEight from "./pages/ChapterEight";
 import ChapterNine from "./pages/ChapterNine";
 import ChapterTen from "./pages/ChapterTen";
 import Profile from "./pages/Profile";
+import Certificate from "./pages/Certificate";
+import CertificateView from "./pages/CertificateView";
 import AdminStats from "./pages/AdminStats";
 
 function Protected({ children }: { children: React.ReactNode }) {
@@ -62,6 +64,8 @@ export default function App() {
             <Route path="/chapter/9" element={<Protected><ChapterNine /></Protected>} />
             <Route path="/chapter/10" element={<Protected><ChapterTen /></Protected>} />
             <Route path="/profile" element={<Protected><Profile /></Protected>} />
+            <Route path="/certificate" element={<Protected><Certificate /></Protected>} />
+            <Route path="/certificate/:userId" element={<CertificateView />} />
             <Route path="/admin" element={<Protected><AdminStats /></Protected>} />
           </Routes>
         </BrowserRouter>

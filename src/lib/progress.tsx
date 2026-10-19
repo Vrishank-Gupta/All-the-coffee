@@ -12,6 +12,8 @@ interface ProfileRow {
   nervous_ch3: number | null;
   nervous_ch7: number | null;
   tier: "free" | "paid";
+  full_name: string | null;
+  course_completed_at: string | null;
 }
 
 const DEFAULT_ROW: ProfileRow = {
@@ -22,6 +24,8 @@ const DEFAULT_ROW: ProfileRow = {
   nervous_ch3: null,
   nervous_ch7: null,
   tier: "free",
+  full_name: null,
+  course_completed_at: null,
 };
 
 interface ProgressContextValue {
@@ -33,6 +37,8 @@ interface ProgressContextValue {
   nervousCh3: number | null;
   nervousCh7: number | null;
   hasPaid: boolean;
+  fullName: string | null;
+  courseCompletedAt: string | null;
   isComplete: (chapter: number) => boolean;
   isUnlocked: (chapter: number) => boolean;
   completeChapter: (chapter: number) => void;
@@ -41,13 +47,15 @@ interface ProgressContextValue {
   setNervousCh3: (n: number) => void;
   setNervousCh7: (n: number) => void;
   setUsedAtWork: (task: string) => void;
+  setFullName: (name: string) => void;
   resetProgress: () => void;
   refreshProfile: () => Promise<void>;
 }
 
 const ProgressContext = createContext<ProgressContextValue | null>(null);
 
-const PROFILE_COLUMNS = "completed, boring_task, used_at_work, nervous_start, nervous_ch3, nervous_ch7, tier";
+const PROFILE_COLUMNS =
+  "completed, boring_task, used_at_work, nervous_start, nervous_ch3, nervous_ch7, tier, full_name, course_completed_at";
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
@@ -91,17 +99,25 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     nervousCh3: row.nervous_ch3,
     nervousCh7: row.nervous_ch7,
     hasPaid: row.tier === "paid",
+    fullName: row.full_name,
+    courseCompletedAt: row.course_completed_at,
     isComplete: (chapter: number) => row.completed.includes(chapter),
     isUnlocked: (chapter: number) => chapter === 0 || row.completed.includes(chapter - 1),
     completeChapter: (chapter: number) => {
       if (row.completed.includes(chapter)) return;
-      patch({ completed: [...row.completed, chapter].sort((a, b) => a - b) });
+      const nextCompleted = [...row.completed, chapter].sort((a, b) => a - b);
+      const justFinishedCourse = chapter === TOTAL_CHAPTERS - 1 && !row.course_completed_at;
+      patch({
+        completed: nextCompleted,
+        ...(justFinishedCourse ? { course_completed_at: new Date().toISOString() } : {}),
+      });
     },
     setBoringTask: (task: string) => patch({ boring_task: task }),
     setNervousStart: (n: number) => patch({ nervous_start: n }),
     setNervousCh3: (n: number) => patch({ nervous_ch3: n }),
     setNervousCh7: (n: number) => patch({ nervous_ch7: n }),
     setUsedAtWork: (task: string) => patch({ used_at_work: task }),
+    setFullName: (name: string) => patch({ full_name: name }),
     resetProgress: () => patch({ ...DEFAULT_ROW }),
     refreshProfile: async () => {
       if (user) await fetchProfile(user.id);

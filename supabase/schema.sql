@@ -190,3 +190,31 @@ end;
 $$;
 
 grant execute on function public.get_admin_stats() to authenticated;
+
+-- Migration (run after initial setup): the certificate feature.
+-- full_name is set by the learner themselves, only used for display on
+-- their certificate. course_completed_at is stamped once, client-side,
+-- the moment the last chapter of the Core course is marked complete.
+alter table public.profiles add column if not exists full_name text;
+alter table public.profiles add column if not exists course_completed_at timestamptz;
+
+-- Public, read-only lookup for a shareable certificate link
+-- (/certificate/:userId). Exposes only a name and a completion date, and
+-- only once the course is actually finished, so the link works for anyone
+-- (an employer, a LinkedIn connection) with no account needed, while every
+-- other profile field (email, tier, chapter-by-chapter progress) stays
+-- private behind the existing RLS policies above.
+create or replace function public.get_certificate(p_user_id uuid)
+returns json
+language sql
+security definer set search_path = public
+as $$
+  select json_build_object(
+    'full_name', full_name,
+    'completed_at', course_completed_at
+  )
+  from public.profiles
+  where id = p_user_id and course_completed_at is not null;
+$$;
+
+grant execute on function public.get_certificate(uuid) to anon, authenticated;

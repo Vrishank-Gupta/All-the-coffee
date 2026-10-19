@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Coffee, Download, NotebookPen, MessageSquareHeart, RotateCcw, ArrowLeft, Crown } from "lucide-react";
+import { Coffee, Download, NotebookPen, MessageSquareHeart, RotateCcw, ArrowLeft, Crown, Award, UserRound } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { EditableAnswerCard } from "../components/profile/EditableAnswerCard";
 import { NervousTrend } from "../components/profile/NervousTrend";
@@ -37,6 +37,9 @@ export default function Profile() {
     nervousCh3,
     nervousCh7,
     resetProgress,
+    fullName,
+    setFullName,
+    courseCompletedAt,
   } = useProgress();
 
   const [confirmingReset, setConfirmingReset] = useState(false);
@@ -92,10 +95,31 @@ export default function Profile() {
           </div>
         )}
 
+        {courseCompletedAt && (
+          <Link
+            to="/certificate"
+            className="mt-4 flex items-center gap-3 rounded-2xl border border-sage-300/60 bg-sage-50 p-4 text-sm text-espresso-800 transition hover:bg-sage-100"
+          >
+            <Award className="h-5 w-5 shrink-0 text-sage-700" />
+            <span>
+              <span className="font-semibold text-espresso-950">You finished the Core course.</span> View and share
+              your certificate &rarr;
+            </span>
+          </Link>
+        )}
+
         <section className="mt-10">
           <h2 className="font-display text-xl font-semibold text-espresso-950">Your answers</h2>
           <p className="mt-1 text-sm text-espresso-700/70">What you've written down so far. Click any card to change it.</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <EditableAnswerCard
+              icon={<UserRound className="h-4 w-4" />}
+              label="Name for your certificate"
+              helper="Shown exactly as typed once you finish the Core course."
+              value={fullName ?? ""}
+              onSave={setFullName}
+              placeholder="Your full name…"
+            />
             <EditableAnswerCard
               icon={<NotebookPen className="h-4 w-4" />}
               label="My boring task (from Chapter 0)"
