@@ -4,8 +4,8 @@ type Highlight = "signup" | "newchat" | "messagebox" | "code-toggle";
 
 const RECENT = ["Meeting Cost Calculator", "Untitled chat", "Untitled chat"];
 
-export function ChatToolMockup({ highlight }: { highlight: Highlight }) {
-  const Ring = ({ children, active }: { children: React.ReactNode; active: boolean }) => (
+function Ring({ children, active }: { children: React.ReactNode; active: boolean }) {
+  return (
     <div className={active ? "relative rounded-lg ring-2 ring-brick-500 ring-offset-2 ring-offset-cream" : "relative"}>
       {children}
       {active && (
@@ -15,7 +15,9 @@ export function ChatToolMockup({ highlight }: { highlight: Highlight }) {
       )}
     </div>
   );
+}
 
+export function ChatToolMockup({ highlight }: { highlight: Highlight }) {
   return (
     <figure className="not-prose my-6">
       <div className="overflow-hidden rounded-2xl border border-espresso-900/15 bg-white shadow-lift">

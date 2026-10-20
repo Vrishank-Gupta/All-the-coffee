@@ -41,9 +41,7 @@ export default function BlogList() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {BLOG_POSTS.map((post) => {
-            const needsSignup = !user;
-            const needsPayment = Boolean(user) && !post.free && !hasPaid;
-            const locked = needsSignup || needsPayment;
+            const locked = !post.free && !hasPaid;
             return (
               <Link
                 key={post.slug}
@@ -66,8 +64,7 @@ export default function BlogList() {
                   {post.title}
                 </p>
                 <p className="mt-1.5 flex-1 text-sm leading-snug text-espresso-700/75">{post.excerpt}</p>
-                {needsSignup && <p className="mt-3 text-xs font-semibold text-caramel-700">Sign up free to read &rarr;</p>}
-                {needsPayment && <p className="mt-3 text-xs font-semibold text-caramel-700">Unlock with Module B &rarr;</p>}
+                {locked && <p className="mt-3 text-xs font-semibold text-caramel-700">Included with Modules B and C &rarr;</p>}
               </Link>
             );
           })}

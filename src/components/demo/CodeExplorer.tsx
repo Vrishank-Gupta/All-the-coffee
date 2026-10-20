@@ -37,7 +37,7 @@ export function CodeExplorer({
     }
   }, [matchIndices]);
 
-  let seenFirst = false;
+  const firstMatch = matchIndices.size > 0 ? Math.min(...matchIndices) : -1;
 
   return (
     <div className="not-prose my-6 overflow-hidden rounded-2xl border border-espresso-900/15 bg-espresso-950 shadow-lift">
@@ -72,8 +72,7 @@ export function CodeExplorer({
         <pre className="font-mono text-[12.5px] leading-relaxed">
           {lines.map((line, i) => {
             const isMatch = matchIndices.has(i);
-            const isFirst = isMatch && !seenFirst;
-            if (isFirst) seenFirst = true;
+            const isFirst = i === firstMatch;
             return (
               <div
                 key={i}

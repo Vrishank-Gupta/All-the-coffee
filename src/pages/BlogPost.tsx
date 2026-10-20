@@ -54,16 +54,17 @@ export default function BlogPost() {
     );
   }
 
-  // Every article needs an account, even the two free ones; the free/paid
-  // split only decides what happens after that.
-  if (!user) {
+  // Free articles are open to everyone, search engines included, with a
+  // signup prompt at the end. Paid ones need an account (checkout requires
+  // one) and then the Founding Batch.
+  if (!meta.free && !user) {
     return (
       <LockedShell meta={meta}>
         <div className="mt-8 rounded-3xl border border-espresso-900/10 bg-cream p-6 text-center sm:p-8">
           <Lock className="mx-auto h-6 w-6 text-espresso-400" />
-          <p className="mt-3 font-display text-lg font-semibold text-espresso-950">Free account needed to read this</p>
+          <p className="mt-3 font-display text-lg font-semibold text-espresso-950">Part of the Founding Batch</p>
           <p className="mx-auto mt-2 max-w-sm text-sm text-espresso-700/75">
-            No payment, no card, just a free account, same one you'd use for the course.
+            This article comes with Modules B and C. Start with a free account: Chapters 0–3 are free, no card needed.
           </p>
           <Link
             to="/signup"
@@ -93,7 +94,27 @@ export default function BlogPost() {
   const Content = BLOG_CONTENT[meta.slug];
 
   return (
-    <BlogPostLayout meta={meta}>
+    <BlogPostLayout
+      meta={meta}
+      footer={
+        !user && (
+          <div className="mt-12 rounded-3xl border border-espresso-900/10 bg-cream p-6 text-center sm:p-8">
+            <p className="font-display text-lg font-semibold text-espresso-950">Want to build something like this yourself?</p>
+            <p className="mx-auto mt-2 max-w-md text-sm text-espresso-700/75">
+              Chapter 1 has you build a working tool in about 20 minutes, in your browser, no coding background
+              needed. Chapters 0–3 are free, no card.
+            </p>
+            <Link
+              to="/signup"
+              state={{ from: location }}
+              className="mt-5 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
+            >
+              Start free <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )
+      }
+    >
       {Content ? (
         <Suspense fallback={<p className="text-espresso-700/60">Loading…</p>}>
           <Content />

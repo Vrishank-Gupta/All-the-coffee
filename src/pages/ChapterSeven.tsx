@@ -94,7 +94,7 @@ export default function ChapterSeven() {
           "No secrets: no passwords and no API keys, anywhere.",
           "No company tools shared publicly without checking with your manager or IT first.",
           "Nothing you'd mind being forwarded: assume anyone with the link can pass it on.",
-          "You know how to take it down: in Netlify, delete the project (Project configuration, then the Danger zone at the bottom). For anything shared from Claude, click Share and switch it back to Only you.",
+          "You know how to take it down: in Netlify, open the project, go to Project configuration, then General, and scroll to the Danger zone. Delete the project there, or choose Disable project, which also takes it offline. For anything shared from Claude, click Share and switch it back to Only you.",
         ]}
       />
 
@@ -266,7 +266,7 @@ export default function ChapterSeven() {
           },
           {
             problem: "I shared something by mistake.",
-            answer: "Delete the project straight away: in Netlify, open the project, go to Project configuration, scroll to the Danger zone, and delete it. The link stops working. Then tell anyone who needs to know.",
+            answer: "Take it down straight away: in Netlify, open the project, go to Project configuration, then General, and scroll to the Danger zone. Delete the project, or choose Disable project if that's the option you see. Either way, the link stops working. Then tell anyone who needs to know.",
           },
         ]}
       />
