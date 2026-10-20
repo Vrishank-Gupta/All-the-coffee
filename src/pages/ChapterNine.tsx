@@ -87,13 +87,16 @@ export default function ChapterNine() {
         </Step>
         <StaticDownloadLink href="/downloads/monthly-sales.zip" label="Download monthly-sales.zip" />
         <Callout variant="tip">
-          How to unzip: on Windows, right-click the file and choose Extract All. On Mac, double-click it.
+          How to unzip: on Windows, right-click the file and choose Extract All. On Mac, double-click it. On
+          Windows, Extract All puts the <code className="rounded bg-latte px-1">data</code> folder inside a folder
+          called <code className="rounded bg-latte px-1">monthly-sales</code>. Move the{" "}
+          <code className="rounded bg-latte px-1">data</code> folder itself.
         </Callout>
         <Step n={3} title="Look inside a couple of files">
           Open <code className="rounded bg-latte px-1">sales_2026_01.xlsx</code> in Excel. You'll see three columns:
           Region, Salesperson and Amount, with eight rows. Every month's file looks like this. Close Excel when
-          you're done looking: a script can't write to a file that's still open elsewhere, and you'll see exactly
-          that error later in this chapter if a file gets left open.
+          you're done looking: a script can't reliably write to a file that's still open in Excel. On Windows
+          you'll get a "Permission denied" error; on Mac, Excel may just keep showing the old version.
         </Step>
         <Step n={4} title="Open the project in VS Code">
           In VS Code, choose <strong>File → Open Folder</strong> and select{" "}
@@ -190,6 +193,10 @@ export default function ChapterNine() {
           are too low, adding up to ₹40,24,000 instead of ₹43,92,000. Both come from the same hidden problem. Time to
           investigate.
         </p>
+        <p className="mt-3">
+          If yours matched first time, your AI was cautious. Still open the July file and see what it protected you
+          from.
+        </p>
 
         <SectionEyebrow n="06" label="Planned failure: the July file" />
         <p>
@@ -229,7 +236,8 @@ export default function ChapterNine() {
         </p>
         <Callout variant="warning">
           Close <code className="rounded bg-latte px-1">combined_sales.xlsx</code> in Excel before you run the script
-          again. If the file is open, the script can't overwrite it and you'll get a "Permission denied" error.
+          again. If the file is open, the script can't overwrite it: on Windows you'll get a "Permission denied"
+          error; on Mac, Excel may just keep showing the old version.
         </Callout>
 
         <Checkpoint title="Checkpoint, again">
@@ -270,12 +278,16 @@ export default function ChapterNine() {
               answer: "The library isn't installed, or was installed for a different Python. Run the install command from Step 7 again, using exactly the same word (python, python3 or py) that you use to run your script.",
             },
             {
-              problem: '"No such file or directory: data"',
+              problem: '"No such file or directory", "The system cannot find the path specified", or "No objects to concatenate"',
               answer: "Python can't find the folder. Check that VS Code has sales-merge open (not ai-course), and that data sits directly inside it, next to merge_sales.py.",
             },
             {
               problem: '"Permission denied" when saving combined_sales.xlsx.',
               answer: "Close the file in Excel and run the script again.",
+            },
+            {
+              problem: "An error mentions a file whose name starts with ~$",
+              answer: "That's a temporary lock file Excel creates while a file is open. Close Excel and run the script again.",
             },
             {
               problem: "pip shows lots of red or yellow text.",
@@ -300,8 +312,8 @@ export default function ChapterNine() {
             You know how to do that now.
           </p>
           <p>
-            3. If you installed the AI assistant inside VS Code in Chapter 8, use it for exercise 2 instead of the
-            browser chat. Notice how it can see and change your file directly.
+            3. If you turned on GitHub Copilot in VS Code in Chapter 8, open its chat and use it for exercise 2
+            instead of the browser chat. Notice how it can see and change your file directly.
           </p>
         </TryItYourself>
 

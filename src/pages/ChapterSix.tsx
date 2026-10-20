@@ -65,25 +65,25 @@ export default function ChapterSix() {
       <p className="mt-3 font-display text-xl font-semibold text-espresso-950">An API is the waiter between two pieces of software.</p>
       <ApiRestaurant />
       <p>
-        APIs are everywhere once you notice them. When you pay with UPI, the payment app sends a request to your
-        bank's API. When your phone shows the weather, an app asks a weather service's API. Most modern software is
+        APIs are everywhere once you notice them. When you pay with UPI, the payment app sends a request through UPI,
+        the system run by NPCI, which asks your bank. When your phone shows the weather, an app asks a weather service's API. Most modern software is
         lots of tools sending requests to each other's APIs.
       </p>
 
-      <SectionEyebrow n="03" label="API keys: the ID card" />
+      <SectionEyebrow n="03" label="API keys: your card and PIN in one" />
       <p>
-        Restaurants don't serve just anyone who walks into the kitchen. APIs are the same: most need to know who's
-        asking, and who's paying. That's what an <strong>API key</strong> is: a long secret code, like a membership
-        card number, that your tool shows with every request.
+        Most APIs need to know who's asking, and who's paying. That's what an <strong>API key</strong> is: a long
+        secret code your tool sends with every request. An API key is like your debit card number and PIN in one:
+        the service charges whoever's key it is. Guard it the same way.
       </p>
       <ul className="list-disc space-y-2 pl-5 marker:text-caramel-500">
         <li>They often cost money per use. Each request to an AI API usually costs a small amount, charged to whoever owns the key.</li>
-        <li>Treat them like your bank PIN. Never paste an API key into a chat, an email, a screenshot or a shared document.</li>
+        <li>Never paste an API key into a chat, an email, a screenshot or a shared document.</li>
+        <li>Never put a key inside a tool you share. Anyone who opens a web page can read everything in it, including the key, and spend your money.</li>
       </ul>
       <Callout variant="tip">
         Good news for today: when you build this tool inside Claude, it uses your own Claude account to talk to the
-        AI, so you don't need an API key at all. You'll use real keys later in the course, when you build outside the
-        chat.
+        AI, so you don't need an API key at all. You won't need an API key anywhere in this course.
       </Callout>
 
       <SectionEyebrow n="04" label="Build it" />
@@ -105,14 +105,14 @@ export default function ChapterSix() {
       </Step>
       <p className="text-sm text-espresso-700/70">
         Here's a reference copy of the finished tool, preloaded with the same notes, so you can compare your result
-        against it:
+        against it. It only knows the two sample notes in this chapter, so use your own tool for anything else.
       </p>
       <NotesSummariserDemo />
 
       <Checkpoint>
         In <strong>your own tool</strong>, the result won't be word-for-word the same as anyone else's, since AI
         writes slightly differently each time. But the facts should match: Rahul sends the revised quote by Friday,
-        Priya confirms budget with the CFO by next Wednesday, Anita shares delivery data with Rahul tomorrow. The
+        Priya confirms budget with the CFO by next Wednesday, Anita shares delay data with Rahul tomorrow. The
         decision should mention both conditions: the two-year price at ₹16.5 lakh <strong>and</strong> the penalty
         clause. If it misses the "and," that's a meaningful error: use the fix loop.
       </Checkpoint>
@@ -173,8 +173,12 @@ export default function ChapterSix() {
             answer: <>Sometimes it writes simple rules instead (picking out lines with "to" in them). Ask: <em>"Please use AI inside the tool to do the summarising, rather than fixed rules."</em></>,
           },
           {
-            problem: "It asks me for an API key.",
-            answer: <>If you're in Claude, ask: <em>"Please build this so it works inside this chat without an API key."</em> Using another tool that asks for one anyway? The quickest fix is a free Claude account just for this chapter: claude.ai, sign up, paste the same prompt from Step 2. You can go back to your usual tool from Chapter 7 onward. Or skip the hands-on build for now and read the rest of this chapter for the concepts; you'll wire up a real API key properly in the advanced track that comes after this course.</>,
+            problem: "Claude asks me for an API key.",
+            answer: <>You don't need one. Ask: <em>"Please build this so it works inside this chat without an API key."</em> Never paste a key in, even if you have one.</>,
+          },
+          {
+            problem: "My tool isn't Claude, and it wants an API key.",
+            answer: "The quickest fix is a free Claude account just for this chapter: go to claude.ai, sign up, and paste the same prompt from Step 2. You can go back to your usual tool from Chapter 7 onward. Or skip the hands-on build for now and read the rest of this chapter for the concepts.",
           },
           { problem: "The action items table is missing or messy.", answer: "Use the fix loop and show exactly the table you expected, using the checkpoint table above." },
         ]}

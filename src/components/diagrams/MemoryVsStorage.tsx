@@ -12,7 +12,7 @@ export function MemoryVsStorage() {
         <div className="rounded-2xl border border-sage-200 bg-sage-50 p-5 text-center">
           <Archive className="mx-auto h-6 w-6 text-sage-700" strokeWidth={1.6} />
           <p className="mt-2 font-display text-base font-semibold text-espresso-950">Storage</p>
-          <p className="mt-1 text-[13px] text-espresso-800/80">A filing cabinet: still there tomorrow, until you delete it.</p>
+          <p className="mt-1 text-[13px] text-espresso-800/80">The register in the cupboard: still there tomorrow, until you delete it.</p>
         </div>
       </div>
     </figure>

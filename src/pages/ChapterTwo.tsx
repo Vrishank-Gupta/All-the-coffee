@@ -118,20 +118,16 @@ export default function ChapterTwo() {
 
       <SectionEyebrow n="04" label="Why are there different programming languages?" />
       <p>
-        For the same reason there are different human languages: different places speak different ones. Web
-        browsers speak HTML, CSS and JavaScript. Later in this course you'll meet Python, popular for automating
-        office tasks like combining spreadsheets.
-      </p>
-      <p className="mt-3">
-        The good news: with AI writing the code, you don't need to be fluent in any of them. You just need to know
-        which one is being used and roughly what it's for.
+        For the same reason your office uses Excel for numbers and PowerPoint for slides: each is built for a
+        different job. Browsers speak HTML, CSS and JavaScript. Later you'll meet Python, the go-to for office
+        chores like combining spreadsheets.
       </p>
 
       <SectionEyebrow n="05" label="Where this tool lives" />
       <p>
         Everything you can see and click in an app is the <strong>front end</strong>. Think of a restaurant: the
-        front end is the dining area. Many apps also have a <strong>back end</strong>, the kitchen you never see,
-        where data is stored. Your calculator doesn't need one, because all the work happens right on your screen.
+        front end is the dining area. Many apps also have a <strong>back end</strong>: the kitchen and storeroom you
+        never see, where orders are prepared and stock is kept. Your calculator doesn't need one, because all the work happens right on your screen.
       </p>
       <RestaurantCutaway />
 
@@ -140,23 +136,28 @@ export default function ChapterTwo() {
         Open the chat where you built your calculator in Chapter 1, and copy this in.
       </Step>
       <CopyBlock label="Prompt for the treasure hunt">{TWEAK_PROMPT}</CopyBlock>
-      <p>Check the preview; you should see your new heading and a green result:</p>
+      <p>Check your tool in the panel next to the chat; you should see your new heading and a green result:</p>
       <AppFrame label="meeting-cost-calculator.ai">
         <MeetingCostCalculator heading="What did this meeting really cost?" resultColor="sage" />
       </AppFrame>
 
-      <Step n={2} title="Open the code">Switch from the preview to the code view, as you did in Chapter 1.</Step>
+      <Step n={2} title="Open the code">
+        Open the code the same way you did in Chapter 1, or ask: <em>"Show me the full code for this tool in the
+        chat."</em>
+      </Step>
       <Step n={3} title="Find your heading">
         Click inside the code, then press Ctrl+F (Windows) or Cmd+F (Mac). Type <code className="rounded bg-latte px-1">really cost</code> and press Enter. Try it below.
         It works just like the real thing.
       </Step>
       <Step n={4} title="Find the colour">
-        Now search for <code className="rounded bg-latte px-1">#16a34a</code>. Computers often write colours as codes
-        instead of names. That line is CSS, the clothes.
+        Now search for <code className="rounded bg-latte px-1">green</code>, or for a colour code like{" "}
+        <code className="rounded bg-latte px-1">#22c55e</code>. Your AI picked its own shade of green, so your code
+        may differ; the practice box below uses <code className="rounded bg-latte px-1">#16a34a</code>. Computers
+        often write colours as codes instead of names. That line is CSS, the clothes.
       </Step>
       <Step n={5} title="Find the calculation">
-        Finally, search for <code className="rounded bg-latte px-1">2000</code>. You'll get two matches; one is just
-        the salary box (1,200,000 happens to contain "2000"), so skip that one. The real match is inside the{" "}
+        Finally, search for <code className="rounded bg-latte px-1">2000</code>. You may get more than one match; one
+        is just the salary box (1200000 happens to contain "2000"), so skip that one. The real match is inside the{" "}
         <code className="rounded bg-latte px-1">&lt;script&gt;</code> tag further down: the "2,000 working hours a
         year" from your Chapter 1 prompt (JavaScript, the muscles doing the processing).
       </Step>
@@ -193,7 +194,7 @@ export default function ChapterTwo() {
         items={[
           {
             problem: "My search found nothing.",
-            answer: "Make sure you clicked inside the code area before pressing Ctrl+F or Cmd+F, otherwise your browser searches the chat instead. Also check the spelling.",
+            answer: <>Make sure the code is showing, not the tool. Check the spelling, or try a single word like <code className="rounded bg-latte px-1">cost</code>. Still nothing? Ask the AI: <em>"Which line has my heading?"</em></>,
           },
           {
             problem: "The AI rebuilt the whole tool and it looks completely different.",
@@ -231,7 +232,7 @@ export default function ChapterTwo() {
         <p className="font-display text-xl font-semibold text-espresso-950">Three chapters down</p>
         <p className="mt-2 text-[14.5px] text-espresso-800/80">
           You've gone from "I'm not a tech person" to building a working tool, changing it, and finding your way
-          around its code. Most courses stop at "watch a demo": you actually did it, and Chapter 3 is free too.
+          around its code. You didn't just watch a demo: you actually did it, and Chapter 3 is free too.
         </p>
       </div>
 

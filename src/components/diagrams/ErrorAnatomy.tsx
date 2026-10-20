@@ -1,7 +1,7 @@
 const PARTS = [
   { text: "Uncaught ReferenceError", label: "The type of problem", meaning: "“You referred to something I don't know about.”", tone: "bg-brick-100 text-brick-700" },
   { text: "totl is not defined", label: "The detail", meaning: "“I've never heard of anything called totl.”", tone: "bg-caramel-200 text-caramel-800" },
-  { text: "line 17", label: "Where it happened", meaning: "“Look here.”", tone: "bg-teal-100 text-teal-700" },
+  { text: "line 17", label: "Where it happened", meaning: "“Look here.” (Your line number may differ.)", tone: "bg-teal-100 text-teal-700" },
 ];
 
 export function ErrorAnatomy() {

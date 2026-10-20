@@ -165,7 +165,7 @@ export default function Certificate() {
             </div>
             <p className="mx-auto mt-4 max-w-md text-center text-xs text-espresso-700/50 print:hidden">
               Anyone can verify this certificate at{" "}
-              <span className="font-semibold text-espresso-700/70">{certificateUrl(user!.id)}</span> — no account
+              <span className="font-semibold text-espresso-700/70">{certificateUrl(user!.id)}</span>. No account
               needed.
             </p>
           </>

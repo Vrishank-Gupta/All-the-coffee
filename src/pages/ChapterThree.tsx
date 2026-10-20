@@ -2,6 +2,7 @@ import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
 import { CopyBlock } from "../components/chapter/CopyBlock";
+import { Step } from "../components/chapter/Step";
 import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
@@ -65,8 +66,8 @@ What it does: I enter a name, a start date and an end date for each leave.
 It shows a list of everyone's leave, sorted by start date, and highlights
 anyone who is on leave today.
 
-What good looks like: if Priya is on leave from 10 to 12 March and today
-is 11 March, her row is highlighted.
+What good looks like: if Priya's leave runs from yesterday to tomorrow,
+her row is highlighted.
 
 What to avoid: keep it simple. No logins, no extra features I didn't ask for.`;
 
@@ -77,7 +78,7 @@ export default function ChapterThree() {
       <p>
         This is the last chapter of Module A. Today you'll break things on purpose (twice), then fix them calmly,
         using a simple three-step method you'll use for the rest of this course, and probably the rest of your
-        career. You'll also learn how to write prompts that get better results the first time.
+        career. At the end there's an optional bonus on writing prompts that get better results the first time.
       </p>
 
       <Callout variant="worry">
@@ -100,13 +101,21 @@ export default function ChapterThree() {
       <p>Asking for the explanation matters. It turns every bug into a tiny lesson.</p>
 
       <SectionEyebrow n="04" label="Build it, part 1: the wrong answer" />
-      <p>You'll start with the sneakiest kind of bug. Open a new chat and paste this:</p>
+      <p>You'll start with the sneakiest kind of bug.</p>
+      <Step n={1} title="Ask for a calculator with a hidden mistake">
+        Open a new chat and paste this.
+      </Step>
       <CopyBlock label="Prompt for the deliberately-buggy build">{BUGGY_BUILD_PROMPT}</CopyBlock>
-      <p>
-        Now test it with the numbers you know from Chapter 1: 8 people, 1200000 salary, 60 minutes. The right answer
-        is ₹4,800. Notice how normal a wrong answer looks; nothing is red, nothing is flashing. Try it below.
-      </p>
+      <Step n={2} title="Test it with numbers you know">
+        Use the numbers from Chapter 1: 8 people, 1200000 salary, 60 minutes. The right answer is ₹4,800. Notice
+        how normal a wrong answer looks; nothing is red, nothing is flashing. Try it below.
+      </Step>
       <WrongAnswerDemo />
+      <Step n={3} title="Send the fix loop in your real chat">
+        Copy the fix loop template from above and paste it into the same chat. Fill in the three lines: what you
+        expected (₹4,800), what happened instead (the number your tool showed), and{" "}
+        <em>Error message: none</em>, because this kind of bug doesn't show one. Then send it.
+      </Step>
 
       <Checkpoint title="Checkpoint 1">
         The AI should explain the mistake and give you a fixed version showing ₹4,800. Test it again to be
@@ -118,11 +127,24 @@ export default function ChapterThree() {
       <CopyBlock label="broken-calculator.html" mono>
         {BROKEN_HTML}
       </CopyBlock>
-      <p>
-        In a new chat, ask it to show this exactly as it is, without fixing anything, then paste the code. When the
-        preview appears, click Calculate. Try it below.
-      </p>
+      <Step n={1} title="Open a new chat">
+        Start a fresh chat, so this doesn't get mixed up with your earlier calculator.
+      </Step>
+      <Step n={2} title="Tell it not to fix anything">
+        Type: <em>"Show this exactly as it is, don't fix anything."</em>
+      </Step>
+      <Step n={3} title="Paste the code and send">
+        Paste the code you copied underneath your message, then press Enter.
+      </Step>
+      <Step n={4} title="Click Calculate">
+        When your tool appears next to the chat, click Calculate. Try it below.
+      </Step>
       <BrokenCalcDemo />
+      <Step n={5} title="Ask for a fix">
+        If Claude shows a <strong>"Try fixing with Claude"</strong> button, click it: it sends the error to Claude
+        for you. If nothing appears at all, use the fix loop with <em>Error message: none</em>. Describing what you
+        expected and what happened is usually enough.
+      </Step>
 
       <p className="mt-4">How to read an error message, since most have three parts you can translate:</p>
       <ErrorAnatomy />
@@ -136,8 +158,8 @@ export default function ChapterThree() {
             title: "Common error types",
             items: [
               { code: "ReferenceError", desc: "You used a name the computer doesn't recognise, like totl instead of total." },
-              { code: "TypeError", desc: "You tried to do something with a value that doesn't support it, like asking a number for its ‘name’." },
-              { code: "SyntaxError", desc: "The instructions themselves are written incorrectly, like a sentence missing a full stop." },
+              { code: "TypeError", desc: "You tried to do something with a value that doesn't support it, like reading the name off an envelope that never arrived." },
+              { code: "SyntaxError", desc: "The instructions themselves are written incorrectly, like a form with a bracket opened and never closed." },
             ],
           },
         ]}
@@ -145,8 +167,8 @@ export default function ChapterThree() {
 
       <Checkpoint title="Checkpoint 2">
         The AI should spot the typo, explain it, and give you a fixed version. Click Calculate: you should see "This
-        meeting cost ₹4,800." Notice the AI found the problem even without an error message pasted in:
-        describing exactly what you expected and what happened was often enough.
+        meeting cost ₹4,800." If the AI asks for more detail, the fix loop is your answer: say what you expected,
+        what happened, and paste any error you can see.
       </Checkpoint>
 
       <SectionEyebrow n="06" label="When the fix doesn't work" />
@@ -161,7 +183,11 @@ export default function ChapterThree() {
         </li>
       </ul>
 
-      <SectionEyebrow n="07" label="Better prompts: brief it like a new intern" />
+      <SectionEyebrow n="07" label="Bonus: better prompts, brief it like a new intern" />
+      <Callout variant="tip" title="Optional: read this when you're ready">
+        This section is a bonus. You've already done this chapter's one big idea, the fix loop. Skip ahead if
+        you've had enough for today, and come back to this before Chapter 4, which builds on it.
+      </Callout>
       <p>
         Many bugs come from vague prompts. Imagine briefing a smart new intern: quick and eager, but they know
         nothing about your work. Tell them four things: who it's for, what it does, what good looks like, and what
@@ -209,15 +235,15 @@ export default function ChapterThree() {
             answer: "Some tools tidy code automatically. Read the error explanation in its reply anyway, and move on to the checkpoint.",
           },
           {
-            problem: "In part 2, the preview won't show at all.",
-            answer: <>Make sure you copied the code from the very first line to the very last line, then send: <em>"Please show this HTML code as an interactive preview."</em></>,
+            problem: "In part 2, the tool won't show at all.",
+            answer: <>Make sure you copied the code from the very first line to the very last line, then send: <em>"Please show this HTML code as an interactive preview."</em> Still only code? Check that Settings, then Capabilities, then "Cloud code execution and file creation" is switched on, as in Chapter 1.</>,
           },
         ]}
       />
 
       <SectionEyebrow n="10" label="Try it yourself" />
       <TryItYourself>
-        <p className="mb-2"><strong>1. Rewrite a vague prompt.</strong> Take "Make a tool to split a restaurant bill" and rewrite it using the four-part intern brief. Then build and test it with numbers you can check.</p>
+        <p className="mb-2"><strong>1. Bonus: rewrite a vague prompt.</strong> If you read the intern section, take "Make a tool to split a restaurant bill" and rewrite it using the four-part intern brief. Then build and test it with numbers you can check.</p>
         <p>
           <strong>2. Read an error.</strong> Translate this into plain English:{" "}
           <code className="rounded bg-latte px-1 text-[13px]">TypeError: Cannot read properties of undefined (reading 'name')</code>
@@ -241,8 +267,8 @@ export default function ChapterThree() {
       <SectionEyebrow n="12" label="Module A complete" />
       <p>
         Four chapters ago you weren't sure you belonged here. Since then you've built a tool, changed it, read its
-        code, and fixed two bugs on purpose, and all of it was free. That's not nothing: most people in your office
-        haven't gone this far. But every tool you've built so far has had the same limit: it forgets
+        code, and fixed two bugs on purpose, and all of it was free. That's not nothing: that's further than most people
+        expect to get in a first week. But every tool you've built so far has had the same limit: it forgets
         everything the second you close it. Module B is where that changes.
       </p>
       <NervousCheckIn point="end" />

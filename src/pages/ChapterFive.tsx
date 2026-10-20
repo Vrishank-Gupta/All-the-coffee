@@ -83,7 +83,9 @@ export default function ChapterFive() {
 
       <Step n={2} title="Open it two ways">
         First, open it in Excel or Google Sheets. It looks like a normal (messy) spreadsheet. Then open it in a
-        plain text app: Notepad on Windows, TextEdit on Mac. Now it looks like the text above.
+        plain text app: Notepad on Windows, TextEdit on Mac. Now it looks like the text above. Close Excel without
+        saving: if you save, Excel quietly rewrites the dates and the 62,000, and your results won't match the
+        checkpoint later.
       </Step>
 
       <SectionEyebrow n="03" label="What just happened: what a CSV really is" />
@@ -116,8 +118,9 @@ export default function ChapterFive() {
       <DataCleanerDemo />
 
       <Checkpoint>
-        This chapter has its own known-answer test, the same trick as ₹4,800 back in Chapter 1: 14 rows in, 1 blank removed, 3 duplicates removed, 10 rows out,
-        total ₹4,06,500 (North ₹1,40,000, East ₹1,40,000, South ₹71,000, West ₹55,500), and Priya Sharma's date as{" "}
+        This chapter has its own known-answer test, the same trick as ₹4,800 back in Chapter 1. You should see 14
+        rows in, 1 blank removed, 3 duplicates removed and 10 rows out. The total should be ₹4,06,500: North
+        ₹1,40,000, East ₹1,40,000, South ₹71,000, West ₹55,500. Priya Sharma's date should be{" "}
         <strong>03 Apr 2026</strong>. If all of that matches, well done. If you got 11 or 12 rows instead, or Priya's
         date shows as 04 Mar 2026, you've just hit the sneakiest problem in office data. Read on.
       </Checkpoint>
@@ -125,8 +128,8 @@ export default function ChapterFive() {
       <SectionEyebrow n="05" label="The date trap" />
       <p>
         Look at Priya's original date: <code className="rounded bg-latte px-1">03/04/2026</code>. In India, that
-        means 3 April. In the United States, it means 4 March. Computers are often set up the American way, so many
-        tools quietly read it as 4 March.
+        means 3 April. In the United States, it means 4 March. Many programs, including code the AI writes, assume
+        the American order unless told otherwise, so they quietly read it as 4 March.
       </p>
       <p className="mt-3">
         Now look at the duplicates. Rahul appears once as <code className="rounded bg-latte px-1">2026-04-05</code>{" "}
@@ -145,6 +148,13 @@ export default function ChapterFive() {
         your prompt anyway, so it never has to guess.
       </p>
 
+      <Step n={5} title="Download the clean file">
+        Click your tool's Download button. Inside Claude's preview, downloads are sometimes blocked, so don't worry if
+        nothing happens. If nothing downloads, ask for a Copy button instead:{" "}
+        <em>"Add a Copy button that copies the cleaned data, with tabs between the columns, so I can paste it straight into Excel."</em> Click it, open a
+        blank Excel sheet, click cell A1 and paste. Names, regions, amounts and dates should each land in their own column.
+      </Step>
+
       <SectionEyebrow n="06" label="What you can skip" />
       <p>
         The dozens of other data formats (JSON, XML, Parquet and so on), how quote marks and special characters are
@@ -161,7 +171,7 @@ export default function ChapterFive() {
           },
           {
             problem: "The Download button doesn't work.",
-            answer: <>Some AI tools block downloads inside their previews. Ask: <em>"Add a Copy button that copies the cleaned data, so I can paste it into Excel."</em></>,
+            answer: <>That's normal inside Claude's preview, which often blocks downloads. Use the Copy button route from Step 5: <em>"Add a Copy button that copies the cleaned data, with tabs between the columns, so I can paste it straight into Excel."</em></>,
           },
           { problem: "The amounts changed.", answer: "That breaks your “what to avoid” rule. Use the fix loop and quote your rule back to the AI." },
           {

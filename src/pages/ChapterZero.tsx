@@ -30,8 +30,8 @@ export default function ChapterZero() {
         Maybe you've started a course before, hit a wall, and quietly closed the tab.
         <br />
         <br />
-        If any of that sounds familiar, here's the honest truth: <strong>you are not behind.</strong> Most people in
-        most offices feel exactly the same way. They're just not saying it out loud either.
+        If any of that sounds familiar, here's the honest truth: <strong>you are not behind.</strong> Plenty of people
+        around you feel the same way. They're just not saying it out loud either.
       </Callout>
 
       <SectionEyebrow n="02" label="What coding actually is" />
@@ -50,8 +50,8 @@ export default function ChapterZero() {
       <InstructionsTrio />
       <p>
         You already follow and write instructions like this all day without calling it coding: an Excel formula
-        (<code className="rounded bg-latte px-1">=SUM(A1:A10)</code>), a washing machine's cycle settings, turn-by-turn
-        GPS directions. Each one says "if this, then do that" in a very exact way. Code is the same habit, just
+        (<code className="rounded bg-latte px-1">=IF(B2&gt;50000,"Needs approval","OK")</code>), a washing machine's
+        cycle settings, turn-by-turn GPS directions. Each one says "if this, then do that" in a very exact way. Code is the same habit, just
         written for a computer instead of a person or a machine.
       </p>
 
@@ -65,7 +65,7 @@ export default function ChapterZero() {
         precise instructions (the code) for you. You look at the result, say what you'd like changed, and the AI
         changes it. This back-and-forth way of building is what people call <strong>vibe coding</strong>.
       </p>
-      <p className="mt-3">You're not cheating by doing it this way. Professional developers now work like this every day.</p>
+      <p className="mt-3">You're not cheating by doing it this way. Plenty of professional developers use AI helpers like this every day.</p>
       <DescribeBuildCheckLoop />
       <p>
         People use this same back-and-forth for real work: a tool that compares vendor quotes side by side, a lookup
@@ -87,13 +87,13 @@ export default function ChapterZero() {
         <li><strong>No maths.</strong> If you can use a calculator, you have all the maths you need.</li>
         <li><strong>No memorising code.</strong> You'll learn to recognise things, like a language you can't speak fluently.</li>
         <li><strong>No becoming a developer.</strong> You're learning to build for yourself, and work confidently with people who build for a living.</li>
-        <li><strong>No installing anything until Chapter 8.</strong> For the first seven chapters, everything happens in your browser.</li>
+        <li><strong>No installing anything until Chapter 8.</strong> Until then (Chapters 0 to 7), everything happens in your browser.</li>
         <li><strong>No jargon without an explanation.</strong> You'll always get the plain version first.</li>
       </ul>
 
       <SectionEyebrow n="06" label="How to get the most out of this course" />
       <ul className="list-disc space-y-2 pl-5 marker:text-caramel-500">
-        <li>One chapter a day is perfect. Most take 25–45 minutes. Slow and steady beats a weekend binge you don't finish.</li>
+        <li>One chapter a day is perfect. Most take 20 to 50 minutes; the final project takes an afternoon. Slow and steady beats a weekend binge you don't finish.</li>
         <li>Read on your phone, build on a laptop. Reading parts work fine on mobile, but when a chapter says "Build it," use a laptop.</li>
         <li>Do the exercises, even small ones. Reading about building is like reading about swimming.</li>
         <li>Use your personal email for the AI tools. Keep your learning separate from work systems for now.</li>

@@ -28,9 +28,9 @@ export function summarise(text: string): SummaryResult {
         "BrightPack's quote came in ₹2 lakh over budget, but offered ₹16.5 lakh on a two-year contract with a penalty clause for late deliveries. The team will proceed only if both conditions are met, pending CFO budget approval.",
       decisions: ["Go ahead only if the two-year price is ₹16.5 lakh and a penalty clause is in the contract."],
       actionItems: [
-        { owner: "Rahul", task: "Send revised quote request to BrightPack", due: "Friday" },
+        { owner: "Rahul", task: "Send revised quote", due: "Friday" },
         { owner: "Priya", task: "Confirm budget approval with the CFO", due: "Next Wednesday" },
-        { owner: "Anita", task: "Share delivery delay data with Rahul", due: "Tomorrow" },
+        { owner: "Anita", task: "Share delay data with Rahul", due: "Tomorrow" },
       ],
     };
   }

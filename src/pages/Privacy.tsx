@@ -49,11 +49,11 @@ export default function Privacy() {
       <h2>Who else sees it</h2>
       <p>A few outside services help run this course, each under their own privacy practices:</p>
       <ul>
-        <li><strong>Supabase</strong> — hosts the database and handles authentication</li>
-        <li><strong>Razorpay</strong> — processes payments</li>
-        <li><strong>Resend</strong> — sends account emails (confirmation, password reset)</li>
-        <li><strong>Google</strong> — only if you choose "Sign in with Google"</li>
-        <li><strong>ip-api.com</strong> — resolves your visit's coarse city/country from your IP address; we only keep their answer, never the IP we sent them</li>
+        <li><strong>Supabase</strong>: hosts the database and handles authentication</li>
+        <li><strong>Razorpay</strong>: processes payments</li>
+        <li><strong>Resend</strong>: sends account emails (confirmation, password reset)</li>
+        <li><strong>Google</strong>: only if you choose "Sign in with Google"</li>
+        <li><strong>ip-api.com</strong>: resolves your visit's coarse city/country from your IP address; we only keep their answer, never the IP we sent them</li>
       </ul>
 
       <h2>How long we keep it</h2>

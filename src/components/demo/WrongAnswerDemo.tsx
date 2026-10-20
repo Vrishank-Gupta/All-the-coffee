@@ -28,7 +28,7 @@ export function WrongAnswerDemo() {
           <div className="space-y-2 text-sm text-espresso-700/80">
             <p>
               <span className="font-semibold text-espresso-900">8</span> people &middot;{" "}
-              <span className="font-semibold text-espresso-900">₹1,200,000</span> salary &middot;{" "}
+              <span className="font-semibold text-espresso-900">₹12,00,000</span> salary &middot;{" "}
               <span className="font-semibold text-espresso-900">60</span> minutes
             </p>
             <p className="text-xs text-espresso-700/60">Expected result: ₹4,800</p>

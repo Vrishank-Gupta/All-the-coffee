@@ -67,7 +67,8 @@ export default function ChapterTen() {
       <OsProvider>
         <SectionEyebrow n="01" label="Where you are" />
         <p>
-          Chapter 10 of 12. You've built five tools and a script, and the AI wrote every line. Today you'll learn to
+          Chapter 10 of 12. You've built four browser tools, published one of them live, and built an automation
+          script, and the AI wrote every line. Today you'll learn to
           read code: not every detail, but enough to recognise what each part is doing, predict what a change will
           do, and have a sensible conversation about code with anyone.
         </p>
@@ -151,8 +152,8 @@ Target reached! Total sales: 4392000`}
           <code className="rounded bg-latte px-1">OUTPUT_FILE</code>,{" "}
           <code className="rounded bg-latte px-1">combined</code>,{" "}
           <code className="rounded bg-latte px-1">totals</code> and{" "}
-          <code className="rounded bg-latte px-1">grand_total</code>. A box can hold a number, some text, a folder,
-          or even a whole table of data.
+          <code className="rounded bg-latte px-1">grand_total</code>. A box can hold a number, some text, a
+          folder's location, or even a whole table of data.
         </p>
 
         <p className="mt-5">
@@ -178,7 +179,8 @@ else:
     print("Loaded", file_path.name)`}</CopyBlock>
         <p>
           Read it as: for each file in the data folder whose name starts with{" "}
-          <code className="rounded bg-latte px-1">sales_</code>, do the two indented lines. Load it, add it to the
+          <code className="rounded bg-latte px-1">sales_</code> and ends in{" "}
+          <code className="rounded bg-latte px-1">.xlsx</code>, do the two indented lines. Load it, add it to the
           pile, and say "Loaded". There are 12 files, so the indented lines run 12 times. That's why you saw twelve
           "Loaded" messages. This is where the real power of automation comes from. Twelve files or twelve thousand,
           the loop is the same three lines.
@@ -252,8 +254,10 @@ else:
         <SectionEyebrow n="06" label="Reading a Python error" />
         <p>
           If your script stopped with an error at some point, you saw something like this. It's called a{" "}
-          <strong>traceback</strong>: the trail of what Python was doing when it got stuck. It looks intimidating,
-          but here's the one rule that makes it manageable: read the last line first.
+          <strong>traceback</strong>: the trail of what Python was doing when it got stuck. With pandas it can be
+          long, because Python lists every step it took, including many steps inside pandas itself. It looks
+          intimidating, but two rules make it manageable: read the last line first, then find the line that names
+          your own file. That's where your script was when things went wrong.
         </p>
         <PythonTraceback />
 

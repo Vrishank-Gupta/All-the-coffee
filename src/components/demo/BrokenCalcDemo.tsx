@@ -23,7 +23,7 @@ export function BrokenCalcDemo() {
         <div className="space-y-2 text-sm text-espresso-700/80">
           <p>
             People: <strong className="text-espresso-900">8</strong> &middot; Salary:{" "}
-            <strong className="text-espresso-900">₹1,200,000</strong> &middot; Minutes:{" "}
+            <strong className="text-espresso-900">₹12,00,000</strong> &middot; Minutes:{" "}
             <strong className="text-espresso-900">60</strong>
           </p>
         </div>
@@ -61,7 +61,7 @@ export function BrokenCalcDemo() {
           onClick={() => setStage("error")}
           className="w-full rounded-xl border border-brick-300 bg-brick-50 px-5 py-3 text-sm font-semibold text-brick-700 transition hover:bg-brick-100"
         >
-          Why didn't anything happen? Check the console
+          Show me the hidden error
         </button>
       )}
 

@@ -20,12 +20,15 @@ const DEFAULT_STORAGE_KEY = "atc-ch4-tracker-demo";
 function daysFromNow(n: number) {
   const d = new Date();
   d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0, 10);
+  // Build the date from local parts: toISOString() uses UTC, which is a day behind in India before 5:30 am.
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${mm}-${dd}`;
 }
 
 function sampleEntries(): Entry[] {
   return [
-    { id: "a", task: "Send revised proposal", person: "Rahul", due: daysFromNow(-2), done: false },
+    { id: "a", task: "Send revised proposal", person: "Rahul", due: daysFromNow(1), done: false },
     { id: "b", task: "Share Q3 numbers", person: "Priya", due: daysFromNow(3), done: false },
     { id: "c", task: "Book team lunch", person: "Anita", due: daysFromNow(7), done: false },
   ];

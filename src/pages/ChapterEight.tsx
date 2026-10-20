@@ -1,6 +1,7 @@
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
+import { CopyBlock } from "../components/chapter/CopyBlock";
 import { Step } from "../components/chapter/Step";
 import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
@@ -14,6 +15,20 @@ import { RunProgramFlow } from "../components/diagrams/RunProgramFlow";
 import { chapterById } from "../lib/courseData";
 
 const meta = chapterById(8)!;
+
+const IT_REQUEST = `Hi [name],
+
+I'm doing a course on using AI to automate routine tasks, like combining
+monthly Excel reports. Could you please install these free tools on my
+laptop, or point me to an approved alternative?
+
+- Visual Studio Code (code.visualstudio.com), with Microsoft's Python extension
+- Python 3, from python.org
+- Two Python libraries: pandas and openpyxl (installed with pip)
+
+While learning, I'll only use the course's sample files, not company data.
+
+Thank you!`;
 
 export default function ChapterEight() {
   return (
@@ -57,6 +72,22 @@ export default function ChapterEight() {
             <strong>Know your system.</strong> Pick Windows or Mac below; the steps differ a little.
           </li>
         </ul>
+
+        <Callout variant="hint" title="No computer you can install on?">
+          <p>
+            You have two options. First, ask IT. Here's a message you can send as it is; just add their name.
+          </p>
+          <p className="mt-2">
+            Second, while you wait (or if the answer is no), you can do Chapters 9 and 10 in{" "}
+            <strong>Google Colab</strong>, a free Google service that runs Python inside your browser, with nothing
+            to install. Sign in at <strong>colab.research.google.com</strong> with a personal Google account and
+            create a new notebook. The screens look different from VS Code, so start each chat with "I'm using Google
+            Colab" and your AI will adjust the steps, including how to upload files. Use only the course's sample
+            files there, never work files. Uploaded files are deleted when your Colab session ends, so you may need
+            to upload them again next time.
+          </p>
+        </Callout>
+        <CopyBlock label="Message to your IT team">{IT_REQUEST}</CopyBlock>
         <OsToggle />
 
         <Callout variant="reassurance">
@@ -100,19 +131,38 @@ export default function ChapterEight() {
         </Step>
 
         <Step n={2} title="Install Python">
-          Go to <strong>python.org</strong>, click Downloads, and download the latest version for your system.
+          Go to <strong>python.org</strong> and click Downloads.
         </Step>
         <OsStep
           windows={
-            <Callout variant="warning" title="The single most important click">
-              Open the downloaded installer. Before clicking anything else, tick the box at the bottom that says{" "}
-              <strong>"Add python.exe to PATH"</strong>. Then click Install Now, and Close when it finishes.
-            </Callout>
+            <>
+              <Callout variant="warning" title="The two most important clicks">
+                <p>
+                  The big button at the top now says <strong>"Download Python install manager"</strong>. Don't
+                  click that one for this course. Just below it, click the link that says{" "}
+                  <strong>"Or get the standalone installer for Python 3.15.0"</strong> (the number may be higher by
+                  the time you read this).
+                </p>
+                <p className="mt-2">
+                  Open the downloaded installer. Before clicking anything else, tick the box at the bottom that says{" "}
+                  <strong>"Add python.exe to PATH"</strong>. Then click Install Now, and Close when it finishes.
+                </p>
+              </Callout>
+              <Callout variant="reassurance" title="Already installed the install manager?">
+                That's fine; you don't need to undo it. Python's official guide says the install manager gives you
+                the <code className="rounded bg-latte px-1">python</code> and{" "}
+                <code className="rounded bg-latte px-1">py</code> commands. Carry on with the steps below. The first
+                time you type the command in Step 7, it downloads Python itself, which can take a minute. If it asks
+                whether to add a folder to your PATH, say yes.
+              </Callout>
+            </>
           }
           mac={
             <Callout variant="tip">
-              Open the downloaded file and follow the installer, clicking Continue and Agree through each screen,
-              then Install. You may be asked for your Mac password; that's normal for installing any app.
+              Click the download button for the latest Python, open the downloaded file, and follow the installer,
+              clicking Continue and Agree through each screen, then Install. You may be asked for your Mac password;
+              that's normal for installing any app. At the end, a folder window may open: double-click{" "}
+              <strong>Install Certificates.command</strong> inside it, let it finish, then close the windows.
             </Callout>
           }
         />
@@ -152,7 +202,7 @@ export default function ChapterEight() {
           <OsCommand windows="python --version" mac="python3 --version" />
         </p>
         <p className="mt-2">
-          You should see something like <code className="rounded bg-latte px-1">Python 3.13.1</code>. The exact
+          You should see something like <code className="rounded bg-latte px-1">Python 3.15.0</code>. The exact
           number doesn't matter, as long as it starts with 3.
         </p>
 
@@ -175,7 +225,10 @@ export default function ChapterEight() {
         <Step n={8} title="Create a file">
           In VS Code, click <strong>File → New File</strong>, name it{" "}
           <code className="rounded bg-latte px-1">hello.py</code>, and save it in your{" "}
-          <code className="rounded bg-latte px-1">ai-course</code> folder. The{" "}
+          <code className="rounded bg-latte px-1">ai-course</code> folder. (Shortcut: hover over the folder name in
+          the Explorer sidebar on the left and click the New File icon, a page with a small plus. Type{" "}
+          <code className="rounded bg-latte px-1">hello.py</code> and press Enter. That creates the file straight
+          in the folder.) The{" "}
           <code className="rounded bg-latte px-1">.py</code> at the end tells the computer it's a Python file, just
           as <code className="rounded bg-latte px-1">.xlsx</code> says Excel.
         </Step>
@@ -185,7 +238,7 @@ export default function ChapterEight() {
 print("Today is the day I stopped being scared of code.")`}
           </pre>
           <p className="mt-2">
-            Save the file: Ctrl + S on Windows, Cmd + S on Mac. If you see a white dot next to the file name at the
+            Save the file: Ctrl + S on Windows, Cmd + S on Mac. If you see a dot (●) next to the file name at the
             top, it isn't saved yet.
           </p>
         </Step>
@@ -203,8 +256,8 @@ print("Today is the day I stopped being scared of code.")`}
 Today is the day I stopped being scared of code.`}
           </pre>
           If you see that, your workshop is fully working. You've installed a programming language and a
-          professional code editor, used the terminal, and run a program on your own computer. Most people in your
-          office have never done any of those things.
+          professional code editor, used the terminal, and run a program on your own computer. Many people never
+          have.
         </Checkpoint>
 
         <Callout variant="celebration">
@@ -228,8 +281,26 @@ Today is the day I stopped being scared of code.`}
         <p>
           You can keep using your AI chat in the browser to write code and copy it into VS Code; that's how Chapter 9
           works. But many people later add an AI assistant directly into VS Code, so they can ask for code and
-          changes right next to their files. If you'd like to try it, open the Extensions panel, search for an AI
-          coding assistant, install it, and sign in. It's optional. Everything in Module C works without it.
+          changes right next to their files. VS Code comes with one, called <strong>GitHub Copilot</strong>, and it
+          has a free plan. If you'd like to try it:
+        </p>
+        <ol className="mt-3 list-decimal space-y-1.5 pl-5 marker:font-semibold marker:text-caramel-600">
+          <li>
+            Hover over the Copilot icon in the Status Bar (the thin strip along the bottom of the VS Code window) and
+            select <strong>Use AI Features</strong>.
+          </li>
+          <li>
+            Sign in with a GitHub account and follow the prompts. If you don't have one, you can create one for free
+            at github.com.
+          </li>
+          <li>
+            If your account has no paid Copilot plan, you're signed up for <strong>Copilot Free</strong>. It comes
+            with a monthly allowance; click the Copilot icon in the Status Bar to see how much of it you've used.
+          </li>
+        </ol>
+        <p className="mt-3">
+          On a work laptop, check your company's AI policy first. It's optional. Everything in Module C works
+          without it.
         </p>
 
         <SectionEyebrow n="09" label="What you can skip" />
@@ -255,7 +326,7 @@ Today is the day I stopped being scared of code.`}
               answer: "On Macs, use python3, not python.",
             },
             {
-              problem: "The file runs but shows an error about a missing file.",
+              problem: "\"can't open file '...hello.py': [Errno 2] No such file or directory\"",
               answer: "Make sure hello.py is saved inside the ai-course folder, and that VS Code has that folder open (it should appear in the left sidebar).",
             },
             {

@@ -21,7 +21,7 @@ export function RestaurantCutaway() {
           </div>
           <p className="mt-2 font-display text-lg font-semibold text-caramel-50">Behind the scenes</p>
           <p className="mt-1 text-[13.5px] text-caramel-100/70">
-            The kitchen you never see, where data is stored and heavy work happens. You'll meet this later.
+            The kitchen and storeroom you never see, where orders are prepared and stock is kept. You'll meet this later.
           </p>
         </div>
       </div>

@@ -4,8 +4,9 @@ import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
 import { CopyBlock } from "../components/chapter/CopyBlock";
-import { Step } from "../components/chapter/Step";
 import { SafetyChecklist } from "../components/chapter/SafetyChecklist";
+import { Checkpoint } from "../components/chapter/Checkpoint";
+import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { WordsTable } from "../components/chapter/WordsTable";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
@@ -76,7 +77,7 @@ What goes in: a person's name, leave start date, leave end date, type
 
 What should happen: show all leave in a list sorted by start date;
 highlight anyone on leave today; warn me if 3 or more people are on
-leave on the same day.
+leave on the same day. Keep the data saved between visits.
 
 What comes out: the list, plus a clear warning for any overlap days.
 
@@ -85,7 +86,7 @@ On 13 Nov, three people are off, so I should see a warning for 13 Nov only.
 
 Edge cases: end date before start date should show an error.
 
-What to avoid: no logins. Keep the data saved between visits.
+What to avoid: no logins.
 
 Version 1: add, list, today's highlight, overlap warning.
 
@@ -105,8 +106,8 @@ invoice number, invoice date, amount before GST, GST amount, total.
 What comes out: a table with one row per invoice, a grand total, and
 a Copy button so I can paste the table into Excel.
 
-Test case: the three sample invoices give totals of 59,000, 14,000 and
-1,18,000, so a grand total of 1,91,000.
+Test case: the three sample invoices give totals of 59,000, 14,750 and
+1,18,000, so a grand total of 1,91,750.
 
 Edge cases: if a detail isn't in the invoice, write "Not found".
 
@@ -121,7 +122,7 @@ Date: 14/04/2026. Subtotal: Rs 50,000. GST @18%: Rs 9,000.
 Total: Rs 59,000.
 
 Sharma Stationers - INV 7781 - 02-05-2026
-Amount 12,500 + GST (12%) 1,500 = Rs 14,000
+Amount 12,500 + GST (18%) 2,250 = Rs 14,750
 
 CloudNine IT Services | Bill #CN/889 | dated 21 May 2026
 Total payable Rs. 1,18,000 (inclusive of 18% GST of Rs. 18,000)`;
@@ -145,17 +146,19 @@ What comes out: a neatly formatted text summary printed in the terminal
 and saved as weekly_report.txt, ready to paste into an email.
 
 Test case: with the sample file and report date 2026-10-10: 4 done;
+done per owner: Rahul 2, Priya 1, Anita 1, Vikram 0;
 overdue: Prepare Q3 deck (Priya, due 05 Oct), Review vendor contract
 (Anita, due 08 Oct), Send client proposal (Vikram, due 09 Oct); upcoming:
-Website copy refresh (Priya, due 15 Oct), Vendor renewal call (Vikram,
-due 12 Oct), Monthly newsletter (Rahul, due 20 Oct).
+Vendor renewal call (Vikram, due 12 Oct), Website copy refresh (Priya,
+due 15 Oct), Monthly newsletter (Rahul, due 20 Oct).
 
 Edge cases: a task with no owner should still show up, grouped as
 "Unassigned".
 
 What to avoid: never silently drop a row because a field looks odd.
 
-Version 1: the counts, the overdue list, the upcoming list.
+Version 1: the counts, the done-per-owner count, the overdue list, the
+upcoming list (in date order).
 
 Later: emailing the report automatically.`;
 
@@ -280,7 +283,8 @@ export default function ChapterEleven() {
         </table>
       </div>
       <p>
-        The connected, shared, multi-user versions are exactly what Tier 2 teaches. For now, the slice is the goal.
+        The connected, shared, multi-user versions are what the planned Tier 2 will cover. For now, the slice is
+        the goal.
       </p>
 
       <SectionEyebrow n="04" label="Step 2: Choose where to build" />
@@ -350,11 +354,34 @@ export default function ChapterEleven() {
         <li>Repeat until version 1 is done. Then stop, even if you have ideas. They go on the Later list.</li>
       </ol>
       <CopyBlock label="Prompt to start building">{SLICE_PROMPT}</CopyBlock>
+      <Callout variant="tip" title="Building a Python script? Set up the folder first">
+        <ol className="list-decimal space-y-1.5 pl-5 marker:font-semibold marker:text-caramel-600">
+          <li>
+            Inside your <code className="rounded bg-latte px-1">ai-course</code> folder, make a new folder for this
+            project, for example <code className="rounded bg-latte px-1">status-report</code>.
+          </li>
+          <li>
+            Move your data file (for Starter C, <code className="rounded bg-latte px-1">tasks.csv</code>) out of
+            Downloads and into that new folder.
+          </li>
+          <li>
+            In VS Code, choose <strong>File → Open Folder</strong> and open that new folder, the same way you opened{" "}
+            <code className="rounded bg-latte px-1">sales-merge</code> in Chapter 9.
+          </li>
+          <li>Create your script file in that folder, paste in the AI's code, and save.</li>
+          <li>
+            Run it from the terminal, for example{" "}
+            <code className="rounded bg-latte px-1">python status_report.py</code> (or{" "}
+            <code className="rounded bg-latte px-1">python3</code> on Mac, or{" "}
+            <code className="rounded bg-latte px-1">py</code> if that's what worked for you in Chapter 8).
+          </li>
+        </ol>
+      </Callout>
       <p>
         Keep working versions. Each time a slice works, save a copy. For a script, copy the file and name it{" "}
         <code className="rounded bg-latte px-1">my_tool_v1.py</code>, <code className="rounded bg-latte px-1">my_tool_v2.py</code> and
         so on. For a browser tool, note which message in the chat produced the working version. If a later change
-        breaks everything, you can always go back. (In Tier 2, you'll meet the proper tool for this, called Git.)
+        breaks everything, you can always go back. (Developers use a tool called Git for this.)
       </p>
 
       <SectionEyebrow n="08" label="Step 6: Test like a sceptic" />
@@ -371,13 +398,25 @@ export default function ChapterEleven() {
         ]}
       />
       <p>Every problem you find now is one your manager won't. Use the fix loop for each.</p>
+      <Checkpoint title="You're done when...">
+        <ul className="list-disc space-y-1.5 pl-5 marker:text-caramel-500">
+          <li>Your known-answer test case gives the right answer.</li>
+          <li>At least one messy case (a blank, a duplicate, a wrong format) is handled, not ignored.</li>
+          <li>Someone else has used it once.</li>
+        </ul>
+        <p className="mt-2">
+          That's version 1. It doesn't need to be pretty or complete. If those three are true, you've built a real
+          tool.
+        </p>
+      </Checkpoint>
 
       <SectionEyebrow n="09" label="Step 7: Before using it for real" />
       <p>Your tool works with test data. Before using it with real work data, check these:</p>
       <ul className="list-disc space-y-2 pl-5 marker:text-caramel-500">
         <li>
           <strong>AI chat vs your own computer.</strong> A Python script running on your laptop keeps the data on
-          your laptop. A browser tool built in an AI chat, especially one with AI inside it, may send what you type
+          your laptop, unless you paste its output or error messages into an AI chat, so test with fake data there
+          too. A browser tool built in an AI chat, especially one with AI inside it, may send what you type
           to the AI service. Know which kind you've built.
         </li>
         <li>
@@ -414,7 +453,39 @@ export default function ChapterEleven() {
         requirements, test cases or an MVP, you'll know exactly what they mean, because you've done it.
       </p>
 
-      <SectionEyebrow n="12" label="Starter projects" />
+      <SectionEyebrow n="12" label="What you can skip" />
+      <p>
+        Making it look polished, logins, sharing it with your whole team, connecting it to company systems, and
+        everything on your Later list. You also don't need to understand every line the AI wrote. If it passes your
+        tests, version 1 is done.
+      </p>
+
+      <Troubleshooting
+        items={[
+          {
+            problem: "The AI built everything at once, and now it's a tangle.",
+            answer: "Start a new chat and paste the Slice 1 prompt from Step 5 again, with your brief. If it still adds extras, add one line: \"Only Slice 1, no extra features yet.\"",
+          },
+          {
+            problem: '"No module named ..." (Python).',
+            answer: "A library is missing. Install it the same way as in Chapter 9, Step 7, using the name from the error message.",
+          },
+          {
+            problem: '"No such file or directory" or file not found (Python).',
+            answer: "Same folder rules as Chapter 9: open the project folder itself in VS Code, and keep the data file in that folder, next to your script, not in Downloads. Check the file name matches exactly, including .csv or .xlsx.",
+          },
+          {
+            problem: "My browser tool forgot my data between visits.",
+            answer: "Save the tool as an HTML file on your computer and open it from there, as you did in Chapter 4.",
+          },
+          {
+            problem: "Something else.",
+            answer: "Copy the exact error or describe exactly what you expected and what happened, then use the fix loop with your AI chat.",
+          },
+        ]}
+      />
+
+      <SectionEyebrow n="13" label="Starter projects" />
       <p>
         If you'd rather start from a ready-made idea, pick one of these. Each has a brief you can paste straight into
         Step 5, and a known answer to test against.
@@ -425,9 +496,8 @@ export default function ChapterEleven() {
 
       <p className="mt-6 font-display text-lg font-semibold text-espresso-950">Starter B: Invoice Detail Extractor (browser, with AI inside)</p>
       <CopyBlock label="Starter B brief" mono>{STARTER_B_BRIEF}</CopyBlock>
-      <Step n={1} title="Sample invoices for Starter B">
-        Paste all three together into your tool, if you build this one.
-      </Step>
+      <p className="mt-4 font-semibold text-espresso-950">Sample invoices for Starter B</p>
+      <p>Paste all three together into your tool, if you build this one.</p>
       <CopyBlock label="Sample invoices">{STARTER_B_INVOICES}</CopyBlock>
       <p>
         Notice the third invoice doesn't state the amount before GST directly. A good tool works it out as ₹1,00,000
@@ -439,12 +509,13 @@ export default function ChapterEleven() {
       <CopyBlock label="Starter C brief" mono>{STARTER_C_BRIEF}</CopyBlock>
       <DownloadButton filename="tasks.csv" content={STARTER_C_CSV} label="Download tasks.csv" />
       <Callout variant="tip">
-        The sample file has an owner on every row, so your first run should match the test case exactly. To check
+        Set up the folder as described in Step 5 first. The sample file has an owner on every row, so your first
+        run should match the test case exactly. To check
         the "Unassigned" edge case from the brief, try deleting one row's owner afterward and re-running: that task
         should still show up, just grouped as "Unassigned" instead of disappearing.
       </Callout>
 
-      <SectionEyebrow n="13" label="Words you can now use" />
+      <SectionEyebrow n="14" label="Words you can now use" />
       <WordsTable
         words={[
           { word: "Brief", meaning: "A one-page description of what to build, before building it", sample: "Do we have a brief for this, or are we building blind?" },
@@ -454,7 +525,7 @@ export default function ChapterEleven() {
         ]}
       />
 
-      <SectionEyebrow n="14" label="The Core course, complete" />
+      <SectionEyebrow n="15" label="The Core course, complete" />
       <p>
         Look back at everything since Chapter 0: a calculator, a tracker, a data cleaner, a tool with real AI inside
         it, something published live, a real coding workshop, an automation script, reading code like a recipe, and
@@ -464,13 +535,14 @@ export default function ChapterEleven() {
       <ModuleCompleteBadge
         title="The Core course: complete"
         desc="12 chapters, three modules, built from first principles to independent automation. You're not behind anymore. You're a builder."
-        next="Tier 2: Builder, unlocking once learners like you keep finishing this one"
+        next="Tier 2: Builder, planned next"
       />
       <div className="not-prose my-6 flex flex-col items-center gap-3 rounded-3xl border border-caramel-300/50 bg-gradient-to-br from-caramel-100/60 to-cream px-6 py-8 text-center">
         <Award className="h-8 w-8 text-caramel-700" />
         <p className="font-display text-xl font-semibold text-espresso-950">There's a certificate waiting for you.</p>
         <p className="max-w-md text-[14.5px] text-espresso-700/80">
-          Specific, verifiable, and yours to share: it names exactly what you built, not a vague participation badge.
+          Specific, verifiable, and yours to share: it lists the skills you practised in this course and, if you add
+          it, the name of your capstone project. The certificate page will ask for it.
         </p>
         {finished ? (
           <Link
@@ -480,7 +552,7 @@ export default function ChapterEleven() {
             Get your certificate
           </Link>
         ) : (
-          <p className="mt-1 text-sm font-semibold text-caramel-700">Finish the checklist below to unlock it.</p>
+          <p className="mt-1 text-sm font-semibold text-caramel-700">Finish the checklist below to get it.</p>
         )}
       </div>
 

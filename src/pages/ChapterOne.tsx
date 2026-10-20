@@ -62,14 +62,15 @@ export default function ChapterOne() {
       </Step>
       <ChatToolMockup highlight="signup" />
       <Callout variant="tip" title="Using a different tool?">
-        This course uses Claude because its "Preview" panel shows your tool running right next to the chat, which
-        makes the next few chapters easier to follow. ChatGPT and Gemini can build similar tools too, but exactly how
-        varies by tool and changes often: look for a preview, canvas or app panel next to the chat, or just ask
+        This course uses Claude because it can show your tool running in a panel or window right next to the chat,
+        which makes the next few chapters easier to follow. ChatGPT and Gemini can build similar tools too, but
+        exactly how varies by tool and changes often: look for a panel or window next to the chat, or just ask
         directly: "Can you show this to me as a live, interactive page I can use right here, not just code?"
       </Callout>
       <Step n={2} title="Create a free account">
         Sign up with your personal email address, not your work one. You'll get a code by email to confirm it's you.
-        The free plan is enough for this whole module.
+        After that, Claude asks for your mobile number and sends a one-time code by text message. Every new user does
+        this step, and an Indian mobile number works. The free plan is enough for this whole module.
       </Step>
       <Callout variant="tip">
         Why personal email? Some companies have rules about AI tools on work accounts. Learning on a personal
@@ -85,9 +86,8 @@ export default function ChapterOne() {
       </Step>
       <CopyBlock label="Prompt for Chapter 1">{PROMPT}</CopyBlock>
       <Callout variant="tip" title="Where does 2,000 hours come from?">
-        It's a common rule of thumb: 40 hours a week &times; 50 working weeks a year (that 50 already assumes about
-        two weeks off) &asymp; 2,000 hours. Finance and ops teams use this approximation constantly to turn a yearly salary into an
-        hourly rate. It's not exact for every role, and that's fine; it's close enough to make the point.
+        It's a rule of thumb: 40 hours a week &times; 50 working weeks a year (that 50 already assumes about
+        two weeks off) &asymp; 2,000 hours. Turning a yearly salary into an hourly rate this way is a common shortcut. It's not exact for every role, and that's fine; it's close enough to make the point.
       </Callout>
 
       <Step n={5} title="Watch it build">
@@ -106,7 +106,7 @@ export default function ChapterOne() {
         <br />
         <br />
         Your calculator will look different from ours: different colours, layout and wording. That's completely
-        fine. What matters is that you get ₹4,800. Didn't get there? See "If something went wrong" below.
+        fine. What matters is that you get ₹4,800 (₹4,800.00 or 4800 also counts). Didn't get there? See "If something went wrong" below.
       </Checkpoint>
 
       <SectionEyebrow n="03" label="Make it yours" />
@@ -124,8 +124,9 @@ export default function ChapterOne() {
 
       <SectionEyebrow n="04" label="The surprise" />
       <p>
-        Now let's look behind the curtain. Find the option to view the code (in Claude, there's a "Code" tab at the
-        top of the preview). Scroll through it. You'll probably see somewhere between 100 and 300 lines of
+        Now let's look behind the curtain. Look for a code or <code className="rounded bg-latte px-1">&lt;/&gt;</code>{" "}
+        button near your tool. If you can't find one, send: <em>"Show me the full code for this tool in the chat."</em>{" "}
+        Scroll through it. You'll probably see somewhere between 100 and 300 lines of
         instructions.
       </p>
       <p className="mt-3">
@@ -158,8 +159,14 @@ export default function ChapterOne() {
       <Troubleshooting
         items={[
           {
-            problem: "I see code but no working preview.",
-            answer: <>Send: <em>"Please show this as a working, interactive preview I can use right here."</em></>,
+            problem: "No live tool appears, only code or a file.",
+            answer: (
+              <>
+                Open Settings, then Capabilities, and switch on <strong>"Cloud code execution and file
+                creation"</strong>. Then go back to your chat and ask again. Still only code? Send:{" "}
+                <em>"Please show this as a working, interactive preview I can use right here."</em>
+              </>
+            ),
           },
           {
             problem: "The answer isn't ₹4,800.",

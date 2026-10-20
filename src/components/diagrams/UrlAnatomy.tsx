@@ -1,7 +1,7 @@
 const PARTS = [
   { text: "https://", label: "How to travel there securely", tone: "bg-sage-100 text-sage-700" },
-  { text: "claude.ai", label: "Which building (the domain)", tone: "bg-caramel-200 text-caramel-800" },
-  { text: "/artifact/abc123", label: "Which room inside it", tone: "bg-teal-100 text-teal-700" },
+  { text: "bright-meeting-cost", label: "Your stall's name, which you choose", tone: "bg-teal-100 text-teal-700" },
+  { text: ".netlify.app", label: "Which market it's in: this ending tells you who's hosting it", tone: "bg-caramel-200 text-caramel-800" },
 ];
 
 export function UrlAnatomy() {
