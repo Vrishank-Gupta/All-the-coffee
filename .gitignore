@@ -17,6 +17,7 @@ supabase/.temp
 .env
 .env.local
 .env.*.local
+HANDOFF.md
 
 # Editor directories and files
 .vscode/*
