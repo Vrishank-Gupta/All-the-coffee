@@ -36,7 +36,19 @@ function useQrSvg(url: string) {
   return svg;
 }
 
-export function CertificateCard({ name, completedAt, certId, userId }: { name: string; completedAt: string; certId: string; userId: string }) {
+export function CertificateCard({
+  name,
+  capstoneTitle,
+  completedAt,
+  certId,
+  userId,
+}: {
+  name: string;
+  capstoneTitle?: string | null;
+  completedAt: string;
+  certId: string;
+  userId: string;
+}) {
   const verifyUrl = certificateUrl(userId);
   const qrSvg = useQrSvg(verifyUrl);
 
@@ -73,10 +85,16 @@ export function CertificateCard({ name, completedAt, certId, userId }: { name: s
         <p className="mt-2 font-display text-4xl font-semibold break-words text-espresso-950 sm:text-5xl">{name}</p>
 
         <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-espresso-800/85">
-          has demonstrated the ability to <strong>build real, working software tools using AI</strong> — completing
+          has demonstrated the ability to <strong>build real, working software tools using AI</strong>, completing
           12 chapters across three modules, from a first AI-built tool to independently automating a repetitive
           task with code.
         </p>
+
+        {capstoneTitle && (
+          <p className="mx-auto mt-4 max-w-lg text-sm text-espresso-800/85">
+            Capstone project: <strong className="font-semibold text-espresso-950">{capstoneTitle}</strong>
+          </p>
+        )}
 
         <div className="mt-7 flex flex-wrap justify-center gap-2.5">
           {SKILLS.map((s) => (

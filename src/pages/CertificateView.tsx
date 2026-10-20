@@ -10,6 +10,7 @@ import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 interface CertificateData {
   full_name: string | null;
+  capstone_title: string | null;
   completed_at: string | null;
 }
 
@@ -65,7 +66,7 @@ export default function CertificateView() {
             <p className="mt-2 mb-6 text-center text-sm text-espresso-700/70 print:hidden">
               Verified certificate from All The Coffee.
             </p>
-            <CertificateCard name={data.full_name} completedAt={data.completed_at} certId={certificateId(userId!)} userId={userId!} />
+            <CertificateCard name={data.full_name} capstoneTitle={data.capstone_title} completedAt={data.completed_at} certId={certificateId(userId!)} userId={userId!} />
           </>
         )}
       </main>

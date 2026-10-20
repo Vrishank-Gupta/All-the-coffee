@@ -308,3 +308,68 @@ end;
 $$;
 
 grant execute on function public.consume_payment_order(text) to authenticated;
+
+-- Sync: these were applied to the live database during the certificate
+-- security fix (commit cf1b257) but never appended here. Recorded now so
+-- this file matches what is actually live.
+alter table public.profiles add constraint full_name_length check (char_length(full_name) <= 80);
+
+-- course_completed_at is no longer client-writable; only
+-- mark_course_completed() below can stamp it.
+revoke update (course_completed_at) on public.profiles from authenticated;
+
+-- Re-derives completion server-side from the caller's own completed[]
+-- before stamping anything. The chapter range is hardcoded (0 to 11), not a
+-- client-supplied total, so a caller can't claim completion early.
+create or replace function public.mark_course_completed()
+returns boolean
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  v_completed int[];
+  v_has_all boolean;
+begin
+  select completed into v_completed from public.profiles where id = auth.uid();
+
+  select coalesce(bool_and(n = any(v_completed)), false) into v_has_all
+    from generate_series(0, 11) as n;
+
+  if not v_has_all then
+    return false;
+  end if;
+
+  update public.profiles
+  set course_completed_at = coalesce(course_completed_at, now())
+  where id = auth.uid();
+
+  return true;
+end;
+$$;
+
+grant execute on function public.mark_course_completed() to authenticated;
+
+-- Migration: learners can name their capstone project, shown on their
+-- certificate. Optional, learner-written, display only.
+alter table public.profiles add column if not exists capstone_title text;
+alter table public.profiles add constraint capstone_title_length check (char_length(capstone_title) <= 120);
+grant update (capstone_title) on public.profiles to authenticated;
+
+-- get_certificate now also returns capstone_title, and independently
+-- re-verifies the full chapter set rather than trusting a non-null
+-- course_completed_at.
+create or replace function public.get_certificate(p_user_id uuid)
+returns json
+language sql
+security definer set search_path = public
+as $$
+  select json_build_object(
+    'full_name', full_name,
+    'capstone_title', capstone_title,
+    'completed_at', course_completed_at
+  )
+  from public.profiles
+  where id = p_user_id
+    and course_completed_at is not null
+    and (select coalesce(bool_and(n = any(completed)), false) from generate_series(0, 11) as n);
+$$;

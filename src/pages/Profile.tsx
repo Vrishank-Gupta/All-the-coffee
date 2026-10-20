@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Coffee, Download, NotebookPen, MessageSquareHeart, RotateCcw, ArrowLeft, Crown, Award, UserRound } from "lucide-react";
+import { Coffee, Download, NotebookPen, MessageSquareHeart, RotateCcw, ArrowLeft, Crown, Award, UserRound, Trophy } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { EditableAnswerCard } from "../components/profile/EditableAnswerCard";
 import { NervousTrend } from "../components/profile/NervousTrend";
@@ -39,6 +39,8 @@ export default function Profile() {
     resetProgress,
     fullName,
     setFullName,
+    capstoneTitle,
+    setCapstoneTitle,
     courseCompletedAt,
   } = useProgress();
 
@@ -120,6 +122,15 @@ export default function Profile() {
               onSave={setFullName}
               placeholder="Your full name…"
               maxLength={80}
+            />
+            <EditableAnswerCard
+              icon={<Trophy className="h-4 w-4" />}
+              label="Your capstone project (optional)"
+              helper="The tool you built in Chapter 11. If you add it, it appears on your certificate."
+              value={capstoneTitle ?? ""}
+              onSave={setCapstoneTitle}
+              placeholder="e.g. Weekly vendor payment tracker…"
+              maxLength={120}
             />
             <EditableAnswerCard
               icon={<NotebookPen className="h-4 w-4" />}

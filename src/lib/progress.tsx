@@ -17,6 +17,7 @@ interface ProfileRow {
   nervous_ch7: number | null;
   tier: "free" | "paid";
   full_name: string | null;
+  capstone_title: string | null;
   course_completed_at: string | null;
 }
 
@@ -29,6 +30,7 @@ const DEFAULT_ROW: ProfileRow = {
   nervous_ch7: null,
   tier: "free",
   full_name: null,
+  capstone_title: null,
   course_completed_at: null,
 };
 
@@ -42,6 +44,7 @@ interface ProgressContextValue {
   nervousCh7: number | null;
   hasPaid: boolean;
   fullName: string | null;
+  capstoneTitle: string | null;
   courseCompletedAt: string | null;
   isComplete: (chapter: number) => boolean;
   isUnlocked: (chapter: number) => boolean;
@@ -52,6 +55,7 @@ interface ProgressContextValue {
   setNervousCh7: (n: number) => void;
   setUsedAtWork: (task: string) => void;
   setFullName: (name: string) => void;
+  setCapstoneTitle: (title: string) => void;
   resetProgress: () => void;
   refreshProfile: () => Promise<void>;
 }
@@ -59,7 +63,7 @@ interface ProgressContextValue {
 const ProgressContext = createContext<ProgressContextValue | null>(null);
 
 const PROFILE_COLUMNS =
-  "completed, boring_task, used_at_work, nervous_start, nervous_ch3, nervous_ch7, tier, full_name, course_completed_at";
+  "completed, boring_task, used_at_work, nervous_start, nervous_ch3, nervous_ch7, tier, full_name, capstone_title, course_completed_at";
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
@@ -110,6 +114,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     nervousCh7: row.nervous_ch7,
     hasPaid: row.tier === "paid",
     fullName: row.full_name,
+    capstoneTitle: row.capstone_title,
     courseCompletedAt: row.course_completed_at,
     isComplete: (chapter: number) => row.completed.includes(chapter),
     isUnlocked: (chapter: number) => chapter === 0 || row.completed.includes(chapter - 1),
@@ -134,6 +139,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     setNervousCh7: (n: number) => patch({ nervous_ch7: n }),
     setUsedAtWork: (task: string) => patch({ used_at_work: task }),
     setFullName: (name: string) => patch({ full_name: name }),
+    setCapstoneTitle: (title: string) => patch({ capstone_title: title.trim() || null }),
     resetProgress: () => {
       // tier and course_completed_at are no longer client-writable columns
       // (see supabase/schema.sql): including them here would make Postgres

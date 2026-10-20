@@ -12,8 +12,9 @@ import { useDocumentMeta } from "../lib/useDocumentMeta";
 export default function Certificate() {
   useDocumentMeta("Your Certificate");
   const { user } = useAuth();
-  const { completed, fullName, courseCompletedAt, setFullName } = useProgress();
+  const { completed, fullName, capstoneTitle, courseCompletedAt, setFullName, setCapstoneTitle } = useProgress();
   const [draftName, setDraftName] = useState("");
+  const [draftCapstone, setDraftCapstone] = useState("");
   const [copied, setCopied] = useState(false);
 
   const allChaptersDone = Array.from({ length: TOTAL_CHAPTERS }, (_, i) => i).every((id) => completed.includes(id));
@@ -53,6 +54,7 @@ export default function Certificate() {
   function handleSaveName() {
     if (!draftName.trim()) return;
     setFullName(draftName.trim());
+    if (draftCapstone.trim()) setCapstoneTitle(draftCapstone.trim());
   }
 
   return (
@@ -89,15 +91,22 @@ export default function Certificate() {
           <div className="mt-8 rounded-2xl border border-espresso-900/10 bg-cream p-6 sm:p-8">
             <p className="font-display text-xl font-semibold text-espresso-950">One last thing: your name</p>
             <p className="mt-1 text-sm text-espresso-700/70">
-              Whatever you type below appears exactly as-is on your certificate. You can change it later from your
+              Whatever you type below appears exactly as-is on your certificate. You can change both later from your
               profile.
             </p>
-            <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
+            <div className="mt-4 flex flex-col gap-2.5">
               <input
                 value={draftName}
                 onChange={(e) => setDraftName(e.target.value)}
                 placeholder="Your full name"
                 maxLength={80}
+                className="flex-1 rounded-lg border border-espresso-900/15 bg-white px-3.5 py-3 text-sm text-espresso-900 focus:border-caramel-500"
+              />
+              <input
+                value={draftCapstone}
+                onChange={(e) => setDraftCapstone(e.target.value)}
+                placeholder="Your capstone project, e.g. Weekly vendor payment tracker (optional)"
+                maxLength={120}
                 className="flex-1 rounded-lg border border-espresso-900/15 bg-white px-3.5 py-3 text-sm text-espresso-900 focus:border-caramel-500"
               />
               <button
@@ -114,7 +123,7 @@ export default function Certificate() {
             <p className="mt-2 mb-6 text-sm text-espresso-700/70 print:hidden">
               You finished all 12 chapters. Here's your proof of it.
             </p>
-            <CertificateCard name={fullName} completedAt={courseCompletedAt!} certId={certificateId(user!.id)} userId={user!.id} />
+            <CertificateCard name={fullName} capstoneTitle={capstoneTitle} completedAt={courseCompletedAt!} certId={certificateId(user!.id)} userId={user!.id} />
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 print:hidden">
               <button
