@@ -7,6 +7,7 @@ import { MODULES, type ChapterMeta } from "../../lib/courseData";
 import { useAuth } from "../../lib/auth";
 import { useProgress } from "../../lib/progress";
 import { FoundingOfferBox } from "../demo/FoundingOfferBox";
+import { ThemeToggle } from "../layout/ThemeToggle";
 
 export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: ReactNode }) {
   const { signOut } = useAuth();
@@ -32,6 +33,7 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
             </Link>
             <ProgressDots current={meta.id} />
             <div className="flex items-center gap-4">
+              <ThemeToggle className="-mx-2" />
               <Link
                 to="/profile"
                 className="flex items-center gap-1.5 text-sm font-medium text-espresso-700/70 transition hover:text-espresso-900"

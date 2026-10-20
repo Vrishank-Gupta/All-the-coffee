@@ -6,69 +6,129 @@
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 
   /* Coffee palette */
-  --color-paper: #fbf5ec;
-  --color-paper-dim: #f4ebdc;
-  --color-cream: #fffaf2;
-  --color-latte: #f1e3cd;
-  --color-sand: #e7d3b2;
+  --color-paper: var(--lt-paper);
+  --color-paper-dim: var(--lt-paper-dim);
+  --color-cream: var(--lt-cream);
+  --color-latte: var(--lt-latte);
+  --color-sand: var(--lt-sand);
 
-  --color-espresso-950: #241711;
-  --color-espresso-900: #33221a;
-  --color-espresso-800: #43291d;
-  --color-espresso-700: #5a3523;
-  --color-espresso-600: #74432a;
-  --color-espresso-500: #8a5232;
-  --color-espresso-400: #a97c57;
-  --color-espresso-300: #c7a07d;
-  --color-espresso-200: #ddc3ab;
-  --color-espresso-100: #efe1d6;
-  --color-espresso-50: #f7f1ec;
+  --color-espresso-950: var(--lt-espresso-950);
+  --color-espresso-900: var(--lt-espresso-900);
+  --color-espresso-800: var(--lt-espresso-800);
+  --color-espresso-700: var(--lt-espresso-700);
+  --color-espresso-600: var(--lt-espresso-600);
+  --color-espresso-500: var(--lt-espresso-500);
+  --color-espresso-400: var(--lt-espresso-400);
+  --color-espresso-300: var(--lt-espresso-300);
+  --color-espresso-200: var(--lt-espresso-200);
+  --color-espresso-100: var(--lt-espresso-100);
+  --color-espresso-50: var(--lt-espresso-50);
 
-  --color-caramel-900: #5e2d16;
-  --color-caramel-800: #823f1a;
-  --color-caramel-700: #a35a1f;
-  --color-caramel-600: #c1721f;
-  --color-caramel-500: #d9872f;
-  --color-caramel-400: #e9a24f;
-  --color-caramel-300: #f2bd7c;
-  --color-caramel-200: #f7d7a8;
-  --color-caramel-100: #fbe9ce;
-  --color-caramel-50: #fdf3e4;
+  --color-caramel-900: var(--lt-caramel-900);
+  --color-caramel-800: var(--lt-caramel-800);
+  --color-caramel-700: var(--lt-caramel-700);
+  --color-caramel-600: var(--lt-caramel-600);
+  --color-caramel-500: var(--lt-caramel-500);
+  --color-caramel-400: var(--lt-caramel-400);
+  --color-caramel-300: var(--lt-caramel-300);
+  --color-caramel-200: var(--lt-caramel-200);
+  --color-caramel-100: var(--lt-caramel-100);
+  --color-caramel-50: var(--lt-caramel-50);
 
-  --color-cinnamon-700: #9c4527;
-  --color-cinnamon-600: #b8532f;
-  --color-cinnamon-500: #cf6a3e;
-  --color-cinnamon-400: #de8a63;
+  --color-cinnamon-700: var(--lt-cinnamon-700);
+  --color-cinnamon-600: var(--lt-cinnamon-600);
+  --color-cinnamon-500: var(--lt-cinnamon-500);
+  --color-cinnamon-400: var(--lt-cinnamon-400);
 
-  --color-sage-700: #3c6b45;
-  --color-sage-600: #4f8a5b;
-  --color-sage-500: #6cb66d;
-  --color-sage-400: #8ec98b;
-  --color-sage-300: #b0d8ab;
-  --color-sage-200: #cde6c9;
-  --color-sage-100: #e5f1e3;
-  --color-sage-50: #f1f8ef;
+  --color-sage-700: var(--lt-sage-700);
+  --color-sage-600: var(--lt-sage-600);
+  --color-sage-500: var(--lt-sage-500);
+  --color-sage-400: var(--lt-sage-400);
+  --color-sage-300: var(--lt-sage-300);
+  --color-sage-200: var(--lt-sage-200);
+  --color-sage-100: var(--lt-sage-100);
+  --color-sage-50: var(--lt-sage-50);
 
-  --color-teal-700: #2c5e58;
-  --color-teal-600: #3f7d74;
-  --color-teal-500: #4f8f83;
-  --color-teal-400: #72aea2;
-  --color-teal-300: #9cc9c0;
-  --color-teal-200: #c2dfd9;
-  --color-teal-100: #e1efec;
-  --color-teal-50: #eff6f4;
+  --color-teal-700: var(--lt-teal-700);
+  --color-teal-600: var(--lt-teal-600);
+  --color-teal-500: var(--lt-teal-500);
+  --color-teal-400: var(--lt-teal-400);
+  --color-teal-300: var(--lt-teal-300);
+  --color-teal-200: var(--lt-teal-200);
+  --color-teal-100: var(--lt-teal-100);
+  --color-teal-50: var(--lt-teal-50);
 
-  --color-brick-700: #8a3630;
-  --color-brick-600: #b14b3f;
-  --color-brick-500: #c25f4d;
-  --color-brick-400: #d67a6a;
-  --color-brick-300: #e5a194;
-  --color-brick-200: #f0c4bc;
-  --color-brick-100: #f8e3df;
-  --color-brick-50: #fbeeec;
+  --color-brick-700: var(--lt-brick-700);
+  --color-brick-600: var(--lt-brick-600);
+  --color-brick-500: var(--lt-brick-500);
+  --color-brick-400: var(--lt-brick-400);
+  --color-brick-300: var(--lt-brick-300);
+  --color-brick-200: var(--lt-brick-200);
+  --color-brick-100: var(--lt-brick-100);
+  --color-brick-50: var(--lt-brick-50);
 
   --shadow-soft: 0 1px 2px rgba(36, 23, 17, 0.06), 0 8px 24px -8px rgba(36, 23, 17, 0.18);
   --shadow-lift: 0 2px 4px rgba(36, 23, 17, 0.08), 0 16px 40px -12px rgba(36, 23, 17, 0.28);
+}
+
+/* Light palette. The theme tokens above point at these so a subtree can
+   switch back to the light values by re-pointing the tokens (see the dark
+   theme's islands below). */
+:root {
+  --lt-paper: #fbf5ec;
+  --lt-paper-dim: #f4ebdc;
+  --lt-cream: #fffaf2;
+  --lt-latte: #f1e3cd;
+  --lt-sand: #e7d3b2;
+  --lt-espresso-950: #241711;
+  --lt-espresso-900: #33221a;
+  --lt-espresso-800: #43291d;
+  --lt-espresso-700: #5a3523;
+  --lt-espresso-600: #74432a;
+  --lt-espresso-500: #8a5232;
+  --lt-espresso-400: #a97c57;
+  --lt-espresso-300: #c7a07d;
+  --lt-espresso-200: #ddc3ab;
+  --lt-espresso-100: #efe1d6;
+  --lt-espresso-50: #f7f1ec;
+  --lt-caramel-900: #5e2d16;
+  --lt-caramel-800: #823f1a;
+  --lt-caramel-700: #a35a1f;
+  --lt-caramel-600: #c1721f;
+  --lt-caramel-500: #d9872f;
+  --lt-caramel-400: #e9a24f;
+  --lt-caramel-300: #f2bd7c;
+  --lt-caramel-200: #f7d7a8;
+  --lt-caramel-100: #fbe9ce;
+  --lt-caramel-50: #fdf3e4;
+  --lt-cinnamon-700: #9c4527;
+  --lt-cinnamon-600: #b8532f;
+  --lt-cinnamon-500: #cf6a3e;
+  --lt-cinnamon-400: #de8a63;
+  --lt-sage-700: #3c6b45;
+  --lt-sage-600: #4f8a5b;
+  --lt-sage-500: #6cb66d;
+  --lt-sage-400: #8ec98b;
+  --lt-sage-300: #b0d8ab;
+  --lt-sage-200: #cde6c9;
+  --lt-sage-100: #e5f1e3;
+  --lt-sage-50: #f1f8ef;
+  --lt-teal-700: #2c5e58;
+  --lt-teal-600: #3f7d74;
+  --lt-teal-500: #4f8f83;
+  --lt-teal-400: #72aea2;
+  --lt-teal-300: #9cc9c0;
+  --lt-teal-200: #c2dfd9;
+  --lt-teal-100: #e1efec;
+  --lt-teal-50: #eff6f4;
+  --lt-brick-700: #8a3630;
+  --lt-brick-600: #b14b3f;
+  --lt-brick-500: #c25f4d;
+  --lt-brick-400: #d67a6a;
+  --lt-brick-300: #e5a194;
+  --lt-brick-200: #f0c4bc;
+  --lt-brick-100: #f8e3df;
+  --lt-brick-50: #fbeeec;
 }
 
 @layer base {
@@ -115,6 +175,171 @@
 
   .prose-chapter p {
     line-height: 1.75;
+  }
+}
+
+/* Dark theme. Screen only, so printing (the certificate in particular) always
+   uses the light palette. Set by the inline script in index.html and by
+   ThemeToggle via the data-theme attribute on <html>. */
+@media screen {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-paper: #22272e;
+    --color-paper-dim: #1c2128;
+    --color-cream: #2b3139;
+    --color-latte: #323942;
+    --color-sand: #3d444e;
+    --color-espresso-950: #e3e8ee;
+    --color-espresso-900: #d0d7df;
+    --color-espresso-800: #c0c8d1;
+    --color-espresso-700: #b3bcc6;
+    --color-espresso-600: #9aa4af;
+    --color-espresso-500: #848e99;
+    --color-espresso-400: #6e7883;
+    --color-espresso-300: #59626c;
+    --color-espresso-200: #464e58;
+    --color-espresso-100: #383f48;
+    --color-espresso-50: #2d333b;
+    --color-caramel-900: #f6d8b0;
+    --color-caramel-800: #f2c892;
+    --color-caramel-700: #ecb677;
+    --color-caramel-600: #e6a65f;
+    --color-caramel-500: #df9a4f;
+    --color-caramel-400: #c98b47;
+    --color-caramel-300: #6e5333;
+    --color-caramel-200: #4e3e2b;
+    --color-caramel-100: #3a3127;
+    --color-caramel-50: #302a24;
+    --color-cinnamon-700: #eeb498;
+    --color-cinnamon-600: #e9a283;
+    --color-cinnamon-500: #e3926c;
+    --color-cinnamon-400: #d98a66;
+    --color-sage-700: #9fd0a3;
+    --color-sage-600: #88c18d;
+    --color-sage-500: #74b07a;
+    --color-sage-400: #5f9166;
+    --color-sage-300: #3f5b46;
+    --color-sage-200: #30443a;
+    --color-sage-100: #283730;
+    --color-sage-50: #242f2b;
+    --color-teal-700: #9dd0c7;
+    --color-teal-600: #85c1b7;
+    --color-teal-500: #70b0a6;
+    --color-teal-400: #5c968e;
+    --color-teal-300: #3b5c5c;
+    --color-teal-200: #2e4446;
+    --color-teal-100: #27363a;
+    --color-teal-50: #232f33;
+    --color-brick-700: #ecb2a7;
+    --color-brick-600: #e39e91;
+    --color-brick-500: #d88b7d;
+    --color-brick-400: #c97a6c;
+    --color-brick-300: #7a4a44;
+    --color-brick-200: #563836;
+    --color-brick-100: #3e2d2e;
+    --color-brick-50: #33282b;
+
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px -8px rgba(0, 0, 0, 0.45);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+  }
+
+  :root[data-theme="dark"] body {
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(223, 154, 79, 0.05), transparent 40%),
+      radial-gradient(circle at 88% 0%, rgba(112, 176, 166, 0.04), transparent 35%);
+  }
+
+  /* Islands: elements that are already dark panels or solid accent fills in
+     the light design keep their light-theme tokens, so the light text and dark
+     button labels inside them stay readable. The certificate stays on paper;
+     it is matched by attribute rather than #id so this rule keeps class-level
+     specificity and the charcoal rule below can still override it. */
+  :root[data-theme="dark"] :is(.bg-espresso-950, .bg-espresso-900, .bg-espresso-800, .from-espresso-950,
+    .bg-caramel-300, .bg-caramel-400, .bg-caramel-500, .bg-sage-400, .bg-sage-500, .bg-sage-600,
+    .bg-teal-500, .bg-brick-400, .bg-brick-500, .bg-brick-600, [id="certificate-card"]) {
+    --color-paper: var(--lt-paper);
+    --color-paper-dim: var(--lt-paper-dim);
+    --color-cream: var(--lt-cream);
+    --color-latte: var(--lt-latte);
+    --color-sand: var(--lt-sand);
+    --color-espresso-950: var(--lt-espresso-950);
+    --color-espresso-900: var(--lt-espresso-900);
+    --color-espresso-800: var(--lt-espresso-800);
+    --color-espresso-700: var(--lt-espresso-700);
+    --color-espresso-600: var(--lt-espresso-600);
+    --color-espresso-500: var(--lt-espresso-500);
+    --color-espresso-400: var(--lt-espresso-400);
+    --color-espresso-300: var(--lt-espresso-300);
+    --color-espresso-200: var(--lt-espresso-200);
+    --color-espresso-100: var(--lt-espresso-100);
+    --color-espresso-50: var(--lt-espresso-50);
+    --color-caramel-900: var(--lt-caramel-900);
+    --color-caramel-800: var(--lt-caramel-800);
+    --color-caramel-700: var(--lt-caramel-700);
+    --color-caramel-600: var(--lt-caramel-600);
+    --color-caramel-500: var(--lt-caramel-500);
+    --color-caramel-400: var(--lt-caramel-400);
+    --color-caramel-300: var(--lt-caramel-300);
+    --color-caramel-200: var(--lt-caramel-200);
+    --color-caramel-100: var(--lt-caramel-100);
+    --color-caramel-50: var(--lt-caramel-50);
+    --color-cinnamon-700: var(--lt-cinnamon-700);
+    --color-cinnamon-600: var(--lt-cinnamon-600);
+    --color-cinnamon-500: var(--lt-cinnamon-500);
+    --color-cinnamon-400: var(--lt-cinnamon-400);
+    --color-sage-700: var(--lt-sage-700);
+    --color-sage-600: var(--lt-sage-600);
+    --color-sage-500: var(--lt-sage-500);
+    --color-sage-400: var(--lt-sage-400);
+    --color-sage-300: var(--lt-sage-300);
+    --color-sage-200: var(--lt-sage-200);
+    --color-sage-100: var(--lt-sage-100);
+    --color-sage-50: var(--lt-sage-50);
+    --color-teal-700: var(--lt-teal-700);
+    --color-teal-600: var(--lt-teal-600);
+    --color-teal-500: var(--lt-teal-500);
+    --color-teal-400: var(--lt-teal-400);
+    --color-teal-300: var(--lt-teal-300);
+    --color-teal-200: var(--lt-teal-200);
+    --color-teal-100: var(--lt-teal-100);
+    --color-teal-50: var(--lt-teal-50);
+    --color-brick-700: var(--lt-brick-700);
+    --color-brick-600: var(--lt-brick-600);
+    --color-brick-500: var(--lt-brick-500);
+    --color-brick-400: var(--lt-brick-400);
+    --color-brick-300: var(--lt-brick-300);
+    --color-brick-200: var(--lt-brick-200);
+    --color-brick-100: var(--lt-brick-100);
+    --color-brick-50: var(--lt-brick-50);
+  }
+
+  /* Dark panels get neutral charcoal instead of brown, to match the page. */
+  :root[data-theme="dark"] :is(.bg-espresso-950, .bg-espresso-900, .bg-espresso-800, .from-espresso-950) {
+    --color-espresso-950: #161b22;
+    --color-espresso-900: #1c2128;
+    --color-espresso-800: #262c34;
+    --color-espresso-700: #30363f;
+    --color-espresso-600: #545d68;
+    --color-espresso-500: #6e7781;
+    --color-espresso-400: #8b949e;
+    --color-espresso-300: #a7b0ba;
+    --color-espresso-200: #c3cad2;
+    --color-espresso-100: #dde2e8;
+    --color-espresso-50: #eef1f4;
+  }
+
+  :root[data-theme="dark"] .bg-white {
+    background-color: var(--color-cream);
+  }
+
+  /* Translucent white cards. The low-alpha ones (bg-white/5, /10) are
+     highlights on dark panels and already work, so they are left alone. */
+  :root[data-theme="dark"] :is(.bg-white\/50, .hover\:bg-white\/50:hover) {
+    background-color: color-mix(in oklab, var(--color-cream) 50%, transparent);
+  }
+
+  :root[data-theme="dark"] .bg-white\/60 {
+    background-color: color-mix(in oklab, var(--color-cream) 60%, transparent);
   }
 }
 

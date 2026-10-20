@@ -6,6 +6,21 @@
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#241711" />
+    <!-- Applies the saved or system theme before first paint. Keep the key and
+         colours in sync with src/lib/theme.ts. -->
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem("atc-theme"); } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+        if (theme === "dark") {
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#22272e");
+        }
+      })();
+    </script>
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://allthecoffee.in/" />
 

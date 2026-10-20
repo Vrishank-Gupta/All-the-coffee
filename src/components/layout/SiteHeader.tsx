@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Coffee, UserCircle2, LogOut, BarChart3, Menu, X } from "lucide-react";
+import { Coffee, UserCircle2, LogOut, BarChart3, Menu, X, Moon, Sun } from "lucide-react";
 import { useProgress, TOTAL_CHAPTERS } from "../../lib/progress";
 import { useAuth } from "../../lib/auth";
 import { nextLiveChapter } from "../../lib/courseData";
+import { ThemeToggle } from "./ThemeToggle";
+import { useTheme } from "../../lib/theme";
 
 export function SiteHeader() {
   const { user, signOut } = useAuth();
@@ -11,6 +13,7 @@ export function SiteHeader() {
   const navigate = useNavigate();
   const next = nextLiveChapter(completed);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const ctaPath = !user ? "/signup" : completed.length === 0 ? "/chapter/0" : next ? next.path : "/profile";
   const ctaLabel = !user ? "Start free" : completed.length === 0 ? "Start Chapter 0" : next ? `Continue: Ch. ${next.id}` : "You're all caught up";
@@ -70,6 +73,7 @@ export function SiteHeader() {
               Log in
             </Link>
           )}
+          <ThemeToggle className="hidden sm:flex" />
           <Link
             to={ctaPath}
             className="flex min-h-11 items-center rounded-full bg-espresso-950 px-4 py-2 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800"
@@ -108,6 +112,9 @@ export function SiteHeader() {
                 <BarChart3 className="h-4 w-4" /> Live stats
               </Link>
             )}
+            <button onClick={toggleTheme} className="flex items-center gap-1.5 rounded-lg px-2 py-2.5 text-left text-sm font-medium text-espresso-800 hover:bg-espresso-900/5">
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />} {theme === "dark" ? "Light theme" : "Dark theme"}
+            </button>
             {user ? (
               <button onClick={handleSignOut} className="flex items-center gap-1.5 rounded-lg px-2 py-2.5 text-left text-sm font-medium text-espresso-800 hover:bg-espresso-900/5">
                 <LogOut className="h-4 w-4" /> Log out
