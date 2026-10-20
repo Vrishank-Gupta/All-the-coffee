@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Clock, Laptop, Gift, Lock, ArrowLeft, UserCircle2, LogOut } from "lucide-react";
 import { ProgressDots } from "./ProgressDots";
-import { MODULES, type ChapterMeta } from "../../lib/courseData";
+import { MODULES, chapterPageMeta, type ChapterMeta } from "../../lib/courseData";
+import { useDocumentMeta } from "../../lib/useDocumentMeta";
 import { useAuth } from "../../lib/auth";
 import { useProgress } from "../../lib/progress";
 import { FoundingOfferBox } from "../demo/FoundingOfferBox";
@@ -13,6 +14,8 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
   const { signOut } = useAuth();
   const { hasPaid } = useProgress();
   const navigate = useNavigate();
+  const pageMeta = chapterPageMeta(meta);
+  useDocumentMeta(pageMeta.title, pageMeta.description);
   const locked = !meta.free && !hasPaid;
 
   async function handleSignOut() {
@@ -85,7 +88,7 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
                 This chapter is part of {MODULES[meta.module].name}
               </p>
               <p className="mt-1 text-sm text-espresso-700/75">
-                Finish Module A for free, then join as a founding member to unlock this and the rest of the course.
+                Finish Module A for free, then join as a founding member to get this and the rest of the course.
               </p>
             </div>
             <FoundingOfferBox />

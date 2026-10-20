@@ -31,6 +31,15 @@ export const CHAPTERS: ChapterMeta[] = [
   { id: 11, title: "Capstone: build it for your job", short: "The sentence from Chapter 0, built", minutes: "2–3 hours", device: "Laptop needed", free: false, module: "C", path: "/chapter/11", live: true },
 ];
 
+// Page title and link-preview description for a chapter. Shared by
+// ChapterShell and the page-previews build step.
+export function chapterPageMeta(c: ChapterMeta) {
+  return {
+    title: `Chapter ${c.id}: ${c.title}`,
+    description: `${c.short} (${c.minutes}). ${MODULES[c.module].name} of All The Coffee, the course that takes non-technical professionals from AI-anxious to builder.`,
+  };
+}
+
 export function chapterById(id: number) {
   return CHAPTERS.find((c) => c.id === id);
 }

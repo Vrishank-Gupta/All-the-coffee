@@ -2,7 +2,7 @@ import { LegalPageLayout } from "../components/layout/LegalPageLayout";
 
 export default function Terms() {
   return (
-    <LegalPageLayout title="Terms of Service" lastUpdated="17 October 2026">
+    <LegalPageLayout page="/terms" lastUpdated="17 October 2026">
       <p>
         All The Coffee is run by an individual based in India, not a registered company. These
         terms apply whenever you create an account or make a payment on this site. By using All The Coffee, you're

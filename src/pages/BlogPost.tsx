@@ -6,11 +6,13 @@ import { SiteFooter } from "../components/layout/SiteFooter";
 import { BlogPostLayout } from "../components/layout/BlogPostLayout";
 import { FoundingOfferBox } from "../components/demo/FoundingOfferBox";
 import { blogBySlug } from "../lib/blogData";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 import { BLOG_CONTENT } from "../lib/blogContent";
 import { useAuth } from "../lib/auth";
 import { useProgress } from "../lib/progress";
 
 function LockedShell({ meta, children }: { meta: NonNullable<ReturnType<typeof blogBySlug>>; children: React.ReactNode }) {
+  useDocumentMeta(meta.title, meta.excerpt);
   return (
     <div className="min-h-screen bg-paper bg-grain">
       <SiteHeader />

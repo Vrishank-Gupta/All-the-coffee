@@ -4,9 +4,10 @@ import { AuthLayout } from "../components/auth/AuthLayout";
 import { GoogleButton } from "../components/auth/GoogleButton";
 import { useAuth } from "../lib/auth";
 import { useDocumentMeta } from "../lib/useDocumentMeta";
+import { PAGE_META } from "../lib/pageMeta";
 
 export default function Login() {
-  useDocumentMeta("Log In");
+  useDocumentMeta(PAGE_META["/login"].title, PAGE_META["/login"].description);
   const { signInWithPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

@@ -3,15 +3,13 @@ import { Lock, Clock, Mail, ArrowRight } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { useDocumentMeta } from "../lib/useDocumentMeta";
+import { PAGE_META } from "../lib/pageMeta";
 import { BLOG_POSTS } from "../lib/blogData";
 import { useAuth } from "../lib/auth";
 import { useProgress } from "../lib/progress";
 
 export default function BlogList() {
-  useDocumentMeta(
-    "Blog",
-    "Weekly, practical AI insights for HR, finance, ops, sales and marketing professionals. No hype, no jargon."
-  );
+  useDocumentMeta(PAGE_META["/blog"].title, PAGE_META["/blog"].description);
   const { user } = useAuth();
   const { hasPaid } = useProgress();
 

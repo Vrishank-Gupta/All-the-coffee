@@ -4,9 +4,13 @@ import { ArrowLeft } from "lucide-react";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { useDocumentMeta } from "../../lib/useDocumentMeta";
+import { PAGE_META } from "../../lib/pageMeta";
 
-export function LegalPageLayout({ title, lastUpdated, children }: { title: string; lastUpdated: string; children: ReactNode }) {
-  useDocumentMeta(title);
+type LegalPage = "/terms" | "/privacy" | "/refund-policy";
+
+export function LegalPageLayout({ page, lastUpdated, children }: { page: LegalPage; lastUpdated: string; children: ReactNode }) {
+  const { title, description } = PAGE_META[page];
+  useDocumentMeta(title, description);
   return (
     <div className="min-h-screen bg-paper bg-grain">
       <SiteHeader />
