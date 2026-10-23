@@ -44,9 +44,10 @@
     "ByteFact3.dc.html": { "x": 2320, "y": 11280, "w": 1080, "h": 1920, "title": "Byte-sized AI fact: training cutoff" },
     "ByteFact4.dc.html": { "x": 3480, "y": 11280, "w": 1080, "h": 1920, "title": "Byte-sized AI fact: long context" },
     "ByteFact5.dc.html": { "x": 4640, "y": 11280, "w": 1080, "h": 1920, "title": "Byte-sized AI fact: Indian languages" },
-    "ByteFact6.dc.html": { "x": 5800, "y": 11280, "w": 1080, "h": 1920, "title": "Byte-sized AI fact: free tier data" }
+    "ByteFact6.dc.html": { "x": 5800, "y": 11280, "w": 1080, "h": 1920, "title": "Byte-sized AI fact: free tier data" },
+    "ByteFact7.dc.html": { "x": 6960, "y": 11280, "w": 1080, "h": 1920, "title": "Byte-sized AI fact: tokenization" }
   },
-  "order": ["Intro.dc.html", "Main.dc.html", "Hallucination.dc.html", "Api.dc.html", "UsingVsBuilding.dc.html", "ChatgptGo.dc.html", "PostAutomatedJob.dc.html", "PostAppraisal.dc.html", "PostShadowAi.dc.html", "PostGstRecon.dc.html", "PostFewerJuniors.dc.html", "HighlightStart.dc.html", "HighlightCertificate.dc.html", "HighlightPricing.dc.html", "HighlightFaq.dc.html", "Start1.dc.html", "Start2.dc.html", "Start3.dc.html", "Start4.dc.html", "Start5.dc.html", "Certificate1.dc.html", "Certificate2.dc.html", "Certificate3.dc.html", "Certificate4.dc.html", "Pricing1.dc.html", "Pricing2.dc.html", "Pricing3.dc.html", "Pricing4.dc.html", "Pricing5.dc.html", "Faq1.dc.html", "Faq2.dc.html", "Faq3.dc.html", "Faq4.dc.html", "Faq5.dc.html", "ByteFact1.dc.html", "ByteFact2.dc.html", "ByteFact3.dc.html", "ByteFact4.dc.html", "ByteFact5.dc.html", "ByteFact6.dc.html"],
+  "order": ["Intro.dc.html", "Main.dc.html", "Hallucination.dc.html", "Api.dc.html", "UsingVsBuilding.dc.html", "ChatgptGo.dc.html", "PostAutomatedJob.dc.html", "PostAppraisal.dc.html", "PostShadowAi.dc.html", "PostGstRecon.dc.html", "PostFewerJuniors.dc.html", "HighlightStart.dc.html", "HighlightCertificate.dc.html", "HighlightPricing.dc.html", "HighlightFaq.dc.html", "Start1.dc.html", "Start2.dc.html", "Start3.dc.html", "Start4.dc.html", "Start5.dc.html", "Certificate1.dc.html", "Certificate2.dc.html", "Certificate3.dc.html", "Certificate4.dc.html", "Pricing1.dc.html", "Pricing2.dc.html", "Pricing3.dc.html", "Pricing4.dc.html", "Pricing5.dc.html", "Faq1.dc.html", "Faq2.dc.html", "Faq3.dc.html", "Faq4.dc.html", "Faq5.dc.html", "ByteFact1.dc.html", "ByteFact2.dc.html", "ByteFact3.dc.html", "ByteFact4.dc.html", "ByteFact5.dc.html", "ByteFact6.dc.html", "ByteFact7.dc.html"],
   "notes": {},
   "designSystems": []
 }

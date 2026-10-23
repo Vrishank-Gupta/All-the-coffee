@@ -62,6 +62,7 @@ To add new boards or edit existing ones, see `CLAUDE.md`-style instructions in t
 | `ByteFact4.dc.html` | Long AI chats can lose things buried in the middle ("lost in the middle") |
 | `ByteFact5.dc.html` | AI tends to perform better in English than Hindi/other Indian languages |
 | `ByteFact6.dc.html` | Free-tier AI chats may train future models unless you opt out; paid/business usually doesn't |
+| `ByteFact7.dc.html` | AI reads in chunks called tokens, not letter by letter, so counting/spelling tasks can go wrong |
 
 Post these as plain Stories (native "Add post to your story" style text/image, no CTA needed beyond "Follow for more") roughly one a day; they're meant to be a rotation, not a one-time batch.
 
@@ -82,3 +83,4 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] ByteFact4 posted
 - [ ] ByteFact5 posted
 - [ ] ByteFact6 posted
+- [ ] ByteFact7 posted
