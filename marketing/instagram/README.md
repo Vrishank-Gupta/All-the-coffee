@@ -6,6 +6,10 @@ This canvas is the single source of truth for every Instagram image: feed posts,
 
 Captions live in [`captions.md`](captions.md), one per feed post.
 
+**Role series canvas (posts 12-16 and the five "Steal this prompt" stories):** https://claude.ai/artifact/AkAPHUsHNJSbbeBBycHrFH
+
+These ten boards live on their own canvas because they were made from a Claude account that can't open the main canvas above. It's private to that account. On it, post 12 (`PostCampaignReport.dc.html` here) is the board named `Main.dc.html`, because a canvas needs its first board named that; the other nine keep the same filenames as here.
+
 ## How to post something from here
 
 1. Open the canvas link above.
@@ -33,6 +37,11 @@ To add new boards or edit existing ones, see `CLAUDE.md`-style instructions in t
 | 9 | `PostShadowAi.dc.html` | Shadow AI: 92% of Indian knowledge workers already use it | `/blog/shadow-ai-your-team` |
 | 10 | `PostGstRecon.dc.html` | GSTR-2B reconciliation: where AI helps, where it must not decide | `/blog/gstr-2b-reconciliation-ai` |
 | 11 | `PostFewerJuniors.dc.html` | Fewer junior hires: who does the grunt work now | `/blog/fewer-junior-hires-grunt-work` |
+| 12 | `PostCampaignReport.dc.html` | Marketing: the Monday campaign report, using vs building | `/blog/ai-marketing-practical-guide` |
+| 13 | `PostCopilotFinance.dc.html` | Finance: should we buy Copilot for the team (real India prices) | `/blog/copilot-excel-worth-it-india` |
+| 14 | `PostLegalCitations.dc.html` | Legal: Supreme Court sets aside orders built on judgments that didn't exist | — |
+| 15 | `PostHrSpreadsheet.dc.html` | HR: old employee spreadsheets and DPDP from 13 May 2027 | `/blog/dpdp-employee-data-hr` |
+| 16 | `PostSalesFollowUps.dc.html` | Sales: the follow-ups that never happened | `/blog/ai-sales-without-sounding-robotic` |
 
 ## Highlight covers (500x500, icon-only, used as the circle art for a permanent Story Highlight)
 
@@ -66,6 +75,18 @@ To add new boards or edit existing ones, see `CLAUDE.md`-style instructions in t
 
 Post these as plain Stories (native "Add post to your story" style text/image, no CTA needed beyond "Follow for more") roughly one a day; they're meant to be a rotation, not a one-time batch.
 
+## "Steal this prompt" stories (1080x1920, one per role, standalone)
+
+Each gives one copy-paste prompt for a specific job, plus a data-safety line. Post on the same day as that role's feed post if you can, and add a link sticker to the matching blog post where there is one.
+
+| File | Role | Prompt for | Pairs with |
+|---|---|---|---|
+| `PromptMarketing.dc.html` | Marketing | Turning a messy ad export into a summary | Post 12 |
+| `PromptFinance.dc.html` | Finance | Making an inherited Excel formula explain itself | Post 13 |
+| `PromptLegal.dc.html` | Legal | A first-pass issue list from a long agreement, with clause numbers | Post 14 |
+| `PromptHr.dc.html` | HR | Rewriting a policy circular in simple English and Hindi | Post 15 |
+| `PromptSales.dc.html` | Sales | A WhatsApp follow-up that doesn't sound like a bot | Post 16 |
+
 ## Posting log
 
 Check items off here as you post them, and commit, so the other laptop can see what's already live and what's still queued.
@@ -76,6 +97,11 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] Post 9: Shadow AI
 - [ ] Post 10: GST reconciliation
 - [ ] Post 11: Fewer junior hires
+- [ ] Post 12: Marketing campaign report
+- [ ] Post 13: Finance, Copilot
+- [ ] Post 14: Legal, fake citations
+- [ ] Post 15: HR, old spreadsheets
+- [ ] Post 16: Sales follow-ups
 - [ ] Highlight covers set up (Start / Certificate / Pricing / FAQ) with their stories attached
 - [ ] ByteFact1 posted
 - [ ] ByteFact2 posted
@@ -84,3 +110,8 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] ByteFact5 posted
 - [ ] ByteFact6 posted
 - [ ] ByteFact7 posted
+- [ ] PromptMarketing posted
+- [ ] PromptFinance posted
+- [ ] PromptLegal posted
+- [ ] PromptHr posted
+- [ ] PromptSales posted
