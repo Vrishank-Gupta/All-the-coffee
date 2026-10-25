@@ -63,7 +63,7 @@ export function NotesSummariserDemo({ autoPlay = false }: { autoPlay?: boolean }
         </button>
       </div>
 
-      <AppFrame label="meeting-notes-summariser.ai">
+      <AppFrame label="Meeting Notes Summariser (example)">
         <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-espresso-700/70">
           <FileText className="h-3.5 w-3.5" /> Paste your rough notes
         </label>

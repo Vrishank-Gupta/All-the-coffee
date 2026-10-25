@@ -46,7 +46,7 @@ export function TryFeatureDemo() {
           );
         })}
       </div>
-      <AppFrame label="meeting-cost-calculator.ai">
+      <AppFrame label="Meeting Cost Calculator">
         <MeetingCostCalculator features={features} />
       </AppFrame>
     </div>

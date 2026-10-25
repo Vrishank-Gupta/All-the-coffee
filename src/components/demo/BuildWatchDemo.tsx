@@ -99,7 +99,7 @@ export function BuildWatchDemo() {
 
         {phase === "done" && (
           <motion.div key="done" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}>
-            <AppFrame label="meeting-cost-calculator.ai">
+            <AppFrame label="Meeting Cost Calculator">
               <MeetingCostCalculator />
             </AppFrame>
             <button

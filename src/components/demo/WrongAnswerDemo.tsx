@@ -23,7 +23,7 @@ export function WrongAnswerDemo() {
 
   return (
     <div className="not-prose my-6">
-      <AppFrame label="meeting-cost-calculator-buggy.ai">
+      <AppFrame label="Meeting Cost Calculator (buggy version)">
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2 text-sm text-espresso-700/80">
             <p>

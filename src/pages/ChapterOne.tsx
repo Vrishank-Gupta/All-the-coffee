@@ -46,7 +46,7 @@ export default function ChapterOne() {
       <p className="mt-3">
         You won't write a single line of code yourself. You'll describe what you want, and an AI tool will build it.
       </p>
-      <AppFrame label="meeting-cost-calculator.ai (the finished thing)">
+      <AppFrame label="The finished calculator (example)">
         <MeetingCostCalculator />
       </AppFrame>
 
@@ -67,8 +67,9 @@ export default function ChapterOne() {
         exactly how varies by tool and changes often: look for a panel or window next to the chat, or just ask
         directly: "Can you show this to me as a live, interactive page I can use right here, not just code?"
       </Callout>
-      <Step n={2} title="Create a free account">
-        Sign up with your personal email address, not your work one. You'll get a code by email to confirm it's you.
+      <Step n={2} title="Create a free Claude account">
+        This is an account with Claude, the AI tool, and it's separate from this course. Sign up with your personal
+        email address, not your work one. You'll get a code by email to confirm it's you.
         After that, Claude asks for your mobile number and sends a one-time code by text message. Every new user does
         this step, and an Indian mobile number works. The free plan is enough for this whole module.
       </Step>
@@ -114,7 +115,7 @@ export default function ChapterOne() {
         Before we look under the hood, swap in your own numbers. How many people are usually in your team's
         recurring meetings, and roughly what do they earn? Try it below.
       </p>
-      <AppFrame label="meeting-cost-calculator.ai (now with your numbers)">
+      <AppFrame label="Try it with your numbers">
         <MeetingCostCalculator features={{ projection: true }} />
       </AppFrame>
       <Callout variant="reassurance">

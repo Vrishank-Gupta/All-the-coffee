@@ -137,7 +137,7 @@ export default function ChapterTwo() {
       </Step>
       <CopyBlock label="Prompt for the treasure hunt">{TWEAK_PROMPT}</CopyBlock>
       <p>Check your tool in the panel next to the chat; you should see your new heading and a green result:</p>
-      <AppFrame label="meeting-cost-calculator.ai">
+      <AppFrame label="Meeting Cost Calculator">
         <MeetingCostCalculator heading="What did this meeting really cost?" resultColor="sage" />
       </AppFrame>
 

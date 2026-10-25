@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, NotebookPen } from "lucide-react";
 import { useProgress } from "../../lib/progress";
+import { useAuth } from "../../lib/auth";
 
 const EXAMPLES = [
   "Every Monday I copy numbers from five Excel files into one summary.",
@@ -11,12 +12,16 @@ const EXAMPLES = [
 
 export function BoringTaskBox() {
   const { boringTask, setBoringTask } = useProgress();
-  const [draft, setDraft] = useState(boringTask);
+  const { user } = useAuth();
+  // null until the learner types, so a saved answer that loads a moment after
+  // mount still shows in the box instead of an empty field.
+  const [draft, setDraft] = useState<string | null>(null);
+  const value = draft ?? boringTask;
   const [saved, setSaved] = useState(false);
 
   function save() {
-    if (!draft.trim()) return;
-    setBoringTask(draft.trim());
+    if (!value.trim()) return;
+    setBoringTask(value.trim());
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2000);
   }
@@ -28,10 +33,10 @@ export function BoringTaskBox() {
         <span className="font-display text-base font-semibold text-espresso-950">My boring task is…</span>
       </div>
       <p className="mb-3 text-[13.5px] text-espresso-700/70">
-        A few examples from people like you: <em>"{EXAMPLES[0]}"</em> or <em>"{EXAMPLES[2]}"</em>
+        A few examples: <em>"{EXAMPLES[0]}"</em> or <em>"{EXAMPLES[2]}"</em>
       </p>
       <textarea
-        value={draft}
+        value={value}
         onChange={(e) => setDraft(e.target.value)}
         rows={2}
         placeholder="Write one boring, repetitive task you do on a computer…"
@@ -44,6 +49,11 @@ export function BoringTaskBox() {
         {saved ? <Check className="h-4 w-4" /> : null}
         {saved ? "Saved, see you in Chapter 11" : "Save it for Chapter 11"}
       </button>
+      {!user && boringTask && (
+        <p className="mt-2 text-xs text-espresso-700/60">
+          Saved in this browser for now. It moves to your account when you create one.
+        </p>
+      )}
       {boringTask && !saved && (
         <p className="mt-2 text-xs text-espresso-700/60">
           Currently saved: <span className="font-medium text-espresso-800">"{boringTask}"</span>

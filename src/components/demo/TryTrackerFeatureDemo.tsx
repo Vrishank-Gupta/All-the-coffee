@@ -44,7 +44,7 @@ export function TryTrackerFeatureDemo() {
           );
         })}
       </div>
-      <AppFrame label="follow-up-tracker.ai">
+      <AppFrame label="Follow-up Tracker (example)">
         <FollowUpTracker persist features={features} storageKey="atc-ch4-tracker-tryit" />
       </AppFrame>
     </div>

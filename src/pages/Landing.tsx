@@ -199,7 +199,7 @@ export default function Landing() {
                 Live and interactive. Change the numbers.
               </p>
             </div>
-            <AppFrame label="meeting-cost-calculator.ai">
+            <AppFrame label="Meeting Cost Calculator (live demo)">
               <MeetingCostCalculator features={{ projection: true, perMinute: true }} />
             </AppFrame>
             <p className="mt-2.5 text-center text-sm text-espresso-700/65">

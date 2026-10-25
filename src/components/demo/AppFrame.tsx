@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export function AppFrame({ label = "your-tool.ai", children }: { label?: string; children: ReactNode }) {
+export function AppFrame({ label = "Your tool", children }: { label?: string; children: ReactNode }) {
   return (
     <div className="not-prose my-6 overflow-hidden rounded-2xl border border-espresso-900/15 bg-white shadow-lift">
       <div className="flex items-center gap-2 border-b border-espresso-900/10 bg-latte/50 px-4 py-2.5">

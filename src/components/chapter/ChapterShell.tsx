@@ -31,9 +31,10 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
           <div className="flex items-center justify-between">
             <Link
               to="/"
-              className="flex items-center gap-1.5 text-sm font-medium text-espresso-700/70 transition hover:text-espresso-900"
+              aria-label="Course map"
+              className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap text-espresso-700/70 transition hover:text-espresso-900"
             >
-              <ArrowLeft className="h-4 w-4" /> Course map
+              <ArrowLeft className="h-4 w-4" /> <span className="hidden sm:inline">Course map</span>
             </Link>
             <ProgressDots current={meta.id} />
             <div className="flex items-center gap-4">

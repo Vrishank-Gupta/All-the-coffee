@@ -29,7 +29,7 @@ export function DataCleanerDemo() {
 
   return (
     <div className="not-prose my-6 space-y-3">
-      <AppFrame label="data-cleaner.ai">
+      <AppFrame label="Data Cleaner (example)">
         {!uploaded ? (
           <button
             onClick={() => setUploaded(true)}

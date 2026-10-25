@@ -26,11 +26,11 @@ export function ChatToolMockup({ highlight }: { highlight: Highlight }) {
           <span className="h-2.5 w-2.5 rounded-full bg-caramel-400" />
           <span className="h-2.5 w-2.5 rounded-full bg-sage-500" />
           <span className="ml-2 rounded-md bg-white px-3 py-1 font-mono text-[11px] text-espresso-700/60">
-            your-ai-chat-tool.com
+            AI chat tool
           </span>
           {highlight === "signup" && (
             <Ring active>
-              <span className="ml-auto rounded-lg bg-espresso-950 px-3 py-1.5 text-xs font-semibold text-caramel-100">
+              <span className="ml-auto rounded-lg bg-espresso-950 px-3 py-1.5 text-xs font-semibold whitespace-nowrap text-caramel-100">
                 Sign up free
               </span>
             </Ring>
