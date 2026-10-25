@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -18,6 +18,7 @@ import { BLOG_POSTS } from "../lib/blogData";
 import { useProgress } from "../lib/progress";
 import { useAuth } from "../lib/auth";
 import { useJsonLd } from "../lib/useJsonLd";
+import { logEvent, trackScrollDepth } from "../lib/analytics";
 
 const INSIGHTS = [
   {
@@ -131,7 +132,10 @@ export default function Landing() {
   // bounced to /login (a form asking for existing credentials) instead of
   // /signup, which was silently killing conversion from every CTA on this
   // page. Route logged-out visitors to /signup directly instead.
-  const startCtaPath = !user ? "/signup" : completed.length === 0 ? "/chapter/0" : continuePath;
+  // No account needed to start: Chapters 0 and 1 are open to guests.
+  const startCtaPath = !user || completed.length === 0 ? "/chapter/0" : continuePath;
+
+  useEffect(() => trackScrollDepth("home"), []);
 
   return (
     <div className="min-h-screen bg-paper bg-grain">
@@ -160,6 +164,7 @@ export default function Landing() {
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
                 to={startCtaPath}
+                onClick={() => logEvent("cta-hero")}
                 className="flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3.5 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
               >
                 Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />
@@ -172,7 +177,7 @@ export default function Landing() {
               </a>
             </div>
             <p className="mt-4 text-sm text-espresso-700/60">
-              Chapters 0–3 are free. No card required. New here?{" "}
+              No account needed to start. Chapters 0–3 are free, no card. New here?{" "}
               <Link to="/overview" className="font-semibold text-caramel-700 underline underline-offset-2 hover:text-caramel-600">
                 Read the full course overview
               </Link>
@@ -244,7 +249,7 @@ export default function Landing() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-espresso-950 font-display text-sm font-bold text-caramel-100">1</span>
             <p className="mt-3 font-display text-base font-semibold text-espresso-950">Start free, right now</p>
             <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
-              Chapters 0–3, no card needed. Build your first real tool in about 20 minutes.
+              No account, no card. Open Chapter 0 and build your first real tool in about 20 minutes.
             </p>
           </div>
           <div className="rounded-2xl border border-espresso-900/10 bg-cream p-5">
@@ -301,6 +306,7 @@ export default function Landing() {
           </p>
           <Link
             to={startCtaPath}
+            onClick={() => logEvent("cta-try")}
             className="mt-5 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
           >
             Try it free, no card needed <ArrowRight className="h-4 w-4" />
@@ -488,6 +494,7 @@ export default function Landing() {
               </p>
               <Link
                 to={startCtaPath}
+                onClick={() => logEvent("cta-pricing")}
                 className="mt-7 inline-flex items-center gap-2 rounded-xl bg-caramel-500 px-7 py-3.5 font-semibold text-espresso-950 shadow-lift transition hover:bg-caramel-400"
               >
                 Start free, no card needed <ArrowRight className="h-4 w-4" />
@@ -583,6 +590,7 @@ export default function Landing() {
         </h2>
         <Link
           to={startCtaPath}
+          onClick={() => logEvent("cta-final")}
           className="mt-6 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-7 py-4 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
         >
           Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../lib/auth";
+import { GUEST_CHAPTER_IDS } from "../../lib/courseData";
+import { logEvent } from "../../lib/analytics";
 import { CheckCircle2, ArrowRight, PartyPopper } from "lucide-react";
 import { useProgress } from "../../lib/progress";
 import { Celebration } from "../demo/Celebration";
@@ -22,6 +25,10 @@ export function ChapterComplete({
   quickCheck?: QuickCheck;
 }) {
   const { isComplete, completeChapter } = useProgress();
+  const { user } = useAuth();
+  // A guest who finishes their last open chapter is asked to make an account
+  // before the next one, which keeps the progress they just made.
+  const needsAccount = !user && !GUEST_CHAPTER_IDS.includes(chapterId + 1);
   const [ticked, setTicked] = useState(isComplete(chapterId));
   const [answer, setAnswer] = useState<number | null>(null);
   const [burst, setBurst] = useState(0);
@@ -38,6 +45,7 @@ export function ChapterComplete({
   function handleComplete() {
     if (!canComplete) return;
     completeChapter(chapterId);
+    logEvent(`complete-ch${chapterId}${user ? "" : "-guest"}`);
     setBurst((b) => b + 1);
   }
 
@@ -78,7 +86,7 @@ export function ChapterComplete({
       <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 transition hover:bg-white/10">
         <input
           type="checkbox"
-          checked={ticked}
+          checked={ticked || done}
           onChange={(e) => setTicked(e.target.checked)}
           disabled={done}
           className="mt-0.5 h-4 w-4 accent-caramel-400"
@@ -97,6 +105,22 @@ export function ChapterComplete({
           <CheckCircle2 className="h-4.5 w-4.5" />
           Mark chapter complete
         </button>
+      ) : nextPath && nextTitle && needsAccount ? (
+        <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p className="font-display text-base font-semibold text-caramel-50">Save what you've built and keep going</p>
+          <p className="mt-1.5 text-sm text-caramel-100/80">
+            Create a free account to keep your progress and carry on with the next chapter. Chapters 0–3 are free, no card needed.
+          </p>
+          <Link
+            to="/signup"
+            state={{ from: { pathname: nextPath } }}
+            onClick={() => logEvent(`cta-save-progress-ch${chapterId}`)}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-caramel-500 px-5 py-3 font-semibold text-espresso-950 transition hover:bg-caramel-400"
+          >
+            Create free account and continue
+            <ArrowRight className="h-4.5 w-4.5" />
+          </Link>
+        </div>
       ) : nextPath && nextTitle ? (
         <Link
           to={nextPath}

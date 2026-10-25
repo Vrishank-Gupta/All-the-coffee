@@ -43,10 +43,10 @@ export default function Signup() {
         <div className="flex flex-col items-center gap-3 py-4 text-center">
           <MailCheck className="h-10 w-10 text-sage-600" />
           <p className="text-sm text-espresso-800">
-            We sent a confirmation link to <strong>{email}</strong>. Click it, then come back here and log in.
+            We sent a confirmation link to <strong>{email}</strong>. Click it and you'll be signed in and taken straight back to where you were, with your progress saved. Can't find it? Check your spam or promotions folder.
           </p>
           <Link to="/login" state={location.state} className="mt-2 text-sm font-semibold text-caramel-700 underline underline-offset-2">
-            Go to login
+            Already confirmed? Log in
           </Link>
         </div>
       </AuthLayout>

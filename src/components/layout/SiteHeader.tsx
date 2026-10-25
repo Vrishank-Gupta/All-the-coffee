@@ -6,6 +6,7 @@ import { useAuth } from "../../lib/auth";
 import { nextLiveChapter } from "../../lib/courseData";
 import { ThemeToggle } from "./ThemeToggle";
 import { useTheme } from "../../lib/theme";
+import { logEvent } from "../../lib/analytics";
 
 export function SiteHeader() {
   const { user, signOut } = useAuth();
@@ -15,7 +16,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  const ctaPath = !user ? "/signup" : completed.length === 0 ? "/chapter/0" : next ? next.path : "/profile";
+  const ctaPath = !user || completed.length === 0 ? "/chapter/0" : next ? next.path : "/profile";
   const ctaLabel = !user ? "Start free" : completed.length === 0 ? "Start Chapter 0" : next ? `Continue: Ch. ${next.id}` : "You're all caught up";
 
   async function handleSignOut() {
@@ -76,6 +77,7 @@ export function SiteHeader() {
           <ThemeToggle className="hidden sm:flex" />
           <Link
             to={ctaPath}
+            onClick={() => logEvent(user ? "cta-header-continue" : "cta-header")}
             className="flex min-h-11 items-center rounded-full bg-espresso-950 px-4 py-2 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800"
           >
             {ctaLabel}

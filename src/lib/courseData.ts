@@ -40,6 +40,10 @@ export function chapterPageMeta(c: ChapterMeta) {
   };
 }
 
+// Chapters anyone can open without an account (progress saved in the
+// browser until they sign up). The rest still need a login.
+export const GUEST_CHAPTER_IDS = [0, 1];
+
 export function chapterById(id: number) {
   return CHAPTERS.find((c) => c.id === id);
 }

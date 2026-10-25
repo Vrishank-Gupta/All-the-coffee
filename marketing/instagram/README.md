@@ -10,6 +10,10 @@ Captions live in [`captions.md`](captions.md), one per feed post.
 
 These ten boards live on their own canvas because they were made from a Claude account that can't open the main canvas above. It's private to that account. On it, post 12 (`PostCampaignReport.dc.html` here) is the board named `Main.dc.html`, because a canvas needs its first board named that; the other nine keep the same filenames as here.
 
+## Bio link: use the tagged URL
+
+Set the Instagram bio link to **https://allthecoffee.in/?src=ig**, not the bare domain. The site logs the `src` tag once per visit (as `/_event/src-ig`), which is the only way to tell Instagram visitors apart from everyone else. Use other tags the same way for other channels, e.g. `?src=linkedin` or `?src=whatsapp`.
+
 ## How to post something from here
 
 1. Open the canvas link above.

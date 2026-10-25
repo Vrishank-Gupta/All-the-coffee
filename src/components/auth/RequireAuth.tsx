@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { Coffee } from "lucide-react";
 import { useAuth } from "../../lib/auth";
+import { hasGuestProgress } from "../../lib/guestProgress";
 
 export function RequireAuth({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -21,7 +22,9 @@ export function RequireAuth({ children }: { children: ReactNode }) {
   }
 
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    // Someone who already started as a guest is new here: send them to sign
+    // up, not to a login form they have no account for.
+    return <Navigate to={hasGuestProgress() ? "/signup" : "/login"} state={{ from: location }} replace />;
   }
 
   return <>{children}</>;

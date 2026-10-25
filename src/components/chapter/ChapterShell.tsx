@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Clock, Laptop, Gift, Lock, ArrowLeft, UserCircle2, LogOut } from "lucide-react";
+import { Clock, Laptop, Gift, Lock, ArrowLeft, UserCircle2, LogOut, Save } from "lucide-react";
 import { ProgressDots } from "./ProgressDots";
 import { MODULES, chapterPageMeta, type ChapterMeta } from "../../lib/courseData";
 import { useDocumentMeta } from "../../lib/useDocumentMeta";
@@ -11,7 +11,8 @@ import { FoundingOfferBox } from "../demo/FoundingOfferBox";
 import { ThemeToggle } from "../layout/ThemeToggle";
 
 export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: ReactNode }) {
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
+  const location = useLocation();
   const { hasPaid } = useProgress();
   const navigate = useNavigate();
   const pageMeta = chapterPageMeta(meta);
@@ -37,19 +38,32 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
             <ProgressDots current={meta.id} />
             <div className="flex items-center gap-4">
               <ThemeToggle className="-mx-2" />
-              <Link
-                to="/profile"
-                className="flex items-center gap-1.5 text-sm font-medium text-espresso-700/70 transition hover:text-espresso-900"
-              >
-                <UserCircle2 className="h-4 w-4" /> <span className="hidden sm:inline">Profile</span>
-              </Link>
-              <button
-                onClick={handleSignOut}
-                title="Log out"
-                className="text-espresso-700/50 transition hover:text-espresso-900"
-              >
-                <LogOut className="h-4 w-4" />
-              </button>
+              {user ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className="flex items-center gap-1.5 text-sm font-medium text-espresso-700/70 transition hover:text-espresso-900"
+                  >
+                    <UserCircle2 className="h-4 w-4" /> <span className="hidden sm:inline">Profile</span>
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    title="Log out"
+                    className="text-espresso-700/50 transition hover:text-espresso-900"
+                  >
+                    <LogOut className="h-4 w-4" />
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/signup"
+                  state={{ from: location }}
+                  aria-label="Save progress: create a free account"
+                  className="flex items-center gap-1.5 text-sm font-semibold text-caramel-700 transition hover:text-caramel-600"
+                >
+                  <Save className="h-4 w-4" /> <span className="hidden sm:inline">Save progress</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>

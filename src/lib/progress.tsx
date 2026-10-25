@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { supabase } from "./supabaseClient";
 import { useAuth } from "./auth";
 import { CHAPTERS } from "./courseData";
+import { clearGuest, mergeGuest, readGuest, writeGuest } from "./guestProgress";
 
 // Derived from the actual chapter list rather than hand-maintained, so it
 // can't silently drift out of sync with reality (e.g. with the server-side
@@ -72,12 +73,29 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 
   async function fetchProfile(userId: string) {
     const { data, error } = await supabase.from("profiles").select(PROFILE_COLUMNS).eq("id", userId).single();
-    if (!error && data) setRow(data as ProfileRow);
+    if (error || !data) return;
+    const profile = data as ProfileRow;
+    const guest = readGuest();
+    if (!guest) {
+      setRow(profile);
+      return;
+    }
+    const merged = mergeGuest(profile, guest);
+    setRow({ ...profile, ...merged });
+    if (Object.keys(merged).length > 0) {
+      const { error: mergeError } = await supabase.from("profiles").update(merged).eq("id", userId);
+      if (mergeError) {
+        // Keep the browser copy so the merge can be retried on the next load.
+        console.error("Failed to merge guest progress:", mergeError);
+        return;
+      }
+    }
+    clearGuest();
   }
 
   useEffect(() => {
     if (!user) {
-      setRow(DEFAULT_ROW);
+      setRow({ ...DEFAULT_ROW, ...readGuest() });
       setLoading(false);
       return;
     }
@@ -93,7 +111,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }, [user]);
 
   async function patch(fields: Partial<ProfileRow>) {
-    if (!user) return;
+    if (!user) {
+      setRow((r) => {
+        const next = { ...r, ...fields };
+        writeGuest(next);
+        return next;
+      });
+      return;
+    }
     setRow((r) => ({ ...r, ...fields }));
     const { error } = await supabase.from("profiles").update(fields).eq("id", user.id);
     if (error) {

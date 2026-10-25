@@ -2,7 +2,7 @@ import { LegalPageLayout } from "../components/layout/LegalPageLayout";
 
 export default function Privacy() {
   return (
-    <LegalPageLayout page="/privacy" lastUpdated="17 October 2026">
+    <LegalPageLayout page="/privacy" lastUpdated="25 October 2026">
       <p>
         All The Coffee is run by an individual based in India, not a registered company. This page explains what information
         is collected when you use the site, and what happens to it.
@@ -16,11 +16,18 @@ export default function Privacy() {
           Your course progress: which chapters you've completed, and anything you type into the course's own
           prompts (e.g. the "boring task" from Chapter 0, nervousness check-ins)
         </li>
-        <li>Whether you've paid for Module B, and the Razorpay order/payment ID associated with that payment</li>
+        <li>Whether you've paid for Modules B and C, and the Razorpay order/payment ID associated with that payment</li>
         <li>
           Anonymous visit counts: which pages get viewed and roughly how many distinct visitors the site gets,
           tracked by a random ID stored in your browser, never linked to your email or identity. This is ours alone,
-          built specifically for this site; no third-party analytics script runs here.
+          built specifically for this site; no third-party analytics script runs here. The same anonymous ID also
+          records a few on-page actions: which "Start" buttons get clicked, roughly how far down the home page people
+          scroll, when a chapter is marked complete, and the source tag on a link you followed (like ?src=ig).
+        </li>
+        <li>
+          If you start Chapters 0 and 1 without an account, your progress and answers are saved only in your own
+          browser. When you create an account or log in, they're copied into your account once and removed from the
+          browser.
         </li>
         <li>
           A coarse location (city/country) for each visit, worked out from your IP address at that moment. The IP

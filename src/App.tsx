@@ -53,8 +53,8 @@ export default function App() {
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/chapter/0" element={<Protected><ChapterZero /></Protected>} />
-            <Route path="/chapter/1" element={<Protected><ChapterOne /></Protected>} />
+            <Route path="/chapter/0" element={<ChapterZero />} />
+            <Route path="/chapter/1" element={<ChapterOne />} />
             <Route path="/chapter/2" element={<Protected><ChapterTwo /></Protected>} />
             <Route path="/chapter/3" element={<Protected><ChapterThree /></Protected>} />
             <Route path="/chapter/4" element={<Protected><ChapterFour /></Protected>} />
