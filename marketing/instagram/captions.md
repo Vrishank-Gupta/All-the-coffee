@@ -360,3 +360,21 @@ Our first module is free, no card needed. Link in bio.
 
 #SalesLife #B2BSales #SalesIndia #FollowUp #AIforSales #PracticalAI
 ```
+
+---
+
+## Reel 1: Intro (30 seconds)
+
+Video: `reels/intro-reel.mp4` · Blog: none
+
+```
+You've used ChatGPT to rewrite an email. Here's the next step.
+
+Describe a tool in plain English, AI builds it, and you learn to check it, fix it and actually use it at work. Your first one is a meeting cost calculator, in Chapter 1, in about 20 minutes, in your browser.
+
+Chapters 0 to 3 are free, no card. Chapters 4 to 11 are a one-time ₹599.
+
+You're not behind. Start free: link in bio.
+
+#AllTheCoffee #PracticalAI #AIatWork #VibeCoding #NoCode #LearnAI
+```

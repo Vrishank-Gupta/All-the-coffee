@@ -91,10 +91,28 @@ Each gives one copy-paste prompt for a specific job, plus a data-safety line. Po
 | `PromptHr.dc.html` | HR | Rewriting a policy circular in simple English and Hindi | Post 15 |
 | `PromptSales.dc.html` | Sales | A WhatsApp follow-up that doesn't sound like a bot | Post 16 |
 
+## Reels (1080x1920 MP4, 30 fps)
+
+| File | What it is |
+|---|---|
+| `reels/intro-reel.mp4` | 30 second intro: the hook, the meeting cost calculator being built, what else you build, pricing, CTA. Caption: "Reel 1" in `captions.md` |
+
+The MP4 has a voiceover (Kokoro's `bm_george` voice, British English male, generated locally and offline) lined up with the scenes. When posting, you can add quiet music under it in the Instagram editor: keep the original audio at full volume and the music low. Pick a cover frame from the last scene (the logo and "You're not behind.") so it looks right in the profile grid.
+
+To change text or timing: edit `reels/intro-reel.html` (open it in a browser for a live preview), then rebuild in two steps. Needs Python Playwright, `kokoro-onnx` and `soundfile` (pip), ffmpeg, and the two Kokoro model files (`kokoro-v1.0.onnx` and `voices-v1.0.bin`, about 350 MB, from the kokoro-onnx GitHub releases page, "model-files-v1.0") in a folder outside the repo.
+
+```
+python reels/render-reel.py reels/intro-reel.html silent.mp4
+python reels/add-voiceover.py silent.mp4 reels/intro-reel.mp4 path/to/kokoro-models
+```
+
+The spoken lines and their start times are at the top of `add-voiceover.py`. If you change scene timings in the HTML, move the matching start times too.
+
 ## Posting log
 
 Check items off here as you post them, and commit, so the other laptop can see what's already live and what's still queued.
 
+- [ ] Reel 1: Intro
 - [ ] Post 6: ChatGPT Go
 - [ ] Post 7: Automated my job
 - [ ] Post 8: Appraisal self-review

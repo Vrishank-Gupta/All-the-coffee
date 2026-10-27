@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reel: Intro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* 30 second, 1080x1920 intro reel. render-reel.py sets the time with window.seek(t)
+     and screenshots each frame. Open the file in a browser to preview it playing live. */
+  :root { --bg: #241711; --cream: #FBF1E2; --amber: #F2BD7C; --muted: #C9B7A3; --card: #33221A; --line: #4A3428; }
+  html, body { margin: 0; background: var(--bg); }
+  #stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: var(--bg); color: var(--cream); font-family: 'Source Serif 4', Georgia, serif; }
+  .fd { font-family: 'Fraunces', Georgia, serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  /* Content stays between 300px and 1500px from the top, clear of Instagram's username and caption overlays */
+  .scene { position: absolute; left: 90px; right: 90px; top: 300px; height: 1200px; display: flex; flex-direction: column; justify-content: center; }
+  .el { opacity: 0; will-change: transform, opacity; }
+  .kicker { margin: 0 0 28px; font-size: 32px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+  h1, h2 { margin: 0; font-weight: 700; line-height: 1.08; }
+  h1 { font-size: 104px; }
+  h2 { font-size: 84px; }
+  .sub { margin: 32px 0 0; font-size: 44px; line-height: 1.35; color: var(--muted); }
+  .amber { color: var(--amber); }
+  .chat { background: var(--card); border: 2px solid var(--line); border-radius: 36px; padding: 40px 44px; font-size: 42px; line-height: 1.4; min-height: 180px; }
+  .chat .who { font-size: 26px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; font-weight: 600; }
+  .caret { display: inline-block; width: 4px; height: 46px; background: var(--amber); vertical-align: -8px; margin-left: 4px; }
+  .tool { margin-top: 40px; background: var(--cream); color: var(--bg); border-radius: 36px; padding: 48px 48px 52px; }
+  .tool .t { font-size: 40px; font-weight: 700; }
+  .row { display: flex; justify-content: space-between; font-size: 36px; padding: 18px 0; border-bottom: 2px solid #E8D9C4; }
+  .row b { font-weight: 600; }
+  .total { margin-top: 34px; font-size: 30px; color: #6B5444; }
+  .total .n { display: block; font-size: 110px; font-weight: 700; color: #B5562B; line-height: 1.05; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .list { margin-top: 56px; display: flex; flex-direction: column; gap: 26px; }
+  .item { display: flex; align-items: center; gap: 28px; font-size: 44px; background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 30px 36px; }
+  .item .num { flex: none; width: 64px; height: 64px; border-radius: 999px; background: var(--amber); color: var(--bg); font-size: 32px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .price { display: flex; flex-direction: column; gap: 34px; margin-top: 60px; }
+  .pcard { border-radius: 36px; padding: 44px 48px; }
+  .pcard .big { font-size: 76px; font-weight: 700; line-height: 1.1; }
+  .pcard .small { font-size: 38px; margin-top: 12px; }
+  .logo { display: flex; align-items: center; gap: 22px; }
+  .logo .mark { width: 96px; height: 96px; border-radius: 999px; background: var(--cream); display: flex; align-items: center; justify-content: center; }
+  .logo span { font-size: 58px; font-weight: 700; }
+  .cta { margin-top: 70px; display: inline-block; align-self: flex-start; background: var(--amber); color: var(--bg); font-size: 54px; font-weight: 700; padding: 34px 56px; border-radius: 999px; }
+  .url { margin-top: 36px; font-size: 40px; color: var(--muted); }
+  #progress { position: absolute; left: 0; top: 0; height: 10px; background: var(--amber); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="progress"></div>
+
+  <!-- 1. Hook, 0 to 4.2s -->
+  <section class="scene" data-in="0" data-out="5.8">
+    <p class="kicker el" data-a="0.14">Be honest</p>
+    <h1 class="fd el" data-a="0.41">You've used ChatGPT to rewrite an email.</h1>
+    <p class="sub el" data-a="2.49">Maybe summarise a long PDF.</p>
+    <p class="sub el" data-a="3.73" style="color: var(--cream);">And that's about it.</p>
+  </section>
+
+  <!-- 2. Turn, 4.2 to 8.4s -->
+  <section class="scene" data-in="5.8" data-out="12">
+    <p class="kicker el" data-a="6.1">Here's the next step</p>
+    <h1 class="fd el" data-a="6.39">Describe a tool in <span class="amber">plain English.</span></h1>
+    <h1 class="fd el" data-a="8.46" style="margin-top: 30px;">AI builds it.</h1>
+  </section>
+
+  <!-- 3. Demo, 8.4 to 18.4s -->
+  <section class="scene" data-in="12" data-out="18.6">
+    <p class="kicker el" data-a="12.07">Chapter 1 · free · about 20 minutes</p>
+    <div class="chat el" data-a="12.2">
+      <div class="who">You</div>
+      <span id="typed"></span><span class="caret" id="caret"></span>
+    </div>
+    <div class="tool el" data-a="14.77">
+      <div class="t fd">Meeting Cost Calculator</div>
+      <div class="row"><span>People in the room</span><b>8</b></div>
+      <div class="row"><span>Average cost per hour</span><b>₹1,200</b></div>
+      <div class="row"><span>Time in the meeting</span><b class="mono" id="clock">0:00</b></div>
+      <div class="total">This meeting has cost so far
+        <span class="n fd" id="cost">₹0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. What else you build, 18.4 to 23.6s -->
+  <section class="scene" data-in="18.6" data-out="22.8">
+    <h2 class="fd el" data-a="18.68">Then you learn to <span class="amber">check it, fix it</span> and use it at work.</h2>
+    <div class="list">
+      <div class="item el" data-a="19.57"><span class="num">1</span>A follow-up tracker</div>
+      <div class="item el" data-a="20.05"><span class="num">2</span>A messy spreadsheet cleaner</div>
+      <div class="item el" data-a="20.54"><span class="num">3</span>AI inside your own tool</div>
+      <div class="item el" data-a="21.02"><span class="num">4</span>Your first automation script</div>
+    </div>
+  </section>
+
+  <!-- 5. Pricing, 23.6 to 27.4s -->
+  <section class="scene" data-in="22.8" data-out="26.7">
+    <h2 class="fd el" data-a="22.9">No coding background needed.</h2>
+    <div class="price">
+      <div class="pcard el" data-a="23.62" style="background: var(--amber); color: var(--bg);">
+        <div class="big fd">Chapters 0 to 3: free</div>
+        <div class="small">No card. No trial that turns into a bill.</div>
+      </div>
+      <div class="pcard el" data-a="24.54" style="background: var(--card); border: 2px solid var(--line);">
+        <div class="big fd">Chapters 4 to 11</div>
+        <div class="small" style="color: var(--muted);">One-time ₹599, plus a certificate anyone can verify.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CTA, 27.4 to 30s -->
+  <section class="scene" data-in="26.7" data-out="31">
+    <div class="logo el" data-a="26.8">
+      <div class="mark">
+        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#241711" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+      </div>
+      <span class="fd">All The Coffee</span>
+    </div>
+    <h1 class="fd el" data-a="27.1" style="margin-top: 60px;">You're not behind.</h1>
+    <div class="cta el" data-a="27.7">Start free · link in bio</div>
+    <div class="url el" data-a="28">allthecoffee.in</div>
+  </section>
+</div>
+
+<script>
+  const DURATION = 30;
+  const PROMPT = "Build a calculator that shows what a meeting costs while it's running.";
+  const FADE = 0.45;
+  const clamp = (x) => Math.max(0, Math.min(1, x));
+  const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+  const scenes = [...document.querySelectorAll('.scene')];
+  const typed = document.getElementById('typed');
+  const caret = document.getElementById('caret');
+  const cost = document.getElementById('cost');
+  const progress = document.getElementById('progress');
+
+  window.seek = function (t) {
+    for (const s of scenes) {
+      const a = +s.dataset.in, b = +s.dataset.out;
+      const visible = t >= a - 0.01 && t < b;
+      s.style.display = visible ? 'flex' : 'none';
+      if (!visible) continue;
+      const out = ease((t - (b - FADE)) / FADE);
+      s.style.opacity = 1 - out;
+      s.style.transform = `translateY(${-40 * out}px)`;
+      for (const el of s.querySelectorAll('.el')) {
+        const p = ease((t - +el.dataset.a) / FADE);
+        el.style.opacity = p;
+        el.style.transform = `translateY(${50 * (1 - p)}px)`;
+      }
+    }
+    // Typewriter from 12.5s to 14.5s, caret blinks once typing stops
+    const chars = Math.round(clamp((t - 12.5) / 2.0) * PROMPT.length);
+    typed.textContent = PROMPT.slice(0, chars);
+    caret.style.opacity = chars < PROMPT.length || Math.floor(t * 2) % 2 === 0 ? 1 : 0;
+    // 8 people x ₹1,200 an hour, sped up so three minutes of meeting pass every second
+    const meetingSeconds = Math.floor(Math.max(0, t - 15.2) * 180);
+    document.getElementById('clock').textContent = Math.floor(meetingSeconds / 60) + ':' + String(meetingSeconds % 60).padStart(2, '0');
+    const rupees = Math.floor(meetingSeconds * 8 * 1200 / 3600);
+    cost.textContent = '₹' + rupees.toLocaleString('en-IN');
+    progress.style.width = (clamp(t / DURATION) * 100) + '%';
+  };
+
+  // Live preview when opened directly in a browser; the renderer passes ?render to disable it
+  if (!location.search.includes('render')) {
+    const start = performance.now();
+    (function loop() {
+      window.seek(((performance.now() - start) / 1000) % DURATION);
+      requestAnimationFrame(loop);
+    })();
+  } else {
+    window.seek(0);
+  }
+</script>
+</body>
+</html>
