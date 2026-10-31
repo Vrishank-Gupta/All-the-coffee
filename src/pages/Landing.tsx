@@ -8,8 +8,8 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
-import { MeetingCostCalculator } from "../components/demo/MeetingCostCalculator";
-import { AppFrame } from "../components/demo/AppFrame";
+import { SpreadsheetCleanerHero } from "../components/demo/SpreadsheetCleanerHero";
+import { CleanerPeek } from "../components/demo/CleanerPeek";
 import { FoundingSeatsBadge } from "../components/demo/FoundingSeatsBadge";
 import { CHAPTERS, MODULES, nextLiveChapter, type ChapterMeta } from "../lib/courseData";
 import { BLOG_POSTS } from "../lib/blogData";
@@ -143,6 +143,7 @@ export default function Landing() {
               You've told yourself that for years. In Chapter 1 you'll build a working tool with AI in about 20
               minutes, right in your browser, and find out it was never true.
             </p>
+            <CleanerPeek onTap={() => logEvent("cta-hero-peek")} />
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
                 to={startCtaPath}
@@ -184,14 +185,13 @@ export default function Landing() {
           <motion.div
             id="demo"
             data-track="demo"
-            className="scroll-mt-24"
+            className="min-w-0 scroll-mt-24"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <p className="text-center text-sm font-semibold text-espresso-800">
-              Nobody ever put a number on what that recurring meeting costs. You're about to build the tool that
-              does.
+              Every office has this spreadsheet. You're about to build the tool that fixes it in one click.
             </p>
             <div className="mt-2 mb-2 flex items-center justify-center gap-2">
               <span className="relative flex h-2 w-2">
@@ -199,14 +199,12 @@ export default function Landing() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-sage-500" />
               </span>
               <p className="text-center text-xs font-semibold tracking-wide text-espresso-700/60 uppercase">
-                Live and interactive. Change the numbers.
+                Live demo. Watch it clean, then replay it.
               </p>
             </div>
-            <AppFrame label="Meeting Cost Calculator (live demo)">
-              <MeetingCostCalculator features={{ projection: true, perMinute: true }} onFirstUse={() => logEvent("demo-calculator-used")} />
-            </AppFrame>
+            <SpreadsheetCleanerHero onAutoplay={() => logEvent("demo-cleaner-autoplay")} onFirstUse={() => logEvent("demo-cleaner-used")} />
             <p className="mt-2.5 text-center text-sm text-espresso-700/65">
-              This is the tool you build with AI in Chapter 1. Try your own team's numbers above.
+              You build a tool like this with AI in Chapter 5. Chapter 1 starts you off with a simpler one, in about 20 minutes.
             </p>
           </motion.div>
         </div>
