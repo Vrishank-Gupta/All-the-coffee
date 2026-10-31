@@ -21,6 +21,7 @@ export function MeetingCostCalculator({
   defaultPeople = 8,
   defaultSalary = 1200000,
   defaultMinutes = 60,
+  onFirstUse,
 }: {
   heading?: string;
   resultColor?: "espresso" | "sage";
@@ -28,7 +29,14 @@ export function MeetingCostCalculator({
   defaultPeople?: number;
   defaultSalary?: number;
   defaultMinutes?: number;
+  onFirstUse?: () => void;
 }) {
+  const used = useRef(false);
+  function markUsed() {
+    if (used.current) return;
+    used.current = true;
+    onFirstUse?.();
+  }
   const [people, setPeople] = useState(defaultPeople);
   const [salary, setSalary] = useState(defaultSalary);
   const [minutes, setMinutes] = useState(defaultMinutes);
@@ -68,7 +76,10 @@ export function MeetingCostCalculator({
             min={1}
             max={100}
             value={people}
-            onChange={(e) => setPeople(Math.min(100, Math.max(1, Number(e.target.value) || 0)))}
+            onChange={(e) => {
+              markUsed();
+              setPeople(Math.min(100, Math.max(1, Number(e.target.value) || 0)));
+            }}
             className="w-full rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-sm font-medium text-espresso-950 focus:border-caramel-500"
           />
         </Field>
@@ -79,7 +90,10 @@ export function MeetingCostCalculator({
             max={5000000}
             step={10000}
             value={salary}
-            onChange={(e) => setSalary(Math.min(5000000, Math.max(0, Number(e.target.value) || 0)))}
+            onChange={(e) => {
+              markUsed();
+              setSalary(Math.min(5000000, Math.max(0, Number(e.target.value) || 0)));
+            }}
             className="w-full rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-sm font-medium text-espresso-950 focus:border-caramel-500"
           />
         </Field>
@@ -115,7 +129,10 @@ export function MeetingCostCalculator({
               min={1}
               max={240}
               value={minutes}
-              onChange={(e) => setMinutes(Math.min(240, Math.max(1, Number(e.target.value) || 0)))}
+              onChange={(e) => {
+              markUsed();
+              setMinutes(Math.min(240, Math.max(1, Number(e.target.value) || 0)));
+            }}
               className="w-full rounded-lg border border-espresso-900/15 bg-white px-3 py-2 text-sm font-medium text-espresso-950 focus:border-caramel-500"
             />
           </Field>

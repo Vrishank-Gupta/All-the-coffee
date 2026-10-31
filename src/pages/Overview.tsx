@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import {
   Flame, Clock, Wallet, Sparkles, ArrowRight, CheckCircle2, XCircle,
   Quote, Bot, Terminal, FolderGit2, Workflow, Globe2, HeartHandshake,
-  ChevronDown, Lock,
+  ChevronDown, Lock, Trophy, Lightbulb, MessageCircleQuestion, Bug, BookOpenText,
+  EyeOff, MousePointerClick, ShieldCheck,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
@@ -62,6 +63,19 @@ const TOOL_TIERS = [
     desc: "And just as important: knowing when one of these is the smarter choice instead of custom code.",
     live: false,
   },
+];
+
+const PRINCIPLES = [
+  { icon: Trophy, title: "Win before you explain", desc: "You build or see something work first, then learn why." },
+  { icon: Lightbulb, title: "One new idea per chapter", desc: "Everything else is \u201cjust copy this for now.\u201d" },
+  { icon: MessageCircleQuestion, title: "Name the fear out loud", desc: "Each chapter opens with the worry you probably have right now." },
+  { icon: Bug, title: "Plan the failure", desc: "A deliberate, safe error you trigger, read, and fix with AI." },
+  { icon: BookOpenText, title: "Analogy first, term second", desc: "Everyday language first. The real word, second. Never the reverse." },
+  { icon: EyeOff, title: "Say what you're skipping", desc: "Permission to not know is a large part of reducing fear." },
+  { icon: Bot, title: "AI is the assistant, not magic", desc: "You're shown where AI gets it wrong, so you trust it the right amount." },
+  { icon: MousePointerClick, title: "Show, don't just tell", desc: "Every tool is something you click and try right here, not a screenshot you have to imagine." },
+  { icon: ShieldCheck, title: "Their work, their data", desc: "Realistic sample files, never your confidential company data." },
+  { icon: Sparkles, title: "End with confidence", desc: "What you built, the words you can now use, and how far ahead you are." },
 ];
 
 export default function Overview() {
@@ -246,6 +260,24 @@ export default function Overview() {
             …and it keeps going in Modules B and C, right through automating a real task and building your own
             capstone tool.
           </p>
+        </section>
+
+        {/* Teaching principles */}
+        <section className="py-14">
+          <h2 className="font-display text-3xl font-semibold text-espresso-950">Ten rules every chapter follows</h2>
+          <p className="mt-2 max-w-2xl text-espresso-700/75">
+            "Beginner-friendly" is a slogan until you check it against something. Every chapter is checked against
+            these before it ships.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {PRINCIPLES.map((p) => (
+              <div key={p.title} className="rounded-2xl bg-cream p-4 shadow-soft">
+                <p.icon className="h-5 w-5 text-caramel-600" strokeWidth={1.7} />
+                <p className="mt-2.5 text-sm font-semibold text-espresso-950">{p.title}</p>
+                <p className="mt-1 text-xs leading-snug text-espresso-700/70">{p.desc}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Who it's for / not for */}

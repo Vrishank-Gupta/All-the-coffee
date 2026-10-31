@@ -72,3 +72,25 @@ export function trackScrollDepth(page: string) {
   window.addEventListener("scroll", onScroll, { passive: true });
   return () => window.removeEventListener("scroll", onScroll);
 }
+
+// Logs each [data-track] section on a page once, the first time it scrolls
+// into view (view-<page>-<name>), so drop-off shows section by section rather
+// than in coarse scroll quarters.
+export function trackSectionViews(page: string) {
+  if (typeof IntersectionObserver === "undefined") return;
+  const seen = new Set<string>();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const name = (entry.target as HTMLElement).dataset.track;
+        if (!entry.isIntersecting || !name || seen.has(name)) continue;
+        seen.add(name);
+        logEvent(`view-${page}-${name}`);
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.25 },
+  );
+  document.querySelectorAll<HTMLElement>("[data-track]").forEach((el) => observer.observe(el));
+  return () => observer.disconnect();
+}

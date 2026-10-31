@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Coffee, ShieldCheck, Target, Briefcase, Globe, MessagesSquare,
-  Trophy, Lightbulb, MessageCircleQuestion, Bug, BookOpenText,
-  EyeOff, Bot, MousePointerClick, Sparkles, CheckCircle2, Lock,
-  Clock, ArrowRight, XCircle, Crown, Flame, TrendingUp, ChevronDown, Mail,
-  Megaphone, Wallet, Users, Handshake, Award, Link2, ListChecks,
+  Coffee, ShieldCheck, Target, Briefcase, Globe, MessagesSquare, CheckCircle2, Lock, Clock,
+  ArrowRight, XCircle, Crown, Flame, TrendingUp, ChevronDown, Mail, Megaphone, Wallet, Users,
+  Handshake, Award, Link2, ListChecks,
 } from "lucide-react";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
@@ -18,7 +16,7 @@ import { BLOG_POSTS } from "../lib/blogData";
 import { useProgress } from "../lib/progress";
 import { useAuth } from "../lib/auth";
 import { useJsonLd } from "../lib/useJsonLd";
-import { logEvent, trackScrollDepth } from "../lib/analytics";
+import { logEvent, trackScrollDepth, trackSectionViews } from "../lib/analytics";
 
 const INSIGHTS = [
   {
@@ -100,19 +98,6 @@ const ROLES = [
   },
 ];
 
-const PRINCIPLES = [
-  { icon: Trophy, title: "Win before you explain", desc: "You build or see something work first, then learn why." },
-  { icon: Lightbulb, title: "One new idea per chapter", desc: "Everything else is “just copy this for now.”" },
-  { icon: MessageCircleQuestion, title: "Name the fear out loud", desc: "Each chapter opens with the worry you probably have right now." },
-  { icon: Bug, title: "Plan the failure", desc: "A deliberate, safe error you trigger, read, and fix with AI." },
-  { icon: BookOpenText, title: "Analogy first, term second", desc: "Everyday language first. The real word, second. Never the reverse." },
-  { icon: EyeOff, title: "Say what you're skipping", desc: "Permission to not know is a large part of reducing fear." },
-  { icon: Bot, title: "AI is the assistant, not magic", desc: "You're shown where AI gets it wrong, so you trust it the right amount." },
-  { icon: MousePointerClick, title: "Show, don't just tell", desc: "Every tool is something you click and try right here, not a screenshot you have to imagine." },
-  { icon: ShieldCheck, title: "Their work, their data", desc: "Realistic sample files, never your confidential company data." },
-  { icon: Sparkles, title: "End with confidence", desc: "What you built, the words you can now use, and how far ahead you are." },
-];
-
 export default function Landing() {
   useJsonLd({
     "@context": "https://schema.org",
@@ -135,7 +120,10 @@ export default function Landing() {
   // No account needed to start: Chapters 0 and 1 are open to guests.
   const startCtaPath = !user || completed.length === 0 ? "/chapter/0" : continuePath;
 
+  const ctaLabel = !user ? "Start free, no sign-up" : completed.length === 0 ? "Start Chapter 0" : "Continue where you left off";
+
   useEffect(() => trackScrollDepth("home"), []);
+  useEffect(() => trackSectionViews("home"), []);
 
   return (
     <div className="min-h-screen bg-paper bg-grain">
@@ -145,21 +133,15 @@ export default function Landing() {
       <section className="mx-auto max-w-6xl px-5 pt-16 pb-10 sm:pt-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="font-display text-5xl leading-[1.05] font-semibold text-espresso-950 sm:text-6xl">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-caramel-100 px-3.5 py-1.5 text-xs font-semibold text-caramel-700">
+              <Coffee className="h-3.5 w-3.5" /> A practical AI course for people who don't code
+            </span>
+            <h1 className="mt-5 font-display text-5xl leading-[1.05] font-semibold text-espresso-950 sm:text-6xl">
               &ldquo;I'm just not a tech person.&rdquo;
             </h1>
-            <p className="mt-3 font-display text-2xl font-bold text-caramel-700 sm:text-3xl">
-              You've told yourself that for years. It was never true.
-            </p>
-            <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-caramel-100 px-3.5 py-1.5 text-xs font-semibold text-caramel-700">
-              <Coffee className="h-3.5 w-3.5" /> 20–45 minutes a day, in your browser
-            </span>
-            <p className="mt-5 font-display text-xl font-semibold text-espresso-900 sm:text-2xl">
-              From AI-anxious to builder, one coffee break at a time.
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-espresso-800/85">
-              Build your first useful tool in 20 minutes. No coding background. No jargon you don't need. Nobody
-              judging you.
+            <p className="mt-4 text-lg leading-relaxed text-espresso-800/85 sm:text-xl">
+              You've told yourself that for years. In Chapter 1 you'll build a working tool with AI in about 20
+              minutes, right in your browser, and find out it was never true.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
@@ -167,17 +149,31 @@ export default function Landing() {
                 onClick={() => logEvent("cta-hero")}
                 className="flex items-center gap-2 rounded-xl bg-espresso-950 px-6 py-3.5 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
               >
-                Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />
+                {ctaLabel} <ArrowRight className="h-4 w-4" />
               </Link>
               <a
+                href="#demo"
+                onClick={() => logEvent("cta-hero-demo")}
+                className="rounded-xl border border-espresso-900/15 px-6 py-3.5 font-semibold text-espresso-800 transition hover:bg-latte/50 lg:hidden"
+              >
+                Try the live demo
+              </a>
+              <a
                 href="#course-map"
-                className="rounded-xl border border-espresso-900/15 px-6 py-3.5 font-semibold text-espresso-800 transition hover:bg-latte/50"
+                className="hidden rounded-xl border border-espresso-900/15 px-6 py-3.5 font-semibold text-espresso-800 transition hover:bg-latte/50 lg:inline-block"
               >
                 See the course map
               </a>
             </div>
+            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-espresso-700/80">
+              {["No coding background", "No account to start", "Chapters 0–3 free, no card", "20–45 minutes a day"].map((point) => (
+                <li key={point} className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-sage-600" /> {point}
+                </li>
+              ))}
+            </ul>
             <p className="mt-4 text-sm text-espresso-700/60">
-              No account needed to start. Chapters 0–3 are free, no card. New here?{" "}
+              New here?{" "}
               <Link to="/overview" className="font-semibold text-caramel-700 underline underline-offset-2 hover:text-caramel-600">
                 Read the full course overview
               </Link>
@@ -185,7 +181,14 @@ export default function Landing() {
             </p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+          <motion.div
+            id="demo"
+            data-track="demo"
+            className="scroll-mt-24"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <p className="text-center text-sm font-semibold text-espresso-800">
               Nobody ever put a number on what that recurring meeting costs. You're about to build the tool that
               does.
@@ -200,17 +203,40 @@ export default function Landing() {
               </p>
             </div>
             <AppFrame label="Meeting Cost Calculator (live demo)">
-              <MeetingCostCalculator features={{ projection: true, perMinute: true }} />
+              <MeetingCostCalculator features={{ projection: true, perMinute: true }} onFirstUse={() => logEvent("demo-calculator-used")} />
             </AppFrame>
             <p className="mt-2.5 text-center text-sm text-espresso-700/65">
-              Built with AI, by someone with zero coding background, in Chapter 1. Try your own team's numbers above.
+              This is the tool you build with AI in Chapter 1. Try your own team's numbers above.
             </p>
           </motion.div>
         </div>
       </section>
 
+      {/* Role-specific proof */}
+      <section data-track="roles" className="mx-auto max-w-6xl px-5 py-14">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
+            Built for your actual desk, not just &ldquo;tech people&rdquo;
+          </h2>
+          <p className="mt-3 text-espresso-700/75">
+            Marketing, finance, HR, sales, ops: same AI skillset, pointed at your real work. Every example below
+            is a chapter that's live right now, not a plan for later.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {ROLES.map((r) => (
+            <div key={r.role} className="rounded-2xl border border-espresso-900/10 bg-cream p-5 shadow-soft">
+              <r.icon className="h-6 w-6 text-caramel-600" strokeWidth={1.7} />
+              <p className="mt-3 font-display text-base font-semibold text-espresso-950">{r.role}</p>
+              <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">{r.desc}</p>
+              <p className="mt-2.5 text-xs font-semibold text-caramel-700">{r.chapter}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Pain recognition */}
-      <section className="mx-auto max-w-3xl px-5 py-10">
+      <section data-track="pain" className="mx-auto max-w-3xl px-5 py-10">
         <div className="rounded-3xl border border-espresso-900/10 bg-cream p-6 sm:p-9">
           <h2 className="text-center font-display text-2xl font-semibold text-espresso-950 sm:text-3xl">
             Does any of this sound familiar?
@@ -240,7 +266,7 @@ export default function Landing() {
       </section>
 
       {/* How it works */}
-      <section className="mx-auto max-w-5xl px-5 py-10">
+      <section data-track="how" className="mx-auto max-w-5xl px-5 py-10">
         <h2 className="text-center font-display text-2xl font-semibold text-espresso-950 sm:text-3xl">
           Exactly what happens if you start today
         </h2>
@@ -249,7 +275,7 @@ export default function Landing() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-espresso-950 font-display text-sm font-bold text-caramel-100">1</span>
             <p className="mt-3 font-display text-base font-semibold text-espresso-950">Start free, right now</p>
             <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
-              No account, no card. Open Chapter 0 and build your first real tool in about 20 minutes.
+              No account, no card. Read Chapter 0, then build your first real tool in Chapter 1, in about 20 minutes.
             </p>
           </div>
           <div className="rounded-2xl border border-espresso-900/10 bg-cream p-5">
@@ -272,7 +298,7 @@ export default function Landing() {
       </section>
 
       {/* Data-backed insight */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
+      <section data-track="stats" className="mx-auto max-w-6xl px-5 py-14">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-espresso-900/5 px-3.5 py-1.5 text-xs font-bold tracking-wide text-espresso-700 uppercase">
             <TrendingUp className="h-3.5 w-3.5" /> The gap, in numbers
@@ -315,7 +341,7 @@ export default function Landing() {
       </section>
 
       {/* Differentiators */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
+      <section data-track="different" className="mx-auto max-w-6xl px-5 py-14">
         <h2 className="font-display text-3xl font-semibold text-espresso-950">How this is different</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {DIFFERENTIATORS.map((d) => (
@@ -329,7 +355,7 @@ export default function Landing() {
       </section>
 
       {/* Certificate */}
-      <section className="mx-auto max-w-5xl px-5 py-14">
+      <section data-track="certificate" className="mx-auto max-w-5xl px-5 py-14">
         <div className="overflow-hidden rounded-3xl border border-espresso-900/10 bg-cream p-8 sm:p-10">
           <div className="grid items-center gap-8 lg:grid-cols-2">
             <div>
@@ -366,7 +392,7 @@ export default function Landing() {
       </section>
 
       {/* Who it's for */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
+      <section data-track="for-you" className="mx-auto max-w-6xl px-5 py-14">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-sage-200 bg-sage-50 p-7">
             <div className="flex items-center gap-2 text-sage-700">
@@ -390,42 +416,16 @@ export default function Landing() {
               <li>You're already comfortable reading and writing code.</li>
               <li>You're looking for deep computer-science theory rather than tools you can use Monday morning.</li>
             </ul>
-            <p className="mt-5 text-sm text-espresso-700/60">
-              Saying this out loud builds trust with the people this course is actually for.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Role-specific proof */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
-            Built for your actual desk, not just &ldquo;tech people&rdquo;
-          </h2>
-          <p className="mt-3 text-espresso-700/75">
-            Marketing, finance, HR, sales, ops: same AI skillset, pointed at your real work. Every example below
-            is a chapter that's live right now, not a plan for later.
-          </p>
-        </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {ROLES.map((r) => (
-            <div key={r.role} className="rounded-2xl border border-espresso-900/10 bg-cream p-5 shadow-soft">
-              <r.icon className="h-6 w-6 text-caramel-600" strokeWidth={1.7} />
-              <p className="mt-3 font-display text-base font-semibold text-espresso-950">{r.role}</p>
-              <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">{r.desc}</p>
-              <p className="mt-2.5 text-xs font-semibold text-caramel-700">{r.chapter}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Course map */}
-      <section id="course-map" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-14">
+      <section id="course-map" data-track="course-map" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-14">
         <h2 className="font-display text-3xl font-semibold text-espresso-950">The course map</h2>
         <p className="mt-2 max-w-2xl text-espresso-700/75">
-          22 chapters across two tiers. Tier 1 breaks the fear and makes you a confident builder of your own tools.
-          Tier 2 (built once Tier 1 proves itself) goes into how real apps work underneath.
+          12 chapters, all live now. They take you from your first tool to automating a real task from your own job.
+          A second tier, on how real apps work underneath, is planned once enough learners finish this one.
         </p>
 
         <div className="mt-8 space-y-5">
@@ -444,7 +444,7 @@ export default function Landing() {
       </section>
 
       {/* Pricing / offer */}
-      <section className="mx-auto max-w-5xl px-5 py-14">
+      <section data-track="pricing" className="mx-auto max-w-5xl px-5 py-14">
         <div className="overflow-hidden rounded-3xl border border-caramel-400/40 bg-gradient-to-br from-espresso-950 to-espresso-800 p-8 text-center text-caramel-50 sm:p-12">
           {hasPaid ? (
             <>
@@ -504,26 +504,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Teaching principles */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
-        <h2 className="font-display text-3xl font-semibold text-espresso-950">Ten rules every chapter follows</h2>
-        <p className="mt-2 max-w-2xl text-espresso-700/75">
-          "Beginner-friendly" is a slogan until you check it against something. Every chapter is checked against
-          these before it ships.
-        </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {PRINCIPLES.map((p) => (
-            <div key={p.title} className="rounded-2xl bg-cream p-4 shadow-soft">
-              <p.icon className="h-5 w-5 text-caramel-600" strokeWidth={1.7} />
-              <p className="mt-2.5 text-sm font-semibold text-espresso-950">{p.title}</p>
-              <p className="mt-1 text-xs leading-snug text-espresso-700/70">{p.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Blog teaser */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
+      <section data-track="blog" className="mx-auto max-w-6xl px-5 py-14">
         <div className="overflow-hidden rounded-3xl border border-espresso-900/10 bg-cream p-6 sm:p-10">
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div className="max-w-xl">
@@ -562,7 +544,7 @@ export default function Landing() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-5 py-14">
+      <section data-track="faq" className="mx-auto max-w-3xl px-5 py-14">
         <h2 className="font-display text-3xl font-semibold text-espresso-950">Questions before you start</h2>
         <div className="mt-6 divide-y divide-espresso-900/10 rounded-2xl border border-espresso-900/10 bg-cream">
           {FAQS.map((f, idx) => {
@@ -584,7 +566,7 @@ export default function Landing() {
       </section>
 
       {/* Final CTA */}
-      <section className="mx-auto max-w-4xl px-5 py-16 text-center">
+      <section data-track="final" className="mx-auto max-w-4xl px-5 py-16 text-center">
         <h2 className="font-display text-3xl font-semibold text-espresso-950 sm:text-4xl">
           Your first tool is twenty minutes away.
         </h2>
@@ -593,11 +575,12 @@ export default function Landing() {
           onClick={() => logEvent("cta-final")}
           className="mt-6 inline-flex items-center gap-2 rounded-xl bg-espresso-950 px-7 py-4 font-semibold text-caramel-100 shadow-lift transition hover:bg-espresso-800"
         >
-          Start Chapter 0 (free) <ArrowRight className="h-4 w-4" />
+          {ctaLabel} <ArrowRight className="h-4 w-4" />
         </Link>
       </section>
 
       <SiteFooter />
+      {!user && <StickyStartBar to={startCtaPath} label={ctaLabel} />}
     </div>
   );
 }
@@ -672,6 +655,43 @@ function ModuleBlock({
             <div key={c.id} className="min-w-0">{content}</div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+// Phones only: once the hero has scrolled away, keeps the free start one tap
+// away. Hidden on large screens, where the hero and demo sit side by side.
+function StickyStartBar({ to, label }: { to: string; label: string }) {
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShown(window.scrollY > 700);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div
+      className={`fixed inset-x-0 bottom-0 z-30 border-t border-espresso-900/10 bg-paper/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-md transition-transform duration-300 lg:hidden ${
+        shown ? "translate-y-0" : "translate-y-full"
+      }`}
+      aria-hidden={!shown}
+    >
+      <div className="mx-auto flex max-w-md items-center justify-between gap-3">
+        <p className="text-xs leading-snug text-espresso-700/75">
+          Chapters 0–3 free.
+          <br />
+          No account to start.
+        </p>
+        <Link
+          to={to}
+          tabIndex={shown ? 0 : -1}
+          onClick={() => logEvent("cta-sticky")}
+          className="flex shrink-0 items-center gap-1.5 rounded-xl bg-espresso-950 px-4 py-2.5 text-sm font-semibold text-caramel-100 transition hover:bg-espresso-800"
+        >
+          {label} <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </div>
   );
