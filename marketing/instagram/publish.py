@@ -2,13 +2,14 @@
 
 Usage:
   python publish.py check
-  python publish.py reel VIDEO.mp4 "Reel 3" [--ai] [--yes]
+  python publish.py reel VIDEO.mp4 "Reel 3" [--ai] [--cover-ms=27900] [--yes]
 
 check   shows which account the token reaches, to test the setup.
 reel    uploads VIDEO.mp4 straight from this machine (resumable upload, no public URL needed)
         with the caption from the captions.md section whose heading starts with the given name,
         e.g. "Reel 3". --ai turns on Instagram's "AI info" label (is_ai_generated); use it for
-        every video with the AI presenter or the AI voice. Without --yes it only prints what it
+        every video with the AI presenter or the AI voice. --cover-ms picks the cover frame (milliseconds
+        into the video; Instagram's thumb_offset), otherwise it's the first frame. Without --yes it only prints what it
         would post. A post is public as soon as it is published: run with --yes only after the
         owner has approved that exact video and caption.
 
@@ -68,17 +69,19 @@ def check():
     print(f"Token reaches @{me['username']} ({me['media_count']} posts).")
 
 
-def reel(video, name, ai, yes):
+def reel(video, name, ai, yes, cover_ms=None):
     video = pathlib.Path(video)
     caption = caption_for(name)
     size = video.stat().st_size
-    print(f"Video:   {video} ({size / 1e6:.1f} MB)\nAI info: {'on' if ai else 'OFF'}\nCaption:\n{caption}\n")
+    print(f"Video:   {video} ({size / 1e6:.1f} MB)\nAI info: {'on' if ai else 'OFF'}\nCover:   {f'{cover_ms / 1000:.1f} s in' if cover_ms else 'first frame'}\nCaption:\n{caption}\n")
     if not yes:
         print("Dry run: nothing posted. Add --yes to publish.")
         return
     params = {"media_type": "REELS", "upload_type": "resumable", "caption": caption, "share_to_feed": "true"}
     if ai:
         params["is_ai_generated"] = "true"
+    if cover_ms:
+        params["thumb_offset"] = str(cover_ms)
     container = graph("POST", f"{IG_USER}/media", **params)["id"]
     print(f"Container {container}; uploading...")
     call("POST", f"https://rupload.facebook.com/ig-api-upload/{API}/{container}", video.read_bytes(),
@@ -102,6 +105,7 @@ if __name__ == "__main__":
     if args[:1] == ["check"]:
         check()
     elif args[:1] == ["reel"] and len(args) == 3:
-        reel(args[1], args[2], "--ai" in sys.argv, "--yes" in sys.argv)
+        cover = next((int(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--cover-ms=")), None)
+        reel(args[1], args[2], "--ai" in sys.argv, "--yes" in sys.argv, cover)
     else:
         sys.exit(__doc__)

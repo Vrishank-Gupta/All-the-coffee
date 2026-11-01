@@ -428,19 +428,20 @@ Start free: link in bio.
 Video: `reels/new-reels/reel-4-ctc-calculator-hinglish.mp4` · Link: allthecoffee.in/tools/ctc-calculator · Turn on the "AI info" label: the voice is AI-generated.
 
 ```
-Offer letter mein 12 LPA. Bank account mein... kitna? 🤔
+12 LPA ka offer = ₹1 lakh a month? Nahi. Haath mein kitna aayega, step by step dekhiye 👇
 
-Humne ek free calculator banaya hai jo har step dikhata hai: company ka PF, gratuity, aapka PF, professional tax, income tax. 12 lakh CTC par (50% basic, ₹2,500 professional tax), new regime mein, haath mein aate hain ₹91,387 mahine ke.
+CTC mein se pehle company ka PF aur gratuity katta hai. Phir aapka PF, professional tax aur income tax. 12 lakh CTC par (50% basic, ₹2,500 professional tax), new tax regime FY 2026-27 mein: income tax ₹0, aur haath mein ₹91,387 mahine ke.
 
-Ek cheez dhyaan rakhiye: 17 September 2026 se PF wage ceiling ₹15,000 se ₹25,000 ho gayi hai. Purani jaankari wale calculators ab galat jawaab dete hain.
+Dhyaan rakhiye: 17 September 2026 se PF wage ceiling ₹15,000 se ₹25,000 ho gayi hai. Purani jaankari wale calculators ab galat jawaab dete hain.
 
-Calculator free hai, sign-up nahi chahiye. Aur Chapter 3 mein aap ise khud banana seekhte hain, AI ko seedhi bhasha mein samjha ke, aur check karke ki jawaab sahi hai.
+Apna CTC daal ke dekhiye, free CTC to in-hand salary calculator, no sign-up: link in bio.
+Aur Chapter 3 mein aap ise khud banana seekhte hain, bina coding ke.
 
-Free mein shuru kijiye: link in bio.
+Kisi dost ka naya offer letter aaya hai? Unhe bhej dijiye. Aur save kar lijiye, appraisal ke time kaam aayega.
 
 Estimate hai, final word aapki payslip ka. (The voice in this video is AI-generated.)
 
-#AllTheCoffee #SalaryIndia #CTC #IncomeTax #NewTaxRegime #PracticalAI
+#inhandsalary #ctccalculator #newtaxregime #salaryindia #AllTheCoffee
 ```
 
 ## Reel 5: WhatsApp follow-up desk (English, AI presenter, free tool, Chapter 4)
