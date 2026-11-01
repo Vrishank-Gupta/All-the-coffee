@@ -14,6 +14,12 @@ import Privacy from "./pages/Privacy";
 import RefundPolicy from "./pages/RefundPolicy";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
+import Tools from "./pages/Tools";
+import CtcTool from "./pages/tools/CtcTool";
+import WhatsAppTool from "./pages/tools/WhatsAppTool";
+import OfferLettersTool from "./pages/tools/OfferLettersTool";
+import InvoiceTool from "./pages/tools/InvoiceTool";
+import ContractTool from "./pages/tools/ContractTool";
 import ChapterZero from "./pages/ChapterZero";
 import ChapterOne from "./pages/ChapterOne";
 import ChapterTwo from "./pages/ChapterTwo";
@@ -53,6 +59,12 @@ export default function App() {
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/tools/ctc-calculator" element={<CtcTool />} />
+            <Route path="/tools/whatsapp-follow-ups" element={<WhatsAppTool />} />
+            <Route path="/tools/offer-letters" element={<OfferLettersTool />} />
+            <Route path="/tools/invoice-reader" element={<InvoiceTool />} />
+            <Route path="/tools/contract-check" element={<ContractTool />} />
             <Route path="/chapter/0" element={<ChapterZero />} />
             <Route path="/chapter/1" element={<ChapterOne />} />
             <Route path="/chapter/2" element={<Protected><ChapterTwo /></Protected>} />

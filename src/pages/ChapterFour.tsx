@@ -15,11 +15,43 @@ import { AppFrame } from "../components/demo/AppFrame";
 import { FollowUpTracker } from "../components/demo/FollowUpTracker";
 import { TryTrackerFeatureDemo } from "../components/demo/TryTrackerFeatureDemo";
 import { OsTabs } from "../components/demo/OsTabs";
+import { WhatsAppDesk } from "../components/tools/WhatsAppDesk";
 import { chapterById } from "../lib/courseData";
 
 const meta = chapterById(4)!;
 
 const CODE = "rounded bg-latte px-1";
+
+const WHATSAPP_PROMPT = `New feature: I want to follow up on WhatsApp in one click.
+
+Add a WhatsApp number to each follow-up. Next to each follow-up that has
+a number, add a "WhatsApp" button that opens WhatsApp with that person's
+chat and this message already typed:
+
+"Hi [their first name], just following up on [what it is]. Is today a
+good time for a quick call?"
+
+Use WhatsApp's click-to-chat link (wa.me). Follow-ups without a number
+don't show the button. Keep everything else exactly the same, including
+my saved follow-ups, and give me the complete updated HTML file again in
+one code block.`;
+
+const WHATSAPP_FIX_NUMBER = `I expected: the WhatsApp button opens my own chat.
+What happened instead: WhatsApp says the number isn't valid.
+Error message: none.
+
+My numbers are Indian and people type them in different ways:
++91 98xxx xxxxx, 098xxxxxxxx, 98xxx-xxxxx. Please turn any of these into
+91 followed by the 10 digits, with no +, spaces or dashes, before making
+the link. Explain what went wrong, then fix it.`;
+
+const WHATSAPP_FIX_TEXT = `I expected: the full message, "...following up on quote #A-104 & samples.
+Is today a good time for a quick call?"
+What happened instead: the message stops at "following up on quote".
+Error message: none.
+
+Please encode the message text properly for the link (encodeURIComponent),
+so characters like # and & survive. Explain what went wrong, then fix it.`;
 
 const BRIEF_PROMPT = `Who it's for: I'm a busy professional who keeps forgetting to follow up
 on things after meetings.
@@ -62,7 +94,8 @@ export default function ChapterFour() {
       <p className="mt-3">
         Along the way you'll learn the difference between a tool and the information inside it, a distinction that
         quietly explains most "why doesn't this just work" moments you'll run into later. You'll also save your
-        first tool as a file on your own computer, so it keeps working without the chat.
+        first tool as a file on your own computer, so it keeps working without the chat. If you follow up with people on
+        WhatsApp, there's an optional extra at the end: a button that opens the chat with your message already typed.
       </p>
 
       <Callout variant="worry">
@@ -269,7 +302,50 @@ export default function ChapterFour() {
         Your data stays put.
       </p>
 
-      <SectionEyebrow n="07" label="What you can skip" />
+      <SectionEyebrow n="07" label="Optional build: follow up on WhatsApp in one click" />
+      <p>
+        Most follow-ups in India don't happen by email. They happen on WhatsApp. So give your tracker a button that
+        opens the right chat with the message already typed. You still press send yourself, so nothing goes out by
+        accident. About 15 minutes.
+      </p>
+      <Step n={10} title="Open the chat where you built your tracker and paste this">
+        If that chat is gone, start a new one, paste your saved file's code and say "this is my tool", then paste
+        the prompt below.
+      </Step>
+      <CopyBlock label="WhatsApp button prompt">{WHATSAPP_PROMPT}</CopyBlock>
+      <Step n={11} title="Save the new file over the old one, then test it on yourself">
+        Add a follow-up with <strong>your own number</strong>, typed the messy way people really type numbers:
+        with +91 and spaces, like <code className={CODE}>+91 98xxx xxxxx</code>. For "what it is", type exactly:{" "}
+        <code className={CODE}>quote #A-104 &amp; samples</code>. Click the WhatsApp button. WhatsApp lets you message
+        yourself, so it's a safe test, and nobody else gets anything.
+      </Step>
+      <Checkpoint>
+        WhatsApp opens <strong>your own chat</strong>, with the whole message typed in: "Hi [your name], just
+        following up on quote #A-104 &amp; samples. Is today a good time for a quick call?" Every word, including
+        everything after the #.
+      </Checkpoint>
+      <p>
+        <strong>Trap 1: the number.</strong> If WhatsApp says the number isn't valid or isn't on WhatsApp, the link
+        has the number in the wrong shape. Click-to-chat links need the country code and digits only: no +, no
+        spaces, no leading 0. People type numbers every possible way, so the tool has to tidy them.
+      </p>
+      <CopyBlock label="Fix trap 1">{WHATSAPP_FIX_NUMBER}</CopyBlock>
+      <p className="mt-3">
+        <strong>Trap 2: the message stops early.</strong> If the message ends at "following up on quote", the #
+        and &amp; broke it. In a web link, # and &amp; have special meanings, so text has to be "encoded" first
+        (# becomes %23, &amp; becomes %26). Without that, everything after them is quietly lost. Same fix loop:
+      </p>
+      <CopyBlock label="Fix trap 2">{WHATSAPP_FIX_TEXT}</CopyBlock>
+      <p>
+        Here's our version, with an English or Hinglish message, overdue and due-today counts, and the same number
+        tidying. It's also free at{" "}
+        <a href="/tools/whatsapp-follow-ups" className="font-semibold text-caramel-700 underline">allthecoffee.in/tools/whatsapp-follow-ups</a>.
+      </p>
+      <div className="my-5">
+        <WhatsAppDesk />
+      </div>
+
+      <SectionEyebrow n="08" label="What you can skip" />
       <p>
         How localStorage works inside the browser, how much it can hold, and what format the data is saved in.
         Developers choose between many types of storage; you'll meet the most important one, a database, much later.
@@ -313,7 +389,7 @@ export default function ChapterFour() {
         ]}
       />
 
-      <SectionEyebrow n="08" label="Try it yourself" />
+      <SectionEyebrow n="09" label="Try it yourself" />
       <TryItYourself>
         Add two features to your tracker, one at a time, testing each before moving on: show overdue follow-ups in
         red, and add a filter so you can see only one person's follow-ups. Each time, ask for the whole file again
@@ -326,7 +402,7 @@ export default function ChapterFour() {
         <strong>regression testing</strong>, but you don't need to remember the word, just the habit.
       </Callout>
 
-      <SectionEyebrow n="09" label="Words you can now use" />
+      <SectionEyebrow n="10" label="Words you can now use" />
       <WordsTable
         words={[
           { word: "Data", meaning: "The information a tool works with or keeps", sample: "Is the tool the problem, or is the data wrong?" },

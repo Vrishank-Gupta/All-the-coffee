@@ -12,9 +12,54 @@ import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { StaticDownloadLink } from "../components/chapter/StaticDownloadLink";
 import { OsProvider, OsToggle, OsCommand } from "../components/chapter/OsToggle";
 import { LibraryAppStore } from "../components/diagrams/LibraryAppStore";
+import { DownloadButton } from "../components/chapter/DownloadButton";
+import { OfferLetters } from "../components/tools/OfferLetters";
+import { SAMPLE_JOINERS_CSV, DEFAULT_TEMPLATE } from "../lib/tools/letters";
 import { chapterById } from "../lib/courseData";
 
 const meta = chapterById(9)!;
+
+const LETTERS_PROMPT = `Who it's for: I work in HR. Every month I write offer letters for new
+joiners by hand, copying names, dates and salaries from a spreadsheet.
+
+What it does: write a Python script called make_letters.py. Next to it
+are two files: joiners.csv (one row per joiner, with the columns name,
+designation, department, location, manager, joining_date, ctc) and
+letter_template.txt (my letter, with blanks in curly brackets, like
+{designation}). For each joiner, the script fills in the blanks and saves
+a Word file in a folder called letters, named like
+Offer_Letter_Priya_Nair.docx.
+- {first_name} is the first word of their name
+- {joining_date} is written like 1 December 2026
+- {ctc} is the CTC in rupees, and {ctc_words} is the same amount in words
+- {letter_date} is today's date, written like the joining date
+- {signatory} is "HR Team" and {company} is "[my company]"
+At the end it prints how many letters it made.
+
+What good looks like: I run one command and a letters folder appears,
+with a Word file for each joiner.
+
+What to avoid: keep it simple, with a short plain-English comment above
+each part. Tell me exactly which libraries I need and the exact command
+to install them.`;
+
+const LETTERS_FIX_INR = `I expected: Priya's letter to say ₹12,00,000 (Rupees Twelve Lakh Only).
+What happened instead: [what her letter says].
+Error message: none.
+
+These letters are for India. Write amounts with Indian commas
+(12,00,000 and 1,25,00,000) and in words using lakh and crore, like
+"Rupees Twelve Lakh Fifty Thousand Only". Write your own small function
+for this and explain how it works.`;
+
+const LETTERS_FIX_BLANK = `I expected: 7 letters, because Rohan Das has no designation.
+What happened instead: 8 letters, and Rohan's says "the position of in our
+Marketing team".
+Error message: none.
+
+If any cell in a joiner's row is empty, make no letter for them, and
+print which joiner was skipped and which column is empty. Explain the
+change, then give me the whole script again.`;
 
 const PROMPT = `Who it's for: I'm a beginner using VS Code and Python on [Windows/Mac].
 Every year I combine 12 monthly sales files by hand.
@@ -58,7 +103,7 @@ export default function ChapterNine() {
         </p>
         <p className="mt-3">
           Today you'll build a Python script that does it in about two seconds. And next year, it'll do it again with
-          one command.
+          one command. There's an optional second build for HR at the end: every offer letter from one template.
         </p>
 
         <Callout variant="worry">
@@ -264,7 +309,73 @@ export default function ChapterNine() {
           it.
         </p>
 
-        <SectionEyebrow n="09" label="What you can skip" />
+        <SectionEyebrow n="09" label="Optional build: every offer letter, one command" />
+        <p>
+          Same skill, HR's version. One template, a list of joiners, and a Word file for each person, with names,
+          dates and salaries filled in. It's the same pattern as the sales merge (read a file, do something for each
+          row, save the results), so it should feel familiar. About 25 minutes.
+        </p>
+        <Step n={9} title="Set up the project">
+          Make a new folder called <code className="rounded bg-latte px-1">offer-letters</code> next to{" "}
+          <code className="rounded bg-latte px-1">sales-merge</code>, and save these two files into it. The joiners
+          are made up.
+        </Step>
+        <div className="not-prose flex flex-wrap gap-3">
+          <DownloadButton filename="joiners.csv" content={SAMPLE_JOINERS_CSV + "\n"} />
+          <DownloadButton filename="letter_template.txt" content={DEFAULT_TEMPLATE + "\n"} />
+        </div>
+        <Step n={10} title="Ask your AI chat for the script">
+          Open <code className="rounded bg-latte px-1">offer-letters</code> in VS Code (File → Open Folder), then
+          paste this into a new chat. Replace <code className="rounded bg-latte px-1">[my company]</code> with any
+          name.
+        </Step>
+        <CopyBlock label="Offer letters prompt">{LETTERS_PROMPT}</CopyBlock>
+        <Step n={11} title="Create make_letters.py, install the library, run it">
+          Paste the code into a new file called <code className="rounded bg-latte px-1">make_letters.py</code> in{" "}
+          <code className="rounded bg-latte px-1">offer-letters</code>. Your AI will tell you to install a library that writes
+          Word files, called <code className="rounded bg-latte px-1">python-docx</code>:
+        </Step>
+        <p>
+          <OsCommand windows="python -m pip install python-docx" mac="python3 -m pip install python-docx" />
+        </p>
+        <p className="mt-2">Then run it:</p>
+        <p>
+          <OsCommand windows="python make_letters.py" mac="python3 make_letters.py" />
+        </p>
+        <p className="mt-2">
+          If it stops with an error about <code className="rounded bg-latte px-1">12,50,000</code>, that's Arjun's
+          CTC, which is written with commas in the CSV. Paste the error into the fix loop, like you did with July.
+        </p>
+        <Checkpoint>
+          Known answer: <strong>7 letters</strong> in the <code className="rounded bg-latte px-1">letters</code>{" "}
+          folder, and a message saying Rohan Das was skipped because his designation is empty. Open Priya's
+          letter: her CTC reads <strong>₹12,00,000 (Rupees Twelve Lakh Only)</strong>. Arjun's reads{" "}
+          <strong>₹12,50,000 (Rupees Twelve Lakh Fifty Thousand Only)</strong>, and his joining date reads 1
+          December 2026.
+        </Checkpoint>
+        <p>
+          <strong>Trap 1: the wrong commas.</strong> Python's usual way of adding commas writes{" "}
+          <code className="rounded bg-latte px-1">1,200,000</code>, the international style, and AI often writes the
+          words as "One Million Two Hundred Thousand". Both are correct somewhere, just not on an Indian offer letter.
+        </p>
+        <CopyBlock label="Fix trap 1">{LETTERS_FIX_INR}</CopyBlock>
+        <p className="mt-3">
+          <strong>Trap 2: the letter that should never go out.</strong> If you got 8 letters, open Rohan's. It
+          offers him "the position of in our Marketing team", because his designation is blank in the CSV. Nothing
+          crashed, and a broken letter is sitting in the folder, ready to email. Tell the script to refuse:
+        </p>
+        <CopyBlock label="Fix trap 2">{LETTERS_FIX_BLANK}</CopyBlock>
+        <p>
+          There's a browser version too, which previews every letter and saves them all as one PDF. Try it below with
+          the same joiners, or free at{" "}
+          <a href="/tools/offer-letters" className="font-semibold text-caramel-700 underline">allthecoffee.in/tools/offer-letters</a>.
+          The Python version is the one that makes a separate Word file per person.
+        </p>
+        <div className="my-5">
+          <OfferLetters />
+        </div>
+
+        <SectionEyebrow n="10" label="What you can skip" />
         <p>
           How pandas works inside, the many ways to install Python libraries, and "virtual environments" (a way
           developers keep different projects' libraries separate). You'll hear that last term from tech teams. For
@@ -300,7 +411,7 @@ export default function ChapterNine() {
           ]}
         />
 
-        <SectionEyebrow n="10" label="Try it yourself" />
+        <SectionEyebrow n="11" label="Try it yourself" />
         <TryItYourself>
           <p className="mb-2">
             1. Ask for a third sheet: <em>"Add a sheet called 'Totals by month' showing the total sales for each
@@ -317,7 +428,7 @@ export default function ChapterNine() {
           </p>
         </TryItYourself>
 
-        <SectionEyebrow n="11" label="Words you can now use" />
+        <SectionEyebrow n="12" label="Words you can now use" />
         <WordsTable
           words={[
             { word: "Script", meaning: "A file of code that does a task when you run it", sample: "Could we write a script to do this every month?" },

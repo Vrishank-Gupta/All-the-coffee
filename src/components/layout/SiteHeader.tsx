@@ -44,6 +44,9 @@ export function SiteHeader() {
           <Link to="/blog" className="hidden text-sm font-medium text-espresso-700/70 hover:text-espresso-900 sm:block">
             Blog
           </Link>
+          <Link to="/tools" className="hidden text-sm font-medium text-espresso-700/70 hover:text-espresso-900 sm:block">
+            Free tools
+          </Link>
           {user && (
             <Link
               to="/profile"
@@ -103,6 +106,9 @@ export function SiteHeader() {
             </a>
             <Link to="/blog" onClick={() => setMenuOpen(false)} className="rounded-lg px-2 py-2.5 text-sm font-medium text-espresso-800 hover:bg-espresso-900/5">
               Blog
+            </Link>
+            <Link to="/tools" onClick={() => setMenuOpen(false)} className="rounded-lg px-2 py-2.5 text-sm font-medium text-espresso-800 hover:bg-espresso-900/5">
+              Free tools
             </Link>
             {user && (
               <Link to="/profile" onClick={() => setMenuOpen(false)} className="flex items-center gap-1.5 rounded-lg px-2 py-2.5 text-sm font-medium text-espresso-800 hover:bg-espresso-900/5">

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reel: Bulk Offer Letters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lib/reel.css">
+<style>
+  /* Reel 3: the free bulk offer-letter tool (Chapter 9), Hinglish voice, no presenter. Joiners,
+     letters and the flagged row come from data.js, written by make-data.ts from the tool's code. */
+  .chips { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 50px; }
+  .chip { font: 600 32px 'Inter', sans-serif; padding: 16px 26px; border-radius: 99px; background: var(--card); border: 2px solid var(--line); }
+  .count { font: 700 230px/1 'Fraunces', serif; color: var(--amber); text-align: center; }
+  .fan { position: relative; height: 700px; }
+  .sheet { position: absolute; left: 290px; top: 40px; width: 380px; height: 520px; background: var(--paper); border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); padding: 34px 30px; box-sizing: border-box; color: var(--ink); font-family: 'Inter', sans-serif; transform-origin: 50% 120%; }
+  .sheet i { display: block; height: 14px; border-radius: 7px; background: #E7DACA; margin: 14px 0; }
+  .sheet i.k { background: var(--amber); width: 60%; }
+  .need { text-align: center; font: 600 46px 'Fraunces', serif; margin-top: 10px; }
+  .oops { background: var(--paper); color: var(--ink); border-radius: 26px; padding: 40px 46px; font: 32px/1.55 'Source Serif 4', serif; box-shadow: 0 30px 80px rgba(0,0,0,0.45); position: relative; }
+  .oops mark { background: none; color: var(--brick); border: 4px solid var(--brick); border-radius: 12px; padding: 0 8px; }
+  .oops .tag { position: absolute; right: 30px; top: -26px; background: var(--brick); color: #fff; font: 700 28px 'Inter', sans-serif; padding: 10px 22px; border-radius: 99px; }
+  .tool { font-family: 'Inter', sans-serif; padding: 24px 26px; }
+  .csv { font: 21px/1.5 'JetBrains Mono', monospace; background: #fff; border: 2px solid var(--paper-line); border-radius: 14px; padding: 14px 18px; color: #3A2A20; white-space: pre; overflow: hidden; }
+  .csv .empty { background: var(--brick-bg); outline: 3px solid var(--brick); border-radius: 4px; }
+  .tpl { margin-top: 16px; font: 25px/1.5 'Source Serif 4', serif; background: #fff; border: 2px solid var(--paper-line); border-radius: 14px; padding: 16px 20px; color: var(--ink); }
+  .tpl b { background: var(--car-bg); color: var(--car); border-radius: 6px; padding: 0 6px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 22px; }
+  .make { margin-top: 16px; background: var(--ink); color: var(--cream); border-radius: 16px; text-align: center; padding: 20px; font-size: 30px; font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .lt { background: var(--paper); color: var(--ink); border-radius: 18px; padding: 22px 24px; display: flex; gap: 16px; align-items: center; font: 600 30px 'Inter', sans-serif; box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+  .lt svg { flex: none; }
+  .ready { display: flex; justify-content: center; margin-bottom: 26px; }
+  .zoomletter { background: var(--paper); color: var(--ink); border-radius: 26px; padding: 40px 46px; font: 31px/1.6 'Source Serif 4', serif; box-shadow: 0 30px 80px rgba(0,0,0,0.45); }
+  .zoomletter .hl { background: var(--sage-bg); border-radius: 10px; padding: 4px 8px; box-shadow: inset 0 0 0 3px var(--sage); }
+  .wrong { margin-top: 30px; text-align: center; font: 600 44px 'Fraunces', serif; color: var(--muted); }
+  .wrong s { text-decoration-color: var(--rust); text-decoration-thickness: 6px; }
+  .warn { background: var(--brick-bg); color: var(--brick); border-radius: 26px; padding: 36px 40px; font: 600 36px/1.4 'Inter', sans-serif; display: flex; gap: 22px; align-items: flex-start; box-shadow: 0 30px 80px rgba(0,0,0,0.35); }
+  .badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .badges span { font: 700 24px 'Inter', sans-serif; padding: 10px 20px; border-radius: 99px; background: var(--card); border: 2px solid var(--line); }
+  .ch { background: var(--card); border: 2px solid var(--line); border-radius: 30px; padding: 44px 48px; }
+  .ch .num { font: 700 150px/1 'Fraunces', serif; color: var(--amber); }
+  .ch h3 { font: 700 60px/1.1 'Fraunces', serif; margin: 10px 0 20px; }
+  .ch p { font-size: 36px; line-height: 1.35; margin: 0; color: var(--muted); }
+  .ch p b { color: var(--cream); }
+  .end { align-items: center; text-align: center; }
+  .logo { display: flex; align-items: center; gap: 22px; justify-content: center; }
+  .logo .mark { width: 96px; height: 96px; border-radius: 999px; background: var(--cream); display: flex; align-items: center; justify-content: center; }
+  .logo span { font: 700 60px 'Fraunces', serif; }
+  .end .url { align-self: center; font-size: 54px; padding: 28px 54px; margin-top: 50px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="progress"></div>
+  <div id="brand" class="el"><span>All The Coffee · Free tool</span><span>Bulk offer letters</span></div>
+
+  <!-- 0: how many joiners -->
+  <section class="scene" data-from="0" data-to="1" data-tr="zoom">
+    <p class="big fd el" data-at="0" style="text-align: center;">December<br><span class="amber">joiners</span></p>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <!-- 1: eight letters -->
+  <section class="scene" data-from="1" data-to="2" data-tr="push">
+    <div class="count el" data-at="1" data-fx="pop">8</div>
+    <div class="fan" id="fan"></div>
+    <p class="need el" data-at="1.5">Name, date, CTC. <span class="amber">All of it right.</span></p>
+  </section>
+
+  <!-- 2: the copy-paste mistake -->
+  <section class="scene" data-from="2" data-to="3" data-tr="push">
+    <div class="oops el" data-at="2" data-fx="up">
+      <span class="tag el" data-at="2.55" data-fx="pop">Copy-paste mistake</span>
+      Offer letter: <b>Arjun Malhotra</b><br><br>
+      Dear <mark class="el" data-at="2.5" data-fx="pop" style="opacity:1">Priya</mark>,<br>
+      We are pleased to offer you the position of Sales Manager...
+    </div>
+  </section>
+
+  <!-- 3-4: the list and the template -->
+  <section class="scene" data-from="3" data-to="5" data-tr="zoom" id="toolScene">
+    <p class="mid fd el" data-at="3" style="text-align: center; margin-bottom: 30px;">Ab aise kijiye <span class="amber">→</span></p>
+    <div class="window paper el" data-at="3.6" data-fx="up">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">Bulk offer letters</span></div>
+      <div class="tool">
+        <div class="csv" id="csv"></div>
+        <div class="tpl el" data-at="4.4" data-fx="up">Dear <b>{first_name}</b>, we are pleased to offer you the position of <b>{designation}</b>... Your CTC will be <b>{ctc}</b> (<b>{ctc_words}</b>).</div>
+        <div class="make el" data-at="4.75" data-fx="up" id="makeBtn">Make letters</div>
+      </div>
+    </div>
+    <svg class="cursor" id="cur" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 9.5-7 1.5 4 8-3 1.5-4-8L5 19z" fill="#FBF1E2" stroke="#241711" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <div class="ripple" id="rip"></div>
+  </section>
+
+  <!-- 5: every letter -->
+  <section class="scene" data-from="5" data-to="6" data-tr="push">
+    <div class="ready"><span class="pill el" data-at="5.2" data-fx="pop" style="background: var(--sage-bg); color: var(--sage);">7 letters ready</span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- 6: CTC the Indian way -->
+  <section class="scene" data-from="6" data-to="7" data-tr="zoom">
+    <div class="zoomletter el" data-at="6" data-fx="up">Offer letter: <b>Arjun Malhotra</b><br><br><span id="ctcline"></span></div>
+    <p class="wrong el" data-at="6.6">Not <s>₹1,250,000</s> or <s>1.25 million</s></p>
+  </section>
+
+  <!-- 7: the row it refused -->
+  <section class="scene" data-from="7" data-to="8" data-tr="glitch">
+    <div class="window paper el" data-at="7" data-fx="up">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">joiners.csv · line 7</span></div>
+      <div class="tool"><div class="csv" id="rohan"></div></div>
+    </div>
+    <div class="warn el" data-at="7.5" data-fx="pop" style="margin-top: 30px;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <span id="problem"></span>
+    </div>
+  </section>
+
+  <!-- 8: free tool -->
+  <section class="scene" data-from="8" data-to="9" data-tr="rise">
+    <div class="phone el" data-at="8" data-fx="rise"><div class="screen"><img id="shot" src="../lib/tool-shots/offer-letters.jpg" alt=""></div></div>
+    <div class="side">
+      <div class="eyebrow el" data-at="8.1">Free tool</div>
+      <div class="chtitle fd el" data-at="8.2">Bulk offer letters</div>
+      <div class="badges"><span class="el" data-at="8.4" data-fx="pop">Free</span><span class="el" data-at="8.55" data-fx="pop">No sign-up</span><span class="el" data-at="8.7" data-fx="pop">Save all as PDF</span></div>
+    </div>
+  </section>
+
+  <!-- 9: Chapter 9 -->
+  <section class="scene" data-from="9" data-to="10" data-tr="push">
+    <div class="ch el" data-at="9" data-fx="up">
+      <div class="num">9</div>
+      <h3>Chapter 9: Your first automation script</h3>
+      <p>One command, <b>a Word file for every joiner</b>. You describe it to AI in plain English, and check it against a known answer.</p>
+    </div>
+  </section>
+
+  <!-- 10: start free -->
+  <section class="scene end" data-from="10" data-to="99" data-tr="zoom">
+    <div class="logo el" data-at="10" data-fx="pop">
+      <div class="mark"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#241711" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg></div>
+      <span>All The Coffee</span>
+    </div>
+    <p class="mid fd el" data-at="10.15" style="margin-top: 40px;">From AI-anxious to builder.</p>
+    <div class="url el" data-at="10.3" data-fx="pop" id="url"> </div>
+  </section>
+
+  <div id="caption" class="fd"><p id="cap"></p></div>
+</div>
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script src="../lib/reel-engine.js"></script>
+<script>
+  const D = window.DATA, R = window.REEL, $ = R.$;
+  const people = D.rows.slice(1).map((r) => r[0]);
+  $('chips').innerHTML = people.map((n, i) => `<span class="chip el" id="c${i}">${n}</span>`).join('');
+  $('fan').innerHTML = people.map((_, i) => `<div class="sheet" id="s${i}"><i class="k"></i><i></i><i style="width:80%"></i><i></i><i class="k" style="width:40%"></i><i></i><i style="width:70%"></i></div>`).join('');
+  const csvLines = D.rows.map((r) => r.map((c) => (c.includes(',') ? `"${c}"` : c)).join(','));
+  $('csv').innerHTML = csvLines.slice(0, 7).map((l) => l.replace(/,,/, ',<span class="empty">&nbsp;&nbsp;</span>,')).join('\n');
+  $('rohan').innerHTML = csvLines[0] + '\n' + csvLines[6].replace(/,,/, ',<span class="empty">&nbsp;&nbsp;&nbsp;&nbsp;</span>,');
+  $('problem').textContent = D.problems[0];
+  const doc = '<svg width="40" height="48" viewBox="0 0 40 48" aria-hidden="true"><path d="M4 2h22l10 10v34H4z" fill="#2B5797"/><path d="M26 2v10h10" fill="#6A8FD0"/><text x="20" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="sans-serif">DOC</text></svg>';
+  $('grid').innerHTML = D.names.map((n, i) => `<div class="lt" id="l${i}">${doc}${n}</div>`).join('');
+  $('ctcline').innerHTML = D.arjunCtc.replace(/(₹[\d,]+ \(Rupees [^)]+\))/, '<span class="hl">$1</span>');
+
+  REEL.init({
+    captions: [
+      "HR walon, is mahine kitne joiners hain?",
+      "Aath? Matlab aath offer letter. Aur har ek mein naam, taareekh, CTC, sab sahi chahiye.",
+      "Copy, paste, copy, paste... aur ek galti, toh poora letter bekaar.",
+      "Ab aise kijiye.",
+      "Joiners ki list daaliye, aur letter ka template.",
+      "Ek click mein, har kisi ka letter taiyaar!",
+      "Aur CTC, bilkul Indian style mein. ₹12,50,000, shabdon mein bhi.",
+      "Rohan ki designation khaali thi? Toh uska letter banta hi nahi. Tool pehle hi bata deta hai.",
+      "Ye tool, All The Coffee par bilkul free hai.",
+      "Aur Chapter 9 mein, aap ise khud banaate hain, AI ko seedhi bhasha mein samjha ke.",
+      "Free mein shuru kijiye, allthecoffee.in par!",
+    ],
+    onSeek(t, sv, scenes) {
+      const { at, clamp, easeOut, easeInOut, back } = R;
+      people.forEach((_, i) => R.show($('c' + i), at(0.35 + i * 0.07), t, 0.4));
+      people.forEach((_, i) => {
+        const p = easeOut((t - at(1.1) - i * 0.05) / 0.5), a = (i - 3.5) * 9 * p;
+        $('s' + i).style.transform = `rotate(${a}deg) translateY(${(1 - p) * 300}px)`;
+        $('s' + i).style.opacity = clamp(p * 2);
+      });
+      if (sv[3]) {
+        const k = R.click($('cur'), $('rip'), scenes[3], $('makeBtn'), at(4.8), at(4.97), t);
+        $('makeBtn').style.transform = `scale(${k})`;
+      }
+      D.names.forEach((_, i) => {
+        const p = (t - at(5.15) - i * 0.07) / 0.45;
+        $('l' + i).style.opacity = clamp(p * 3);
+        $('l' + i).style.transform = `scale(${0.5 + 0.5 * back(p)}) translateY(${(1 - easeOut(p)) * 80}px)`;
+      });
+      if (sv[6]) $('shot').style.transform = `translateY(${-220 * easeInOut((t - at(8.2)) / 2)}px)`;
+      const U = 'allthecoffee.in';
+      const n = Math.round(clamp((t - at(10.35)) / (at(10.9) - at(10.35))) * U.length);
+      $('url').textContent = U.slice(0, n) || ' ';
+      const pulse = t > at(10.9) ? 0.5 + 0.5 * Math.sin((t - at(10.9)) * 5) : 0;
+      $('url').style.boxShadow = `0 0 ${20 + 30 * pulse}px rgba(242, 189, 124, ${0.25 + 0.35 * pulse})`;
+    },
+  });
+</script>
+</body>
+</html>

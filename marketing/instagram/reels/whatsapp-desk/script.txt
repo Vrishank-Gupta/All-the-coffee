@@ -1,0 +1,11 @@
+Quick question. How many people are you supposed to follow up with today? | Quick question. How many people are you supposed to follow up with today? | 0.35
+And how many will you actually remember? | And how many will you actually remember? | 0.45
+Here's a tiny tool that fixes that. | Here's a tiny tool that fixes that. | 0.3
+Add a name, a number, and what it's about. | Add a name, a number, and what it's about. | 0.3
+It shows you who's overdue, and who's due today. | It shows you who's overdue, and who's due today. | 0.3
+One tap, and WhatsApp opens with your message already written. | One tap, and WhatsApp opens with your message already written. | 0.3
+In English, or in Hinglish. Your choice. | In English, or in Hinglish. Your choice. | 0.3
+You still press send yourself, so nothing goes out by mistake. | You still press send yourself, so nothing goes out by mistake. | 0.45
+It's free on All The Coffee. No sign-up. | It's free on All The Coffee. No sign up. | 0.3
+And in Chapter Four, you build it yourself, just by describing it to AI. | And in Chapter four, you build it yourself, just by describing it to AI. | 0.4
+Start free at all the coffee dot in. | Start free at all the coffee dot in. | 0.5

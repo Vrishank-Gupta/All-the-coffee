@@ -24,6 +24,10 @@ export const PAGE_META = {
     title: "Blog",
     description: "Weekly, practical AI insights for HR, finance, ops, sales and marketing professionals. No hype, no jargon.",
   },
+  "/tools": {
+    title: "Free Tools for Office Work",
+    description: "Free tools for real office work: salary, follow-ups, letters, invoices, contracts. No sign-up. Each one is also a build in the course.",
+  },
   "/terms": {
     title: "Terms of Service",
     description: "The terms that apply when you use All The Coffee and its course.",

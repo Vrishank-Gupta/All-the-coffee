@@ -18,9 +18,45 @@ import { ModuleCompleteBadge } from "../components/demo/ModuleCompleteBadge";
 import { NervousCheckIn } from "../components/demo/NervousCheckIn";
 import { FoundingOfferBox } from "../components/demo/FoundingOfferBox";
 import { ModuleBSneakPeek } from "../components/demo/ModuleBSneakPeek";
+import { CtcCalculator } from "../components/tools/CtcCalculator";
 import { chapterById } from "../lib/courseData";
 
 const meta = chapterById(3)!;
+
+const CTC_PROMPT = `Who it's for: I'm a salaried employee in India. I want to know what my
+CTC really pays me each month.
+
+What it does: I enter my yearly CTC, my basic salary as a percentage
+of CTC (start at 50%), and my professional tax per year (start at 2,500).
+The tool shows my monthly in-hand salary and every step behind it:
+- the employer's PF and gratuity come out of CTC first, which gives my
+  gross salary (gratuity is 4.81% of basic)
+- then my own PF, professional tax and income tax come out of gross
+PF is 12% of basic from me and 12% from my employer, up to the
+government's PF wage ceiling. Income tax uses India's new tax regime for
+FY 2026-27 for a salaried resident, with the standard deduction and the
+rebate.
+
+What good looks like: every step is shown, so I can check it.
+
+What to avoid: don't use the old tax regime, and don't guess anything I
+haven't told you; ask me instead.`;
+
+const CTC_FIX_PF = `I expected: employer PF of ₹36,000 a year for a ₹12 lakh CTC.
+What happened instead: ₹21,600.
+Error message: none.
+
+The PF wage ceiling went up from ₹15,000 to ₹25,000 a month on
+17 September 2026, so PF is now 12% of basic up to ₹25,000 a month.
+Please explain what went wrong, then fix it.`;
+
+const CTC_FIX_RELIEF = `I expected: total tax of ₹47,393 for a ₹13,90,000 CTC.
+What happened instead: [the tax you see].
+Error message: none.
+
+Just above ₹12 lakh of taxable income, marginal relief applies: the tax
+before cess can't be more than the income above ₹12 lakh. Please explain
+what went wrong, then fix it.`;
 
 const FIX_LOOP_TEMPLATE = `I expected: [what should have happened]
 What happened instead: [what you saw]
@@ -78,7 +114,8 @@ export default function ChapterThree() {
       <p>
         This is the last chapter of Module A. Today you'll break things on purpose (twice), then fix them calmly,
         using a simple three-step method you'll use for the rest of this course, and probably the rest of your
-        career. At the end there's an optional bonus on writing prompts that get better results the first time.
+        career. At the end there's an optional bonus on writing prompts that get better results the first time, and an
+        optional build that puts everything together: a calculator for what your CTC really pays each month.
       </p>
 
       <Callout variant="worry">
@@ -205,7 +242,49 @@ export default function ChapterThree() {
       </div>
       <p>The second prompt takes one extra minute to write and usually saves ten minutes of back-and-forth.</p>
 
-      <SectionEyebrow n="08" label="What just happened" />
+      <SectionEyebrow n="08" label="Optional build: your real salary, and two traps" />
+      <p>
+        One more build, for when you have 20 minutes: a calculator that turns a CTC into the salary that actually
+        lands in your bank account. Everyone with an offer letter wonders this. It also sets two traps that test
+        everything in this chapter, because tax rules change and the AI doesn't always know.
+      </p>
+      <Step n={1} title="Start a new chat and paste this brief">
+        It uses the intern brief from the bonus section. Notice what it doesn't say: the tax slabs and the PF
+        ceiling. Those are left to the AI, on purpose.
+      </Step>
+      <CopyBlock label="CTC to in-hand prompt">{CTC_PROMPT}</CopyBlock>
+      <Checkpoint>
+        Known answer: a <strong>₹12,00,000</strong> CTC with 50% basic and ₹2,500 professional tax gives{" "}
+        <strong>₹91,387 a month</strong>. Along the way: employer PF ₹36,000, gratuity ₹28,860, gross salary
+        ₹11,35,140, and income tax ₹0, because taxable income is under ₹12 lakh. Then try{" "}
+        <strong>₹13,90,000</strong>: total tax ₹47,393, and ₹1,02,890 a month.
+      </Checkpoint>
+      <p>
+        <strong>Trap 1: the AI's knowledge has a date.</strong> If your PF shows ₹21,600 and your monthly figure is
+        ₹93,787, the AI used the old PF wage ceiling of ₹15,000 a month. It went up to ₹25,000 on 17 September 2026,
+        and an AI that learned before then simply doesn't know. No error message, just a confident, outdated
+        answer. When a rule might have changed, tell the AI the current rule:
+      </p>
+      <CopyBlock label="Fix trap 1">{CTC_FIX_PF}</CopyBlock>
+      <p className="mt-3">
+        <strong>Trap 2: the ₹12 lakh cliff.</strong> Up to ₹12 lakh of taxable income, the rebate cancels the tax.
+        Just above it, the tax doesn't jump straight to the full amount: marginal relief caps it at your income above
+        ₹12 lakh. For the ₹13,90,000 CTC, a tool that forgets this shows ₹69,509 of tax instead of ₹47,393. Same fix
+        loop:
+      </p>
+      <CopyBlock label="Fix trap 2">{CTC_FIX_RELIEF}</CopyBlock>
+      <p>Here's our version to check yours against. It shows every step, the way you asked yours to.</p>
+      <div className="my-5">
+        <CtcCalculator />
+      </div>
+      <p>
+        It's also free for anyone at{" "}
+        <a href="/tools/ctc-calculator" className="font-semibold text-caramel-700 underline">allthecoffee.in/tools/ctc-calculator</a>,
+        for the next friend staring at an offer letter. Treat any calculator, yours or ours, as an estimate to plan
+        with: the payslip and the payroll team have the final word.
+      </p>
+
+      <SectionEyebrow n="09" label="What just happened" />
       <p>
         You met all three kinds of bug, and fixed two of them on purpose. You learned that error messages have a
         structure you can read, that the AI can help even when you don't understand the error, and that testing
@@ -213,7 +292,7 @@ export default function ChapterThree() {
         Module A. From now on, when something breaks, you'll have a method instead of a panic.
       </p>
 
-      <SectionEyebrow n="09" label="What you can skip" />
+      <SectionEyebrow n="10" label="What you can skip" />
       <p>
         The different types of errors (there are dozens), how to find hidden errors using developer tools in your
         browser, and how to fix code by hand. The AI does the heavy lifting; your job is to notice, describe and
@@ -241,7 +320,7 @@ export default function ChapterThree() {
         ]}
       />
 
-      <SectionEyebrow n="10" label="Try it yourself" />
+      <SectionEyebrow n="11" label="Try it yourself" />
       <TryItYourself>
         <p className="mb-2"><strong>1. Bonus: rewrite a vague prompt.</strong> If you read the intern section, take "Make a tool to split a restaurant bill" and rewrite it using the four-part intern brief. Then build and test it with numbers you can check.</p>
         <p>
@@ -254,7 +333,7 @@ export default function ChapterThree() {
         </RevealHint>
       </TryItYourself>
 
-      <SectionEyebrow n="11" label="Words you can now use" />
+      <SectionEyebrow n="12" label="Words you can now use" />
       <WordsTable
         words={[
           { word: "Bug", meaning: "A mistake in software that makes it behave wrongly", sample: "Is that a bug, or is it working as designed?" },
@@ -264,7 +343,7 @@ export default function ChapterThree() {
         ]}
       />
 
-      <SectionEyebrow n="12" label="Module A complete" />
+      <SectionEyebrow n="13" label="Module A complete" />
       <p>
         Four chapters ago you weren't sure you belonged here. Since then you've built a tool, changed it, read its
         code, and fixed two bugs on purpose, and all of it was free. That's not nothing: that's further than most people

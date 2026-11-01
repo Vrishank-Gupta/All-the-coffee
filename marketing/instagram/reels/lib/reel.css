@@ -1,0 +1,66 @@
+/* Shared styles for the 1080x1920 tool reels (see reel-engine.js). Add class "avatar" to <body>
+   for the layout with the presenter in a ring at the bottom left; without it, the screens are
+   taller and the captions sit centred under them. */
+:root { --bg: #241711; --cream: #FBF1E2; --amber: #F2BD7C; --muted: #C9B7A3; --card: #33221A; --line: #4A3428; --ink: #241711;
+        --paper: #FBF6EE; --paper-line: #E8D9C4; --rust: #B5562B; --green: #9ED39A; --wa: #1F8A4C; --wa-bubble: #E7F8E2;
+        --sage-bg: #E3EFDF; --sage: #3F6E3A; --car-bg: #F7E4C8; --car: #9A5B1E; --brick-bg: #F7DDD5; --brick: #A43D24; --latte-bg: #EADFCF; --latte: #5A4636; }
+html, body { margin: 0; background: var(--bg); }
+#stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: var(--bg); color: var(--cream); font-family: 'Source Serif 4', Georgia, serif; }
+.fd { font-family: 'Fraunces', Georgia, serif; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ui { font-family: 'Inter', system-ui, sans-serif; }
+.el { opacity: 0; }
+.amber { color: var(--amber); }
+.glow { position: absolute; border-radius: 999px; filter: blur(90px); pointer-events: none; }
+#g1 { width: 700px; height: 700px; background: rgba(242, 189, 124, 0.16); }
+#g2 { width: 600px; height: 600px; background: rgba(181, 86, 43, 0.20); }
+#progress { position: absolute; left: 0; top: 0; height: 10px; background: var(--amber); }
+#brand { position: absolute; top: 196px; left: 60px; right: 60px; display: flex; justify-content: space-between; font-size: 28px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+#brand span:last-child { color: var(--muted); }
+
+.scene { position: absolute; left: 60px; width: 960px; top: 260px; height: 1100px; display: none; flex-direction: column; justify-content: center; transform-origin: 50% 50%; }
+body.avatar .scene { top: 250px; height: 880px; }
+.label { font-size: 30px; color: var(--muted); margin: 0 0 20px; }
+.label b { color: var(--cream); font-weight: 600; }
+.big { font-size: 96px; line-height: 1.04; margin: 0; }
+.mid { font-size: 58px; line-height: 1.15; margin: 0; }
+
+.window { background: var(--card); border: 2px solid var(--line); border-radius: 30px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35); flex: none; position: relative; }
+.bar { display: flex; align-items: center; gap: 12px; padding: 18px 26px; border-bottom: 2px solid var(--line); font-size: 25px; color: var(--muted); }
+.dot { width: 15px; height: 15px; border-radius: 99px; background: var(--line); }
+.bar .name { margin-left: 10px; }
+.paper { background: var(--paper); color: var(--ink); border-color: var(--paper-line); }
+.paper .bar { border-bottom-color: var(--paper-line); color: #6B5444; }
+.paper .dot:nth-child(1) { background: #E0796A; } .paper .dot:nth-child(2) { background: #E8B04F; } .paper .dot:nth-child(3) { background: #7DB36E; }
+.chat { padding: 30px 36px 20px; font-size: 30px; line-height: 1.42; white-space: pre-wrap; }
+.who { font-size: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; font-family: 'Inter', sans-serif; }
+.caret { display: inline-block; width: 4px; height: 36px; background: var(--amber); vertical-align: -7px; margin-left: 3px; }
+.btn { background: var(--amber); color: var(--ink); font-weight: 700; font-size: 30px; padding: 16px 40px; border-radius: 99px; display: inline-block; font-family: 'Inter', sans-serif; }
+.cursor { position: absolute; width: 54px; height: 54px; pointer-events: none; z-index: 5; left: 0; top: 0; opacity: 0; }
+.ripple { position: absolute; border-radius: 99px; border: 5px solid var(--amber); pointer-events: none; z-index: 4; opacity: 0; }
+.pill { font-family: 'Inter', sans-serif; font-weight: 700; border-radius: 99px; padding: 8px 20px; font-size: 26px; display: inline-block; }
+
+/* The site on a phone */
+.phone { position: absolute; left: 0; top: 70px; width: 420px; height: 880px; border-radius: 64px; background: #0E0907; padding: 14px; box-sizing: border-box; box-shadow: 0 40px 90px rgba(0,0,0,0.5), inset 0 0 0 3px #4A3428; }
+body.avatar .phone { top: 0; height: 860px; }
+.screen { position: relative; width: 392px; height: 100%; border-radius: 50px; overflow: hidden; background: #FBF6EE; }
+.screen img { position: absolute; left: 0; top: 0; width: 392px; }
+.side { position: absolute; left: 470px; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+.eyebrow { font-size: 26px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); font-weight: 600; }
+.chtitle { font-size: 52px; line-height: 1.1; margin: 16px 0 6px; }
+.pcard { border-radius: 26px; padding: 22px 28px; font-size: 28px; line-height: 1.3; margin-top: 18px; }
+.pcard b { font-family: 'Fraunces', Georgia, serif; font-size: 36px; display: block; margin-bottom: 4px; }
+.url { margin-top: 26px; align-self: flex-start; background: var(--amber); color: var(--ink); font-size: 40px; font-weight: 700; padding: 22px 36px; border-radius: 999px; white-space: pre; }
+
+/* Captions */
+#caption { position: absolute; left: 70px; right: 70px; top: 1400px; height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; }
+#caption p { margin: 0; font-size: 54px; line-height: 1.22; font-weight: 700; }
+#caption span { display: inline-block; margin: 0 0.12em; }
+body.avatar #caption { left: 480px; right: 60px; top: 1156px; height: 380px; justify-content: flex-start; text-align: left; }
+body.avatar #caption p { font-size: 50px; }
+body.avatar #caption span { margin: 0 0.24em 0 0; }
+
+/* Presenter ring */
+#ring { position: absolute; left: 62px; top: 1156px; width: 380px; height: 380px; border-radius: 999px; box-sizing: border-box; border: 8px solid var(--amber); overflow: hidden; background: var(--card); }
+#face { width: 364px; height: 364px; display: block; object-fit: cover; object-position: 50% 12%; }
+#ai { position: absolute; left: 62px; top: 1548px; width: 380px; text-align: center; font-size: 22px; color: var(--muted); }

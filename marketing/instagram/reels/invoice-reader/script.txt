@@ -1,0 +1,12 @@
+Month end. And a folder full of vendor invoices. | Month end. And a folder full of vendor invoices. | 0.35
+Someone has to type every GSTIN, every invoice number, every amount, into Excel. | Someone has to type every GSTIN, every invoice number, every amount, into Excel. | 0.4
+Let's not do that today. | Let's not do that today. | 0.35
+Drop the P D F files in. | Drop the PDF files in. | 0.3
+Vendor, GSTIN, invoice number, date, taxable value, GST and total. One row each. | Vendor, GSTIN, invoice number, date, taxable value, GST and total. One row each. | 0.35
+And every single total gets checked. | And every single total gets checked. | 0.3
+See this one? It's a thousand rupees more than it should be. | See this one? It's a thousand rupees more than it should be. | 0.35
+And this one is a scan. It can't be read, so it tells you, instead of skipping it quietly. | And this one is a scan. It can't be read, so it tells you, instead of skipping it quietly. | 0.4
+Copy it into Excel. Done. | Copy it into Excel. Done. | 0.4
+It's free on All The Coffee, and your files never leave your computer. | It's free on All The Coffee, and your files never leave your computer. | 0.35
+And in the capstone chapter, you build your own version, for your own job. | And in the capstone chapter, you build your own version, for your own job. | 0.35
+Start free at all the coffee dot in. | Start free at all the coffee dot in. | 0.5

@@ -1,0 +1,68 @@
+Mary speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.00 4.6s | Quick question. How many people are you supposed to follow up with today?
+[0.1] wer=0.00 4.4s | Quick question, how many people are you supposed to follow up with today?
+[0.2] wer=0.00 4.4s | Quick question. How many people are you supposed to follow up with today?
+[0.3] wer=0.00 4.2s | Quick question, how many people are you supposed to follow up with today?
+[0.4] wer=0.00 4.4s | Quick question. How many people are you supposed to follow up with today?
+  -> sentence 0 keeps take 0 (wer 0.00)
+[1.0] wer=0.00 2.5s | And how many will you actually remember?
+[1.1] wer=0.00 2.7s | And how many will you actually remember?
+[1.2] wer=0.00 2.5s | And how many will you actually remember?
+[1.3] wer=0.00 3.0s | And how many will you actually remember?
+[1.4] wer=0.00 2.9s | And how many will you actually remember?
+  -> sentence 1 keeps take 0 (wer 0.00)
+[2.0] wer=0.00 2.5s | Here's a tiny tool that fixes that.
+[2.1] wer=0.29 2.7s | Here is a tiny tool that fixes that.
+[2.2] wer=0.00 2.5s | Here's a tiny tool that fixes that.
+[2.3] wer=0.00 2.7s | Here's a tiny tool that fixes that.
+[2.4] wer=0.00 2.6s | Here's a tiny tool that fixes that.
+  -> sentence 2 keeps take 0 (wer 0.00)
+[3.0] wer=0.00 3.3s | Add a name, a number and what it's about.
+[3.1] wer=0.00 3.1s | Add a name, a number, and what it's about.
+[3.2] wer=0.00 3.4s | Add a name, a number and what it's about.
+[3.3] wer=0.00 3.3s | Add a name, a number and what it's about.
+[3.4] wer=0.00 3.1s | Add a name, a number and what it's about.
+  -> sentence 3 keeps take 0 (wer 0.00)
+[4.0] wer=0.00 3.2s | It shows you who's overdue and who's due today.
+[4.1] wer=0.00 3.4s | It shows you who's overdue and who's due today.
+[4.2] wer=0.00 3.5s | It shows you who's overdue and who's due today.
+[4.3] wer=0.44 3.2s | It shows you who is overdue and who is due today.
+[4.4] wer=0.00 3.3s | It shows you who's overdue and who's due today.
+  -> sentence 4 keeps take 0 (wer 0.00)
+[5.0] wer=0.00 4.3s | One tap and WhatsApp opens with your message already written.
+[5.1] wer=0.00 4.1s | One tap and WhatsApp opens with your message already written.
+[5.2] wer=0.00 4.0s | One tap and WhatsApp opens with your message already written.
+[5.3] wer=0.00 4.1s | One tap and WhatsApp opens with your message already written.
+[5.4] wer=0.00 4.2s | One tap and WhatsApp opens with your message already written.
+  -> sentence 5 keeps take 0 (wer 0.00)
+[6.0] wer=0.14 3.2s | in English or in Henglish, your choice.
+[6.1] wer=0.14 3.5s | in English or in Henglish, your choice.
+[6.2] wer=0.14 3.1s | In English or in Henglish, your choice.
+[6.3] wer=0.14 3.2s | In English or in English, your choice.
+[6.4] wer=0.14 3.1s | In English or in Henglish, your choice.
+  -> sentence 6 keeps take 0 (wer 0.14)
+[7.0] wer=0.00 4.1s | You still press send yourself, so nothing goes out by mistake.
+[7.1] wer=0.00 4.1s | You still press send yourself, so nothing goes out by mistake.
+[7.2] wer=0.00 3.9s | You still press send yourself, so nothing goes out by mistake.
+[7.3] wer=0.00 4.2s | You still press send yourself, so nothing goes out by mistake.
+[7.4] wer=0.00 4.0s | You still press send yourself, so nothing goes out by mistake.
+  -> sentence 7 keeps take 0 (wer 0.00)
+[8.0] wer=0.00 3.7s | It's free on all the coffee. No sign up.
+[8.1] wer=0.00 3.3s | It's free on all the coffee. No sign up.
+[8.2] wer=0.00 3.3s | It's free on all the coffee. No sign up.
+[8.3] wer=0.11 3.2s | It's free and on all the coffee. No sign up.
+[8.4] wer=0.00 3.2s | It's free on all the coffee. No sign up.
+  -> sentence 8 keeps take 0 (wer 0.00)
+[9.0] wer=0.07 5.7s | And in Chapter 4, you build it yourself just by describing it to AI.
+[9.1] wer=0.07 5.3s | And in Chapter 4, you build it yourself just by describing it to AI.
+[9.2] wer=0.07 5.4s | And in chapter 4, you build it yourself just by describing it to AI.
+[9.3] wer=0.07 5.1s | And in chapter 4, you build it yourself just by describing it to AI.
+[9.4] wer=0.07 5.6s | And in Chapter 4, you build it yourself just by describing it to AI.
+  -> sentence 9 keeps take 0 (wer 0.07)
+[10.0] wer=0.00 2.8s | Start free at allthecoffee.in
+[10.1] wer=0.00 2.8s | Start free at allthecoffee.in
+[10.2] wer=0.00 2.6s | Start free at allthecoffee.in
+[10.3] wer=0.00 2.5s | Start free at allthecoffee.in
+[10.4] wer=0.00 2.7s | Start free at allthecoffee.in
+  -> sentence 10 keeps take 0 (wer 0.00)

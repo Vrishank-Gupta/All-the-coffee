@@ -30,3 +30,7 @@ PRIVATE-HANDOFF.md
 *.njsproj
 *.sln
 *.sw?
+
+# Reel videos and voices are large and rebuilt from their sources (marketing/instagram/README.md)
+marketing/instagram/reels/new-reels/*.mp4
+marketing/instagram/reels/*/voice.wav

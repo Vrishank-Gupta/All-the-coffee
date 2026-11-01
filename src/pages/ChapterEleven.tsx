@@ -11,6 +11,7 @@ import { WordsTable } from "../components/chapter/WordsTable";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { DownloadButton } from "../components/chapter/DownloadButton";
+import { StaticDownloadLink } from "../components/chapter/StaticDownloadLink";
 import { BoringTaskRecall } from "../components/demo/BoringTaskRecall";
 import { ModuleCompleteBadge } from "../components/demo/ModuleCompleteBadge";
 import { chapterById } from "../lib/courseData";
@@ -126,6 +127,37 @@ Amount 12,500 + GST (18%) 2,250 = Rs 14,750
 
 CloudNine IT Services | Bill #CN/889 | dated 21 May 2026
 Total payable Rs. 1,18,000 (inclusive of 18% GST of Rs. 18,000)`;
+
+const STARTER_D_BRIEF = `PROJECT BRIEF: Invoice PDFs to Excel
+
+The problem: every month I type details from a folder of vendor invoice
+PDFs into Excel by hand.
+
+Who uses it: just me, monthly.
+
+What goes in: a folder called invoices, full of PDF invoices.
+
+What should happen: a Python script reads every PDF and pulls out:
+vendor name, vendor GSTIN, invoice number, invoice date, taxable value,
+GST (CGST + SGST, or IGST) and total. It checks that taxable value plus
+GST equals the total.
+
+What comes out: invoices.xlsx with one row per invoice, a column that
+says OK or by how much the total is off, and a grand total row.
+
+Test case: the 12 sample invoices give 11 rows read, a grand total of
+5,96,096, and PPW-112 flagged as off by 1,000.
+
+Edge cases: a scanned invoice has no text to read: list it as
+"Couldn't read", never skip it quietly. Labels vary between vendors
+(Invoice No, Bill #, Invoice Number; Total, Grand Total).
+
+What to avoid: never guess a number. If a detail isn't found, write
+"Not found".
+
+Version 1: read, check and save to Excel.
+
+Later: catch the same invoice number twice from one vendor.`;
 
 const STARTER_C_BRIEF = `PROJECT BRIEF: Weekly Status Report Generator
 
@@ -513,6 +545,19 @@ export default function ChapterEleven() {
         run should match the test case exactly. To check
         the "Unassigned" edge case from the brief, try deleting one row's owner afterward and re-running: that task
         should still show up, just grouped as "Unassigned" instead of disappearing.
+      </Callout>
+
+      <p className="mt-6 font-display text-lg font-semibold text-espresso-950">Starter D: Invoice PDFs to Excel (Python script)</p>
+      <CopyBlock label="Starter D brief" mono>{STARTER_D_BRIEF}</CopyBlock>
+      <StaticDownloadLink href="/downloads/sample-invoices.zip" label="Download sample-invoices.zip" />
+      <Callout variant="tip">
+        Unzip it into your project folder, so the 12 PDFs sit in a folder called{" "}
+        <code className="rounded bg-latte px-1">invoices</code>. The vendors and GSTINs are made up. Your AI will
+        probably suggest a library called <code className="rounded bg-latte px-1">pdfplumber</code> for reading
+        PDFs. Two invoices are traps, on purpose: one total doesn't add up, and one is a scan with no text inside.
+        If your first run shows 12 rows read, or a grand total that includes a ₹0 row, your script missed the scan.
+        There's a free browser version to compare against at{" "}
+        <a href="/tools/invoice-reader" className="font-semibold text-caramel-700 underline">allthecoffee.in/tools/invoice-reader</a>.
       </Callout>
 
       <SectionEyebrow n="14" label="Words you can now use" />

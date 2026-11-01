@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reel: GSTR-2B Reconciler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Chapter 5 reel, 1080x1920, Hinglish voice, no presenter. The screens fill the middle and the
+     captions sit under them, above Instagram's own buttons. Everything is timed from the voice
+     (timings.js, words.js) and every number comes from the chapter's reconciler (data.js); all
+     three are written by build.sh. render-reel.py sets the time with window.seek(t); open the file
+     in a browser to preview it live (silent). */
+  :root { --bg: #241711; --cream: #FBF1E2; --amber: #F2BD7C; --muted: #C9B7A3; --card: #33221A; --line: #4A3428; --ink: #241711; --paper: #FBF6EE; --paper-line: #E8D9C4; --rust: #B5562B;
+          --sage-bg: #E3EFDF; --sage: #3F6E3A; --car-bg: #F7E4C8; --car: #9A5B1E; --brick-bg: #F7DDD5; --brick: #A43D24; --latte-bg: #EADFCF; --latte: #5A4636; }
+  html, body { margin: 0; background: var(--bg); }
+  #stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: var(--bg); color: var(--cream); font-family: 'Source Serif 4', Georgia, serif; }
+  .fd { font-family: 'Fraunces', Georgia, serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .ui { font-family: 'Inter', system-ui, sans-serif; }
+  .el { opacity: 0; }
+  .glow { position: absolute; border-radius: 999px; filter: blur(90px); pointer-events: none; }
+  #brand { position: absolute; top: 196px; left: 60px; right: 60px; display: flex; justify-content: space-between; font-size: 28px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+  #brand span:last-child { color: var(--muted); }
+  #progress { position: absolute; left: 0; top: 0; height: 10px; background: var(--amber); }
+
+  /* Screen area: 960 x 1100, from 260px to 1360px */
+  .scene { position: absolute; left: 60px; width: 960px; top: 260px; height: 1100px; display: none; flex-direction: column; justify-content: center; transform-origin: 50% 50%; }
+  .cam { display: flex; flex-direction: column; justify-content: center; height: 100%; transform-origin: 50% 50%; }
+  .label { font-size: 30px; color: var(--muted); margin: 0 0 20px; }
+  .label b { color: var(--cream); font-weight: 600; }
+  .amber { color: var(--amber); }
+
+  /* Windows */
+  .window { background: var(--card); border: 2px solid var(--line); border-radius: 30px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35); flex: none; position: relative; }
+  .bar { display: flex; align-items: center; gap: 12px; padding: 18px 26px; border-bottom: 2px solid var(--line); font-size: 25px; color: var(--muted); }
+  .dot { width: 15px; height: 15px; border-radius: 99px; background: var(--line); }
+  .bar .name { margin-left: 10px; }
+  .bar .tag { margin-left: auto; font-size: 22px; padding: 6px 16px; border-radius: 99px; background: var(--line); color: var(--cream); }
+  .paper { background: var(--paper); color: var(--ink); border-color: var(--paper-line); }
+  .paper .bar { border-bottom-color: var(--paper-line); color: #6B5444; }
+  .paper .dot:nth-child(1) { background: #E0796A; } .paper .dot:nth-child(2) { background: #E8B04F; } .paper .dot:nth-child(3) { background: #7DB36E; }
+
+  /* Hook */
+  .hook { display: flex; flex-direction: column; align-items: center; text-align: center; perspective: 1400px; }
+  .cal { width: 340px; border-radius: 36px; overflow: hidden; background: var(--cream); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  .cal .m { background: var(--rust); color: var(--cream); font-size: 40px; font-weight: 700; letter-spacing: 0.14em; padding: 22px 0; transform-origin: 50% 100%; }
+  .cal .d { font-size: 64px; padding: 34px 0 40px; font-weight: 700; line-height: 1.1; }
+  .cal .d small { display: block; font-size: 28px; color: #6B5444; font-weight: 600; margin-top: 8px; font-family: 'Inter', sans-serif; }
+  .hook h1 { margin: 60px 0 0; font-size: 100px; line-height: 1.02; }
+
+  /* Two files */
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .grid td, .grid th { font-size: 23px; padding: 9px 20px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+  .grid th { color: var(--muted); font-weight: 600; font-size: 20px; font-family: 'Inter', sans-serif; }
+  .grid td:last-child, .grid th:last-child { text-align: right; }
+  .grid tr.hl td { background: rgba(242, 189, 124, 0.22); }
+  .fx { margin: 18px 0; display: flex; align-items: center; gap: 18px; background: var(--cream); color: var(--ink); border-radius: 18px; padding: 16px 24px; font-size: 27px; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+  .fx b { font-family: 'Inter', sans-serif; color: #6B5444; font-size: 24px; }
+  .count { position: absolute; right: 22px; top: 12px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 26px; padding: 8px 20px; border-radius: 99px; background: var(--amber); color: var(--ink); }
+  #clock { position: absolute; right: 30px; bottom: 30px; }
+
+  /* Prompt */
+  .chat { padding: 30px 36px 20px; font-size: 30px; line-height: 1.42; min-height: 560px; white-space: pre-wrap; }
+  .who { font-size: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+  .caret { display: inline-block; width: 4px; height: 36px; background: var(--amber); vertical-align: -7px; margin-left: 3px; }
+  .send { display: flex; justify-content: flex-end; padding: 0 30px 28px; }
+  .btn { background: var(--amber); color: var(--ink); font-weight: 700; font-size: 30px; padding: 16px 40px; border-radius: 99px; display: inline-block; font-family: 'Inter', sans-serif; }
+  .cursor { position: absolute; width: 54px; height: 54px; pointer-events: none; z-index: 5; left: 0; top: 0; }
+  .ripple { position: absolute; border-radius: 99px; border: 5px solid var(--amber); pointer-events: none; z-index: 4; }
+
+  /* The tool */
+  .tool { padding: 30px; font-family: 'Inter', sans-serif; }
+  .drop { border: 3px dashed #D9B98C; background: #F7E9D3; border-radius: 22px; padding: 44px 0; text-align: center; font-size: 30px; font-weight: 600; color: var(--car); }
+  .chips { display: flex; flex-direction: column; gap: 14px; }
+  .chip { display: flex; align-items: center; gap: 16px; background: #fff; border: 2px solid var(--paper-line); border-radius: 18px; padding: 16px 22px; font-size: 27px; }
+  .chip .n { margin-left: auto; color: var(--sage); font-weight: 700; }
+  .go { margin-top: 22px; background: var(--ink); color: var(--cream); border-radius: 18px; padding: 24px 0; text-align: center; font-size: 32px; font-weight: 700; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stat { border-radius: 20px; padding: 22px 10px 18px; text-align: center; }
+  .stat b { display: block; font-family: 'Fraunces', serif; font-size: 84px; line-height: 1; }
+  .stat span { font-size: 26px; font-weight: 700; }
+  .s-matched { background: var(--sage-bg); color: var(--sage); }
+  .s-mismatch { background: var(--car-bg); color: var(--car); }
+  .s-missing { background: var(--brick-bg); color: var(--brick); }
+  .s-only2b { background: var(--latte-bg); color: var(--latte); }
+  .risk { margin-top: 16px; border-radius: 20px; background: linear-gradient(135deg, #F1E4D0, #F6E3C6); text-align: center; padding: 20px 0 22px; }
+  .risk small { font-size: 24px; font-weight: 600; color: #6B5444; }
+  .risk b { display: block; font-family: 'Fraunces', serif; font-size: 76px; line-height: 1.1; }
+  .rows td { font-size: 22px; padding: 10px 12px; border-top: 1px solid var(--paper-line); white-space: nowrap; }
+  .rows td:nth-child(n+3) { text-align: right; }
+  .pill { font-size: 18px; font-weight: 700; padding: 4px 10px; border-radius: 8px; }
+  .first { position: absolute; top: 14px; right: 24px; background: var(--brick); color: #fff; font-size: 24px; font-weight: 700; padding: 8px 18px; border-radius: 99px; }
+
+  /* The trap */
+  .pair { display: flex; align-items: center; justify-content: center; gap: 30px; margin: 40px 0 10px; }
+  .inv { background: var(--cream); color: var(--ink); border-radius: 22px; padding: 26px 34px; text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+  .inv small { display: block; font-family: 'Inter', sans-serif; font-size: 22px; color: #6B5444; font-weight: 600; margin-bottom: 8px; }
+  .inv b { font-family: 'JetBrains Mono', monospace; font-size: 52px; }
+  .op { font-size: 90px; font-weight: 700; width: 90px; text-align: center; font-family: 'Inter', sans-serif; }
+  .said { font-size: 50px; line-height: 1.2; text-align: center; margin-top: 40px; }
+
+  /* Checkpoint */
+  .check { background: var(--cream); color: var(--ink); border-radius: 30px; padding: 36px 44px 30px; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  .check h3 { margin: 0 0 10px; font-size: 46px; }
+  .check td { padding: 18px 0; font-size: 36px; border-bottom: 2px solid var(--paper-line); }
+  .check tr:last-child td { border-bottom: 0; font-weight: 700; }
+  .check td.v { text-align: right; padding-right: 26px; font-family: 'Inter', sans-serif; font-weight: 700; }
+  .check td:last-child { width: 60px; text-align: right; }
+  .tick { display: inline-flex; width: 54px; height: 54px; border-radius: 99px; background: #2F7A3E; align-items: center; justify-content: center; vertical-align: middle; }
+
+  /* The site, on a phone */
+  .phone { position: absolute; left: 0; top: 70px; width: 420px; height: 880px; border-radius: 64px; background: #0E0907; padding: 14px; box-sizing: border-box; box-shadow: 0 40px 90px rgba(0,0,0,0.5), inset 0 0 0 3px #4A3428; }
+  .screen { position: relative; width: 392px; height: 852px; border-radius: 50px; overflow: hidden; background: #FBF6EE; }
+  .screen img { position: absolute; left: 0; top: 0; width: 392px; }
+  .hlbox { position: absolute; left: 16px; right: 16px; border: 5px solid var(--rust); border-radius: 20px; box-shadow: 0 0 0 9999px rgba(36, 23, 17, 0.35); }
+  .side { position: absolute; left: 470px; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+  .eyebrow { font-size: 26px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); font-weight: 600; }
+  .chtitle { font-size: 52px; line-height: 1.1; margin: 16px 0 6px; }
+  .pcard { border-radius: 26px; padding: 22px 28px; font-size: 28px; line-height: 1.3; margin-top: 18px; }
+  .pcard b { font-family: 'Fraunces', Georgia, serif; font-size: 36px; display: block; margin-bottom: 4px; }
+  .url { margin-top: 26px; align-self: flex-start; background: var(--amber); color: var(--ink); font-size: 40px; font-weight: 700; padding: 22px 36px; border-radius: 999px; white-space: pre; }
+
+  /* Captions */
+  #caption { position: absolute; left: 70px; right: 70px; top: 1400px; height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  #caption p { margin: 0; font-size: 54px; line-height: 1.22; font-weight: 700; }
+  #caption span { display: inline-block; margin: 0 0.12em; }
+  #flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1" style="width: 700px; height: 700px; background: rgba(242, 189, 124, 0.16);"></div>
+  <div class="glow" id="g2" style="width: 600px; height: 600px; background: rgba(181, 86, 43, 0.20);"></div>
+  <div id="progress"></div>
+  <div id="brand" class="el"><span>All The Coffee · Chapter 5</span><span>GSTR-2B reconciler</span></div>
+
+  <!-- 0. Every month -->
+  <section class="scene" data-from="0" data-to="1" data-tr="zoom"><div class="cam">
+    <div class="hook">
+      <div class="cal el" data-at="0" data-fx="pop"><div class="m" id="month">APR</div><div class="d fd">2026<small>Monthly GST close</small></div></div>
+      <h1 class="fd el" data-at="0.3">Har mahine,<br><span class="amber">wahi kaam.</span></h1>
+    </div>
+  </div></section>
+
+  <!-- 1-2. Your books, the portal's 2B, VLOOKUP in between -->
+  <section class="scene" data-from="1" data-to="3" data-tr="push"><div class="cam">
+    <div class="window el" data-at="1.0" data-fx="left">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">purchase-register.csv</span></div>
+      <table class="grid mono" id="tBooks"></table>
+      <div class="count el" data-at="2.0" data-fx="pop">14 invoices</div>
+    </div>
+    <div class="fx mono el" data-at="1.72" data-fx="pop"><b>fx</b><span id="vl"></span></div>
+    <div class="window el" data-at="1.3" data-fx="right">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">gstr-2b.csv</span><span class="tag ui" style="margin-left: auto; margin-right: 210px;">GST portal</span></div>
+      <table class="grid mono" id="tPortal"></table>
+      <div class="count el" data-at="2.18" data-fx="pop">13 invoices</div>
+    </div>
+    <svg id="clock" class="el" data-at="2.45" data-fx="pop" width="150" height="150" viewBox="0 0 200 200" aria-hidden="true" style="position: absolute;">
+      <circle cx="100" cy="100" r="90" fill="#33221A" stroke="#F2BD7C" stroke-width="8"/>
+      <line id="hh" x1="100" y1="100" x2="100" y2="58" stroke="#FBF1E2" stroke-width="10" stroke-linecap="round"/>
+      <line id="mh" x1="100" y1="100" x2="100" y2="32" stroke="#F2BD7C" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="100" cy="100" r="9" fill="#F2BD7C"/>
+    </svg>
+  </div></section>
+
+  <!-- 3. The prompt -->
+  <section class="scene" data-from="3" data-to="4" data-tr="zoom"><div class="cam">
+    <p class="label el" data-at="3">The prompt from <b>Chapter 5</b>, in plain English</p>
+    <div class="window el" data-at="3" id="chatwin">
+      <div class="chat"><div class="who">You</div><span id="typed"></span><span class="caret" id="caret"></span></div>
+      <div class="send"><span class="btn" id="sendbtn">Send</span></div>
+    </div>
+  </div>
+  <svg class="cursor" id="cur1" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 9.5-7 1.5 4 8-3 1.5-4-8L5 19z" fill="#FBF1E2" stroke="#241711" stroke-width="1.5" stroke-linejoin="round"/></svg>
+  <div class="ripple" id="rip1"></div>
+  </section>
+
+  <!-- 4-7. The tool: built, files in, reconcile, results, credit at risk -->
+  <section class="scene" data-from="4" data-to="8" data-tr="push" id="toolScene" style="overflow: hidden; border-radius: 30px;"><div class="cam" id="toolCam">
+    <p class="label el" data-at="4">AI builds the tool. <b>You don't write code.</b></p>
+    <div class="window paper" id="toolwin">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">GSTR-2B Reconciler</span></div>
+      <div class="tool">
+        <div id="phase1">
+          <div class="drop asm" id="drop">Upload purchase register + GSTR-2B</div>
+          <div class="chips" id="chips" style="margin-top: 16px;">
+            <div class="chip" id="chipA">📄 purchase-register.csv<span class="n">14 invoices</span></div>
+            <div class="chip" id="chipB">📄 gstr-2b.csv<span class="n">13 invoices</span></div>
+          </div>
+          <div class="go asm" id="go">Reconcile</div>
+        </div>
+        <div id="phase2">
+          <div class="stats" id="stats"></div>
+          <div class="risk" id="risk"><small>Tax credit at risk</small><b id="riskv">₹0</b></div>
+          <table class="rows" id="rows" style="margin-top: 12px;"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg class="cursor" id="cur2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 9.5-7 1.5 4 8-3 1.5-4-8L5 19z" fill="#FBF1E2" stroke="#241711" stroke-width="1.5" stroke-linejoin="round"/></svg>
+  <div class="ripple" id="rip2"></div>
+  </section>
+
+  <!-- 8-9. The first build gets it wrong -->
+  <section class="scene" data-from="8" data-to="10" data-tr="glitch"><div class="cam">
+    <div class="window paper el" data-at="8" data-fx="up">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">GSTR-2B Reconciler</span></div>
+      <div class="first ui">First build</div>
+      <div class="tool">
+        <div class="stats" id="stats2"></div>
+        <div class="risk"><small>Tax credit at risk</small><b id="risk2" style="color: var(--brick);"></b></div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="inv el" data-at="9.05" data-fx="left"><small>Your books</small><b>INV/023</b></div>
+      <div class="op el" id="op" data-at="9.2" data-fx="pop">≠</div>
+      <div class="inv el" data-at="9.12" data-fx="right"><small>GSTR-2B</small><b>INV-23</b></div>
+    </div>
+  </div></section>
+
+  <!-- 10. Known answer -->
+  <section class="scene" data-from="10" data-to="11" data-tr="zoom"><div class="cam">
+    <div class="check el" data-at="10" data-fx="pop">
+      <h3 class="fd">Chapter 5 checkpoint</h3>
+      <table id="ctable"></table>
+    </div>
+  </div></section>
+
+  <!-- 11-13. The course -->
+  <section class="scene" data-from="11" data-to="99" data-tr="rise">
+    <div class="phone el" data-at="11" data-fx="rise">
+      <div class="screen">
+        <img id="ov" src="../ch9-merge/site/overview.jpg" alt="">
+        <div class="hlbox" id="hlb"></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="eyebrow el" data-at="11.05">Module B · Chapter 5</div>
+      <div class="chtitle fd el" data-at="11.15">Taming messy spreadsheets</div>
+      <div class="pcard el" data-at="11.4" style="background: var(--amber); color: var(--ink);"><b>Chapters 0 to 3: free</b>No card needed.</div>
+      <div class="pcard el" data-at="12.1" style="background: var(--card); border: 2px solid var(--line);"><b>Chapters 4 to 11</b><span style="color: var(--muted);">One-time ₹599, including this one.</span></div>
+      <div class="url el" data-at="13" data-fx="pop" id="url"> </div>
+    </div>
+  </section>
+
+  <div id="caption" class="fd"><p id="cap"></p></div>
+  <div id="flash"></div>
+</div>
+
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script>
+  const T = window.TIMINGS, W = window.WORDS, D = window.DATA;
+  const DURATION = T[T.length - 1].end + 1.5;
+  window.DURATION = DURATION;
+  const CAPTIONS = [
+    "Har mahine, wahi kaam.",
+    "Ek taraf purchase register, doosri taraf GSTR-2B, aur beech mein VLOOKUP.",
+    "14 invoices, 13 invoices, aur ghanton ka milaan.",
+    "Chapter 5 mein, aap AI ko seedhi bhasha mein kaam samjhaate hain.",
+    "Aur AI, aapke liye ek tool bana deta hai.",
+    "Dono files upload kijiye, aur Reconcile dabaiye.",
+    "Das match, do ka amount alag, do 2B mein hain hi nahi, aur ek sirf 2B mein.",
+    "₹25,560 ka tax credit, risk par.",
+    "Lekin pehli baar mein, tool galat bhi ho sakta hai.",
+    "Invoice number alag tarah se likhe hon, toh woh unhe alag invoice maan leta hai.",
+    "Isliye aap sahi jawaab pehle se jaante hain, aur check karte hain.",
+    "Chapters 0 se 3 free hain.",
+    "Chapter 5, baaki chapters ke saath, ek baar ke ₹599 mein.",
+    "allthecoffee.in par, free mein shuru kijiye.",
+  ];
+  // Lines from the Chapter 5 prompt (src/pages/ChapterFive.tsx), shortened with "…"
+  const PROMPT = "Who it's for: I work in accounts. Every month I check our purchase register against GSTR-2B from the GST portal, by hand, with VLOOKUP.\n\nWhat it does: I upload two CSV files … The tool matches invoices using the supplier's GSTIN and the invoice number, and puts every invoice in one of four groups: Matched, Amount mismatch, Missing in 2B, Only in 2B …";
+  const VLOOKUP = "=VLOOKUP(C2, '2B'!C:K, 9, FALSE)";
+  const URL_TEXT = "allthecoffee.in";
+  const GROUPS = [["matched", "Matched"], ["mismatch", "Amount mismatch"], ["missing", "Missing in 2B"], ["only2b", "Only in 2B"]];
+  const MONTHS = ["APR", "MAY", "JUN", "JUL", "AUG", "SEP"];
+  // Phone screen: screenshots are 780 px wide for a 390 px phone, shown 392 px wide
+  const PX = 392 / 390;
+  const MODULE_B = 1490 * PX;  // top of the Module B card on /overview, in screen pixels
+
+  const clamp = (x) => Math.max(0, Math.min(1, x));
+  const lerp = (a, b, p) => a + (b - a) * p;
+  const easeOut = (x) => 1 - Math.pow(1 - clamp(x), 3);
+  const easeIn = (x) => Math.pow(clamp(x), 3);
+  const easeInOut = (x) => { x = clamp(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+  const easeExpo = (x) => (x = clamp(x)) === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+  const back = (x) => { x = clamp(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+  const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
+  const at = (v) => { const i = Math.floor(v), f = v - i; if (i >= T.length) return DURATION; const s = T[i]; return s.start + f * (s.end - s.start); };
+  const start = (i) => i >= T.length ? DURATION + 1 : T[i].start - 0.15;
+  const $ = (id) => document.getElementById(id);
+
+  // Build the tables from the real sample files and results
+  const tax = (r, i) => Number(r[i]) + Number(r[i + 1]) + Number(r[i + 2]);
+  const short = (s) => s.length > 15 ? s.slice(0, 14) + '…' : s;
+  $('tBooks').innerHTML = '<tr><th>Supplier</th><th>Invoice No</th><th>Tax</th></tr>' +
+    D.books.slice(1, 7).map((r) => `<tr><td>${short(r[1])}</td><td>${r[2]}</td><td>${inr(tax(r, 5))}</td></tr>`).join('');
+  $('tPortal').innerHTML = '<tr><th>Trade/Legal name</th><th>Invoice number</th><th>Tax</th></tr>' +
+    D.portal.slice(1, 7).map((r) => `<tr><td>${short(r[1])}</td><td>${r[2]}</td><td>${inr(tax(r, 8))}</td></tr>`).join('');
+  const statHtml = (res, id) => GROUPS.map(([g, l]) => `<div class="stat s-${g}" id="${id}-${g}"><b>${res.counts[g]}</b><span>${l}</span></div>`).join('');
+  $('stats').innerHTML = statHtml(D.fixed, 'st');
+  $('stats2').innerHTML = statHtml(D.strict, 'sx');
+  $('risk2').textContent = inr(D.strict.atRisk);
+  const PILL = { mismatch: 's-mismatch', missing: 's-missing', only2b: 's-only2b' };
+  const LABEL = Object.fromEntries(GROUPS);
+  $('rows').innerHTML = D.fixed.rows.filter((r) => r.group !== 'matched').map((r) =>
+    `<tr><td><span class="pill ${PILL[r.group]}">${LABEL[r.group]}</span></td><td class="mono">${r.invoice}</td><td>${r.booksTax === null ? '-' : inr(r.booksTax)}</td><td>${r.portalTax === null ? '-' : inr(r.portalTax)}</td></tr>`).join('');
+  const C = D.fixed.counts;
+  $('ctable').innerHTML = [["Matched", C.matched], ["Amount mismatch", C.mismatch], ["Missing in 2B", C.missing], ["Only in 2B", C.only2b], ["Credit at risk", inr(D.fixed.atRisk)]]
+    .map(([k, v], i) => `<tr><td>${k}</td><td class="v">${v}</td><td><span class="tick el" data-at="${10.3 + i * 0.1}" data-fx="pop"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>`).join('');
+  const bookRows = [...$('tBooks').rows].slice(1), portalRows = [...$('tPortal').rows].slice(1);
+  const scenes = [...document.querySelectorAll('.scene')];
+
+  // Captions: each caption word gets a start time by its position in the sentence, read off
+  // Whisper's word timings (the caption is Roman Hinglish, Whisper writes Devanagari).
+  const capWords = CAPTIONS.map((c, i) => {
+    const ws = W[i], parts = c.split(' ');
+    const wlen = ws.reduce((n, w) => n + w[0].length + 1, 0), clen = c.length + 1;
+    let acc = 0;
+    const marks = ws.map((w) => { const f = acc / wlen; acc += w[0].length + 1; return [f, w[1]]; });
+    marks.push([1, ws[ws.length - 1][2]]);
+    acc = 0;
+    return parts.map((p) => {
+      const f = acc / clen; acc += p.length + 1;
+      let j = 0; while (j < marks.length - 2 && marks[j + 1][0] <= f) j++;
+      const [f0, t0] = marks[j], [f1, t1] = marks[j + 1];
+      return [p, lerp(t0, t1, (f - f0) / (f1 - f0))];
+    });
+  });
+  let capShown = -1, capSpans = [];
+
+  const FX = {
+    up: (p) => [p, `translateY(${50 * (1 - p)}px)`, 10 * (1 - p)],
+    pop: (p) => [clamp(p * 3), `scale(${0.5 + 0.5 * back(p)})`, 0],
+    left: (p) => [p, `translateX(${-160 * (1 - easeExpo(p))}px)`, 8 * (1 - p)],
+    right: (p) => [p, `translateX(${160 * (1 - easeExpo(p))}px)`, 8 * (1 - p)],
+    rise: (p) => [p, `translateY(${400 * (1 - easeExpo(p))}px) rotate(${-6 * (1 - easeExpo(p))}deg)`, 0],
+  };
+  function show(el, t0, t, dur = 0.55) {
+    const fx = el.dataset.fx || 'up';
+    const p = fx === 'up' ? easeOut((t - t0) / dur) : clamp((t - t0) / dur);
+    const [o, tr, blur] = FX[fx](p);
+    el.style.opacity = o;
+    el.style.transform = tr;
+    el.style.filter = blur > 0.05 ? `blur(${blur}px)` : '';
+  }
+  const TR = {
+    push: { in: (p) => [p, `translateX(${260 * (1 - p)}px) scale(${0.94 + 0.06 * p})`, 14 * (1 - p)], out: (q) => [1 - q, `translateX(${-260 * q}px) scale(${1 - 0.06 * q})`, 14 * q] },
+    zoom: { in: (p) => [p, `scale(${1.18 - 0.18 * p})`, 18 * (1 - p)], out: (q) => [1 - q, `scale(${1 - 0.12 * q})`, 18 * q] },
+    rise: { in: (p) => [p, `translateY(${120 * (1 - p)}px)`, 12 * (1 - p)], out: (q) => [1 - q, '', 0] },
+    glitch: { in: (p) => [p < 1 ? (Math.floor(p * 12) % 2 ? 1 : 0.4) : 1, `translateX(${(1 - p) * 30 * Math.sin(p * 80)}px)`, 0], out: (q) => [1 - q, `scale(${1 - 0.1 * q})`, 16 * q] },
+  };
+  function scene(s, t) {
+    const a = start(+s.dataset.from), b = start(+s.dataset.to);
+    const visible = t >= a && t < b + 0.4;
+    s.style.display = visible ? 'flex' : 'none';
+    if (!visible) return false;
+    const tr = TR[s.dataset.tr];
+    const p = easeExpo((t - a) / 0.55), q = easeIn((t - b) / 0.4);
+    const [o1, t1, b1] = tr.in(p), [o2, t2, b2] = q > 0 ? tr.out(q) : [1, '', 0];
+    const cam = 1 + 0.03 * clamp((t - a) / Math.max(1, Math.min(b, DURATION) - a));
+    s.style.opacity = Math.min(o1, o2);
+    s.style.transform = `${t1} ${t2} scale(${cam})`;
+    const bl = Math.max(b1, b2);
+    s.style.filter = bl > 0.05 ? `blur(${bl}px)` : '';
+    for (const el of s.querySelectorAll('.el')) if (el.dataset.at) show(el, at(+el.dataset.at) - 0.1, t);
+    return true;
+  }
+  // A cursor that glides to an element and clicks it at time tc
+  function click(cur, rip, scn, el, t0, tc, t) {
+    const sr = scn.getBoundingClientRect(), er = el.getBoundingClientRect();
+    const k = sr.width / scn.offsetWidth;  // undo the scene's own scale
+    const bx = (er.left + er.width / 2 - sr.left) / k, by = (er.top + er.height / 2 - sr.top) / k;
+    const p = easeInOut((t - t0) / (tc - t0));
+    cur.style.opacity = clamp((t - t0 + 0.1) / 0.15) * (1 - clamp((t - tc - 0.6) / 0.2));
+    cur.style.transform = `translate(${lerp(bx + 280, bx - 8, p)}px, ${lerp(by + 240, by - 6, p)}px) scale(${t > tc && t < tc + 0.15 ? 0.85 : 1})`;
+    const c = (t - tc) / 0.4, rs = 40 + 180 * easeOut(c);
+    rip.style.opacity = c > 0 && c < 1 ? 1 - c : 0;
+    Object.assign(rip.style, { width: rs + 'px', height: rs + 'px', left: bx - rs / 2 + 'px', top: by - rs / 2 + 'px' });
+    return c > 0 && c < 0.5 ? 1 - 0.08 * Math.sin(Math.PI * c * 2) : 1;
+  }
+
+  window.seek = function (t) {
+    $('g1').style.transform = `translate(${-120 + 80 * Math.sin(t * 0.25)}px, ${180 + 90 * Math.cos(t * 0.2)}px)`;
+    $('g2').style.transform = `translate(${560 + 90 * Math.cos(t * 0.22)}px, ${1080 + 120 * Math.sin(t * 0.18)}px)`;
+    show($('brand'), 0.1, t, 0.7);
+    const sv = scenes.map((s) => scene(s, t));
+
+    // Calendar months flip by
+    const mi = Math.min(MONTHS.length - 1, Math.floor(clamp((t - 0.3) / (at(0.95) - 0.3)) * MONTHS.length));
+    $('month').textContent = MONTHS[mi];
+    const mf = ((t - 0.3) / (at(0.95) - 0.3)) * MONTHS.length % 1;
+    $('month').style.transform = mi < MONTHS.length - 1 && t > 0.3 ? `rotateX(${mf * 70}deg)` : '';
+
+    // VLOOKUP types in, then a highlight hunts row by row through both files
+    $('vl').textContent = VLOOKUP.slice(0, Math.round(clamp((t - at(1.75)) / (at(1.98) - at(1.75))) * VLOOKUP.length));
+    const hunt = (t - at(2.0)) / 0.32;
+    bookRows.forEach((r, i) => r.classList.toggle('hl', hunt > 0 && Math.floor(hunt / 3) % 6 === i));
+    portalRows.forEach((r, i) => r.classList.toggle('hl', hunt > 0 && Math.floor(hunt) % 6 === i));
+    const hp = easeInOut((t - at(2.4)) / (start(3) - at(2.4)));
+    $('hh').setAttribute('transform', `rotate(${30 + 120 * hp} 100 100)`);
+    $('mh').setAttribute('transform', `rotate(${1440 * hp} 100 100)`);
+    if (sv[1]) { $('clock').style.left = '790px'; $('clock').style.top = '930px'; }
+
+    // The prompt, then a click on Send
+    const chars = Math.round(clamp((t - at(3.05)) / (at(3.8) - at(3.05))) * PROMPT.length);
+    $('typed').textContent = PROMPT.slice(0, chars);
+    $('caret').style.opacity = chars < PROMPT.length || Math.floor(t * 2) % 2 === 0 ? 1 : 0;
+    if (sv[2]) $('sendbtn').style.transform = `scale(${click($('cur1'), $('rip1'), scenes[2], $('sendbtn'), at(3.78), at(3.95), t)})`;
+
+    if (sv[3]) {
+      // 4: the tool assembles itself
+      const win = $('toolwin'), build = (t - at(4.05)) / 0.6;
+      win.style.opacity = clamp(build * 2);
+      win.style.transform = `scale(${0.85 + 0.15 * back(build)})`;
+      win.style.filter = build < 1 ? `blur(${10 * (1 - clamp(build))}px)` : '';
+      [$('drop'), $('go')].forEach((el, i) => {
+        const p = clamp((t - at(4.3) - i * 0.15) / 0.4);
+        el.style.opacity = p; el.style.transform = `translateY(${30 * (1 - easeOut(p))}px)`;
+      });
+      // 5: files dropped in, then Reconcile
+      const up = at(5.2);
+      $('drop').style.display = t < up + 0.3 ? 'block' : 'none';
+      $('chips').style.display = t >= up + 0.3 ? 'flex' : 'none';
+      [$('chipA'), $('chipB')].forEach((el, i) => {
+        const p = (t - up - 0.3 - i * 0.18) / 0.45;
+        el.style.opacity = clamp(p * 3); el.style.transform = `translateY(${-60 * (1 - back(p))}px)`;
+      });
+      const target = t < up + 0.25 ? $('drop') : $('go');
+      const k = click($('cur2'), $('rip2'), scenes[3], target, t < up + 0.25 ? at(5.0) : at(5.6), t < up + 0.25 ? up : at(5.85), t);
+      target.style.transform = `scale(${k})`;
+      // 6: results; the camera visits each group as it is named
+      const res = at(5.95);
+      // The label above the tool fades before the camera zooms in, so the zoom never cuts it off
+      const lab = scenes[3].querySelector('.label');
+      if (t >= res) lab.style.opacity = 1 - clamp((t - res) / 0.3);
+      $('phase1').style.display = t < res ? 'block' : 'none';
+      $('phase2').style.display = t >= res ? 'block' : 'none';
+      GROUPS.forEach(([g], i) => {
+        const el = $(`st-${g}`), p = (t - res - i * 0.1) / 0.5;
+        el.style.opacity = clamp(p * 3); el.style.transform = `scale(${0.5 + 0.5 * back(p)})`;
+        const n = D.fixed.counts[g];
+        el.firstChild.textContent = Math.round(n * easeOut((t - res - i * 0.1) / 0.7));
+      });
+      const rp = (t - at(6.95)) / 0.5;
+      $('risk').style.opacity = clamp(rp * 3); $('risk').style.transform = `scale(${0.7 + 0.3 * back(rp)})`;
+      $('riskv').textContent = inr(Math.round(D.fixed.atRisk * easeOut((t - at(7.0)) / (at(7.45) - at(7.0))) / 10) * 10);
+      [...$('rows').rows].forEach((r, i) => { const p = easeOut((t - at(7.5) - i * 0.07) / 0.35); r.style.opacity = p; r.style.transform = `translateX(${40 * (1 - p)}px)`; });
+      // Camera: zoom on the group being named in sentence 6, then on the credit at risk
+      const focus = [[6.0, 6.24, 'matched'], [6.24, 6.45, 'mismatch'], [6.45, 6.78, 'missing'], [6.78, 7.0, 'only2b']];
+      const cam = $('toolCam');
+      let z = 1, ox = 50, oy = 50, tgt = null;
+      for (const [a, b, g] of focus) if (t >= at(a) && t < at(b)) tgt = $(`st-${g}`);
+      if (t >= at(7.0) && t < at(7.65)) tgt = $('risk');
+      const zin = tgt ? 1.2 : 1;
+      if (tgt) {
+        // Centre of the target inside the camera, from layout offsets (unaffected by the zoom)
+        let x = tgt.offsetWidth / 2, y = tgt.offsetHeight / 2;
+        for (let e = tgt; e && e !== cam; e = e.offsetParent) { x += e.offsetLeft; y += e.offsetTop; }
+        x -= cam.offsetLeft; y -= cam.offsetTop;
+        ox = x / cam.offsetWidth * 100; oy = y / cam.offsetHeight * 100;
+      }
+      cam._z = lerp(cam._z || 1, zin, 0.22); z = cam._z;
+      cam._ox = lerp(cam._ox ?? 50, ox, 0.22); cam._oy = lerp(cam._oy ?? 50, oy, 0.22);
+      cam.style.transformOrigin = `${cam._ox}% ${cam._oy}%`;
+      cam.style.transform = `scale(${z})`;
+      for (const [, , g] of focus) $(`st-${g}`).style.boxShadow = tgt && tgt.id === `st-${g}` ? '0 0 0 5px rgba(36,23,17,0.55)' : '';
+    }
+
+    // 8-9: the first build's wrong answer, then why
+    const neq = (t - at(9.75)) / 0.4;
+    $('op').textContent = neq > 0 ? '=' : '≠';
+    $('op').style.color = neq > 0 ? 'var(--green, #9ED39A)' : 'var(--rust)';
+    if (neq > 0) $('op').style.transform = `scale(${0.6 + 0.4 * back(neq)})`;
+    // A white flash on the hard cut into the first build
+    const fl = (t - start(8)) / 0.25;
+    $('flash').style.opacity = fl > 0 && fl < 1 ? 0.25 * (1 - fl) : 0;
+
+    // 11-13: the course page on a phone
+    if (sv[6]) {
+      const scroll = (MODULE_B - 330) * easeInOut((t - at(11.1)) / (at(11.9) - at(11.1)));
+      $('ov').style.transform = `translateY(${-scroll}px)`;
+      const hb = $('hlb'), hp2 = clamp((t - at(11.85)) / 0.3);
+      hb.style.top = MODULE_B - scroll - 12 + 'px';
+      hb.style.height = 100 * PX + 24 + 'px';
+      hb.style.opacity = hp2;
+      hb.style.transform = `scale(${1.08 - 0.08 * easeOut(hp2)})`;
+      const n = Math.round(clamp((t - at(13.05)) / (at(13.45) - at(13.05))) * URL_TEXT.length);
+      $('url').textContent = URL_TEXT.slice(0, n) || ' ';
+      const pulse = t > at(13.5) ? 0.5 + 0.5 * Math.sin((t - at(13.5)) * 5) : 0;
+      $('url').style.boxShadow = `0 0 ${20 + 30 * pulse}px rgba(242, 189, 124, ${0.25 + 0.35 * pulse})`;
+    }
+
+    // Captions, word by word
+    let c = -1;
+    T.forEach((s, i) => { if (t >= s.start - 0.1) c = i; });
+    if (c !== capShown) {
+      capShown = c;
+      $('cap').innerHTML = c >= 0 ? capWords[c].map(([w]) => `<span>${w}</span>`).join('') : '';
+      capSpans = [...$('cap').children];
+    }
+    if (c >= 0) capWords[c].forEach(([, wt], i) => {
+      const next = i + 1 < capWords[c].length ? capWords[c][i + 1][1] : T[c].end;
+      const el = capSpans[i], p = easeOut((t - wt + 0.05) / 0.18);
+      el.style.color = t >= wt - 0.05 && t < next - 0.05 ? 'var(--amber)' : 'var(--cream)';
+      el.style.opacity = 0.28 + 0.72 * p;
+      el.style.transform = `translateY(${8 * (1 - p)}px)`;
+    });
+    $('progress').style.width = (clamp(t / DURATION) * 100) + '%';
+  };
+
+  if (!location.search.includes('render')) {
+    const t0 = performance.now();
+    (function loop() { window.seek(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); })();
+  } else {
+    window.seek(0);
+  }
+</script>
+</body>
+</html>

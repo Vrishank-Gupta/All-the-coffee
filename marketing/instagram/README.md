@@ -1,14 +1,14 @@
 # Instagram content
 
-**Canvas (open to view, edit, or export images):** https://claude.ai/artifact/1wG834ufUqfZdwpSNfjkC5
+**Canvas (open to view, edit, or export images):** https://claude.ai/artifact/KXiAxgQgGhRXWPAp5sCZvF
 
-This canvas is the single source of truth for every Instagram image: feed posts, Highlight covers, and Highlight stories. It's a private Claude Artifact, so open it from the same Claude account on either laptop. The exact text/markup for every board is also versioned here under `project/*.dc.html`, so both laptops can see exactly what exists (and diff changes in git) without needing to open the canvas just to check.
+This canvas is the single source of truth for every Instagram image: feed posts, Highlight covers, and Highlight stories, all 51 boards. It's a private Claude Artifact, so open it from the same Claude account on every machine. It was rebuilt on 31 Oct 2026 from `project/` because the original canvas (https://claude.ai/artifact/1wG834ufUqfZdwpSNfjkC5) belongs to a Claude account the owner can no longer open. The exact text/markup for every board is also versioned here under `project/*.dc.html`, so both laptops can see exactly what exists (and diff changes in git) without needing to open the canvas just to check.
 
 Captions live in [`captions.md`](captions.md), one per feed post.
 
-**Role series canvas (posts 12-16 and the five "Steal this prompt" stories):** https://claude.ai/artifact/AkAPHUsHNJSbbeBBycHrFH
+**Role series canvas (older copy):** https://claude.ai/artifact/AkAPHUsHNJSbbeBBycHrFH
 
-These ten boards live on their own canvas because they were made from a Claude account that can't open the main canvas above. It's private to that account. On it, post 12 (`PostCampaignReport.dc.html` here) is the board named `Main.dc.html`, because a canvas needs its first board named that; the other nine keep the same filenames as here.
+Posts 12-16 and the five "Steal this prompt" stories were first made on this separate canvas. They are now also on the main canvas above, so edit them there. On the old canvas, post 12 (`PostCampaignReport.dc.html` here) is the board named `Main.dc.html`.
 
 ## Bio link: use the tagged URL
 
@@ -95,7 +95,14 @@ Each gives one copy-paste prompt for a specific job, plus a data-safety line. Po
 
 | File | What it is |
 |---|---|
-| `reels/intro-reel.mp4` | 30 second intro: the hook, the meeting cost calculator being built, what else you build, pricing, CTA. Caption: "Reel 1" in `captions.md` |
+| `reels/intro-reel.mp4` (posted; deleted, rebuild from source) | 30 second intro: the hook, the meeting cost calculator being built, what else you build, pricing, CTA. Caption: "Reel 1" in `captions.md` |
+| `reels/ch9-merge/ch9-reel.mp4` (posted; deleted, rebuild from source) | 40 second demo of Chapter 9 (merge 12 sales sheets with one command), with animated scenes (files merging into one sheet, totals counting up, the real site on a phone), the AI presenter in a circle at the bottom left and word-by-word captions. Caption: "Reel 2" in `captions.md` |
+| `reels/gst-recon/gst-reel.mp4` (posted; deleted, rebuild from source) | About 55 second Hinglish demo of the Chapter 5 GSTR-2B reconciler: the two files, the prompt, the tool built and run, the results with camera zooms, the invoice-number trap, the known answer, and the course page on a phone. AI voice (Indic Parler-TTS, Rani), no presenter. Built by `reels/gst-recon/build.sh`; numbers come from `src/lib/gstSample.ts`. Caption: "Reel 3" in `captions.md` |
+| `reels/new-reels/reel-4-ctc-calculator-hinglish.mp4` | Reel 4, Hinglish, no presenter: the free CTC to in-hand calculator, 12 LPA worked through to ₹91,387 a month, and the September 2026 PF ceiling change. Caption: "Reel 4" |
+| `reels/new-reels/reel-5-whatsapp-follow-ups-english.mp4` | Reel 5, English, AI presenter: the free WhatsApp follow-up desk. Caption: "Reel 5" |
+| `reels/new-reels/reel-6-offer-letters-hinglish.mp4` | Reel 6, Hinglish, no presenter: bulk offer letters, CTC in Indian words, the blank row it refuses. Caption: "Reel 6" |
+| `reels/new-reels/reel-7-invoice-pdfs-english.mp4` | Reel 7, English, AI presenter: 12 invoice PDFs to one checked table. Caption: "Reel 7" |
+| `reels/new-reels/reel-8-contract-check-hinglish.mp4` | Reel 8, Hinglish, no presenter: the contract red-flag checker. Caption: "Reel 8" |
 
 The MP4 has a voiceover (Kokoro's `bm_george` voice, British English male, generated locally and offline) lined up with the scenes. When posting, you can add quiet music under it in the Instagram editor: keep the original audio at full volume and the music low. Pick a cover frame from the last scene (the logo and "You're not behind.") so it looks right in the profile grid.
 
@@ -108,11 +115,28 @@ python reels/add-voiceover.py silent.mp4 reels/intro-reel.mp4 path/to/kokoro-mod
 
 The spoken lines and their start times are at the top of `add-voiceover.py`. If you change scene timings in the HTML, move the matching start times too.
 
+### Free-tool reels (Reels 4 to 8)
+
+Each one shows a free tool from allthecoffee.in/tools and the chapter where you build it, and ends on "start free" (no price). They share `reels/lib/`: `reel-engine.js` (scenes, transitions, word-by-word captions, cursor clicks, presenter ring), `reel.css`, `build-reel.sh` (voice in, word timings, numbers from the site's own tool code via each reel's `make-data.ts`, render, audio), and `tool-shots/` (phone screenshots of the tool pages, from `reels/tool-shots.py`). Hinglish reels use the Indic Parler-TTS speaker Rani and no presenter; English reels use Mary and the AI presenter, so her face always has the same voice. The finished videos are in `reels/new-reels/`, named by reel number; each reel's own folder keeps its sources. Each reel's `script.txt` is its voiceover (TTS text | what a listener should hear | pause).
+
+### Reels with the AI presenter
+
+From Reel 2 on, reels are a tool demo on screen with the AI presenter small in a corner, speaking the script. She and her voice are made locally and free; how, and her flaws, are in `avatar-test/NOTES.md`. **Turn on Instagram's "AI info" label every time you post one.** She is a presenter, never a learner, instructor or testimonial. Everything on screen must be real (real files, real prompt, real output).
+
+Each reel has its own folder, e.g. `reels/ch9-merge/`: `script.txt` (the voiceover, one sentence per line), `ch9-reel.html` (the animated screens, captions and presenter ring, timed from the voice; open it in a browser to preview), the demo's real code, `site/` (phone screenshots of allthecoffee.in from `reels/site-shots.py`), and `build.sh`, which makes the voice, animates the presenter (about 50 minutes on the desktop GPU), gets word timings (`reels/word-timings.py`), and renders `ch9-reel.mp4` with her inside the page (about 3 minutes). Changing only the animations needs just that last render. It needs `avatar-test/scripts/setup.sh` and a running ComfyUI server, as in `avatar-test/NOTES.md`. Captions are burned in, so it works muted; pick the cover frame from the end card.
+
 ## Posting log
 
 Check items off here as you post them, and commit, so the other laptop can see what's already live and what's still queued.
 
 - [ ] Reel 1: Intro
+- [ ] Reel 2: Chapter 9, merge 12 sales sheets (AI info label on)
+- [ ] Reel 3: Chapter 5, GSTR-2B reconciler, Hinglish (AI info label on: AI voice)
+- [ ] Reel 4: CTC calculator, Hinglish (AI info label on)
+- [ ] Reel 5: WhatsApp follow-ups, English, presenter (AI info label on)
+- [ ] Reel 6: Bulk offer letters, Hinglish (AI info label on)
+- [ ] Reel 7: Invoice PDFs to Excel, English, presenter (AI info label on)
+- [ ] Reel 8: Contract red flags, Hinglish (AI info label on)
 - [ ] Post 6: ChatGPT Go
 - [ ] Post 7: Automated my job
 - [ ] Post 8: Appraisal self-review

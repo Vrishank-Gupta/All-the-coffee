@@ -13,9 +13,37 @@ import { ApiRestaurant } from "../components/diagrams/ApiRestaurant";
 import { AiBuilderVsWorker } from "../components/diagrams/AiBuilderVsWorker";
 import { NotesSummariserDemo } from "../components/demo/NotesSummariserDemo";
 import { VENDOR_NOTES, SEATING_NOTES } from "../lib/vendorNotes";
+import { ContractCheck } from "../components/tools/ContractCheck";
+import { SAMPLE_CONTRACT } from "../lib/tools/contract";
 import { chapterById } from "../lib/courseData";
 
 const meta = chapterById(6)!;
+
+const CONTRACT_PROMPT = `Who it's for: I'm a manager. Vendors send me contracts to sign, and I
+want to know which clauses need a second look before I send them to legal.
+
+What it does: a large box where I paste a contract, and a Check button.
+The tool uses AI to find clauses about: automatic renewal, notice
+periods, price increases, late payment charges, lock-ins or exit
+penalties, limits on liability, indemnity, non-solicitation or
+non-compete, and jurisdiction. For each one it shows:
+1. a short title, and the clause number
+2. the sentence from the contract, quoted word for word
+3. one line in plain English on why it matters
+Show "Reading the contract..." while it waits.
+
+What good looks like: if the contract says it "will renew automatically"
+unless notice is given "at least 90 days" before, the tool shows
+"Renews automatically: 90 days' notice" with that sentence quoted.
+
+What to avoid: never invent a clause, and quote only sentences that are
+really in the contract. No legal advice.`;
+
+const CONTRACT_QUOTE_CHECK = `New requirement: after the AI replies, the tool itself must check every
+quote. If a quoted sentence doesn't appear in the contract exactly, word
+for word, show it with a red "Not found in the contract" label instead
+of hiding it. Also highlight each quote that is found inside the
+contract text, so I can see where it is. Keep everything else the same.`;
 
 const SUMMARISER_PROMPT = `Who it's for: I attend lots of meetings and write quick, messy notes.
 I need a clean summary I can act on.
@@ -50,6 +78,7 @@ export default function ChapterSix() {
       </p>
       <p className="mt-3">
         Along the way, you'll finally understand the word you've probably heard in a hundred meetings: <strong>API</strong>.
+        If you deal with contracts, there's an optional second build: a red-flag checker that has to prove every quote.
       </p>
 
       <Callout variant="worry">
@@ -158,7 +187,51 @@ export default function ChapterSix() {
         worth checking AI output against the source, especially before you send it to anyone.
       </p>
 
-      <SectionEyebrow n="07" label="What you can skip" />
+      <SectionEyebrow n="07" label="Optional build: a contract red-flag checker" />
+      <p>
+        Same idea, higher stakes. A vendor sends a contract and wants it signed by Friday. Your tool reads it and
+        points at the clauses worth a second look. With contracts, an AI that makes something up is dangerous, so
+        this tool checks the AI's work itself. About 20 minutes.
+      </p>
+      <Step n={6} title="Start a new chat and paste this">
+        Like the summariser, this tool uses AI inside it, so build it in Claude.
+      </Step>
+      <CopyBlock label="Contract checker prompt">{CONTRACT_PROMPT}</CopyBlock>
+      <Step n={7} title="Test it on the sample contract">
+        Copy the sample below (it's made up) into your tool and click Check.
+      </Step>
+      <CopyBlock label="Sample contract">{SAMPLE_CONTRACT}</CopyBlock>
+      <Checkpoint>
+        Known answer: the planted red flags are an automatic renewal with 90 days' notice (clause 2), a 10%
+        increase on renewal (3), 24% interest on late payment (4), paying for the rest of the term if you leave early
+        (5), the vendor's liability capped at one month's fees while you indemnify them without limit (6), no hiring
+        their staff for 24 months (8), and disputes only in Kolkata courts (9). Confidentiality (7) and notices (10)
+        are normal. Then the real test: find every quoted sentence in the contract. Each one should be there, word for
+        word.
+      </Checkpoint>
+      <p>
+        <strong>The trap: quotes that aren't quotes.</strong> AI often "quotes" by rewording, or tidies two sentences
+        into one, and now and then it describes a clause that isn't in the contract at all. On a contract, that's the
+        difference between a useful tool and a liability. Don't rely on checking by eye. Make the tool check itself:
+      </p>
+      <CopyBlock label="Make it check every quote">{CONTRACT_QUOTE_CHECK}</CopyBlock>
+      <Step n={8} title="Prove the check works">
+        Delete clause 6 from the contract in your tool and click Check again. The indemnity flag should disappear. If
+        the AI still reports it, your new "Not found in the contract" label should appear next to it. Either way,
+        nothing invented gets past you.
+      </Step>
+      <p>
+        There's a free version at{" "}
+        <a href="/tools/contract-check" className="font-semibold text-caramel-700 underline">allthecoffee.in/tools/contract-check</a>{" "}
+        that works the other way round: no AI, it looks for the words risky clauses usually use. It can't invent
+        anything, but it can miss a clause written in unusual words. Yours understands meaning but needs checking.
+        Knowing that trade-off is half of using AI well. Neither one is legal advice.
+      </p>
+      <div className="my-5">
+        <ContractCheck />
+      </div>
+
+      <SectionEyebrow n="08" label="What you can skip" />
       <p>
         How the request is actually written, what format the response comes back in, how API pricing is calculated,
         and which AI model you're using. The useful questions when you work with tech teams are simpler: "Which API
@@ -184,7 +257,7 @@ export default function ChapterSix() {
         ]}
       />
 
-      <SectionEyebrow n="08" label="Try it yourself" />
+      <SectionEyebrow n="09" label="Try it yourself" />
       <TryItYourself>
         <p className="mb-2">1. Add a second button, Write Email, that turns the summary into a short, polite email to your manager.</p>
         <p className="mb-2">2. Add a dropdown to choose the summary length: one line, short or detailed.</p>
@@ -194,7 +267,7 @@ export default function ChapterSix() {
         </p>
       </TryItYourself>
 
-      <SectionEyebrow n="09" label="Words you can now use" />
+      <SectionEyebrow n="10" label="Words you can now use" />
       <WordsTable
         words={[
           { word: "API", meaning: "A way for one piece of software to ask another for something", sample: "Does their system have an API we can connect to?" },

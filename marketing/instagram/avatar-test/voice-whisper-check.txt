@@ -1,0 +1,51 @@
+Mary speaks in a calm, warm and clear voice with a moderate pace and a balanced pitch, slightly expressive, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.00 2.1s | Hi, I'm with all the coffee.
+[0.1] wer=0.33 2.3s | Hi, I am with all the coffee.
+[0.2] wer=0.33 2.3s | Hi, I am with all the coffee.
+[0.3] wer=0.00 2.1s | Hi, I'm with all the coffee.
+[0.4] wer=0.33 2.3s | Hi, I am with all the coffee.
+[0.5] wer=0.00 2.2s | Hi, I'm with all the coffee.
+  -> sentence 0 keeps take 0 (wer 0.00)
+[1.0] wer=0.00 5.5s | If you've ever used ChatGPT to rewrite an email, you're already halfway there.
+[1.1] wer=0.46 5.7s | If you have ever used Chats GPT to rewrite an email, you are already halfway there.
+[1.2] wer=0.00 5.7s | If you've ever used ChatGPT to rewrite an email, you're already halfway there.
+[1.3] wer=0.15 5.6s | If you've ever used Chaat's GPTT to rewrite an email, you're already halfway there.
+[1.4] wer=0.00 5.7s | If you've ever used ChatGPT to rewrite an email, you're already halfway there.
+[1.5] wer=0.08 5.5s | If you've ever used ChartGPT to rewrite an email, you're already halfway there.
+  -> sentence 1 keeps take 0 (wer 0.00)
+[2.0] wer=0.06 6.5s | In Chapter 1, you build a meeting cost calculator in about 20 minutes right in your browser.
+[2.1] wer=0.06 6.4s | In Chapter 1, you build a meeting cost calculator in about 20 minutes right in your browser.
+[2.2] wer=0.06 6.6s | In Chapter 1, you build a meeting cost calculator in about 20 minutes right in your browser.
+[2.3] wer=0.06 6.5s | In Chapter 1, you build a meeting cost calculator in about 20 minutes, right in your browser.
+[2.4] wer=0.06 6.2s | In Chapter 1, you build a meeting cost calculator in about 20 minutes right in your browser.
+[2.5] wer=0.06 6.4s | In Chapter 1, you build a meeting cost calculator in about 20 minutes, right in your browser.
+  -> sentence 2 keeps take 0 (wer 0.06)
+[3.0] wer=0.00 8.1s | Whether it's GSTR 2B reconciliation or a messy Excel export, AI can help as long as you check its work.
+[3.1] wer=0.14 8.4s | Whether it's GSTR2, the reconciliation or a messy Excel export, AI can help as long as you check its work.
+[3.2] wer=0.00 8.1s | Whether it's GSTR, 2B reconciliation, or a messy Excel export, AI can help as long as you check its work.
+[3.3] wer=0.05 8.3s | Whether it's GSTR 2B reconciliation or a messy Excel export, it can help as long as you check its work.
+[3.4] wer=0.00 8.2s | Whether it's GSTR 2B reconciliation or a messy Excel export, AI can help as long as you check its work.
+[3.5] wer=0.10 8.2s | Whether it's GSTR2B reconciliation or a messy Excel export, AI can help as long as you check its work.
+  -> sentence 3 keeps take 0 (wer 0.00)
+[4.0] wer=0.33 2.6s | Chapters 0 to 3 are free.
+[4.1] wer=0.33 2.6s | Chapters 0 to 3 are free.
+[4.2] wer=0.33 2.7s | Chapters 0 to 3 are free.
+[4.3] wer=0.33 2.7s | Chapters 0 to 3 are free.
+[4.4] wer=0.50 2.3s | Chapters 0-3 are free.
+[4.5] wer=0.50 2.6s | Chakras 0 to 3 are free.
+  -> sentence 4 keeps take 0 (wer 0.33)
+[5.0] wer=0.00 4.4s | The rest is a one time 599 rupees.
+[5.1] wer=0.00 3.8s | The rest is a one time 599 rupees.
+[5.2] wer=0.00 4.1s | The rest is a one time 599 rupees.
+[5.3] wer=0.00 3.8s | The rest is a one time 599 rupees.
+[5.4] wer=0.00 4.1s | The rest is a one time 599 rupees.
+[5.5] wer=0.00 4.4s | The rest is a one time 599 rupees.
+  -> sentence 5 keeps take 0 (wer 0.00)
+[6.0] wer=0.00 2.5s | Start free at all the coffee.in
+[6.1] wer=0.00 2.3s | Start free at all the coffee.in
+[6.2] wer=0.00 2.7s | Start free at allthecoffee.in
+[6.3] wer=0.00 2.7s | Start free at allthecoffee.in
+[6.4] wer=0.00 2.8s | Start free at allthecoffee.in
+[6.5] wer=0.00 2.5s | Start free at all the coffee.in
+  -> sentence 6 keeps take 0 (wer 0.00)

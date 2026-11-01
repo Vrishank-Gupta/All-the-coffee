@@ -1,0 +1,79 @@
+Mary speaks in a calm, warm and clear voice with a moderate pace and a balanced pitch, slightly expressive, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.00 2.1s | It's the end of the year.
+[0.1] wer=0.00 1.9s | It's the end of the year.
+[0.2] wer=0.00 2.0s | It's the end of the year.
+[0.3] wer=0.00 1.7s | It's the end of the year.
+[0.4] wer=0.00 1.9s | It's the end of the year.
+[0.5] wer=0.00 2.0s | It's the end of the year.
+  -> sentence 0 keeps take 0 (wer 0.00)
+[1.0] wer=0.00 5.8s | 12 monthly sales files and your manager wants one sheet with totals by region.
+[1.1] wer=0.00 5.6s | 12 monthly sales files and your manager wants one sheet with totals by region.
+[1.2] wer=0.00 6.1s | 12 monthly sales files and your manager wants one sheet with totals by region.
+[1.3] wer=0.00 5.8s | 12 monthly sales files and your manager wants one sheet with totals by region.
+[1.4] wer=0.00 5.7s | 12 monthly sales files and your manager wants one sheet with totals by region.
+[1.5] wer=0.00 5.8s | 12 monthly sales files and your manager wants one sheet with totals by region.
+  -> sentence 1 keeps take 0 (wer 0.00)
+[2.0] wer=0.00 3.5s | by hand. That's an afternoon of copy and paste.
+[2.1] wer=0.00 3.4s | By hand that's an afternoon of copy and paste.
+[2.2] wer=0.00 3.0s | By hand, that's an afternoon of copy and paste.
+[2.3] wer=0.00 3.5s | By hand, that's an afternoon of copy and paste.
+[2.4] wer=0.00 3.3s | By hand, that's an afternoon of copy and paste.
+[2.5] wer=0.00 3.6s | By hand, that's an afternoon of copy and paste.
+  -> sentence 2 keeps take 0 (wer 0.00)
+[3.0] wer=0.10 3.7s | Or you describe the job to A in plain English.
+[3.1] wer=0.00 3.8s | or you describe the job to AI in plain English.
+[3.2] wer=0.00 3.8s | or you describe the job to AI in plain English.
+[3.3] wer=0.00 4.0s | or you describe the job to AI in plain English.
+[3.4] wer=0.00 4.1s | or you describe the job to AI in plain English.
+[3.5] wer=0.10 3.7s | or you describe the job to A in plain English.
+  -> sentence 3 keeps take 1 (wer 0.00)
+[4.0] wer=0.00 2.5s | It writes a short python script.
+[4.1] wer=0.00 2.4s | It writes a short python script.
+[4.2] wer=0.00 2.3s | It writes a short python script.
+[4.3] wer=0.00 2.5s | It writes a short python script.
+[4.4] wer=0.00 2.6s | It writes a short python script.
+[4.5] wer=0.00 2.5s | It writes a short python script.
+  -> sentence 4 keeps take 0 (wer 0.00)
+[5.0] wer=0.00 2.0s | You run one command.
+[5.1] wer=0.00 1.9s | You run one command.
+[5.2] wer=0.00 1.9s | You run one command.
+[5.3] wer=0.00 1.9s | You run one command.
+[5.4] wer=0.00 2.1s | You run one command.
+[5.5] wer=0.00 2.0s | You run one command.
+  -> sentence 5 keeps take 0 (wer 0.00)
+[6.0] wer=0.00 5.4s | A couple of seconds later, 96 rows combined, totals by region done.
+[6.1] wer=0.00 5.7s | A couple of seconds later, 96 rows combined totals by region done.
+[6.2] wer=0.00 5.2s | A couple of seconds later, 96 rows combined totals by region done.
+[6.3] wer=0.00 5.5s | A couple of seconds later, 96 rows combined totals by region done.
+[6.4] wer=0.00 5.8s | A couple of seconds later, 96 rows combined, totals by region done.
+[6.5] wer=0.00 5.9s | A couple of seconds later, 96 rows combined totals by region done.
+  -> sentence 6 keeps take 0 (wer 0.00)
+[7.0] wer=0.00 2.3s | You don't need to know how to code.
+[7.1] wer=0.00 2.2s | You don't need to know how to code.
+[7.2] wer=0.00 2.2s | You don't need to know how to code.
+[7.3] wer=0.00 2.3s | You don't need to know how to code.
+[7.4] wer=0.00 2.3s | You don't need to know how to code.
+[7.5] wer=0.00 2.2s | You don't need to know how to code.
+  -> sentence 7 keeps take 0 (wer 0.00)
+[8.0] wer=0.00 2.7s | You need to know how to check the numbers.
+[8.1] wer=0.00 2.9s | You need to know how to check the numbers.
+[8.2] wer=0.00 2.7s | You need to know how to check the numbers.
+[8.3] wer=0.00 2.8s | You need to know how to check the numbers.
+[8.4] wer=0.00 2.6s | You need to know how to check the numbers.
+[8.5] wer=0.00 2.8s | You need to know how to check the numbers.
+  -> sentence 8 keeps take 0 (wer 0.00)
+[9.0] wer=0.00 2.5s | That's Chapter 9 of All the Coffee.
+[9.1] wer=0.00 2.9s | That's chapter 9 of all the coffee.
+[9.2] wer=0.00 3.0s | That's chapter 9 of all the coffee.
+[9.3] wer=0.00 2.5s | That's chapter 9 of All the Coffee.
+[9.4] wer=0.00 2.8s | That's chapter 9 of all the coffee.
+[9.5] wer=0.00 3.0s | That's chapter 9 of all the coffee.
+  -> sentence 9 keeps take 0 (wer 0.00)
+[10.0] wer=0.00 2.8s | Start free at allthecoffee.in
+[10.1] wer=0.00 2.9s | Start free at allthecoffee.in
+[10.2] wer=0.00 2.5s | Start free at allthecoffee.in
+[10.3] wer=0.00 2.4s | Start free at allthecoffee.in
+[10.4] wer=0.00 2.8s | Start free at allthecoffee.in
+[10.5] wer=0.00 2.7s | Start free at allthecoffee.in
+  -> sentence 10 keeps take 0 (wer 0.00)

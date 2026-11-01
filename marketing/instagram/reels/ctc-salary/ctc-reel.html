@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reel: CTC to In-Hand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lib/reel.css">
+<style>
+  /* Reel 1: the free CTC calculator (Chapter 3), Hinglish voice, no presenter. Numbers come from
+     data.js, written by make-data.ts from the site's own calculator. */
+  .offer { width: 720px; align-self: center; background: var(--cream); color: var(--ink); border-radius: 30px; padding: 46px 52px; box-shadow: 0 40px 90px rgba(0,0,0,0.45); position: relative; }
+  .offer small { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 0.14em; color: var(--rust); font-size: 24px; }
+  .offer h2 { margin: 16px 0 26px; font-size: 52px; }
+  .offer .row { display: flex; justify-content: space-between; font-size: 32px; padding: 14px 0; border-top: 2px solid var(--paper-line); }
+  .offer .row b { font-family: 'Fraunces', serif; font-size: 40px; }
+  .stamp { position: absolute; right: -30px; top: -40px; transform: rotate(10deg); background: var(--amber); color: var(--ink); font: 700 40px 'Fraunces', serif; padding: 18px 30px; border-radius: 22px; box-shadow: 0 20px 40px rgba(0,0,0,0.35); }
+  .sum { text-align: center; }
+  .sum .naive { font: 600 64px 'Fraunces', serif; position: relative; display: inline-block; white-space: nowrap; }
+  .sum .naive i { position: absolute; left: -10px; right: -10px; top: 52%; height: 10px; background: var(--rust); border-radius: 9px; transform-origin: left; }
+  .sum .q { font: 700 260px/1 'Fraunces', serif; color: var(--amber); margin-top: 30px; }
+  .slip { width: 700px; align-self: center; background: var(--paper); color: var(--ink); border-radius: 28px; padding: 36px 44px; box-shadow: 0 40px 90px rgba(0,0,0,0.45); font-family: 'Inter', sans-serif; }
+  .slip h3 { margin: 0 0 18px; font: 700 40px 'Fraunces', serif; }
+  .slip .r { display: flex; justify-content: space-between; font-size: 30px; padding: 12px 0; border-bottom: 2px solid var(--paper-line); color: #6B5444; }
+  .slip .net { color: var(--ink); font-weight: 700; font-size: 38px; border: 0; padding-top: 22px; }
+  .slip .net span:last-child { filter: blur(12px); }
+  .calc { font-family: 'Inter', sans-serif; padding: 34px 40px 30px; }
+  .calc .line { display: flex; justify-content: space-between; align-items: baseline; font-size: 34px; padding: 15px 0; border-bottom: 2px solid var(--paper-line); color: #6B5444; }
+  .calc .line b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .calc .line.minus b { color: var(--brick); }
+  .calc .line.sub { color: var(--ink); font-weight: 700; }
+  .inhand { margin-top: 26px; background: var(--ink); color: var(--cream); border-radius: 24px; text-align: center; padding: 28px 0 30px; }
+  .inhand small { font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; font-weight: 700; }
+  .inhand b { display: block; font: 700 104px/1.05 'Fraunces', serif; font-variant-numeric: tabular-nums; }
+  .zero { display: inline-block; margin-left: 16px; background: var(--sage); color: #fff; font: 700 24px 'Inter', sans-serif; padding: 6px 16px; border-radius: 99px; vertical-align: 4px; }
+  .change { display: flex; align-items: center; gap: 40px; justify-content: center; }
+  .cal { width: 260px; border-radius: 30px; overflow: hidden; background: var(--cream); color: var(--ink); text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  .cal .m { background: var(--rust); color: var(--cream); font: 700 34px 'Inter', sans-serif; letter-spacing: 0.14em; padding: 18px 0; }
+  .cal .d { font: 700 140px/1 'Fraunces', serif; padding: 20px 0 6px; }
+  .cal .y { font: 600 30px 'Inter', sans-serif; padding-bottom: 22px; color: #6B5444; }
+  .ceiling { font: 600 46px/1.25 'Fraunces', serif; }
+  .ceiling s { color: var(--muted); text-decoration-color: var(--rust); text-decoration-thickness: 6px; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 60px; }
+  .vs > div { border-radius: 26px; padding: 30px; text-align: center; font-family: 'Inter', sans-serif; }
+  .vs small { font-size: 26px; font-weight: 700; display: block; margin-bottom: 10px; }
+  .vs b { font: 700 70px 'Fraunces', serif; }
+  .vs .bad { background: var(--brick-bg); color: var(--brick); }
+  .vs .good { background: var(--sage-bg); color: var(--sage); }
+  .badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .badges span { font: 700 24px 'Inter', sans-serif; padding: 10px 20px; border-radius: 99px; background: var(--card); border: 2px solid var(--line); }
+  .ch { background: var(--card); border: 2px solid var(--line); border-radius: 30px; padding: 44px 48px; }
+  .ch .num { font: 700 150px/1 'Fraunces', serif; color: var(--amber); }
+  .ch h3 { font: 700 60px/1.1 'Fraunces', serif; margin: 10px 0 20px; }
+  .ch p { font-size: 36px; line-height: 1.35; margin: 0; color: var(--muted); }
+  .ch p b { color: var(--cream); }
+  .end { align-items: center; text-align: center; }
+  .logo { display: flex; align-items: center; gap: 22px; justify-content: center; }
+  .logo .mark { width: 96px; height: 96px; border-radius: 999px; background: var(--cream); display: flex; align-items: center; justify-content: center; }
+  .logo span { font: 700 60px 'Fraunces', serif; }
+  .end .url { align-self: center; font-size: 54px; padding: 28px 54px; margin-top: 50px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="progress"></div>
+  <div id="brand" class="el"><span>All The Coffee · Free tool</span><span>CTC to in-hand</span></div>
+
+  <!-- 0: the offer -->
+  <section class="scene" data-from="0" data-to="1" data-tr="zoom">
+    <div class="offer el" data-at="0" data-fx="drop">
+      <small>OFFER LETTER</small>
+      <h2 class="fd">Welcome aboard!</h2>
+      <div class="row"><span>Designation</span><span>Senior Analyst</span></div>
+      <div class="row"><span>Annual CTC</span><b>₹12,00,000</b></div>
+      <div class="stamp el" data-at="0.45" data-fx="pop">Badhai ho!</div>
+    </div>
+  </section>
+
+  <!-- 1: the naive sum -->
+  <section class="scene" data-from="1" data-to="2" data-tr="push">
+    <div class="sum">
+      <p class="label el" data-at="1">12 lakh a year, so every month...</p>
+      <div class="naive el" data-at="1.2" data-fx="pop">₹12,00,000 ÷ 12 = ₹1,00,000<i id="strike"></i></div>
+      <div class="q el" data-at="1.7" data-fx="pop">?</div>
+    </div>
+  </section>
+
+  <!-- 2: the payslip -->
+  <section class="scene" data-from="2" data-to="3" data-tr="push">
+    <div class="slip el" data-at="2" data-fx="rise" id="slip">
+      <h3>Salary slip</h3>
+      <div class="r"><span>Gross salary</span><span>₹94,595</span></div>
+      <div class="r"><span>Provident fund</span><span>−₹3,000</span></div>
+      <div class="r"><span>Professional tax</span><span>−₹208</span></div>
+      <div class="r net"><span>Net pay</span><span>₹91,387</span></div>
+    </div>
+  </section>
+
+  <!-- 3-7: the calculation -->
+  <section class="scene" data-from="3" data-to="8" data-tr="zoom" id="calcScene" style="overflow: hidden; border-radius: 30px;">
+    <p class="label el" data-at="3">The free CTC calculator on <b>allthecoffee.in</b></p>
+    <div class="window paper el" data-at="3" data-fx="up">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">CTC to in-hand · FY 2026-27</span></div>
+      <div class="calc">
+        <div class="line sub"><span>Fixed CTC</span><b id="v-ctc"></b></div>
+        <div class="line minus el" data-at="4.15" data-fx="left"><span>Company's PF</span><b id="v-epf"></b></div>
+        <div class="line minus el" data-at="4.45" data-fx="left"><span>Gratuity</span><b id="v-grat"></b></div>
+        <div class="line sub el" data-at="4.8" data-fx="left"><span>Gross salary</span><b id="v-gross"></b></div>
+        <div class="line minus el" data-at="5.1" data-fx="left"><span>Your PF</span><b id="v-pf"></b></div>
+        <div class="line minus el" data-at="5.35" data-fx="left"><span>Professional tax</span><b id="v-pt"></b></div>
+        <div class="line minus el" data-at="5.65" data-fx="left"><span>Income tax + cess<span class="zero el" data-at="6.6" data-fx="pop">Rebate</span></span><b id="v-tax">…</b></div>
+        <div class="inhand el" data-at="7" data-fx="pop" id="inhand"><small>In hand, every month</small><b id="v-month">₹0</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-9: the rule changed -->
+  <section class="scene" data-from="8" data-to="10" data-tr="glitch">
+    <div class="change">
+      <div class="cal el" data-at="8.15" data-fx="pop"><div class="m">SEP</div><div class="d">17</div><div class="y">2026</div></div>
+      <div class="ceiling el" data-at="8.4">PF wage ceiling<br><s>₹15,000</s> <span class="amber">₹25,000</span> a month</div>
+    </div>
+    <div class="vs">
+      <div class="bad el" data-at="9.1" data-fx="left"><small>Outdated calculator</small><b id="v-old"></b></div>
+      <div class="good el" data-at="9.45" data-fx="right"><small>Updated for the new rule</small><b id="v-new"></b></div>
+    </div>
+  </section>
+
+  <!-- 10-11: free tool, then the chapter -->
+  <section class="scene" data-from="10" data-to="11" data-tr="rise">
+    <div class="phone el" data-at="10" data-fx="rise"><div class="screen"><img id="shot" src="../lib/tool-shots/ctc-calculator.jpg" alt=""></div></div>
+    <div class="side">
+      <div class="eyebrow el" data-at="10.1">Free tool</div>
+      <div class="chtitle fd el" data-at="10.2">CTC to in-hand calculator</div>
+      <div class="badges"><span class="el" data-at="10.45" data-fx="pop">Free</span><span class="el" data-at="10.55" data-fx="pop">No sign-up</span><span class="el" data-at="10.65" data-fx="pop">Every step shown</span></div>
+    </div>
+  </section>
+  <section class="scene" data-from="11" data-to="12" data-tr="push">
+    <div class="ch el" data-at="11" data-fx="up">
+      <div class="num">3</div>
+      <h3>Chapter 3: When things break</h3>
+      <p>Build this calculator yourself, <b>just by describing it to AI</b>. Then catch the two traps: the old PF rule and the ₹12 lakh cliff.</p>
+    </div>
+  </section>
+
+  <!-- 12: start free -->
+  <section class="scene end" data-from="12" data-to="99" data-tr="zoom">
+    <div class="logo el" data-at="12" data-fx="pop">
+      <div class="mark"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#241711" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg></div>
+      <span>All The Coffee</span>
+    </div>
+    <p class="mid fd el" data-at="12.15" style="margin-top: 40px;">From AI-anxious to builder.</p>
+    <div class="url el" data-at="12.3" data-fx="pop" id="url"> </div>
+  </section>
+
+  <div id="caption" class="fd"><p id="cap"></p></div>
+</div>
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script src="../lib/reel-engine.js"></script>
+<script>
+  const D = window.DATA, R = window.REEL;
+  const N = D.now;
+  const set = (id, v) => (document.getElementById(id).textContent = v);
+  set('v-ctc', R.inr(D.ctc)); set('v-epf', '−' + R.inr(N.employerPf)); set('v-grat', '−' + R.inr(N.gratuity));
+  set('v-gross', R.inr(N.gross)); set('v-pf', '−' + R.inr(N.employeePf)); set('v-pt', '−' + R.inr(N.professionalTax));
+  set('v-old', R.inr(D.oldInHandMonth)); set('v-new', R.inr(N.inHandMonth));
+  REEL.init({
+    captions: [
+      "Naya offer letter aaya? Badhai ho!",
+      "12 lakh ka CTC... par sach bataiye, mahine mein haath mein kitna aayega?",
+      "Pehli salary slip dekh ke, thoda jhatka lagta hai na?",
+      "Toh chaliye, mil ke hisaab lagaate hain.",
+      "Pehle company ka PF aur gratuity katta hai.",
+      "Phir aapka PF, professional tax, aur income tax.",
+      "12 lakh par, income tax... zero!",
+      "Aur haath mein, har mahine, ₹91,387.",
+      "Ek baat dhyaan rakhiye. September mein PF ka niyam badal gaya hai.",
+      "Purani jaankari wala calculator, aapko galat jawaab dega.",
+      "Ye calculator, All The Coffee par bilkul free hai.",
+      "Aur Chapter 3 mein, aap ise khud banana seekhte hain, bina coding ke.",
+      "Free mein shuru kijiye, allthecoffee.in par!",
+    ],
+    onSeek(t, sv) {
+      const { at, clamp, easeOut, easeInOut } = R;
+      // The naive "divide by 12" gets struck through
+      document.getElementById('strike').style.transform = `scaleX(${easeOut((t - at(1.5)) / 0.35)})`;
+      // The payslip shakes a little when it lands
+      const sh = t - at(2.2);
+      document.getElementById('slip').style.translate = sh > 0 && sh < 0.5 ? `${Math.sin(sh * 60) * 10 * (1 - sh / 0.5)}px 0` : '0 0';
+      // Tax resolves to zero, then the in-hand figure counts up
+      set('v-tax', t < at(6.45) ? '…' : '−₹0');
+      set('v-month', R.inr(Math.round(N.inHandMonth * easeOut((t - at(7.1)) / (at(7.85) - at(7.1))))));
+      // Camera: move in on the in-hand figure while it's said
+      // The in-hand box glows once the figure lands
+      const g = clamp((t - at(7.85)) / 0.4) * (1 - clamp((t - at(7.85) - 1.2) / 0.6));
+      document.getElementById('inhand').style.boxShadow = `0 0 ${60 * g}px rgba(242, 189, 124, ${0.6 * g})`;
+      // The phone scrolls the free tool's page a little
+      if (sv[6]) document.getElementById('shot').style.transform = `translateY(${-160 * easeInOut((t - at(10.2)) / 2)}px)`;
+      // The URL types itself out, then glows
+      const U = 'allthecoffee.in';
+      const n = Math.round(clamp((t - at(12.45)) / (at(12.95) - at(12.45))) * U.length);
+      set('url', U.slice(0, n) || ' ');
+      const pulse = t > at(12.95) ? 0.5 + 0.5 * Math.sin((t - at(12.95)) * 5) : 0;
+      document.getElementById('url').style.boxShadow = `0 0 ${20 + 30 * pulse}px rgba(242, 189, 124, ${0.25 + 0.35 * pulse})`;
+    },
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+Mary speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.00 3.8s | Month end and a folder full of vendor invoices.
+[0.1] wer=0.22 3.6s | Monthsend and a folder full of vendor invoices.
+[0.2] wer=0.00 3.8s | month end and a folder full of vendor invoices.
+[0.3] wer=0.00 3.7s | month end and a folder full of vendor invoices.
+[0.4] wer=0.22 3.8s | and a folder full of vendor invoices.
+  -> sentence 0 keeps take 0 (wer 0.00)
+[1.0] wer=0.08 6.0s | Someone has to type every GSTN, every invoice number, every amount into Excel.
+[1.1] wer=0.00 5.8s | Someone has to type every GSTIN, every invoice number, every amount into Excel.
+[1.2] wer=0.00 5.8s | Someone has to type every GSTIN, every invoice number, every amount into Excel.
+[1.3] wer=0.00 5.7s | Someone has to type every GSTIN, every invoice number, every amount into Excel.
+[1.4] wer=0.00 5.8s | Someone has to type every GSTIN, every invoice number, every amount into Excel.
+  -> sentence 1 keeps take 1 (wer 0.00)
+[2.0] wer=0.00 2.1s | Let's not do that today.
+[2.1] wer=0.00 1.9s | Let's not do that today.
+[2.2] wer=0.00 2.0s | Let's not do that today.
+[2.3] wer=0.00 2.0s | Let's not do that today.
+[2.4] wer=0.00 1.9s | Let's not do that today.
+  -> sentence 2 keeps take 0 (wer 0.00)
+[3.0] wer=0.75 2.0s | Drop them where it's in.
+[3.1] wer=0.50 2.0s | Drop the i-vains in.
+[3.2] wer=1.00 0.1s | Thank you.
+[3.3] wer=0.25 1.9s | Drop the alkenes in
+[3.4] wer=0.25 2.1s | Drop the tadwears in.
+  -> sentence 3 keeps take 3 (wer 0.25)
+[4.0] wer=0.00 6.8s | Vendor, GSTIN, invoice number, date, taxable value, GST and total. 1 row each.
+[4.1] wer=0.00 6.5s | Vendor GSTIN invoice number, date, taxable value, GST and total, one row each.
+[4.2] wer=0.00 7.0s | Vendor, GSTIN, invoice number, date, taxable value, GST and total. One row each.
+[4.3] wer=0.00 7.0s | Vendor, GSTIN, invoice number, date, taxable value, GST and total. 1 row each.
+[4.4] wer=0.00 6.4s | Vendor, GSTIN, invoice number, date, taxable value, GST and total, one row each.
+  -> sentence 4 keeps take 0 (wer 0.00)
+[5.0] wer=0.00 2.8s | and every single total gets checked.
+[5.1] wer=0.00 2.7s | and every single total gets checked.
+[5.2] wer=0.00 2.6s | and every single total gets checked.
+[5.3] wer=0.00 2.7s | and every single total gets checked.
+[5.4] wer=0.00 2.7s | and every single total gets checked.
+  -> sentence 5 keeps take 0 (wer 0.00)
+[6.0] wer=0.00 3.9s | See this one. It's a thousand rupees more than it should be.
+[6.1] wer=0.00 3.8s | See this one. It's a thousand rupees more than it should be.
+[6.2] wer=0.08 3.6s | See this one is a thousand rupees more than it should be.
+[6.3] wer=0.00 3.6s | See this one. It's a thousand rupees more than it should be.
+[6.4] wer=0.00 4.0s | See this one, it's a thousand rupees more than it should be.
+  -> sentence 6 keeps take 0 (wer 0.00)
+[7.0] wer=0.00 6.1s | And this one is a scan. It can't be read. So it tells you, instead of skipping it quietly.
+[7.1] wer=0.00 6.4s | And this one is a scan. It can't be read so it tells you, instead of skipping it quietly.
+[7.2] wer=0.00 5.7s | And this one is a scan. It can't be read, so it tells you, instead of skipping it quietly.
+[7.3] wer=0.00 6.2s | And this one is a scan. It can't be read so it tells you instead of skipping it quietly.
+[7.4] wer=0.00 6.5s | And this one is a scan. It can't be read. So it tells you, instead of skipping it quietly,
+  -> sentence 7 keeps take 0 (wer 0.00)
+[8.0] wer=0.40 2.4s | Cockate into Excel. Done.
+[8.1] wer=0.00 2.4s | Copy it into Excel. Done.
+[8.2] wer=0.00 2.5s | Copy it into Excel. Done.
+[8.3] wer=0.00 2.6s | Copy it into Excel. Done.
+[8.4] wer=0.00 2.4s | Copy it into Excel. Done.
+  -> sentence 8 keeps take 1 (wer 0.00)
+[9.0] wer=0.00 4.6s | It's free on all the coffee and your files never leave your computer.
+[9.1] wer=0.00 4.7s | It's free on all the coffee and your files never leave your computer.
+[9.2] wer=0.00 4.7s | It's free on all the coffee and your files never leave your computer.
+[9.3] wer=0.00 4.6s | It's free on all the coffee and your files never leave your computer.
+[9.4] wer=0.00 4.7s | It's free on all the coffee and your files never leave your computer.
+  -> sentence 9 keeps take 0 (wer 0.00)
+[10.0] wer=0.00 4.8s | And in the capstone chapter, you build your own version for your own job.
+[10.1] wer=0.00 4.9s | And in the capstone chapter, you build your own version for your own job.
+[10.2] wer=0.00 5.1s | And in the capstone chapter, you build your own version for your own job.
+[10.3] wer=0.00 5.1s | And in the capstone chapter, you build your own version for your own job.
+[10.4] wer=0.00 5.1s | And in the capstone chapter, you build your own version for your own job.
+  -> sentence 10 keeps take 0 (wer 0.00)
+[11.0] wer=0.00 2.6s | Start free at all the coffee.in
+[11.1] wer=0.00 2.7s | Start free at allthecoffee.in
+[11.2] wer=0.00 2.5s | Start free at allthecoffee.in
+[11.3] wer=0.00 2.6s | Start free at allthecoffee.in
+[11.4] wer=0.00 2.8s | Start free at allthecoffee.in
+  -> sentence 11 keeps take 0 (wer 0.00)
+
+Sentence 3 replaced by a new take (2.2s):
+Mary speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.00 2.2s | Drop the PDF files in.
+[0.1] wer=0.00 2.2s | Drop the PDF files in.
+[0.2] wer=0.00 2.3s | Drop the PDF files in.
+[0.3] wer=0.00 2.2s | Drop the PDF files in.
+[0.4] wer=0.00 2.2s | Drop the PDF files in.
+[0.5] wer=0.00 2.2s | Drop the PDF files in.
+  -> sentence 0 keeps take 0 (wer 0.00)

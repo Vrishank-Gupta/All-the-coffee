@@ -1,0 +1,11 @@
+It's the end of the year. | It's the end of the year. | 0.3
+Twelve monthly sales files, and your manager wants one sheet with totals by region. | Twelve monthly sales files, and your manager wants one sheet with totals by region. | 0.3
+By hand, that's an afternoon of copy and paste. | By hand, that's an afternoon of copy and paste. | 0.55
+Or, you describe the job to AI, in plain English. | Or you describe the job to AI in plain English. | 0.3
+It writes a short Python script. | It writes a short Python script. | 0.25
+You run one command. | You run one command. | 0.35
+A couple of seconds later: ninety-six rows combined, totals by region, done. | A couple of seconds later, ninety six rows combined, totals by region, done. | 0.55
+You don't need to know how to code. | You don't need to know how to code. | 0.25
+You need to know how to check the numbers. | You need to know how to check the numbers. | 0.55
+That's Chapter Nine of All The Coffee. | That's Chapter nine of All The Coffee. | 0.3
+Start free at all the coffee dot in. | Start free at all the coffee dot in. | 0.5

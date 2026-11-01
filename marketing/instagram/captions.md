@@ -378,3 +378,143 @@ You're not behind. Start free: link in bio.
 
 #AllTheCoffee #PracticalAI #AIatWork #VibeCoding #NoCode #LearnAI
 ```
+
+---
+
+## Reel 2: Chapter 9, merge 12 sales sheets (40 seconds)
+
+Video: `reels/ch9-merge/ch9-reel.mp4` · Blog: none · Turn on the "AI info" label: the presenter is AI-generated.
+
+```
+Year-end. 12 monthly sales files, and your manager wants one sheet with totals by region. By hand, that's an afternoon of open, copy, paste, check.
+
+In Chapter 9 you describe the job to AI in plain English. It writes a short Python script. You run one command, and 96 rows become one Excel file with totals by region.
+
+Then comes the part that matters: checking the numbers. The chapter's practice files include a July sheet that says "Amt" instead of "Amount", so you learn to catch the mistake before your manager does.
+
+No coding background needed. Chapters 0 to 3 are free, no card. Chapters 4 to 11, including this one, are a one-time ₹599.
+
+Start free: link in bio.
+
+(The presenter in this video is AI-generated.)
+
+#AllTheCoffee #PracticalAI #AIatWork #ExcelTips #SalesOps #Automation
+```
+
+## Reel 3: Chapter 5, GSTR-2B reconciler (Hinglish, about 55 seconds)
+
+Video: `reels/gst-recon/gst-reel.mp4` · Blog: none · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+Har mahine wahi kaam: purchase register ek taraf, GSTR-2B doosri taraf, aur beech mein VLOOKUP.
+
+Chapter 5 mein aap AI ko seedhi bhasha mein samjhaate hain, aur AI aapke liye ek reconciler bana deta hai. Dono files upload karo, Reconcile dabao: matched, amount mismatch, missing in 2B, only in 2B, aur kitna tax credit risk par hai.
+
+Aur haan, pehli baar tool galat bhi ho sakta hai. INV/023 aur INV-23 ek hi invoice hai, par tool unhe alag maan leta hai. Isliye chapter mein sahi jawaab pehle se diya hai, taaki aap check kar sako.
+
+Practice ke liye sample files hain (made-up suppliers). Real data ke liye pehle apni company ki policy check karein, aur final call aapke CA ya tax team ki.
+
+Chapters 0 to 3 free hain, no card. Chapters 4 to 11, Chapter 5 ke saath, ek baar ke ₹599.
+
+Start free: link in bio.
+
+(The voice in this video is AI-generated.)
+
+#AllTheCoffee #GSTR2B #GST #AccountsLife #ExcelTips #PracticalAI
+```
+
+## Reel 4: CTC to in-hand calculator (Hinglish, free tool, Chapter 3)
+
+Video: `reels/new-reels/reel-4-ctc-calculator-hinglish.mp4` · Link: allthecoffee.in/tools/ctc-calculator · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+Offer letter mein 12 LPA. Bank account mein... kitna? 🤔
+
+Humne ek free calculator banaya hai jo har step dikhata hai: company ka PF, gratuity, aapka PF, professional tax, income tax. 12 lakh CTC par (50% basic, ₹2,500 professional tax), new regime mein, haath mein aate hain ₹91,387 mahine ke.
+
+Ek cheez dhyaan rakhiye: 17 September 2026 se PF wage ceiling ₹15,000 se ₹25,000 ho gayi hai. Purani jaankari wale calculators ab galat jawaab dete hain.
+
+Calculator free hai, sign-up nahi chahiye. Aur Chapter 3 mein aap ise khud banana seekhte hain, AI ko seedhi bhasha mein samjha ke, aur check karke ki jawaab sahi hai.
+
+Free mein shuru kijiye: link in bio.
+
+Estimate hai, final word aapki payslip ka. (The voice in this video is AI-generated.)
+
+#AllTheCoffee #SalaryIndia #CTC #IncomeTax #NewTaxRegime #PracticalAI
+```
+
+## Reel 5: WhatsApp follow-up desk (English, AI presenter, free tool, Chapter 4)
+
+Video: `reels/new-reels/reel-5-whatsapp-follow-ups-english.mp4` · Link: allthecoffee.in/tools/whatsapp-follow-ups · Turn on the "AI info" label: the presenter and voice are AI-generated.
+
+```
+How many follow-ups are you carrying in your head right now?
+
+This tiny free tool keeps them in one list, shows who's overdue and who's due today, and opens WhatsApp with your message already typed, in English or Hinglish. You still press send yourself, so nothing goes out by mistake. Your list stays in your browser.
+
+In Chapter 4 you build it yourself, just by describing it to AI.
+
+Start free: link in bio.
+
+(The presenter in this video is AI-generated.)
+
+#AllTheCoffee #WhatsAppBusiness #SalesTips #SmallBusinessIndia #PracticalAI #Productivity
+```
+
+## Reel 6: Bulk offer letters (Hinglish, free tool, Chapter 9)
+
+Video: `reels/new-reels/reel-6-offer-letters-hinglish.mp4` · Link: allthecoffee.in/tools/offer-letters · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+HR walon, ye aapke liye. 🙌
+
+Joiners ki list daaliye, letter ka template daaliye, aur har joiner ka offer letter ek saath taiyaar. CTC bilkul Indian style mein: ₹12,50,000, aur shabdon mein "Rupees Twelve Lakh Fifty Thousand Only".
+
+Aur jis row mein kuch khaali ho, uska letter banta hi nahi. Tool pehle bata deta hai, taaki adhoora letter kabhi bahar na jaaye.
+
+Tool free hai. Chapter 9 mein aap iska Python version khud banaate hain: ek command, har joiner ki alag Word file.
+
+Free mein shuru kijiye: link in bio.
+
+(The voice in this video is AI-generated.)
+
+#AllTheCoffee #HRIndia #HumanResources #OfferLetter #HRTech #PracticalAI
+```
+
+## Reel 7: Invoice PDFs to Excel (English, AI presenter, free tool, Chapter 11)
+
+Video: `reels/new-reels/reel-7-invoice-pdfs-english.mp4` · Link: allthecoffee.in/tools/invoice-reader · Turn on the "AI info" label: the presenter and voice are AI-generated.
+
+```
+Month end. A folder of vendor invoices. Someone types every GSTIN into Excel.
+
+Or: drop the PDFs into this free tool and get one table with vendor, GSTIN, invoice number, date, taxable value, GST and total. Every total is checked against its own amounts, and a scanned invoice is listed as unreadable instead of being skipped quietly. Your files are read in your browser and never uploaded.
+
+In the capstone chapter, you build your own version for your own job.
+
+Start free: link in bio.
+
+(The presenter in this video is AI-generated.)
+
+#AllTheCoffee #Accounts #GST #FinanceIndia #ExcelTips #PracticalAI
+```
+
+## Reel 8: Contract red-flag checker (Hinglish, free tool, Chapter 6)
+
+Video: `reels/new-reels/reel-8-contract-check-hinglish.mp4` · Link: allthecoffee.in/tools/contract-check · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+"Friday tak sign kar do." 😅
+
+Contract paste kijiye, aur dekhiye kya dhyaan dene layak hai: auto-renewal aur notice period, late payment par byaaj, jaldi chhodne ki penalty, ek-tarafa liability, aur case kis sheher ki court mein jayega. Har point contract se word-to-word quote kiya hua.
+
+Legal advice nahi hai. Bas pata chal jaata hai ki dhyaan kahaan dena hai. Text aapke browser mein hi rehta hai.
+
+Tool free hai. Chapter 6 mein aap iska AI version banaate hain, aur use har quote prove karna padta hai.
+
+Free mein shuru kijiye: link in bio.
+
+(The voice in this video is AI-generated.)
+
+#AllTheCoffee #Contracts #Procurement #SmallBusinessIndia #LegalTips #PracticalAI
+```
