@@ -3,6 +3,7 @@
 Usage:
   python publish.py check
   python publish.py reel VIDEO.mp4 "Reel 3" [--ai] [--cover-ms=27900] [--yes]
+  python publish.py fbreel VIDEO.mp4 "Reel 3" [--ai] [--at=2026-11-01T19:30+05:30] [--yes]
 
 check   shows which account the token reaches, to test the setup.
 reel    uploads VIDEO.mp4 straight from this machine (resumable upload, no public URL needed)
@@ -12,6 +13,11 @@ reel    uploads VIDEO.mp4 straight from this machine (resumable upload, no publi
         into the video; Instagram's thumb_offset), otherwise it's the first frame. Without --yes it only prints what it
         would post. A post is public as soon as it is published: run with --yes only after the
         owner has approved that exact video and caption.
+
+fbreel   posts the same video and caption as a reel on the Facebook Page linked to the account,
+        using a Page token fetched with the system-user token. --at schedules it on Facebook's side
+        (10 minutes to 29 days ahead); without it, it's published straight away. Facebook wants stereo
+        AAC audio and a keyframe every 2 to 5 seconds: upload the -upload.mp4 copy (see README).
 
 The token and account ID are read from PRIVATE-HANDOFF.md (gitignored, section 6). A token from
 "API setup with Instagram login" (starts with IG) talks to graph.instagram.com and needs no
@@ -100,6 +106,40 @@ def reel(video, name, ai, yes, cover_ms=None):
     print(f"Published: {link}")
 
 
+def fb_reel(video, name, ai, yes, at=None):
+    import datetime
+    video = pathlib.Path(video)
+    caption = caption_for(name)
+    page = graph("GET", "me/accounts", fields="id,name,access_token,instagram_business_account")["data"]
+    page = next(p for p in page if p.get("instagram_business_account", {}).get("id") == IG_USER)
+    when = int(datetime.datetime.fromisoformat(at).timestamp()) if at else None
+    print(f"Facebook Page: {page['name']}\nVideo: {video}\nAI info: {'on' if ai else 'OFF'}\n"
+          f"When: {datetime.datetime.fromtimestamp(when).isoformat() if when else 'now'}\nCaption:\n{caption}\n")
+    if not yes:
+        print("Dry run: nothing posted. Add --yes to publish.")
+        return
+    tok, pid = page["access_token"], page["id"]
+    url = f"https://graph.facebook.com/{API}/{pid}/video_reels"
+    vid = call("POST", url, {"upload_phase": "start", "access_token": tok})["video_id"]
+    call("POST", f"https://rupload.facebook.com/video-upload/{API}/{vid}", video.read_bytes(),
+         {"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(video.stat().st_size)})
+    params = {"upload_phase": "finish", "video_id": vid, "description": caption, "access_token": tok,
+              "video_state": "SCHEDULED" if when else "PUBLISHED"}
+    if when:
+        params["scheduled_publish_time"] = str(when)
+    if ai:
+        params["is_ai_generated"] = "true"
+    print("Finish:", call("POST", url, params))
+    for _ in range(60):
+        st = call("GET", f"https://graph.facebook.com/{API}/{vid}?" + urllib.parse.urlencode({"fields": "status", "access_token": tok}))["status"]
+        if st.get("video_status") in ("ready", "upload_complete") or st.get("publishing_phase", {}).get("status") == "complete":
+            break
+        if st.get("video_status") in ("error", "upload_failed", "expired"):
+            sys.exit(f"Facebook could not process the video: {st}")
+        time.sleep(10)
+    print(f"Facebook reel {vid}: {'scheduled' if when else 'published'}. Status: {st}")
+
+
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if args[:1] == ["check"]:
@@ -107,5 +147,8 @@ if __name__ == "__main__":
     elif args[:1] == ["reel"] and len(args) == 3:
         cover = next((int(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--cover-ms=")), None)
         reel(args[1], args[2], "--ai" in sys.argv, "--yes" in sys.argv, cover)
+    elif args[:1] == ["fbreel"] and len(args) == 3:
+        at = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--at=")), None)
+        fb_reel(args[1], args[2], "--ai" in sys.argv, "--yes" in sys.argv, at)
     else:
         sys.exit(__doc__)
