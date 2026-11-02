@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build one of the tool reels (ctc-salary, whatsapp-desk, offer-letters, invoice-reader, contract-check).
+# Build one of the v2 reels (tool reels 4 to 8, and reels 9 to 11 on the Builder's Method and Role Playbooks).
 # Usage: bash lib/build-reel.sh REEL_DIR PAGE.html SPEAKER LANGUAGE [HOLD_FRAME]
 #   e.g. bash lib/build-reel.sh ctc-salary ctc-reel.html Rani hindi
 #   (HOLD_FRAME can also come from a file called hold-frame in the reel folder)
@@ -14,9 +14,9 @@ R=$1; PAGE=$2; SPK=$3; LANG=$4; HOLD=${5:-0}
 [ "$HOLD" = 0 ] && [ -f "$R/hold-frame" ] && HOLD=$(cat "$R/hold-frame")
 V=~/.cache/atc-avatar
 export PATH=~/.cache/atc-node/bin:$PATH HIP_VISIBLE_DEVICES=0
-declare -A NAME=([ctc-salary]=ctc [whatsapp-desk]=wa [offer-letters]=letters [invoice-reader]=inv [contract-check]=contract)
+declare -A NAME=([ctc-salary]=ctc [whatsapp-desk]=wa [offer-letters]=letters [invoice-reader]=inv [contract-check]=contract [brief-builder]=brief [trap-catalogue]=trap [role-playbooks]=playbooks)
 # The finished videos all go in reels/new-reels, named by reel number
-declare -A FINAL=([ctc-salary]=reel-4-ctc-calculator-hinglish [whatsapp-desk]=reel-5-whatsapp-follow-ups-english [offer-letters]=reel-6-offer-letters-hinglish [invoice-reader]=reel-7-invoice-pdfs-english [contract-check]=reel-8-contract-check-hinglish)
+declare -A FINAL=([ctc-salary]=reel-4-ctc-calculator-hinglish [whatsapp-desk]=reel-5-whatsapp-follow-ups-english [offer-letters]=reel-6-offer-letters-hinglish [invoice-reader]=reel-7-invoice-pdfs-english [contract-check]=reel-8-contract-check-hinglish [brief-builder]=reel-9-brief-builder-hinglish [trap-catalogue]=reel-10-trap-catalogue-english [role-playbooks]=reel-11-role-playbooks-english)
 N=${NAME[$R]}
 cd "$R"
 

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Soundtrack dings (lib/soundtrack.py): "quietly wrong", the hand-worked answer, "clear thinking" -->
+<meta name="sfx-ding" content="1.5, 4.0, 6.5">
+<title>Reel: The Trap Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lib/reel.css">
+<style>
+  /* Reel 10: the Builder's Method trap catalogue, English voice, AI presenter. The story: an
+     AI-built tool goes quietly wrong, you catch it by knowing the answer first, the course teaches
+     the eleven traps. The deal numbers are the Sales playbook's stale-deal build on its own sample
+     file; the trap names come from src/lib/method.ts (both via data.js). */
+  .deal { font-family: 'Inter', sans-serif; color: var(--ink); padding: 18px 26px; }
+  .deal .r { display: flex; justify-content: space-between; font-size: 30px; padding: 14px 0; border-bottom: 2px solid var(--paper-line); }
+  .deal .r:last-child { border: 0; }
+  .deal .r b { font-weight: 700; }
+  .deal .bad { color: var(--brick); text-decoration: line-through; text-decoration-thickness: 4px; }
+  .tcard { background: var(--paper); color: var(--ink); border-radius: 22px; padding: 26px 30px; font: 700 36px 'Inter', sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.35); display: flex; gap: 18px; align-items: center; width: 860px; box-sizing: border-box; }
+  .tcard span { margin-left: auto; font-size: 28px; background: var(--brick-bg); color: var(--brick); padding: 8px 18px; border-radius: 99px; white-space: nowrap; }
+  .tlist { display: flex; flex-direction: column; gap: 22px; }
+  .hand { background: #FFFDF6; color: var(--ink); border-radius: 18px; width: 820px; box-sizing: border-box; padding: 34px 40px; font: 600 38px/1.6 'Source Serif 4', serif; box-shadow: 0 30px 70px rgba(0,0,0,0.4); transform: rotate(-1.5deg); background-image: repeating-linear-gradient(transparent 0 58px, #E8D9C4 58px 60px); }
+  .hand .tot { color: var(--sage); font-size: 52px; font-weight: 700; }
+  .vs { display: flex; flex-direction: column; gap: 26px; width: 860px; }
+  .vs .row { background: var(--paper); color: var(--ink); border-radius: 22px; padding: 22px 30px; font-family: 'Inter', sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+  .vs .row small { display: block; font-size: 24px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .vs .row b { font: 700 82px/1.1 'Fraunces', serif; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; width: 940px; }
+  .chips span { font: 600 25px 'Inter', sans-serif; padding: 12px 18px; border-radius: 14px; background: var(--card); border: 2px solid var(--line); color: var(--cream); }
+  .chips span b { color: var(--amber); margin-right: 8px; }
+</style>
+</head>
+<body class="avatar">
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="progress"></div>
+  <div id="brand"><span>All The Coffee · The Builder's Method</span><span>Zero coding</span></div>
+
+  <!-- Cold open, over sentence 0 -->
+  <div id="hook">
+    <p class="hk red">₹1.2 lakh<br>became <em>₹1.20</em></p>
+    <div class="window paper" style="width: 780px;">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">pipeline.csv</span></div>
+      <div class="deal">
+        <div class="r"><span>Deal value</span><b>1.2L</b></div>
+        <div class="r"><span>Tool read it as</span><b class="bad">₹1.20</b></div>
+        <div class="r"><span>Error message</span><b>None</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1: quietly wrong -->
+  <section class="scene" data-from="1" data-to="2" data-tr="zoom">
+    <p class="big2 el" data-at="1" data-fx="pop">No crash.</p>
+    <p class="big2 el amber" data-at="1.5" data-fx="pop">Quietly wrong.</p>
+  </section>
+
+  <!-- 2: three examples -->
+  <section class="scene" data-from="2" data-to="3" data-tr="push">
+    <div class="tlist">
+      <div class="tcard el" data-at="2" data-fx="left">📅 03/04/2026<span>read as 4 March</span></div>
+      <div class="tcard el" data-at="2.35" data-fx="left">➕ The Total row<span>counted twice</span></div>
+      <div class="tcard el" data-at="2.7" data-fx="left">⏱️ 2d<span>read as 2 hours</span></div>
+    </div>
+  </section>
+
+  <!-- 3: know the answer first -->
+  <section class="scene" data-from="3" data-to="4" data-tr="rise">
+    <p class="mid fd el" data-at="3" style="text-align: center; margin-bottom: 40px;">Know the answer <span class="amber">first</span></p>
+    <div class="hand el" data-at="3.3" data-fx="up">
+      BlueStone pilot · 28 days quiet<br>Coastal Hotels · 43 days<br>FreshMart chain · 21 days<br>Delta Logistics · overdue<br><span class="tot" id="tot"></span>
+    </div>
+  </section>
+
+  <!-- 4: right vs first build -->
+  <section class="scene" data-from="4" data-to="5" data-tr="glitch">
+    <div class="vs">
+      <div class="row el" data-at="4" data-fx="up"><small style="color: var(--sage);">✓ By hand</small><b>₹6,40,000</b></div>
+      <div class="row el" data-at="4.5" data-fx="up"><small style="color: var(--brick);">✗ A first build</small><b style="color: var(--brick);">₹4,35,086</b></div>
+    </div>
+  </section>
+
+  <!-- 5: the eleven traps -->
+  <section class="scene" data-from="5" data-to="6" data-tr="zoom">
+    <p class="mid fd el" data-at="5" style="text-align: center; margin-bottom: 34px;"><span class="amber">11 traps.</span> Every chapter.</p>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <!-- 6: the skill -->
+  <section class="scene" data-from="6" data-to="7" data-tr="zoom">
+    <p class="big2 el" data-at="6" data-fx="pop">No coding.</p>
+    <p class="big2 el amber" data-at="6.4" data-fx="pop">Clear thinking.</p>
+  </section>
+
+  <!-- 7: start free -->
+  <section class="scene cta2" data-from="7" data-to="99" data-tr="rise">
+    <p class="mid fd el" data-at="7" style="text-align: center;">Build tools you can <span class="amber">trust</span>,<br>for your own job.</p>
+    <div class="free el" data-at="7.2" data-fx="pop">Chapters 0 to 3 free</div>
+    <div class="url el" data-at="7.35" data-fx="pop" id="url"> </div>
+  </section>
+
+  <div id="ring"><img id="face" src="../../avatar-test/portrait.png" alt=""></div>
+  <div id="ai">AI-generated presenter</div>
+  <div id="caption" class="fd"><p id="cap"></p></div>
+</div>
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script src="../lib/reel-engine.js"></script>
+<script>
+  const D = window.DATA, R = window.REEL, $ = R.$;
+  $('chips').innerHTML = D.traps.map((t, i) => `<span class="el" data-at="${(5.1 + i * 0.06).toFixed(2)}" data-fx="pop"><b>${t.n}</b>${t.name}</span>`).join('');
+  const TOTAL = D.right.find((s) => s.startsWith('Value at risk')).split(': ')[1];
+  REEL.init({
+    hookEnd: window.TIMINGS[1].start - 0.05,
+    captions: [
+      "This tool just turned ₹1.2 lakh into ₹1.20. And it didn't tell you.",
+      "Tools built with AI rarely crash. They go quietly wrong.",
+      "A date read the American way. A Total row counted twice. 2 days read as 2 hours.",
+      "So before you build anything, you work out the right answer by hand.",
+      "Here, it's ₹6,40,000. A first build says ₹4,35,086.",
+      "We've collected 11 traps like this, and every chapter teaches you to catch them.",
+      "No coding. Just clear thinking.",
+      "Chapters 0 to 3 are free. Start at allthecoffee.in",
+    ],
+    onSeek(t) {
+      const { at } = R;
+      R.type('tot', 'At risk: ' + TOTAL, at(3.55), at(3.9), t);
+      R.cta(t, at(7.4));
+    },
+  });
+</script>
+</body>
+</html>

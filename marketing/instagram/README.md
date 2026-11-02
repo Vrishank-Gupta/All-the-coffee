@@ -47,6 +47,21 @@ To add new boards or edit existing ones, see `CLAUDE.md`-style instructions in t
 | 15 | `PostHrSpreadsheet.dc.html` | HR: old employee spreadsheets and DPDP from 13 May 2027 | `/blog/dpdp-employee-data-hr` |
 | 16 | `PostSalesFollowUps.dc.html` | Sales: the follow-ups that never happened | `/blog/ai-sales-without-sounding-robotic` |
 
+## Showcase posts (Posts 18 to 23): the Builder's Method, tools and playbooks
+
+Made by `project/showcase.py`, which writes a feed board (1080x1350, `Showcase*Feed.html`) and a matching Story (1080x1920, `Showcase*Story.html`) for each. Edit the content in `showcase.py`, run it, then `python project/render-boards.py Showcase*.html` (from `project/`) for the PNG and JPEG in `project/out/`. The JPEGs are also in `public/ig/` so `publish.py` can post them once the site is deployed. Captions: Posts 18 to 23 in `captions.md`.
+
+| # | Boards | Topic | Link |
+|---|---|---|---|
+| 18 | `ShowcaseMethod*` | The Builder's Method: 8 questions instead of coding | /method |
+| 19 | `ShowcaseBriefBuilder*` | Free tool: is that weekly task worth a tool? | /tools/brief-builder |
+| 20 | `ShowcaseTraps*` | AI-built tools go quietly wrong: 6 of the 11 traps | /method |
+| 21 | `ShowcasePlaybooks*` | Role Playbooks: 7 jobs, 21 builds | /playbooks |
+| 22 | `ShowcaseFreeTools*` | 13 free tools, no sign-up | /tools |
+| 23 | `ShowcaseByteFact8*` | Byte-sized fact: AI fills the gaps in your brief with a guess | /chapter/3 |
+
+Suggested order, one at a time, each with its Story the same day and shared to Facebook: Reel 9 → Post 19 → Reel 10 → Post 20 → Post 23 → Reel 11 → Post 21 → Post 18 → Post 22. Pairs that belong together: Reel 9 with Post 19 (Brief Builder), Reel 10 with Post 20 (traps), Reel 11 with Post 21 (playbooks).
+
 ## Highlight covers (500x500, icon-only, used as the circle art for a permanent Story Highlight)
 
 | File | Highlight name to use | Icon |
@@ -103,6 +118,9 @@ Each gives one copy-paste prompt for a specific job, plus a data-safety line. Po
 | `reels/new-reels/reel-6-offer-letters-hinglish.mp4` | Reel 6, Hinglish, no presenter: bulk offer letters, CTC in Indian words, the blank row it refuses. Caption: "Reel 6" |
 | `reels/new-reels/reel-7-invoice-pdfs-english.mp4` | Reel 7, English, AI presenter: 12 invoice PDFs to one checked table. Caption: "Reel 7" |
 | `reels/new-reels/reel-8-contract-check-hinglish.mp4` | Reel 8, Hinglish, no presenter: the contract red-flag checker. Caption: "Reel 8" |
+| `reels/new-reels/reel-9-brief-builder-hinglish.mp4` | Reel 9, Hinglish, no presenter: the free Brief Builder, 38 hours a year, the brief and its traps. Source `reels/brief-builder/`. Caption: "Reel 9" |
+| `reels/new-reels/reel-10-trap-catalogue-english.mp4` | Reel 10, English, AI presenter: 1.2L read as ₹1.20, know the answer first (₹6,40,000), the 11 traps. Source `reels/trap-catalogue/`. Caption: "Reel 10" |
+| `reels/new-reels/reel-11-role-playbooks-english.mp4` | Reel 11, English, no presenter: the Role Playbooks, one build and trap each for Sales, Finance and HR, 7 roles and 21 builds. Source `reels/role-playbooks/`. Caption: "Reel 11" |
 
 The MP4 has a voiceover (Kokoro's `bm_george` voice, British English male, generated locally and offline) lined up with the scenes. When posting, you can add quiet music under it in the Instagram editor: keep the original audio at full volume and the music low. Pick a cover frame from the last scene (the logo and "You're not behind.") so it looks right in the profile grid.
 
@@ -115,7 +133,7 @@ python reels/add-voiceover.py silent.mp4 reels/intro-reel.mp4 path/to/kokoro-mod
 
 The spoken lines and their start times are at the top of `add-voiceover.py`. If you change scene timings in the HTML, move the matching start times too.
 
-### Free-tool reels (Reels 4 to 8)
+### Free-tool and method reels (Reels 4 to 11)
 
 Each one shows a free tool from allthecoffee.in/tools and the chapter where you build it, and ends on "start free" (no price). They share `reels/lib/`: `reel-engine.js` (scenes, transitions, word-by-word captions, cursor clicks, presenter ring), `reel.css`, `build-reel.sh` (voice in, word timings, numbers from the site's own tool code via each reel's `make-data.ts`, render, audio), and `tool-shots/` (phone screenshots of the tool pages, from `reels/tool-shots.py`). Hinglish reels use the Indic Parler-TTS speaker Rani and no presenter; English reels use Mary and the AI presenter, so her face always has the same voice. The finished videos are in `reels/new-reels/`, named by reel number; each reel's own folder keeps its sources. Each reel's `script.txt` is its voiceover (TTS text | what a listener should hear | pause).
 
@@ -137,6 +155,15 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] Reel 6: Bulk offer letters, Hinglish (AI info label on)
 - [ ] Reel 7: Invoice PDFs to Excel, English, presenter (AI info label on)
 - [ ] Reel 8: Contract red flags, Hinglish (AI info label on)
+- [ ] Reel 9: Brief Builder, Hinglish (AI info label on)
+- [ ] Reel 10: Trap catalogue, English, presenter (AI info label on)
+- [ ] Reel 11: Role Playbooks, English (AI info label on)
+- [ ] Post 18: The Builder's Method, plus Story
+- [ ] Post 19: Brief Builder, plus Story
+- [ ] Post 20: Quietly wrong (traps), plus Story
+- [ ] Post 21: Role Playbooks, plus Story
+- [ ] Post 22: 13 free tools, plus Story
+- [ ] Post 23: ByteFact8, AI fills the gaps, plus Story
 - [ ] Post 6: ChatGPT Go
 - [ ] Post 7: Automated my job
 - [ ] Post 8: Appraisal self-review

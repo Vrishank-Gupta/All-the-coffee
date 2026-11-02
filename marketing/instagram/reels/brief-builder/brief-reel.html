@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Soundtrack dings (lib/soundtrack.py): the hours land, the trap, "free" -->
+<meta name="sfx-ding" content="2.45, 6.3, 7.0">
+<title>Reel: The Brief Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lib/reel.css">
+<style>
+  /* Reel 9: the Brief Builder free tool and the thinking behind it, Hinglish voice, no presenter.
+     Every number, brief line and trap comes from data.js, written by make-data.ts from the tool's
+     own code (its "Fill an example" task). */
+  .form { font-family: 'Inter', sans-serif; padding: 26px 30px; color: var(--ink); display: flex; flex-direction: column; gap: 16px; }
+  .form label { font-size: 22px; font-weight: 700; color: #6B5444; }
+  .form .in { margin-top: 6px; border: 2px solid var(--paper-line); background: #fff; border-radius: 14px; padding: 14px 18px; font-size: 28px; font-weight: 600; min-height: 38px; }
+  .form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .verdict { background: var(--sage-bg); color: var(--sage); border-radius: 16px; padding: 18px 22px; font-size: 28px; font-weight: 700; }
+  .hours { font: 700 230px/1 'Fraunces', serif; color: var(--amber); text-align: center; margin: 0; }
+  .hours small { display: block; font: 600 44px 'Inter', sans-serif; color: var(--cream); margin-top: 10px; }
+  .bf { background: #1A100B; border: 2px solid var(--line); border-radius: 26px; padding: 26px 30px; width: 900px; box-sizing: border-box; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  .bf small { display: block; font: 700 22px 'Inter', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+  .bf pre { margin: 0; font: 400 24px/1.5 'JetBrains Mono', monospace; color: #F5E6D3; white-space: pre-wrap; height: 760px; overflow: hidden; }
+  .traps { display: flex; flex-direction: column; gap: 18px; width: 900px; }
+  .trap { background: var(--paper); color: var(--ink); border-radius: 22px; padding: 22px 28px; font: 700 32px 'Inter', sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.35); display: flex; gap: 18px; align-items: center; }
+  .trap b { flex: none; width: 58px; height: 58px; border-radius: 99px; background: var(--brick-bg); color: var(--brick); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .wrong { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+  .wrong .v { font: 700 150px/1 'Fraunces', serif; color: var(--cream); }
+  .wrong .v.bad { color: #FF8A6B; text-decoration: line-through; text-decoration-thickness: 8px; }
+  .wrong .lab { font: 700 34px 'Inter', sans-serif; padding: 12px 26px; border-radius: 99px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="progress"></div>
+  <div id="brand"><span>All The Coffee · Free tool</span><span>Zero coding</span></div>
+
+  <!-- Cold open, over sentence 0 -->
+  <div id="hook">
+    <p class="hk">Har hafte wahi kaam?<br><em>Tool khud banao.</em></p>
+    <div class="window paper" style="width: 860px;">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">Brief Builder</span></div>
+      <div class="form"><div class="verdict" id="hookVerdict"></div><div><label>The task, in one line</label><div class="in" id="hookTask"></div></div></div>
+    </div>
+  </div>
+
+  <!-- 1: is it worth a tool? -->
+  <section class="scene" data-from="1" data-to="2" data-tr="zoom">
+    <div class="window paper el" data-at="1" data-fx="up" style="width: 900px;">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">Brief Builder</span></div>
+      <div class="form">
+        <div><label>The task, in one line</label><div class="in" id="task"></div></div>
+        <div class="row">
+          <div><label>How often</label><div class="in">Weekly</div></div>
+          <div><label>Minutes by hand</label><div class="in" id="mins"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2: the hours a year -->
+  <section class="scene" data-from="2" data-to="3" data-tr="zoom">
+    <p class="hours el" data-at="2" data-fx="pop"><span id="hrs">0</span><small>hours a year, by hand</small></p>
+    <div class="verdict el" data-at="2.6" data-fx="up" id="verdict" style="font-family: 'Inter', sans-serif; margin-top: 50px; width: 860px; box-sizing: border-box; text-align: center;"></div>
+  </section>
+
+  <!-- 3: brief it like a new intern -->
+  <section class="scene" data-from="3" data-to="4" data-tr="push">
+    <div class="bub you el" data-at="3" data-fx="right"><small>Har rule, likh ke</small><span id="rules" style="white-space: pre-wrap;"></span></div>
+  </section>
+
+  <!-- 4: the brief, ready to paste -->
+  <section class="scene" data-from="4" data-to="5" data-tr="push">
+    <div class="bf el" data-at="4" data-fx="up"><small>Your brief, ready to paste</small><pre id="brief"></pre></div>
+  </section>
+
+  <!-- 5: where AI will go wrong -->
+  <section class="scene" data-from="5" data-to="6" data-tr="push">
+    <p class="mid fd el" data-at="5" style="text-align: center; margin-bottom: 40px;">Traps to test for</p>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <!-- 6: 1.2L read as ₹1.20 -->
+  <section class="scene" data-from="6" data-to="7" data-tr="glitch">
+    <div class="wrong">
+      <span class="v el" data-at="6" data-fx="pop">1.2L</span>
+      <span class="v bad el" data-at="6.35" data-fx="pop">₹1.20</span>
+      <span class="lab el" data-at="6.6" data-fx="pop" style="background: var(--sage-bg); color: var(--sage);">✓ ₹1,20,000. Test it first.</span>
+    </div>
+  </section>
+
+  <!-- 7: free, and the thinking is the course -->
+  <section class="scene" data-from="7" data-to="8" data-tr="zoom">
+    <p class="big2 el" data-at="7" data-fx="pop">Tool free.</p>
+    <p class="big2 el amber" data-at="7.45" data-fx="pop">Soch, poore course mein.</p>
+  </section>
+
+  <!-- 8: start free -->
+  <section class="scene cta2" data-from="8" data-to="99" data-tr="rise">
+    <p class="mid fd el" data-at="8" style="text-align: center;">Apne kaam ka tool banana seekhiye,<br><span class="amber">bina coding ke:</span></p>
+    <div class="toolgrid">
+      <span class="el" data-at="8.05" data-fx="pop">📝 Brief Builder</span><span class="el" data-at="8.1" data-fx="pop">💰 CTC to in-hand</span>
+      <span class="el" data-at="8.15" data-fx="pop">🧾 GST quotation</span><span class="el" data-at="8.2" data-fx="pop">📊 Payment ageing</span>
+      <span class="el" data-at="8.25" data-fx="pop">💬 WhatsApp follow-ups</span><span class="el" data-at="8.3" data-fx="pop">⚖️ Contract checker</span>
+    </div>
+    <div class="free el" data-at="8.35" data-fx="pop">Chapters 0 to 3 free</div>
+    <div class="url el" data-at="8.45" data-fx="pop" id="url"> </div>
+  </section>
+
+  <div id="caption" class="fd"><p id="cap"></p></div>
+</div>
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script src="../lib/reel-engine.js"></script>
+<script>
+  const D = window.DATA, R = window.REEL, $ = R.$;
+  $('hookVerdict').textContent = '💡 ' + D.verdict;
+  $('hookTask').textContent = D.task;
+  $('verdict').textContent = '💡 ' + D.verdict;
+  $('traps').innerHTML = D.traps.map((t, i) => `<div class="trap el" data-at="${(5.1 + i * 0.12).toFixed(2)}" data-fx="left"><b>${t.n}</b>${t.name}</div>`).join('');
+  const RULES = D.rules.map((r) => '• ' + r).join('\n');
+  REEL.init({
+    hookEnd: window.TIMINGS[1].start - 0.05,
+    captions: [
+      "Har hafte wahi boring kaam? Uska tool aap khud bana sakte ho, bina coding ke.",
+      "Pehle check karo, ki ye tool banane laayak hai bhi ya nahi.",
+      `${D.minutes} minute, har hafte, yaani saal ke ${D.hours} ghante.`,
+      "Phir AI ko ek naye intern ki tarah samjhao: har rule, likh ke.",
+      "Brief Builder ye brief aapke liye taiyaar kar deta hai.",
+      "Aur pehle se bata deta hai, ki AI kahaan galti karega.",
+      "Jaise, 1.2L ko ₹1.20 padh lena.",
+      "Brief Builder free hai. Aur ye soch, poore course mein sikhaate hain.",
+      "Chapters 0 se 3 free hain. allthecoffee.in par shuru kijiye!",
+    ],
+    onSeek(t) {
+      const { at } = R;
+      R.type('task', D.task, at(1.05), at(1.6), t);
+      $('mins').textContent = t > at(1.7) ? String(D.minutes) : '';
+      $('hrs').textContent = String(Math.round(D.hours * R.easeOut((t - at(2.05)) / (at(2.5) - at(2.05)))));
+      R.type('rules', RULES, at(3.1), at(3.95), t);
+      $('brief').innerHTML = D.brief.slice(0, Math.round(R.clamp((t - at(4.05)) / (at(4.95) - at(4.05))) * D.brief.length)).join('\n').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+      R.cta(t, at(8.5));
+    },
+  });
+</script>
+</body>
+</html>

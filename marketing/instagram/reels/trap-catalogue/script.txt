@@ -1,0 +1,8 @@
+This tool just turned one point two lakh rupees into one rupee twenty. And it didn't tell you. | This tool just turned 1.2 lakh rupees into 1 rupee 20. And it didn't tell you. | 0.4
+Tools built with A I rarely crash. They go quietly wrong. | Tools built with AI rarely crash. They go quietly wrong. | 0.4
+A date read the American way. A total row counted twice. Two days read as two hours. | A date read the American way. A total row counted twice. Two days read as two hours. | 0.35
+So before you build anything, you work out the right answer by hand. | So before you build anything, you work out the right answer by hand. | 0.3
+Here, it's six lakh forty thousand rupees. A first build says four lakh thirty five thousand. | Here, it's 6 lakh 40 thousand rupees. A first build says 4 lakh 35 thousand. | 0.4
+We've collected eleven traps like this, and every chapter teaches you to catch them. | We've collected 11 traps like this, and every chapter teaches you to catch them. | 0.35
+No coding. Just clear thinking. | No coding. Just clear thinking. | 0.45
+Chapters zero to three are free. Start at all the coffee dot in. | Chapters 0 to 3 are free. Start at all the coffee dot in. | 0.5

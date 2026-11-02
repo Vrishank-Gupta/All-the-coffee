@@ -1,23 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Copy, Check, AlertTriangle, Lightbulb, MapPin, ListChecks, ShieldAlert } from "lucide-react";
-import { buildBrief, EMPTY_BRIEF, DATA_FLAGS, SIZE_FLAGS, lowerFirst, type BriefInput, type DataFlag, type SizeFlag, type Frequency } from "../../lib/tools/brief";
+import { buildBrief, EMPTY_BRIEF, BRIEF_EXAMPLE, DATA_FLAGS, SIZE_FLAGS, lowerFirst, type BriefInput, type DataFlag, type SizeFlag, type Frequency } from "../../lib/tools/brief";
 
 const STORE = "atc-brief-builder-v1";
-const EXAMPLE: BriefInput = {
-  task: "Combine the weekly sales files from five regions into one summary",
-  role: "Sales operations",
-  frequency: "weekly",
-  minutes: 45,
-  inputs: "Five CSV files, one per region, each with the columns date, salesperson, client, amount.",
-  rules: "- amounts may be written as 1.2L or 85K: read them as rupees\n- skip any row named Total\n- show the total per region and per salesperson",
-  outputs: "One Excel file with a summary sheet, and the totals printed on screen.",
-  good: "With my sample files: North ₹1,40,000, South ₹95,000, total ₹4,20,000.",
-  avoid: "changing any amount",
-  newFiles: true,
-  shareLink: false,
-  data: ["money", "totals", "manyFiles"],
-  size: [],
-};
 
 function load(): BriefInput {
   try {
@@ -62,7 +47,7 @@ export function BriefBuilder() {
         <div className="flex items-center justify-between">
           <p className="font-display text-lg font-semibold text-espresso-950">Your task</p>
           <div className="flex gap-2 text-xs font-semibold">
-            <button onClick={() => setB(EXAMPLE)} className="text-caramel-700 hover:underline">Fill an example</button>
+            <button onClick={() => setB(BRIEF_EXAMPLE)} className="text-caramel-700 hover:underline">Fill an example</button>
             <button onClick={() => setB(EMPTY_BRIEF)} className="text-espresso-700/60 hover:underline">Clear</button>
           </div>
         </div>

@@ -47,6 +47,23 @@ export const EMPTY_BRIEF: BriefInput = {
   newFiles: false, shareLink: false, data: [], size: [],
 };
 
+// The "Fill an example" task, also used by the Brief Builder reel
+export const BRIEF_EXAMPLE: BriefInput = {
+  task: "Combine the weekly sales files from five regions into one summary",
+  role: "Sales operations",
+  frequency: "weekly",
+  minutes: 45,
+  inputs: "Five CSV files, one per region, each with the columns date, salesperson, client, amount.",
+  rules: "- amounts may be written as 1.2L or 85K: read them as rupees\n- skip any row named Total\n- show the total per region and per salesperson",
+  outputs: "One Excel file with a summary sheet, and the totals printed on screen.",
+  good: "With my sample files: North ₹1,40,000, South ₹95,000, total ₹4,20,000.",
+  avoid: "changing any amount",
+  newFiles: true,
+  shareLink: false,
+  data: ["money", "totals", "manyFiles"],
+  size: [],
+};
+
 export interface BriefResult {
   hoursPerYear: number;
   verdict: { level: "build" | "maybe" | "skip"; text: string };

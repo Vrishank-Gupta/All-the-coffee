@@ -535,3 +535,188 @@ Save this, and follow for more small AI facts for work.
 
 #aitips #chatgpttips #learnai #aiatwork #AllTheCoffee
 ```
+
+## Reel 9: Brief Builder (Hinglish, free tool, the Builder's Method)
+
+Video: `reels/new-reels/reel-9-brief-builder-hinglish.mp4` · Link: allthecoffee.in/tools/brief-builder · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+Har hafte wahi kaam? Uska tool aap khud bana sakte ho, bina coding ke 👇
+
+Pehle check karo ki tool banana worth it hai: 45 minute har hafte = saal ke lagbhag 38 ghante.
+
+Phir AI ko naye intern ki tarah samjhao, har rule likh ke. Brief Builder ye brief aapke liye ready kar deta hai, aur pehle se batata hai ki AI kahaan galti karega (jaise 1.2L ko ₹1.20 padh lena).
+
+Tool free hai, sign-up nahi chahiye. Ye soch poore course mein sikhaate hain. Chapters 0 se 3 free: link in bio.
+
+(The voice in this video is AI-generated.)
+
+#nocode #aitools #aiatwork #productivityhacks #AllTheCoffee
+```
+
+## Reel 10: The trap catalogue (English, AI presenter, the Builder's Method)
+
+Video: `reels/new-reels/reel-10-trap-catalogue-english.mp4` · Link: allthecoffee.in/method · Turn on the "AI info" label: AI presenter and voice.
+
+```
+This tool turned ₹1.2 lakh into ₹1.20. No error message. 👀
+
+Tools built with AI rarely crash. They go quietly wrong: a date read the American way, a Total row counted twice, 2 days read as 2 hours.
+
+The fix isn't coding. It's working out the right answer by hand first, then testing like a sceptic. In our sample pipeline the right answer is ₹6,40,000; a first build says ₹4,35,086.
+
+We've collected 11 traps like this, free to read at allthecoffee.in/method. Every chapter teaches you to catch them. Chapters 0 to 3 are free: link in bio.
+
+(AI-generated presenter and voice.)
+
+#nocode #aitools #excel #aiatwork #AllTheCoffee
+```
+
+## Reel 11: Role Playbooks (English, no presenter)
+
+Video: `reels/new-reels/reel-11-role-playbooks-english.mp4` · Link: allthecoffee.in/playbooks · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+Pick your job. Here are tools you could build for it this week, with zero coding 🛠️
+
+Sales: a GST quotation that knows when to charge IGST.
+Finance: payment reminders that never chase an invoice that's already paid.
+HR: loss of pay that knows October has 31 days.
+
+7 roles, 21 builds, each with sample files, the right answer, and the trap to catch. Then you build one for your own job.
+
+The playbooks are part of the full course. Chapters 0 to 3 are free: link in bio.
+
+(The voice in this video is AI-generated.)
+
+#nocode #aitools #sales #hr #finance #AllTheCoffee
+```
+
+## Post 18: The Builder's Method, 8 questions
+
+Image: `project/ShowcaseMethodFeed.html` (feed) and `ShowcaseMethodStory.html` (Story). Hosted for the API at allthecoffee.in/ig/method-feed.jpg and method-story.jpg.
+
+```
+You don't need to learn coding to build tools with AI. You need 8 questions 👇
+
+1. Spot it: is this task worth a tool?
+2. Size it: what's the smallest useful version?
+3. Choose where: browser, Python, AI inside, or no tool at all?
+4. Brief it: could a new intern build it from what you wrote?
+5. Know the answer first: what should it say, worked out by hand?
+6. Build in slices: what's the next small piece?
+7. Test like a sceptic: how could it be wrong without telling you?
+8. Before real use: is it safe for real work?
+
+The full method, with examples, is free to read at allthecoffee.in/method
+
+Save this for the next time you open an AI chat 📌
+
+#nocode #aiatwork #learnai #productivity #AllTheCoffee
+```
+
+## Post 19: Free tool, the Brief Builder
+
+Image: `project/ShowcaseBriefBuilderFeed.html` (feed) and `ShowcaseBriefBuilderStory.html` (Story). Hosted at allthecoffee.in/ig/brief-builder-feed.jpg and brief-builder-story.jpg.
+
+```
+Is that weekly task worth building a tool for? 🤔
+
+45 minutes every week is about 38 hours a year by hand. That's worth building.
+
+Our free Brief Builder works it out for you. Describe the task and you get:
+✅ whether it's worth a tool
+✅ where to build it (browser, Python, or AI inside)
+✅ a brief you can paste into any AI chat
+✅ how to check the answer
+✅ the traps to test for
+
+Free, no sign-up: allthecoffee.in/tools/brief-builder
+
+What's the task you'd try it on first? 👇
+
+#aitools #nocode #productivityhacks #aiatwork #AllTheCoffee
+```
+
+## Post 20: AI-built tools go quietly wrong
+
+Image: `project/ShowcaseTrapsFeed.html` (feed) and `ShowcaseTrapsStory.html` (Story). Hosted at allthecoffee.in/ig/traps-feed.jpg and traps-story.jpg.
+
+```
+AI-built tools don't crash. They go quietly wrong 😬
+
+📅 03/04/2026 read as 4 March
+₹ 1.2L read as ₹1.20
+➕ A Total row added as if it were data
+⏱ 2d read as 2 hours
+◻ A blank budget read as ₹0
+❝ A quote AI made up, that was never in your file
+
+No error message for any of them. You catch them by working out the right answer by hand first, and testing with the awkward cases in.
+
+All 11 traps, with how to test for each, free at allthecoffee.in/method
+
+Save this before your next AI build 📌
+
+#excel #aitools #aiatwork #datacleaning #AllTheCoffee
+```
+
+## Post 21: Role Playbooks, 7 jobs and 21 builds
+
+Image: `project/ShowcasePlaybooksFeed.html` (feed) and `ShowcasePlaybooksStory.html` (Story). Hosted at allthecoffee.in/ig/playbooks-feed.jpg and playbooks-story.jpg.
+
+```
+7 jobs. 21 tools you build yourself, with zero coding 🛠️
+
+📈 Sales: stale-deal finder, GST quotation, lead scorer
+📣 Marketing: UTM builder, ROAS report, caption rewriter
+💰 Finance: payment ageing, statement categoriser, expense checker
+🧭 Product: feedback themes, RICE prioritiser, release notes
+🧑‍💼 HR: loss of pay, blind interview notes, leave balances
+⚖️ Legal: draft compare, renewal deadlines, citation checker
+📦 Operations: vendor quotes, reorder alerts, workload heatmap
+
+Each build comes with sample files, the right answer, and the trap to catch. Then you build one for your own job.
+
+The Role Playbooks are part of the full course. Chapters 0 to 3 are free: link in bio.
+
+Tag someone in your team who needs one of these 👇
+
+#nocode #aitools #sales #finance #hr #AllTheCoffee
+```
+
+## Post 22: 13 free tools for office work
+
+Image: `project/ShowcaseFreeToolsFeed.html` (feed) and `ShowcaseFreeToolsStory.html` (Story). Hosted at allthecoffee.in/ig/free-tools-feed.jpg and free-tools-story.jpg.
+
+```
+13 free tools for office work. No sign-up 🎁
+
+Brief Builder · CTC to in-hand · WhatsApp follow-ups · Bulk offer letters · Invoice PDFs to Excel · Contract red flags · GST quotation · UTM builder · Payment ageing · RICE prioritiser · Loss of pay · Compare contract drafts · Vendor quotes
+
+Every one of them is also a build in the course. Use the tool today, then learn to make your own.
+
+All free at allthecoffee.in/tools
+
+Which one would you use this week? 👇
+
+#freetools #aitools #productivity #excel #AllTheCoffee
+```
+
+## Post 23: Byte-sized fact, AI fills the gaps in your brief
+
+Image: `project/ShowcaseByteFact8Feed.html` (feed) and `ShowcaseByteFact8Story.html` (Story). Hosted at allthecoffee.in/ig/bytefact8-feed.jpg and bytefact8-story.jpg.
+
+```
+AI fills every gap in your brief with a guess. And the guess usually looks fine 🎯
+
+Real example: ask AI to build a GST quotation and it may split the tax into CGST + SGST every time. For a customer in another state it should be IGST. Same total, wrong tax heads, and that causes trouble for your customer's input tax credit.
+
+The fix: brief it like a new intern. Write down the rules you'd explain to a new colleague, especially the obvious ones.
+
+What's a rule in your job that "everyone just knows"? 👇
+
+Follow for more small AI facts for work.
+
+#aitips #chatgpttips #gst #aiatwork #AllTheCoffee
+```

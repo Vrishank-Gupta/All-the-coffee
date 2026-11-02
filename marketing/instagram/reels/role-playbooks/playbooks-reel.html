@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Soundtrack dings (lib/soundtrack.py): IGST, "already paid", 31 days, "your own job" -->
+<meta name="sfx-ding" content="1.6, 2.6, 3.6, 6.3">
+<title>Reel: Role Playbooks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lib/reel.css">
+<style>
+  /* Reel 11: the Role Playbooks, English voice, no presenter. Each role scene shows one real build
+     and its trap, as taught on the site; the counts and titles come from data.js (src/lib/playbooks). */
+  .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 900px; }
+  .roles span { font: 700 40px 'Inter', sans-serif; padding: 28px 26px; border-radius: 22px; background: var(--card); border: 2px solid var(--line); color: var(--cream); text-align: center; }
+  .role { font: 700 30px 'Inter', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin: 0 0 22px; text-align: center; }
+  .card { background: var(--paper); color: var(--ink); border-radius: 26px; padding: 30px 34px; width: 900px; box-sizing: border-box; font-family: 'Inter', sans-serif; box-shadow: 0 30px 70px rgba(0,0,0,0.4); }
+  .card h3 { margin: 0; font: 700 50px/1.15 'Fraunces', serif; }
+  .card .r { display: flex; justify-content: space-between; font-size: 30px; padding: 14px 0; border-bottom: 2px solid var(--paper-line); }
+  .card .r:last-child { border: 0; }
+  .ok { color: var(--sage); font-weight: 700; }
+  .no { color: var(--brick); font-weight: 700; text-decoration: line-through; text-decoration-thickness: 4px; }
+  .trapline { margin-top: 18px; font-size: 26px; font-weight: 700; padding: 10px 18px; border-radius: 99px; background: var(--brick-bg); color: var(--brick); display: inline-block; }
+  .kit { display: flex; flex-direction: column; gap: 20px; width: 860px; }
+  .kit span { font: 700 40px 'Inter', sans-serif; padding: 26px 32px; border-radius: 22px; background: var(--paper); color: var(--ink); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+  .count { font: 700 150px/1 'Fraunces', serif; color: var(--amber); margin: 0; text-align: center; }
+  .count small { display: block; font: 600 40px 'Inter', sans-serif; color: var(--cream); margin-top: 8px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="progress"></div>
+  <div id="brand"><span>All The Coffee · Role Playbooks</span><span>Zero coding</span></div>
+
+  <!-- Cold open, over sentence 0 -->
+  <div id="hook">
+    <p class="hk">Pick your job.<br><em>Build its tools.</em></p>
+    <div class="roles" id="hookRoles"></div>
+  </div>
+
+  <!-- 1: Sales -->
+  <section class="scene" data-from="1" data-to="2" data-tr="push">
+    <p class="role el" data-at="1">Sales</p>
+    <div class="card el" data-at="1.05" data-fx="up">
+      <h3>GST quotation</h3>
+      <div class="r"><span>Within Maharashtra</span><span>CGST + SGST</span></div>
+      <div class="r"><span>Maharashtra to Karnataka</span><span class="ok">IGST</span></div>
+      <span class="trapline el" data-at="1.6" data-fx="pop">Trap: the wrong tax heads</span>
+    </div>
+  </section>
+
+  <!-- 2: Finance -->
+  <section class="scene" data-from="2" data-to="3" data-tr="push">
+    <p class="role el" data-at="2">Finance</p>
+    <div class="card el" data-at="2.05" data-fx="up">
+      <h3>Payment ageing</h3>
+      <div class="r"><span>61 to 90 days overdue</span><span class="ok">Send reminder</span></div>
+      <div class="r"><span>Already paid</span><span class="no">Send reminder</span></div>
+      <span class="trapline el" data-at="2.6" data-fx="pop">Trap: chasing money already paid</span>
+    </div>
+  </section>
+
+  <!-- 3: HR -->
+  <section class="scene" data-from="3" data-to="4" data-tr="push">
+    <p class="role el" data-at="3">HR</p>
+    <div class="card el" data-at="3.05" data-fx="up">
+      <h3>Attendance to loss of pay</h3>
+      <div class="r"><span>October 2026</span><span class="ok">÷ 31 days</span></div>
+      <div class="r"><span>First build</span><span class="no">÷ 30</span></div>
+      <span class="trapline el" data-at="3.6" data-fx="pop">Trap: 30 in a 31-day month</span>
+    </div>
+  </section>
+
+  <!-- 4: all seven -->
+  <section class="scene" data-from="4" data-to="5" data-tr="zoom">
+    <div class="roles" id="roles"></div>
+    <p class="count el" data-at="4.6" data-fx="pop" style="margin-top: 40px;"><span id="nb">21</span><small>builds, 7 roles</small></p>
+  </section>
+
+  <!-- 5: what each one comes with -->
+  <section class="scene" data-from="5" data-to="6" data-tr="rise">
+    <div class="kit">
+      <span class="el" data-at="5.1" data-fx="left">📁 Sample files</span>
+      <span class="el" data-at="5.4" data-fx="left">✅ The right answer</span>
+      <span class="el" data-at="5.7" data-fx="left">🪤 The trap to catch</span>
+    </div>
+  </section>
+
+  <!-- 6: your own job -->
+  <section class="scene" data-from="6" data-to="7" data-tr="zoom">
+    <p class="big2 el" data-at="6" data-fx="pop">Then one for</p>
+    <p class="big2 el amber" data-at="6.3" data-fx="pop">your own job.</p>
+  </section>
+
+  <!-- 7: start free -->
+  <section class="scene cta2" data-from="7" data-to="99" data-tr="rise">
+    <p class="mid fd el" data-at="7" style="text-align: center;">Learn to build tools,<br><span class="amber">no coding.</span></p>
+    <div class="free el" data-at="7.2" data-fx="pop">Chapters 0 to 3 free</div>
+    <div class="url el" data-at="7.35" data-fx="pop" id="url"> </div>
+  </section>
+
+  <div id="caption" class="fd"><p id="cap"></p></div>
+</div>
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script src="../lib/reel-engine.js"></script>
+<script>
+  const D = window.DATA, R = window.REEL, $ = R.$;
+  const ICON = { Sales: '📈', Marketing: '📣', Finance: '💰', Product: '🧭', HR: '🧑‍💼', Legal: '⚖️', Operations: '📦' };
+  const chip = (r) => { const w = r.role.split(' ')[0]; return `${ICON[w] || '🛠️'} ${w}`; };
+  $('hookRoles').innerHTML = D.roles.slice(0, 6).map((r) => `<span>${chip(r)}</span>`).join('');
+  $('roles').innerHTML = D.roles.map((r, i) => `<span class="el" data-at="${(4.05 + i * 0.07).toFixed(2)}" data-fx="pop">${chip(r)}</span>`).join('');
+  const NB = D.roles.reduce((n, r) => n + r.builds.length, 0);
+  REEL.init({
+    hookEnd: window.TIMINGS[1].start - 0.05,
+    captions: [
+      "Pick your job. Here are tools you could build for it this week, without writing any code.",
+      "Sales: a GST quotation that knows when to charge IGST.",
+      "Finance: payment reminders that never chase an invoice that's already paid.",
+      "HR: loss of pay that knows October has 31 days.",
+      `Marketing, legal, operations, product. ${D.roles.length} roles, ${NB} builds.`,
+      "Each one comes with sample files, the right answer, and the trap to catch.",
+      "Then you build one for your own job.",
+      "Chapters 0 to 3 are free. Start at allthecoffee.in",
+    ],
+    onSeek(t) {
+      $('nb').textContent = String(Math.round(NB * R.easeOut((t - R.at(4.6)) / 0.6)));
+      R.cta(t, R.at(7.4));
+    },
+  });
+</script>
+</body>
+</html>
