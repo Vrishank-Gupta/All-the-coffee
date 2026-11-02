@@ -9,6 +9,7 @@ import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { RevealHint } from "../components/chapter/RevealHint";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { ReferenceGrid } from "../components/chapter/ReferenceGrid";
 import { ThreeWaysWrong } from "../components/diagrams/ThreeWaysWrong";
@@ -220,6 +221,10 @@ export default function ChapterThree() {
           get unstuck.
         </li>
       </ul>
+      <p>
+        For the problems learners hit most (a blank page, lost data, "python is not recognized"), the{" "}
+        <a href="/fix-it" className="font-semibold text-caramel-700 underline">Fix-it guide</a> lists them by what you see on screen.
+      </p>
 
       <SectionEyebrow n="07" label="Prevent bugs: brief it like a new intern" />
       <Callout variant="tip" title="The other half of fixing bugs">
@@ -345,17 +350,14 @@ export default function ChapterThree() {
           Something the code expected to exist wasn't there, so it couldn't find its "name." Like asking for the
           name on an envelope that never arrived.
         </RevealHint>
+        <p className="mt-3">
+          <strong>3. Spot the trap.</strong> Twelve short drills where a tool built with AI gives a confident, wrong
+          answer. Find what went wrong: <a href="/practice" className="font-semibold text-caramel-700 underline">Spot the trap</a>.
+        </p>
       </TryItYourself>
 
       <SectionEyebrow n="12" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "Bug", meaning: "A mistake in software that makes it behave wrongly", sample: "Is that a bug, or is it working as designed?" },
-          { word: "Debugging", meaning: "Finding and fixing bugs", sample: "The team is still debugging the export issue." },
-          { word: "Error message", meaning: "The computer's description of what went wrong", sample: "Can you send me the exact error message?" },
-          { word: "Test case", meaning: "A set of inputs where you already know the right answer", sample: "Do we have a test case for the month-end scenario?" },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[3]} />
 
       <SectionEyebrow n="13" label="Module A complete" />
       <p>

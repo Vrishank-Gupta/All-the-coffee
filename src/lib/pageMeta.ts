@@ -28,6 +28,18 @@ export const PAGE_META = {
     title: "The Builder's Method: How to Build Any Tool with AI",
     description: "Eight steps for turning any repetitive task into a tool you can trust, and the 11 ways AI-built tools go quietly wrong. Free.",
   },
+  "/practice": {
+    title: "Spot the Trap: 12 Drills for Checking AI-Built Tools",
+    description: "Twelve tools built with AI give confident, wrong answers. Find what went wrong and the line that prevents it. Free, no sign-up.",
+  },
+  "/fix-it": {
+    title: "Fix-it Guide: When Your AI-Built Tool Breaks",
+    description: "Blank page, lost data, python not recognized, a link that asks for a password: the common problems, by symptom, with what to do.",
+  },
+  "/glossary": {
+    title: "Glossary: Tech Words in Plain English",
+    description: "Every tech word in the All The Coffee course, from API to UTF-8, in plain English with a sentence you could say in a meeting.",
+  },
   "/playbooks": {
     title: "Role Playbooks: AI Tools for Your Job",
     description: "Real tools for sales, marketing, finance, HR, product, legal and operations work, each built with AI and checked against a known answer. Included with the course.",

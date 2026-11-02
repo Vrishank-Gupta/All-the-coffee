@@ -4,6 +4,7 @@ import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { InstructionsTrio } from "../components/diagrams/InstructionsTrio";
@@ -100,6 +101,7 @@ export default function ChapterZero() {
         <li>Do the exercises, even small ones. Reading about building is like reading about swimming.</li>
         <li>Use your personal email for the AI tools. Keep your learning separate from work systems for now.</li>
         <li>Look for the "Builder's habit" box near the end of each chapter. It names the step of <a href="/method" className="font-semibold text-caramel-700 underline">the Builder's Method</a> you just practised, so by the end you can build tools nobody wrote a brief for.</li>
+        <li>Stuck on something? The <a href="/fix-it" className="font-semibold text-caramel-700 underline">Fix-it guide</a> lists the common problems by what you see. A word you don't know? It's in the <a href="/glossary" className="font-semibold text-caramel-700 underline">glossary</a>.</li>
       </ul>
 
       <Callout variant="reassurance">
@@ -129,12 +131,7 @@ export default function ChapterZero() {
       <BoringTaskBox />
 
       <SectionEyebrow n="09" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "Code", meaning: "Written instructions for a computer", sample: "Is the logic already in the code, or is someone doing it manually?" },
-          { word: "Vibe coding", meaning: "Building software by describing what you want to an AI tool and refining the result", sample: "I vibe-coded a quick prototype so we can see if the idea works." },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[0]} />
 
       <NextUpTeaser
         label="Chapter 1: Your first tool in 20 minutes"

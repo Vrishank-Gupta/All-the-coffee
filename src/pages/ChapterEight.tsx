@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { OsProvider, OsToggle, OsStep, OsCommand } from "../components/chapter/OsToggle";
@@ -366,15 +367,7 @@ Today is the day I stopped being scared of code.`}
         </TryItYourself>
 
         <SectionEyebrow n="11" label="Words you can now use" />
-        <WordsTable
-          words={[
-            { word: "VS Code", meaning: "A free, popular app for writing and organising code", sample: "Can you open the project in VS Code and show me?" },
-            { word: "Python", meaning: "A programming language popular for automation and data", sample: "Could a Python script do this instead of someone doing it by hand?" },
-            { word: "Terminal", meaning: "A way of giving your computer typed instructions", sample: "Do I run that from the terminal?" },
-            { word: "Command", meaning: "One typed instruction in the terminal", sample: "What's the command to start it?" },
-            { word: "Project", meaning: "A folder holding all the files for one piece of software", sample: "Which folder is the project in?" },
-          ]}
-        />
+        <WordsTable words={CHAPTER_WORDS[8]} />
 
         <NextUpTeaser
           label="Chapter 9: Your first automation script"

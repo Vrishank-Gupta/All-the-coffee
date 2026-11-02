@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { RevealHint } from "../components/chapter/RevealHint";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
@@ -326,16 +327,7 @@ else:
         </TryItYourself>
 
         <SectionEyebrow n="10" label="Words you can now use" />
-        <WordsTable
-          words={[
-            { word: "Variable", meaning: "A labelled box that holds a value", sample: "Is the tax rate hard-coded, or is it a variable we can change?" },
-            { word: "Condition", meaning: "A decision: if this, do that; otherwise, do something else", sample: "What's the condition for sending the reminder?" },
-            { word: "Loop", meaning: "Repeat steps for each item in a list", sample: "Does it loop through every customer, or just active ones?" },
-            { word: "Function", meaning: "A named mini-recipe that can be reused", sample: "Is there already a function that does the date formatting?" },
-            { word: "Comment", meaning: "A note in the code for humans, ignored by the computer", sample: "Can we add comments so the next person understands it?" },
-            { word: "Traceback", meaning: "Python's error report, read from the last line up", sample: "Can you send me the full traceback?" },
-          ]}
-        />
+        <WordsTable words={CHAPTER_WORDS[10]} />
 
         <NextUpTeaser
           label="Chapter 11: Capstone"

@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { StaticDownloadLink } from "../components/chapter/StaticDownloadLink";
@@ -437,14 +438,7 @@ export default function ChapterNine() {
         </TryItYourself>
 
         <SectionEyebrow n="12" label="Words you can now use" />
-        <WordsTable
-          words={[
-            { word: "Script", meaning: "A file of code that does a task when you run it", sample: "Could we write a script to do this every month?" },
-            { word: "Run", meaning: "Tell the computer to carry out the instructions in a script", sample: "Who runs the script, and how often?" },
-            { word: "Library", meaning: "Ready-made code that your code can use", sample: "Is there a library that already does this?" },
-            { word: "Automation", meaning: "Getting a computer to do a repetitive task for you", sample: "This report is a good candidate for automation." },
-          ]}
-        />
+        <WordsTable words={CHAPTER_WORDS[9]} />
 
         <NextUpTeaser
           label="Chapter 10: Reading code like a recipe"

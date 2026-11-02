@@ -7,6 +7,9 @@ export function SiteFooter() {
       <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5">
         <Link to="/method" className="hover:text-espresso-900 hover:underline">The Builder's Method</Link>
         <Link to="/tools" className="hover:text-espresso-900 hover:underline">Free tools</Link>
+        <Link to="/practice" className="hover:text-espresso-900 hover:underline">Spot the trap</Link>
+        <Link to="/fix-it" className="hover:text-espresso-900 hover:underline">Fix-it guide</Link>
+        <Link to="/glossary" className="hover:text-espresso-900 hover:underline">Glossary</Link>
         <Link to="/terms" className="hover:text-espresso-900 hover:underline">Terms of Service</Link>
         <Link to="/privacy" className="hover:text-espresso-900 hover:underline">Privacy Policy</Link>
         <Link to="/refund-policy" className="hover:text-espresso-900 hover:underline">Refund Policy</Link>

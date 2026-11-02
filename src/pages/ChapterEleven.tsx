@@ -9,6 +9,7 @@ import { SafetyChecklist } from "../components/chapter/SafetyChecklist";
 import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { DownloadButton } from "../components/chapter/DownloadButton";
@@ -569,14 +570,7 @@ export default function ChapterEleven() {
       </Callout>
 
       <SectionEyebrow n="14" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "Brief", meaning: "A one-page description of what to build, before building it", sample: "Do we have a brief for this, or are we building blind?" },
-          { word: "Scope creep", meaning: "A project quietly growing beyond what was agreed", sample: "That's scope creep, let's put it on the Later list." },
-          { word: "Slice", meaning: "The smallest working version of one more piece of a build", sample: "Let's ship this slice before adding the export feature." },
-          { word: "MVP", meaning: "Minimum viable product: the smallest version that's genuinely useful", sample: "Is this the MVP, or are we gold-plating it?" },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[11]} />
 
       <SectionEyebrow n="15" label="The Core course, complete" />
       <p>

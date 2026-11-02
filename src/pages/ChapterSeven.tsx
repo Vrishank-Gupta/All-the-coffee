@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { SafetyChecklist } from "../components/chapter/SafetyChecklist";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
@@ -292,16 +293,7 @@ export default function ChapterSeven() {
       </TryItYourself>
 
       <SectionEyebrow n="11" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "URL", meaning: "A web address", sample: "Can you drop the URL in the chat?" },
-          { word: "Hosting", meaning: "Keeping a tool on an always-on computer so others can use it", sample: "Where is this hosted, internally or with an outside provider?" },
-          { word: "Server", meaning: "A computer that runs tools and websites for other people to reach", sample: "Is the slowness on our side or the server's?" },
-          { word: "Deploy", meaning: "Put the latest version of a tool onto the server", sample: "When is the fix being deployed?" },
-          { word: "Live", meaning: "Available to real users", sample: "Is the new version live yet?" },
-          { word: "Version", meaning: "A saved, released state of a tool", sample: "Which version are the users on?" },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[7]} />
 
       <SectionEyebrow n="12" label="Module B complete" />
       <p>

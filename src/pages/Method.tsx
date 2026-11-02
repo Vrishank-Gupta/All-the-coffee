@@ -26,6 +26,9 @@ export default function Method() {
           <a href="#traps" className="inline-flex items-center gap-1.5 rounded-xl border border-espresso-900/15 px-5 py-2.5 text-sm font-semibold text-espresso-800 hover:bg-latte/50">
             The 11 traps
           </a>
+          <Link to="/practice" className="inline-flex items-center gap-1.5 rounded-xl border border-espresso-900/15 px-5 py-2.5 text-sm font-semibold text-espresso-800 hover:bg-latte/50">
+            Practise: spot the trap
+          </Link>
         </div>
 
         <ol className="mt-10 space-y-4">
@@ -73,6 +76,10 @@ export default function Method() {
             </div>
           ))}
         </div>
+        <p className="mt-5 text-espresso-800">
+          Try them on real examples: <Link to="/practice" className="font-semibold text-caramel-700 underline">Spot the trap</Link> has
+          twelve short drills covering all eleven patterns, free.
+        </p>
 
         <div className="mt-12 rounded-2xl border border-caramel-300/60 bg-caramel-100/40 p-6">
           <p className="font-display text-xl font-semibold text-espresso-950">Learn it by doing it</p>

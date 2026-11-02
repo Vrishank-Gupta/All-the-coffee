@@ -9,6 +9,7 @@ import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { RevealHint } from "../components/chapter/RevealHint";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { DownloadButton } from "../components/chapter/DownloadButton";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
@@ -285,16 +286,7 @@ export default function ChapterFive() {
       </TryItYourself>
 
       <SectionEyebrow n="09" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "CSV", meaning: "A plain-text file where commas separate the columns", sample: "Can you export it as a CSV so I can load it in?" },
-          { word: "Data format", meaning: "The way data is written, such as how dates or amounts appear", sample: "Are both systems using the same date format?" },
-          { word: "Data cleaning", meaning: "Fixing errors, gaps and inconsistencies in data", sample: "We need to clean the data before we report on it." },
-          { word: "Test data", meaning: "Sample data where you already know the right answer", sample: "Let's run it on test data before using the real file." },
-          { word: "Duplicate", meaning: "The same record appearing more than once", sample: "Has anyone checked for duplicates?" },
-          { word: "Reconciliation", meaning: "Matching two records of the same thing and explaining every difference", sample: "Has the 2B reconciliation been done for September?" },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[5]} />
 
       <NextUpTeaser
         label="Chapter 6: Putting AI inside your tool"

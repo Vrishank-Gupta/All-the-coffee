@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Quote } from "lucide-react";
 
 export interface WordEntry {
@@ -26,6 +27,9 @@ export function WordsTable({ words }: { words: WordEntry[] }) {
           </div>
         ))}
       </div>
+      <p className="mt-3 text-xs text-espresso-700/70">
+        Every word from the course, in one place: <Link to="/glossary" className="font-semibold text-caramel-700 hover:underline">the glossary</Link>.
+      </p>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { ChevronDown, LifeBuoy } from "lucide-react";
 
 export interface TroubleItem {
@@ -36,6 +37,9 @@ export function Troubleshooting({ items }: { items: TroubleItem[] }) {
           );
         })}
       </div>
+      <p className="border-t border-espresso-900/10 px-5 py-2.5 text-xs text-espresso-700/70">
+        Something else? The <Link to="/fix-it" className="font-semibold text-caramel-700 hover:underline">Fix-it guide</Link> lists the common problems from every chapter.
+      </p>
     </div>
   );
 }

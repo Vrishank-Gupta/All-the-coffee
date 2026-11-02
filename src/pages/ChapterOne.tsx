@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { DescribeBuildCheckLoop } from "../components/diagrams/DescribeBuildCheckLoop";
@@ -209,13 +210,7 @@ export default function ChapterOne() {
       </Callout>
 
       <SectionEyebrow n="08" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "Prompt", meaning: "The instructions or request you give an AI tool", sample: "Let me tweak the prompt and see if we get a better result." },
-          { word: "Preview", meaning: "A working version of the tool you can try before sharing it", sample: "Here's a quick preview so you can click around." },
-          { word: "Iterate", meaning: "Improve something through repeated small rounds of changes", sample: "It's a first version; we'll iterate on it next week." },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[1]} />
 
       <NextUpTeaser
         label="Chapter 2: What just happened?"

@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { NotebookCodeData } from "../components/diagrams/NotebookCodeData";
@@ -411,15 +412,7 @@ export default function ChapterFour() {
       </Callout>
 
       <SectionEyebrow n="10" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "Data", meaning: "The information a tool works with or keeps", sample: "Is the tool the problem, or is the data wrong?" },
-          { word: "Storage", meaning: "Where data is kept so it isn't lost", sample: "Where is this data stored, and who can access it?" },
-          { word: "Requirement", meaning: "Something a tool must do", sample: "Was 'export to Excel' in the original requirements?" },
-          { word: "Feature", meaning: "A specific thing a tool can do", sample: "Can we park that feature for version two?" },
-          { word: "File extension", meaning: "The ending of a file name, like .html or .csv, that tells the computer what kind of file it is", sample: "Can you send it as a .csv rather than .xlsx?" },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[4]} />
 
       <NextUpTeaser
         label="Chapter 5: Taming messy spreadsheets"

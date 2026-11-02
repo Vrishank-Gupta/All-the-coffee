@@ -8,6 +8,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { ApiRestaurant } from "../components/diagrams/ApiRestaurant";
@@ -276,15 +277,7 @@ export default function ChapterSix() {
       </TryItYourself>
 
       <SectionEyebrow n="10" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "API", meaning: "A way for one piece of software to ask another for something", sample: "Does their system have an API we can connect to?" },
-          { word: "Request / response", meaning: "What's sent to an API, and what comes back", sample: "The request goes through, but the response is empty." },
-          { word: "API key", meaning: "A secret code that identifies who's using an API", sample: "Who owns the API key, and where is it stored?" },
-          { word: "Edge case", meaning: "An unusual situation a tool must still handle", sample: "What happens in the edge case where the file is empty?" },
-          { word: "Hallucination", meaning: "When AI confidently states something untrue or made up", sample: "Let's check the summary for hallucinations before we send it." },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[6]} />
 
       <NextUpTeaser
         label="Chapter 7: Sharing what you built"

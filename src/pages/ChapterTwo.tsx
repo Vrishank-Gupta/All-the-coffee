@@ -9,6 +9,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { TryItYourself } from "../components/chapter/TryItYourself";
 import { WordsTable } from "../components/chapter/WordsTable";
+import { CHAPTER_WORDS } from "../lib/glossary";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { ReferenceGrid } from "../components/chapter/ReferenceGrid";
@@ -226,15 +227,7 @@ export default function ChapterTwo() {
       </TryItYourself>
 
       <SectionEyebrow n="10" label="Words you can now use" />
-      <WordsTable
-        words={[
-          { word: "Front end", meaning: "The part of an app you see and click", sample: "Is this a front-end change, or does it need back-end work too?" },
-          { word: "Back end", meaning: "The behind-the-scenes part that stores data and does heavy work", sample: "Where does the back end store this data?" },
-          { word: "HTML", meaning: "The language that sets out what's on a web page", sample: "It's just a content change in the HTML, right?" },
-          { word: "CSS", meaning: "The language that controls how a web page looks", sample: "Can we fix the spacing with a quick CSS change?" },
-          { word: "JavaScript", meaning: "The language that makes a web page react and calculate", sample: "Is the validation done in JavaScript on the page?" },
-        ]}
-      />
+      <WordsTable words={CHAPTER_WORDS[2]} />
 
       <div className="my-8 rounded-2xl border border-sage-200 bg-sage-50 p-5 text-center">
         <p className="font-display text-xl font-semibold text-espresso-950">Three chapters down</p>

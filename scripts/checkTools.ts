@@ -8,6 +8,8 @@ import { findFlags, SAMPLE_CONTRACT } from "../src/lib/tools/contract.ts";
 import { PLAYBOOKS } from "../src/lib/playbooks/index.ts";
 import { parseMoney, parseDate } from "../src/lib/playbooks/common.ts";
 import { buildBrief, EMPTY_BRIEF } from "../src/lib/tools/brief.ts";
+import { DRILLS } from "../src/lib/practice.ts";
+import { TRAPS } from "../src/lib/method.ts";
 import { normalizePhone, whatsappLink, fillTemplate, statusOf, sortLeads, type Lead } from "../src/lib/tools/whatsapp.ts";
 
 let failed = 0;
@@ -170,6 +172,17 @@ eq("brief: traps", bb.traps.map((t) => t.trap.id), ["formats", "totals", "scope"
 eq("brief: text", bb.brief.split("\n").slice(0, 6), ["Who it's for: Sales operations. Combine the weekly sales files, weekly, by hand today.", "", "What it does: Five CSV files from the regions", "The rules:", "- total per region", "- skip the Total row"]);
 const small = buildBrief({ ...EMPTY_BRIEF, frequency: "monthly", minutes: 10, data: ["aiText"], size: ["multiUser"] });
 eq("brief: small task, AI, too big", [small.hoursPerYear, small.verdict.level, small.where.kind, small.tooBig.length], [2, "skip", "ai", 1]);
+
+// --- Spot the Trap drills: every trap pattern has a drill, and each drill's numbers add up
+const days = (a: string, b: string) => Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
+eq("practice: one drill per trap", TRAPS.every((t) => DRILLS.some((d) => d.trap === t.id)) && DRILLS.every((d) => TRAPS.some((t) => t.id === d.trap)), true);
+eq("practice: answers in range", DRILLS.every((d) => d.answer >= 0 && d.answer < d.options.length), true);
+eq("practice: dates (US read, real wait, INV-32)", [days("2026-03-04", "2026-03-15"), days("2026-03-15", "2026-04-03"), days("2026-02-28", "2026-03-15")], [11, 19, 15]);
+eq("practice: lakh (wrong, right)", [(80000 + 2.5 + 1.2).toFixed(2), parseMoney("2.5L")! + parseMoney("₹80,000")! + parseMoney("1.2L")!], ["80003.70", 450000]);
+eq("practice: totals, units, scope", [12000 + 3000 + 5000 + 20000, 3 * 8 + 4 + 2 * 8, 3 + 4 + 2, 600 + 700 - 1000], [40000, 44, 9, 300]);
+eq("practice: PF old and new ceiling, IGST", [0.12 * 15000, 0.12 * 25000, 0.18 * 50000, 50000 * 1.18], [1800, 3000, 9000, 59000]);
+const end = new Date(2026, 10, 1); end.setMonth(end.getMonth() + 12); end.setDate(end.getDate() - 1);
+eq("practice: 12-month term from 1 Nov 2026", end.toDateString(), "Sun Oct 31 2027");
 
 if (failed) {
   console.log(`\n${failed} check(s) failed`);
