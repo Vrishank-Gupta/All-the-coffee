@@ -262,7 +262,8 @@ def due(yes):
             if item["kind"] == "photo":
                 photo(item["args"][0], item["args"][1], True)
             elif item["kind"] == "story":
-                story(item["args"][0], item.get("ai", False), True)
+                media = item["args"][0]  # a public image URL, or a reel file name (posted as a video Story)
+                story(str(_video(media)) if media.endswith(".mp4") else media, item.get("ai", False), True)
             elif item["kind"] in ("reel", "fbreel"):
                 video = _video(item["args"][0])
                 if item["kind"] == "reel":
