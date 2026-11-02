@@ -2,105 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Reel: Contract Red Flags</title>
+<title>Reel: Build a Contract Checker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../lib/reel.css">
 <style>
-  /* Reel 5: the free contract red-flag checker (Chapter 6), Hinglish voice, no presenter. The
-     contract and every flag come from data.js, written by make-data.ts from the tool's own code.
-     The contract is made up. */
-  .msg { align-self: center; width: 760px; background: var(--wa-bubble); color: var(--ink); border-radius: 26px 26px 26px 6px; padding: 30px 34px; font: 500 36px/1.4 'Inter', sans-serif; box-shadow: 0 30px 70px rgba(0,0,0,0.4); }
-  .msg small { display: block; font-weight: 700; color: var(--wa); font-size: 26px; margin-bottom: 8px; }
-  .att { display: flex; gap: 18px; align-items: center; background: #fff; border-radius: 16px; padding: 18px 22px; margin-top: 18px; font-size: 30px; font-weight: 600; }
-  .stack { position: relative; height: 760px; }
-  .pg { position: absolute; left: 230px; top: 60px; width: 500px; height: 640px; background: var(--paper); border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); padding: 40px 36px; box-sizing: border-box; }
-  .pg i { display: block; height: 12px; border-radius: 6px; background: #E2D3BF; margin: 16px 0; }
-  .pgnum { position: absolute; left: 0; right: 0; bottom: -10px; text-align: center; font: 700 64px 'Fraunces', serif; color: var(--amber); }
-  .doc { background: #fff; color: var(--ink); border-radius: 18px; padding: 24px 28px; font: 24px/1.55 'Source Serif 4', serif; height: 760px; overflow: hidden; white-space: pre-wrap; position: relative; }
-  .doc mark { background: var(--brick-bg); color: var(--brick); border-radius: 6px; box-shadow: 0 0 0 2px #EDBBAA; transition: none; }
+  /* Reel 8, version 2: "you can build this", Hinglish voice, no presenter. The contract and every
+     flag come from data.js, written by make-data.ts from the tool's own code. The contract is made up. */
+  .doc { background: #fff; color: var(--ink); border-radius: 18px; padding: 24px 28px; font: 25px/1.55 'Source Serif 4', serif; height: 640px; overflow: hidden; white-space: pre-wrap; }
+  .doc mark { background: var(--brick-bg); color: var(--brick); border-radius: 6px; box-shadow: 0 0 0 2px #EDBBAA; }
   .doc mark.off { background: transparent; color: inherit; box-shadow: none; }
-  .flag { position: absolute; left: 0; right: 0; bottom: 0; background: var(--paper); color: var(--ink); border-radius: 26px; padding: 30px 34px; box-shadow: 0 30px 70px rgba(0,0,0,0.4); font-family: 'Inter', sans-serif; }
-  .flag .t { display: flex; align-items: center; gap: 14px; font-size: 38px; font-weight: 700; }
-  .flag .t span.d { font-size: 28px; background: var(--brick-bg); color: var(--brick); padding: 6px 16px; border-radius: 99px; }
-  .flag .t span.c { margin-left: auto; font-size: 22px; color: #6B5444; font-weight: 600; }
-  .flag q { display: block; margin-top: 16px; border-left: 5px solid #EDBBAA; padding-left: 18px; font: italic 28px/1.45 'Source Serif 4', serif; color: #4A3428; quotes: '"' '"'; }
-  .flag p { margin: 14px 0 0; font-size: 26px; line-height: 1.4; color: #6B5444; }
-  .map { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
-  .city { text-align: center; font: 700 44px 'Fraunces', serif; }
-  .city small { display: block; font: 600 24px 'Inter', sans-serif; color: var(--muted); margin-top: 6px; }
-  .path { flex: 1; height: 6px; margin: 0 30px; background: repeating-linear-gradient(90deg, var(--amber) 0 18px, transparent 18px 32px); }
-  .summary { text-align: center; }
-  .summary .n { font: 700 220px/1 'Fraunces', serif; color: var(--amber); }
-  .summary p { font: 600 50px/1.25 'Fraunces', serif; margin: 10px 0 0; }
-  .summary small { display: inline-block; margin-top: 34px; font: 700 28px 'Inter', sans-serif; padding: 14px 26px; border-radius: 99px; border: 2px solid var(--line); color: var(--muted); }
-  .badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
-  .badges span { font: 700 24px 'Inter', sans-serif; padding: 10px 20px; border-radius: 99px; background: var(--card); border: 2px solid var(--line); }
-  .end { align-items: center; text-align: center; }
-  .logo { display: flex; align-items: center; gap: 22px; justify-content: center; }
-  .logo .mark { width: 96px; height: 96px; border-radius: 999px; background: var(--cream); display: flex; align-items: center; justify-content: center; }
-  .logo span { font: 700 60px 'Fraunces', serif; }
-  .end .url { align-self: center; font-size: 54px; padding: 28px 54px; margin-top: 50px; }
+  .flags { display: flex; flex-direction: column; gap: 18px; }
+  .flag { background: var(--paper); color: var(--ink); border-radius: 22px; padding: 24px 30px; font-family: 'Inter', sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.35); display: flex; align-items: center; gap: 16px; font-size: 36px; font-weight: 700; }
+  .flag span { margin-left: auto; font-size: 32px; background: var(--brick-bg); color: var(--brick); padding: 8px 20px; border-radius: 99px; }
+  .quote { background: var(--paper); color: var(--ink); border-radius: 22px; padding: 26px 30px; font-family: 'Inter', sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.35); position: relative; }
+  .quote q { display: block; font: italic 36px/1.45 'Source Serif 4', serif; color: #4A3428; }
+  .quote .lab { font-size: 30px !important; }
+  .quote .lab { display: inline-block; margin-top: 14px; font: 700 26px 'Inter', sans-serif; padding: 8px 18px; border-radius: 99px; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
   <div id="progress"></div>
-  <div id="brand" class="el"><span>All The Coffee · Free tool</span><span>Contract red flags</span></div>
+  <div id="brand"><span>All The Coffee · Built with AI</span><span>Zero coding</span></div>
 
-  <!-- 0: sign by Friday -->
-  <section class="scene" data-from="0" data-to="1" data-tr="zoom">
-    <div class="msg el" data-at="0" data-fx="drop">
-      <small>Vendor</small>
-      Hi! Sharing the service agreement. Please sign by Friday so we can start on 1st.
-      <div class="att">📄 Service_Agreement_FINAL.pdf</div>
+  <!-- Cold open, over sentence 0 -->
+  <div id="hook">
+    <p class="hk">Ye checker khud banao.<br><em>20 min.</em> Zero coding.</p>
+    <div style="width: 860px; background: #fff; color: var(--ink); border-radius: 20px; padding: 28px 34px; font: 28px/1.6 'Source Serif 4', serif; text-align: left; box-shadow: 0 30px 70px rgba(0,0,0,0.45);">
+      2. It will <mark style="background: var(--brick-bg); color: var(--brick); box-shadow: 0 0 0 3px var(--brick); border-radius: 6px; padding: 0 4px;">renew automatically</mark> unless you give notice <mark style="background: var(--brick-bg); color: var(--brick); box-shadow: 0 0 0 3px var(--brick); border-radius: 6px; padding: 0 4px;">90 days</mark> before...<br>
+      4. Late payments attract interest at <mark style="background: var(--brick-bg); color: var(--brick); box-shadow: 0 0 0 3px var(--brick); border-radius: 6px; padding: 0 4px;">24% per annum</mark>.
     </div>
-  </section>
+  </div>
 
-  <!-- 1: twelve pages -->
-  <section class="scene" data-from="1" data-to="2" data-tr="push">
-    <div class="stack" id="stack"><div class="pgnum el" data-at="1.1" data-fx="pop" id="pgnum">12 pages</div></div>
-  </section>
-
-  <!-- 2-7: the checker -->
-  <section class="scene" data-from="2" data-to="8" data-tr="zoom" id="docScene" style="justify-content: flex-start;">
-    <div class="window paper el" data-at="2" data-fx="up">
-      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">Contract red-flag checker</span><span style="margin-left: auto;" class="pill el" data-at="2.6" data-fx="pop" id="count"></span></div>
+  <!-- 1: paste, and the risky clauses light up -->
+  <section class="scene" data-from="1" data-to="2" data-tr="zoom">
+    <div class="window paper el" data-at="1" data-fx="up">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">Contract red-flag checker</span><span style="margin-left: auto;" class="pill" id="count"></span></div>
       <div class="doc" id="doc"></div>
     </div>
-    <div id="cards" style="position: absolute; left: 0; right: 0; bottom: 0; height: 0;"></div>
   </section>
 
-  <!-- 8: not legal advice -->
-  <section class="scene" data-from="8" data-to="9" data-tr="push">
-    <div class="summary">
-      <div class="n el" data-at="8" data-fx="pop">10</div>
-      <p class="el" data-at="8.1">things to look at,<br><span class="amber">before you sign.</span></p>
-      <small class="el" data-at="8.4" data-fx="pop">Not legal advice. Know where to look.</small>
+  <!-- 2: what it found -->
+  <section class="scene" data-from="2" data-to="3" data-tr="push">
+    <div class="flags">
+      <div class="flag el" data-at="2" data-fx="left">🔁 Auto renewal<span>90 days' notice</span></div>
+      <div class="flag el" data-at="2.4" data-fx="left">💸 Late payment<span>24% interest</span></div>
+      <div class="flag el" data-at="2.75" data-fx="left">⚖️ Disputes<span>Kolkata only</span></div>
     </div>
   </section>
 
-  <!-- 9: free tool + Chapter 6 -->
-  <section class="scene" data-from="9" data-to="10" data-tr="rise">
-    <div class="phone el" data-at="9" data-fx="rise"><div class="screen"><img id="shot" src="../lib/tool-shots/contract-check.jpg" alt=""></div></div>
-    <div class="side">
-      <div class="eyebrow el" data-at="9.05">Free tool</div>
-      <div class="chtitle fd el" data-at="9.15">Contract red-flag checker</div>
-      <div class="badges"><span class="el" data-at="9.3" data-fx="pop">Free</span><span class="el" data-at="9.4" data-fx="pop">Stays in your browser</span></div>
-      <div class="pcard el" data-at="9.6" style="background: var(--card); border: 2px solid var(--line); margin-top: 30px;"><b>Chapter 6</b><span style="color: var(--muted);">Build the AI version, and make it prove every quote.</span></div>
+  <!-- 3: you describe it, AI writes it -->
+  <section class="scene" data-from="3" data-to="4" data-tr="push">
+    <div class="bub you el" data-at="3" data-fx="right"><small>Aap, seedhi bhasha mein</small><span id="prompt"></span></div>
+    <div class="bub ai el" data-at="3.45" data-fx="left"><small>AI likhta hai tool</small><div class="codeflow" id="code"></div><div class="pbar"><i id="pbar"></i></div></div>
+  </section>
+
+  <!-- 4-5: AI's made-up quote, caught by the tool -->
+  <section class="scene" data-from="4" data-to="6" data-tr="glitch">
+    <div class="quote el" data-at="4" data-fx="up">
+      <q>The Client shall pay a penalty of 50% for early exit.</q>
+      <span class="lab el" data-at="5" data-fx="pop" style="background: var(--brick-bg); color: var(--brick);">✗ Not found in the contract</span>
+    </div>
+    <div class="quote el" data-at="5.3" data-fx="up" style="margin-top: 26px;">
+      <q id="realq"></q>
+      <span class="lab el" data-at="5.55" data-fx="pop" style="background: var(--sage-bg); color: var(--sage);">✓ Found, clause 4</span>
     </div>
   </section>
 
-  <!-- 10: start free -->
-  <section class="scene end" data-from="10" data-to="99" data-tr="zoom">
-    <div class="logo el" data-at="10" data-fx="pop">
-      <div class="mark"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#241711" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg></div>
-      <span>All The Coffee</span>
+  <!-- 6: the real skill -->
+  <section class="scene" data-from="6" data-to="7" data-tr="zoom">
+    <p class="big2 el" data-at="6" data-fx="pop">AI se banwao.</p>
+    <p class="big2 el amber" data-at="6.5" data-fx="pop">Check aap karo.</p>
+  </section>
+
+  <!-- 7: learn to build tools like this -->
+  <section class="scene cta2" data-from="7" data-to="99" data-tr="rise">
+    <p class="mid fd el" data-at="7" style="text-align: center;">Aise tools banana seekhiye,<br><span class="amber">bina coding ke:</span></p>
+    <div class="toolgrid">
+      <span class="el" data-at="7.1" data-fx="pop">⚖️ Contract checker</span><span class="el" data-at="7.17" data-fx="pop">💰 CTC to in-hand</span>
+      <span class="el" data-at="7.24" data-fx="pop">💬 WhatsApp follow-ups</span><span class="el" data-at="7.31" data-fx="pop">📄 Offer letters</span>
+      <span class="el" data-at="7.38" data-fx="pop">🧾 Invoice PDFs to Excel</span><span class="el" data-at="7.45" data-fx="pop">🔁 GSTR-2B reconciler</span>
     </div>
-    <p class="mid fd el" data-at="10.15" style="margin-top: 40px;">From AI-anxious to builder.</p>
-    <div class="url el" data-at="10.3" data-fx="pop" id="url"> </div>
+    <div class="free el" data-at="7.5" data-fx="pop">Chapters 0 to 3 free</div>
+    <div class="url el" data-at="7.6" data-fx="pop" id="url"> </div>
   </section>
 
   <div id="caption" class="fd"><p id="cap"></p></div>
@@ -111,75 +98,44 @@
 <script src="../lib/reel-engine.js"></script>
 <script>
   const D = window.DATA, R = window.REEL, $ = R.$;
-  // Twelve pages, stacked
-  $('stack').insertAdjacentHTML('afterbegin', Array.from({ length: 12 }, (_, i) => `<div class="pg" id="pg${i}">${'<i></i>'.repeat(9)}</div>`).join(''));
-  // The contract, with each flagged sentence wrapped so it can light up in order
   const sentences = [...new Set(D.flags.map((f) => f.sentence))];
   let html = D.text.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
   sentences.forEach((s, i) => { html = html.replace(s.replace(/&/g, '&amp;'), `<mark class="off" id="m${i}">${s}</mark>`); });
   $('doc').innerHTML = html;
-  const sIndex = (key) => sentences.indexOf(D.flags.find((f) => f.key === key).sentence);
-  // The flag cards shown one at a time, in the order the voice names them
-  const SHOW = [["auto-renewal", 3, 4], ["late-payment", 4, 5], ["lock-in", 5, 6], ["jurisdiction", 6, 7], ["auto-renewal", 7, 8]];
-  const card = (f, i, extra = '') => `<div class="flag" id="card${i}" style="opacity:0"><div class="t">${f.title}${f.detail ? `<span class="d">${f.detail}</span>` : ''}<span class="c">Clause ${f.clause}</span></div><q>${f.sentence}</q>${extra}</div>`;
-  const notice = D.flags.find((f) => f.key === 'notice' && f.clause === '2');
-  $('cards').innerHTML = SHOW.map(([k], i) => {
-    const f = D.flags.find((x) => x.key === k);
-    if (i === 0) return card({ ...f, detail: notice.detail + ' notice' }, i);
-    if (k === 'jurisdiction') return card(f, i, '<div class="map"><div class="city">Mumbai<small>your office</small></div><div class="path"></div><div class="city" style="color: var(--rust);">Kolkata<small>their courts</small></div></div>');
-    if (i === 4) return card({ ...f, title: 'Quoted word for word', detail: '' }, i, '<p>Every flag quotes the exact sentence, so you can find it in the contract.</p>');
-    return card(f, i);
-  }).join('');
-
+  $('realq').textContent = D.flags.find((f) => f.key === 'late-payment').sentence;
+  // An excerpt of the Chapter 6 contract-checker prompts
+  const PROMPT = "Find clauses about auto renewal, notice periods, late payment, exit penalties and jurisdiction. Quote each one word for word. Then check every quote really is in the contract.";
+  const CODE = [
+    '<span class="k">const</span> reply = <span class="k">await</span> askAI(contract, findRiskyClauses);',
+    '<span class="k">for</span> (<span class="k">const</span> flag <span class="k">of</span> reply.flags) {',
+    '  flag.found = contract.includes(flag.quote);',
+    '  <span class="k">if</span> (!flag.found) flag.label = <span class="s">"Not found in the contract"</span>;',
+    '  show(flag);',
+    '}',
+  ];
   REEL.init({
+    hookEnd: window.TIMINGS[1].start - 0.05,
     captions: [
-      "Vendor ne contract bheja hai, aur bola hai, Friday tak sign kar do.",
-      "12 page! Kaun padhega?",
-      "Bas paste kijiye, aur dekhiye.",
-      "Auto renewal, aur 90 din ka notice. Bhool gaye, toh ek saal aur.",
-      "Late payment par, 24% byaaj.",
-      "Jaldi chhoda? Toh baaki poore term ke paise.",
-      "Aur case hua, toh Kolkata ki court mein.",
-      "Har point ke saath, contract ki exact line.",
-      "Ye legal advice nahi hai, par pata chal jaata hai ki dhyaan kahaan dena hai.",
-      "Ye tool All The Coffee par free hai, aur Chapter 6 mein aap iska AI version banaate hain.",
-      "Free mein shuru kijiye, allthecoffee.in par!",
+      "Ye contract checker, aap bina coding ke, 20 minute mein bana sakte ho.",
+      "Contract paste karo, aur risky clause saamne.",
+      "Auto renewal, 90 din ka notice, 24% byaaj.",
+      "Bas AI ko seedhi bhasha mein samjhaiye, baaki AI banaata hai.",
+      "Lekin AI kabhi kabhi, aisi line quote kar deta hai, jo contract mein hai hi nahi.",
+      "Isliye aapka tool, har line khud check karta hai.",
+      "Yahi asli skill hai: AI se banwaana, aur uska kaam check karna.",
+      "Chapters 0 se 3 free hain. allthecoffee.in par shuru kijiye!",
     ],
     onSeek(t, sv) {
-      const { at, clamp, easeOut, back } = R;
-      for (let i = 0; i < 12; i++) {
-        const p = easeOut((t - at(1.0) - i * 0.05) / 0.4);
-        $('pg' + i).style.transform = `translate(${(i - 5.5) * 6}px, ${(1 - p) * 500 - i * 4}px) rotate(${(i - 5.5) * 1.6}deg)`;
-        $('pg' + i).style.opacity = clamp(p * 2);
-      }
-      // Sentences light up one by one as the checker reads; the count goes up with them
+      const { at } = R;
       let lit = 0;
-      sentences.forEach((_, i) => { const on = t >= at(2.25) + i * 0.12; $('m' + i).classList.toggle('off', !on); if (on) lit++; });
-      const shown = D.flags.filter((f) => sentences.indexOf(f.sentence) < lit).length;
-      $('count').textContent = `${shown} things to check`;
+      sentences.forEach((_, i) => { const on = t >= at(1.1) + i * 0.12; $('m' + i).classList.toggle('off', !on); if (on) lit++; });
+      $('count').textContent = `${D.flags.filter((f) => sentences.indexOf(f.sentence) < lit).length} things to check`;
       $('count').style.background = 'var(--brick-bg)'; $('count').style.color = 'var(--brick)';
-      // One flag card at a time over the contract, scrolled to its sentence
-      let active = -1;
-      SHOW.forEach(([k, a, b], i) => {
-        const p = (t - at(a) + 0.05) / 0.45, q = clamp((t - (R.start(b) - 0.25)) / 0.25);
-        const el = $('card' + i);
-        el.style.opacity = t >= at(a) - 0.05 && t < R.start(b) ? clamp(p * 3) * (1 - q) : 0;
-        el.style.transform = `translateY(${(1 - back(p)) * 120}px)`;
-        if (t >= at(a) - 0.05 && t < R.start(b)) active = sIndex(k);
-      });
-      if (sv[2]) {
-        const doc = $('doc');
-        const target = active >= 0 ? $('m' + active).offsetTop - 60 : 0;
-        doc._y = R.lerp(doc._y ?? 0, target, 0.18);
-        doc.scrollTop = doc._y;
-        sentences.forEach((_, i) => { $('m' + i).style.outline = i === active ? '4px solid var(--brick)' : ''; });
-      }
-      if (sv[4]) $('shot').style.transform = `translateY(${-240 * R.easeInOut((t - at(9.2)) / 2)}px)`;
-      const U = 'allthecoffee.in';
-      const n = Math.round(clamp((t - at(10.35)) / (at(10.9) - at(10.35))) * U.length);
-      $('url').textContent = U.slice(0, n) || ' ';
-      const pulse = t > at(10.9) ? 0.5 + 0.5 * Math.sin((t - at(10.9)) * 5) : 0;
-      $('url').style.boxShadow = `0 0 ${20 + 30 * pulse}px rgba(242, 189, 124, ${0.25 + 0.35 * pulse})`;
+      if (sv[0]) $('doc').scrollTop = 260 * R.easeInOut((t - at(1.2)) / (at(1.95) - at(1.2)));
+      R.type('prompt', PROMPT, at(3.02), at(3.42), t);
+      R.stream('code', CODE, at(3.45), at(3.95), t);
+      $('pbar').style.width = `${100 * R.clamp((t - at(3.45)) / (at(3.97) - at(3.45)))}%`;
+      R.cta(t, at(7.65));
     },
   });
 </script>

@@ -31,6 +31,18 @@
   };
 
   const R = { clamp, lerp, easeOut, easeIn, easeInOut, easeExpo, back, inr, $ };
+  // Types text into an element between t0 and t1; returns how many characters are shown
+  R.type = (id, text, t0, t1, t) => { const n = Math.round(clamp((t - t0) / (t1 - t0)) * text.length); $(id).textContent = text.slice(0, n); return n; };
+  // Streams lines of code (HTML strings) into an element between t0 and t1, keeping the newest in view
+  R.stream = (id, lines, t0, t1, t) => { const n = Math.round(clamp((t - t0) / (t1 - t0)) * lines.length); const el = $(id); el.innerHTML = lines.slice(Math.max(0, n - 9), n).join('\n'); return n; };
+  // The closing card shared by every v2 reel: the tools the course builds, free start, the URL typing out
+  R.cta = (t, a, urlId = 'url') => {
+    const U = 'allthecoffee.in';
+    const n = Math.round(clamp((t - a) / 0.6) * U.length);
+    $(urlId).textContent = U.slice(0, n) || ' ';
+    const pulse = t > a + 0.6 ? 0.5 + 0.5 * Math.sin((t - a - 0.6) * 5) : 0;
+    $(urlId).style.boxShadow = `0 0 ${20 + 30 * pulse}px rgba(242, 189, 124, ${0.25 + 0.35 * pulse})`;
+  };
   window.REEL = R;
 
   R.init = function (cfg) {
@@ -108,8 +120,20 @@
     window.seek = function (t) {
       if ($('g1')) $('g1').style.transform = `translate(${-120 + 80 * Math.sin(t * 0.25)}px, ${180 + 90 * Math.cos(t * 0.2)}px)`;
       if ($('g2')) $('g2').style.transform = `translate(${560 + 90 * Math.cos(t * 0.22)}px, ${1080 + 120 * Math.sin(t * 0.18)}px)`;
-      if ($('brand')) show($('brand'), 0.1, t, 0.7);
+      // A cold open (#hook) owns the first moments: full strength from frame 0, a small punch-in,
+      // then it fades into the reel. With a hook, the header and presenter are there from frame 0 too.
+      const hook = $('hook'), hookEnd = cfg.hookEnd ?? 1.8;
+      if (hook) {
+        const out = clamp((t - (hookEnd - 0.35)) / 0.35);
+        hook.style.display = t < hookEnd ? 'flex' : 'none';
+        hook.style.opacity = 1 - out;
+        hook.style.transform = `scale(${1.06 - 0.06 * easeOut(t / 0.5) + 0.04 * out})`;
+        hook.style.filter = out > 0.02 ? `blur(${10 * out}px)` : '';
+      }
+      if ($('brand')) { if (hook) $('brand').style.opacity = 1; else show($('brand'), 0.1, t, 0.7); }
       const sv = scenes.map((s) => scene(s, t));
+      // Scenes wait behind the hook and fade in as it leaves
+      if (hook) { const q = clamp((t - (hookEnd - 0.35)) / 0.35); scenes.forEach((s, i) => { if (sv[i]) s.style.opacity = Math.min(+s.style.opacity, q); }); }
       cfg.onSeek?.(t, sv, scenes);
 
       let c = -1;
@@ -130,8 +154,8 @@
       $('progress').style.width = (clamp(t / DURATION) * 100) + '%';
 
       if ($('ring')) {
-        $('ring').style.transform = `scale(${back((t - 0.05) / 0.6)})`;
-        if ($('ai')) $('ai').style.opacity = clamp((t - 0.4) / 0.4);
+        $('ring').style.transform = $('hook') ? 'scale(1)' : `scale(${back((t - 0.05) / 0.6)})`;
+        if ($('ai')) $('ai').style.opacity = $('hook') ? 1 : clamp((t - 0.4) / 0.4);
         let lv = 0;
         for (let k = -2; k <= 2; k++) lv += LEVELS[Math.max(0, Math.min(LEVELS.length - 1, Math.round(t * 30) + k))] || 0;
         lv /= 5;

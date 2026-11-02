@@ -64,3 +64,33 @@ body.avatar #caption span { margin: 0 0.24em 0 0; }
 #ring { position: absolute; left: 62px; top: 1156px; width: 380px; height: 380px; border-radius: 999px; box-sizing: border-box; border: 8px solid var(--amber); overflow: hidden; background: var(--card); }
 #face { width: 364px; height: 364px; display: block; object-fit: cover; object-position: 50% 12%; }
 #ai { position: absolute; left: 62px; top: 1548px; width: 380px; text-align: center; font-size: 22px; color: var(--muted); }
+
+/* Cold open: the first ~2 seconds, readable from frame 0, over the reel's most striking visual */
+#hook { position: absolute; left: 40px; right: 40px; top: 250px; height: 1110px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 46px; text-align: center; z-index: 6; transform-origin: 50% 40%; }
+body.avatar #hook { height: 890px; }
+#hook .hk { font: 700 104px/1.02 'Fraunces', Georgia, serif; color: var(--cream); margin: 0; letter-spacing: -0.01em; }
+#hook .hk em { font-style: normal; color: var(--amber); }
+#hook .hk.red em { color: #FF8A6B; }
+body.avatar #hook .hk { font-size: 92px; }
+
+/* Version 2 parts: the "you build it" story */
+.built { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.built span { font: 700 30px 'Inter', sans-serif; padding: 12px 26px; border-radius: 99px; background: var(--amber); color: var(--ink); }
+.built span.alt { background: var(--card); color: var(--cream); border: 2px solid var(--line); }
+.bub { border-radius: 26px; padding: 24px 30px; font: 500 30px/1.42 'Inter', sans-serif; max-width: 860px; }
+.bub small { display: block; font-size: 22px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.bub.you { align-self: flex-end; background: var(--cream); color: var(--ink); border-bottom-right-radius: 6px; }
+.bub.you small { color: var(--rust); }
+.bub.ai { align-self: flex-start; background: var(--card); border: 2px solid var(--line); color: var(--cream); border-bottom-left-radius: 6px; margin-top: 22px; width: 860px; box-sizing: border-box; }
+.bub.ai small { color: var(--amber); }
+.codeflow { font: 22px/1.55 'JetBrains Mono', monospace; color: var(--muted); white-space: pre; overflow: hidden; height: 230px; margin-top: 10px; }
+.codeflow .k { color: var(--amber); } .codeflow .s { color: var(--green); }
+.pbar { height: 10px; border-radius: 6px; background: var(--line); margin-top: 16px; overflow: hidden; }
+.pbar i { display: block; height: 100%; background: var(--amber); width: 0; }
+.big2 { font: 700 112px/1.02 'Fraunces', Georgia, serif; margin: 0; text-align: center; }
+body.avatar .big2 { font-size: 100px; }
+.toolgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 34px; }
+.toolgrid span { font: 600 28px 'Inter', sans-serif; padding: 18px 22px; border-radius: 18px; background: var(--card); border: 2px solid var(--line); display: flex; gap: 12px; align-items: center; }
+.cta2 { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cta2 .free { margin-top: 30px; font: 700 40px 'Inter', sans-serif; color: var(--ink); background: var(--green); padding: 16px 32px; border-radius: 99px; }
+.cta2 .url { align-self: center; font-size: 50px; padding: 24px 48px; margin-top: 26px; }

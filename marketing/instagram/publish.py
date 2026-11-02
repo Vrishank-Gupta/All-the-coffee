@@ -4,6 +4,13 @@ Usage:
   python publish.py check
   python publish.py reel VIDEO.mp4 "Reel 3" [--ai] [--cover-ms=27900] [--yes]
   python publish.py fbreel VIDEO.mp4 "Reel 3" [--ai] [--at=2026-11-01T19:30+05:30] [--yes]
+  python publish.py photo IMAGE_URL "Post name" [--yes]        feed photo on Instagram and the Facebook Page
+  python publish.py story MEDIA [--ai] [--yes]                 Story on Instagram and the Facebook Page
+
+photo   IMAGE_URL must be a public https JPEG (e.g. one placed in public/ig/ and deployed); the
+        caption comes from captions.md like reels do.
+story   MEDIA is a local .mp4 (up to 60 s) or a public https JPEG. Stories have no caption, and
+        link stickers can't be added through the API: add one in the app if you want a link.
 
 check   shows which account the token reaches, to test the setup.
 reel    uploads VIDEO.mp4 straight from this machine (resumable upload, no public URL needed)
@@ -140,6 +147,71 @@ def fb_reel(video, name, ai, yes, at=None):
     print(f"Facebook reel {vid}: {'scheduled' if when else 'published'}. Status: {st}")
 
 
+def _page():
+    pages = graph("GET", "me/accounts", fields="id,name,access_token,instagram_business_account")["data"]
+    return next(p for p in pages if p.get("instagram_business_account", {}).get("id") == IG_USER)
+
+
+def _wait_ig(container):
+    for _ in range(120):
+        st = graph("GET", container, fields="status_code,status")
+        if st["status_code"] == "FINISHED":
+            return
+        if st["status_code"] in ("ERROR", "EXPIRED"):
+            sys.exit(f"Instagram could not process it: {st}")
+        time.sleep(5)
+    sys.exit("Instagram still processing after 10 minutes")
+
+
+def photo(url, name, yes):
+    caption = caption_for(name)
+    print(f"Photo: {url}\nCaption:\n{caption}\n")
+    if not yes:
+        print("Dry run: nothing posted. Add --yes to publish.")
+        return
+    c = graph("POST", f"{IG_USER}/media", image_url=url, caption=caption)["id"]
+    _wait_ig(c)
+    media = graph("POST", f"{IG_USER}/media_publish", creation_id=c)["id"]
+    print("Instagram:", graph("GET", media, fields="permalink")["permalink"])
+    page = _page()
+    r = call("POST", f"https://graph.facebook.com/{API}/{page['id']}/photos", {"url": url, "message": caption, "access_token": page["access_token"]})
+    print(f"Facebook: https://www.facebook.com/{r.get('post_id', r.get('id'))}")
+
+
+def story(media, ai, yes):
+    is_video = media.endswith(".mp4")
+    print(f"Story: {media} ({'video' if is_video else 'image'}), AI info: {'on' if ai else 'OFF'}")
+    if not yes:
+        print("Dry run: nothing posted. Add --yes to publish.")
+        return
+    # Instagram
+    if is_video:
+        path = pathlib.Path(media)
+        params = {"media_type": "STORIES", "upload_type": "resumable"}
+        if ai:
+            params["is_ai_generated"] = "true"
+        c = graph("POST", f"{IG_USER}/media", **params)["id"]
+        call("POST", f"https://rupload.facebook.com/ig-api-upload/{API}/{c}", path.read_bytes(),
+             {"Authorization": f"OAuth {TOKEN}", "offset": "0", "file_size": str(path.stat().st_size)})
+    else:
+        c = graph("POST", f"{IG_USER}/media", media_type="STORIES", image_url=media)["id"]
+    _wait_ig(c)
+    print("Instagram story:", graph("POST", f"{IG_USER}/media_publish", creation_id=c)["id"])
+    # Facebook Page
+    page = _page()
+    tok, pid = page["access_token"], page["id"]
+    if is_video:
+        url = f"https://graph.facebook.com/{API}/{pid}/video_stories"
+        vid = call("POST", url, {"upload_phase": "start", "access_token": tok})["video_id"]
+        call("POST", f"https://rupload.facebook.com/video-upload/{API}/{vid}", path.read_bytes(),
+             {"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(path.stat().st_size)})
+        r = call("POST", url, {"upload_phase": "finish", "video_id": vid, "access_token": tok})
+    else:
+        ph = call("POST", f"https://graph.facebook.com/{API}/{pid}/photos", {"url": media, "published": "false", "access_token": tok})["id"]
+        r = call("POST", f"https://graph.facebook.com/{API}/{pid}/photo_stories", {"photo_id": ph, "access_token": tok})
+    print("Facebook story:", r)
+
+
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if args[:1] == ["check"]:
@@ -150,5 +222,9 @@ if __name__ == "__main__":
     elif args[:1] == ["fbreel"] and len(args) == 3:
         at = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--at=")), None)
         fb_reel(args[1], args[2], "--ai" in sys.argv, "--yes" in sys.argv, at)
+    elif args[:1] == ["photo"] and len(args) == 3:
+        photo(args[1], args[2], "--yes" in sys.argv)
+    elif args[:1] == ["story"] and len(args) == 2:
+        story(args[1], "--ai" in sys.argv, "--yes" in sys.argv)
     else:
         sys.exit(__doc__)

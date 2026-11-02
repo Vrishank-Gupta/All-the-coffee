@@ -449,17 +449,17 @@ Estimate hai, final word aapki payslip ka. (The voice in this video is AI-genera
 Video: `reels/new-reels/reel-5-whatsapp-follow-ups-english.mp4` · Link: allthecoffee.in/tools/whatsapp-follow-ups · Turn on the "AI info" label: the presenter and voice are AI-generated.
 
 ```
-How many follow-ups are you carrying in your head right now?
+You can build this in 15 minutes. Without writing a single line of code. 👇
 
-This tiny free tool keeps them in one list, shows who's overdue and who's due today, and opens WhatsApp with your message already typed, in English or Hinglish. You still press send yourself, so nothing goes out by mistake. Your list stays in your browser.
+A WhatsApp follow-up tool: it shows who's overdue and who's due today, and one tap opens WhatsApp with your message already typed. You describe it to AI in plain English, and AI writes it.
 
-In Chapter 4 you build it yourself, just by describing it to AI.
+The real skill isn't coding, it's checking. When AI gets something wrong (like a message cut in half), you learn to spot it and fix it. That's Chapter 4.
 
-Start free: link in bio.
+Learn to build tools like this for your own job. Chapters 0 to 3 are free: link in bio.
 
-(The presenter in this video is AI-generated.)
+Save this for the next time you think "I'm not a tech person". (The presenter in this video is AI-generated.)
 
-#AllTheCoffee #WhatsAppBusiness #SalesTips #SmallBusinessIndia #PracticalAI #Productivity
+#nocode #aitools #whatsappbusiness #learnai #AllTheCoffee
 ```
 
 ## Reel 6: Bulk offer letters (Hinglish, free tool, Chapter 9)
@@ -467,19 +467,17 @@ Start free: link in bio.
 Video: `reels/new-reels/reel-6-offer-letters-hinglish.mp4` · Link: allthecoffee.in/tools/offer-letters · Turn on the "AI info" label: the voice is AI-generated.
 
 ```
-HR walon, ye aapke liye. 🙌
+Bina coding ke, ye tool aap 25 minute mein bana sakte ho 👇
 
-Joiners ki list daaliye, letter ka template daaliye, aur har joiner ka offer letter ek saath taiyaar. CTC bilkul Indian style mein: ₹12,50,000, aur shabdon mein "Rupees Twelve Lakh Fifty Thousand Only".
+Joiners ki list daalo, aur har joiner ka offer letter ek saath taiyaar. CTC Indian style mein, ₹12,50,000 aur "Rupees Twelve Lakh Fifty Thousand Only". Aur jis row mein kuch khaali ho, uska letter banta hi nahi.
 
-Aur jis row mein kuch khaali ho, uska letter banta hi nahi. Tool pehle bata deta hai, taaki adhoora letter kabhi bahar na jaaye.
+Aap AI ko seedhi bhasha mein batate ho, code AI likhta hai. Asli skill: AI ka kaam check karna. Ye Chapter 9 hai.
 
-Tool free hai. Chapter 9 mein aap iska Python version khud banaate hain: ek command, har joiner ki alag Word file.
+Aise tools apne kaam ke liye banana seekhiye. Chapters 0 se 3 free hain: link in bio.
 
-Free mein shuru kijiye: link in bio.
+HR mein kisi ko jaante ho? Unhe bhej do 🙌 (The voice in this video is AI-generated.)
 
-(The voice in this video is AI-generated.)
-
-#AllTheCoffee #HRIndia #HumanResources #OfferLetter #HRTech #PracticalAI
+#hrindia #nocode #aitools #offerletter #AllTheCoffee
 ```
 
 ## Reel 7: Invoice PDFs to Excel (English, AI presenter, free tool, Chapter 11)
@@ -487,17 +485,17 @@ Free mein shuru kijiye: link in bio.
 Video: `reels/new-reels/reel-7-invoice-pdfs-english.mp4` · Link: allthecoffee.in/tools/invoice-reader · Turn on the "AI info" label: the presenter and voice are AI-generated.
 
 ```
-Month end. A folder of vendor invoices. Someone types every GSTIN into Excel.
+You can build this yourself, with zero coding. 🧾👇
 
-Or: drop the PDFs into this free tool and get one table with vendor, GSTIN, invoice number, date, taxable value, GST and total. Every total is checked against its own amounts, and a scanned invoice is listed as unreadable instead of being skipped quietly. Your files are read in your browser and never uploaded.
+Drop a folder of invoice PDFs in, get one clean Excel table: vendor, GSTIN, invoice number, total. It checks every total, so the invoice that's ₹1,000 over gets caught, and a scanned invoice is flagged instead of skipped.
 
-In the capstone chapter, you build your own version for your own job.
+You describe it to AI in plain English, and AI writes it. Then you check its work. That's what we teach, and in the capstone you build one for your own job.
 
-Start free: link in bio.
+Chapters 0 to 3 are free: link in bio.
 
-(The presenter in this video is AI-generated.)
+Tag the person who types invoices into Excel every month. (The presenter in this video is AI-generated.)
 
-#AllTheCoffee #Accounts #GST #FinanceIndia #ExcelTips #PracticalAI
+#nocode #accountsindia #gstinvoice #aitools #AllTheCoffee
 ```
 
 ## Reel 8: Contract red-flag checker (Hinglish, free tool, Chapter 6)
@@ -505,17 +503,31 @@ Start free: link in bio.
 Video: `reels/new-reels/reel-8-contract-check-hinglish.mp4` · Link: allthecoffee.in/tools/contract-check · Turn on the "AI info" label: the voice is AI-generated.
 
 ```
-"Friday tak sign kar do." 😅
+Ye contract checker aap khud bana sakte ho, bina coding ke, 20 minute mein 👇
 
-Contract paste kijiye, aur dekhiye kya dhyaan dene layak hai: auto-renewal aur notice period, late payment par byaaj, jaldi chhodne ki penalty, ek-tarafa liability, aur case kis sheher ki court mein jayega. Har point contract se word-to-word quote kiya hua.
+Contract paste karo, aur risky clauses saamne: auto renewal, 90 din ka notice, 24% byaaj, Kolkata ki court.
 
-Legal advice nahi hai. Bas pata chal jaata hai ki dhyaan kahaan dena hai. Text aapke browser mein hi rehta hai.
+Lekin AI kabhi kabhi aisi line quote kar deta hai jo contract mein hai hi nahi. Isliye aapka tool har line khud check karta hai. AI se banwao, check aap karo. Ye Chapter 6 hai.
 
-Tool free hai. Chapter 6 mein aap iska AI version banaate hain, aur use har quote prove karna padta hai.
+Chapters 0 se 3 free hain: link in bio.
 
-Free mein shuru kijiye: link in bio.
+Legal advice nahi hai. (The voice in this video is AI-generated.)
 
-(The voice in this video is AI-generated.)
+#nocode #aitools #contracts #smallbusinessindia #AllTheCoffee
+```
 
-#AllTheCoffee #Contracts #Procurement #SmallBusinessIndia #LegalTips #PracticalAI
+## Post 17: Byte-sized fact, AI's knowledge has an expiry date
+
+Image: `project/ByteFact3Feed.html` (feed, 1080x1350) and `project/ByteFact3.dc.html` (Story). Hosted for the API at allthecoffee.in/ig/.
+
+```
+AI's knowledge has an expiry date. It just won't tell you that upfront. ⏳
+
+Every AI model is trained up to a certain date, then frozen. Real example: ask an AI about the PF wage ceiling and it may still say ₹15,000. It's been ₹25,000 since 17 September 2026.
+
+The fix is simple: for anything recent (tax rules, PF, prices, policies), tell it the current rule, or check before you trust the answer.
+
+Save this for the next time AI sounds very sure about something recent. Follow for more small facts like this.
+
+#aitips #chatgpttips #learnai #aiatwork #AllTheCoffee
 ```

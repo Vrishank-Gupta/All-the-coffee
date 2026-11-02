@@ -2,30 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Reel: WhatsApp Follow-ups</title>
+<title>Reel: Build a WhatsApp Follow-up Tool</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../lib/reel.css">
 <style>
-  /* Reel 2: the free WhatsApp follow-up desk (Chapter 4), English voice, AI presenter in the ring.
-     Messages come from data.js, written by make-data.ts from the tool's own templates. Phone
-     numbers are shown masked; the people are made up. */
-  .notes { position: relative; height: 760px; }
-  .note { position: absolute; width: 330px; padding: 26px 28px; font: 600 32px/1.3 'Inter', sans-serif; color: var(--ink); box-shadow: 0 20px 40px rgba(0,0,0,0.35); border-radius: 6px; }
-  .tool { font-family: 'Inter', sans-serif; padding: 26px 28px; }
-  .f { border: 2px solid var(--paper-line); background: #fff; border-radius: 14px; padding: 16px 20px; font-size: 28px; margin-bottom: 12px; color: var(--ink); min-height: 34px; }
-  .f.ph { color: #A6907C; }
-  .addbtn { background: var(--ink); color: var(--cream); border-radius: 16px; text-align: center; padding: 18px; font-size: 28px; font-weight: 700; }
-  .counts { display: flex; gap: 10px; margin-bottom: 16px; }
+  /* Reel 5, version 2: "you can build this", English voice, AI presenter. The story: you build it
+     without coding, AI writes it, it works, you learn to catch AI's mistakes, start free. Messages
+     come from data.js (the tool's own templates); the people are made up. */
+  .desk { font-family: 'Inter', sans-serif; padding: 22px 24px; }
+  .counts { display: flex; gap: 10px; margin-bottom: 14px; }
   .counts span { font-size: 24px; font-weight: 700; padding: 8px 18px; border-radius: 99px; }
-  .lead { border: 2px solid var(--paper-line); background: #fff; border-radius: 18px; padding: 18px 22px; margin-bottom: 14px; }
+  .lead { border: 2px solid var(--paper-line); background: #fff; border-radius: 18px; padding: 16px 20px; margin-bottom: 12px; color: var(--ink); }
   .lead .top { display: flex; justify-content: space-between; align-items: center; }
   .lead b { font-size: 30px; }
   .lead small { display: block; font-size: 22px; color: #6B5444; margin-top: 2px; }
   .badge { font-size: 20px; font-weight: 700; padding: 6px 14px; border-radius: 99px; }
-  .msg { margin-top: 12px; background: var(--wa-bubble); border-radius: 12px; padding: 12px 16px; font-size: 24px; line-height: 1.35; color: var(--ink); }
-  .wabtn { display: inline-block; margin-top: 12px; background: var(--wa); color: #fff; font-size: 22px; font-weight: 700; padding: 10px 18px; border-radius: 12px; }
+  .msg { margin-top: 10px; background: var(--wa-bubble); border-radius: 12px; padding: 12px 16px; font-size: 24px; line-height: 1.35; color: var(--ink); }
+  .wabtn { display: inline-block; margin-top: 10px; background: var(--wa); color: #fff; font-size: 22px; font-weight: 700; padding: 10px 18px; border-radius: 12px; }
   .chatphone { width: 450px; height: 680px; align-self: center; border-radius: 60px; background: #0E0907; padding: 14px; box-shadow: 0 40px 90px rgba(0,0,0,0.5), inset 0 0 0 3px #4A3428; }
   .chatphone .in { height: 100%; border-radius: 46px; overflow: hidden; background: #ECE5DD; display: flex; flex-direction: column; font-family: 'Inter', sans-serif; }
   .chatphone .hd { background: #1F6E4A; color: #fff; padding: 46px 26px 20px; display: flex; align-items: center; gap: 16px; font-size: 28px; font-weight: 700; }
@@ -35,101 +30,84 @@
   .chatphone .compose { display: flex; gap: 12px; align-items: flex-end; padding: 14px; }
   .chatphone .box { flex: 1; background: #fff; border-radius: 26px; padding: 18px 22px; font-size: 25px; line-height: 1.35; color: var(--ink); }
   .chatphone .send { width: 74px; height: 74px; border-radius: 99px; background: #1F8A4C; display: flex; align-items: center; justify-content: center; flex: none; }
-  .toggle { display: flex; gap: 10px; justify-content: center; margin-bottom: 18px; }
-  .toggle span { font: 700 28px 'Inter', sans-serif; padding: 12px 28px; border-radius: 99px; border: 2px solid var(--line); color: var(--muted); }
-  .toggle span.on { background: var(--amber); color: var(--ink); border-color: var(--amber); }
-  .youpress { text-align: center; margin-top: 18px; font: 600 34px 'Fraunces', serif; }
-  .badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
-  .badges span { font: 700 24px 'Inter', sans-serif; padding: 10px 20px; border-radius: 99px; background: var(--card); border: 2px solid var(--line); }
-  .ch { background: var(--card); border: 2px solid var(--line); border-radius: 30px; padding: 40px 44px; }
-  .ch .num { font: 700 140px/1 'Fraunces', serif; color: var(--amber); }
-  .ch h3 { font: 700 54px/1.1 'Fraunces', serif; margin: 10px 0 18px; }
-  .ch p { font-size: 32px; line-height: 1.35; margin: 0 0 18px; color: var(--muted); }
-  .prompt { background: var(--bg); border-radius: 18px; padding: 20px 24px; font: 26px/1.4 'JetBrains Mono', monospace; color: var(--cream); min-height: 150px; white-space: pre-wrap; }
-  .end { align-items: center; text-align: center; }
-  .logo { display: flex; align-items: center; gap: 22px; justify-content: center; }
-  .logo .mark { width: 92px; height: 92px; border-radius: 999px; background: var(--cream); display: flex; align-items: center; justify-content: center; }
-  .logo span { font: 700 58px 'Fraunces', serif; }
-  .end .url { align-self: center; font-size: 52px; padding: 26px 50px; margin-top: 44px; }
+  .catch { display: flex; flex-direction: column; gap: 40px; }
+  .cut { background: var(--wa-bubble); color: var(--ink); border-radius: 22px; padding: 24px 28px; font: 500 32px/1.4 'Inter', sans-serif; position: relative; }
+  .cut .gone { color: var(--brick); text-decoration: line-through; text-decoration-thickness: 4px; opacity: 0.55; }
+  .cut .tag { position: absolute; right: 18px; top: -22px; font: 700 24px 'Inter', sans-serif; padding: 8px 18px; border-radius: 99px; color: #fff; }
 </style>
 </head>
 <body class="avatar">
 <div id="stage">
   <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
   <div id="progress"></div>
-  <div id="brand" class="el"><span>All The Coffee · Free tool</span><span>WhatsApp follow-ups</span></div>
+  <div id="brand"><span>All The Coffee · Built with AI</span><span>Zero coding</span></div>
 
-  <!-- 0-1: too many follow-ups -->
-  <section class="scene" data-from="0" data-to="2" data-tr="zoom" style="overflow: hidden;">
-    <div class="notes" id="notes"></div>
-  </section>
-
-  <!-- 2-4: the tool -->
-  <section class="scene" data-from="2" data-to="5" data-tr="push" id="toolScene">
-    <div class="window paper el" data-at="2" data-fx="pop">
-      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">WhatsApp follow-up desk</span></div>
-      <div class="tool">
-        <div id="form">
-          <div class="f" id="fName"></div>
-          <div class="f" id="fPhone"></div>
-          <div class="f" id="fAbout"></div>
-          <div class="addbtn" id="addBtn">+ Add follow-up</div>
-        </div>
-        <div id="list" style="display: none;">
-          <div class="counts"><span class="el" data-at="4.05" data-fx="pop" style="background: var(--brick-bg); color: var(--brick);">1 overdue</span><span class="el" data-at="4.15" data-fx="pop" style="background: var(--car-bg); color: var(--car);">1 due today</span><span class="el" data-at="4.25" data-fx="pop" style="background: var(--latte-bg); color: var(--latte);">3 in total</span></div>
-          <div class="lead el" data-at="4.1" data-fx="left"><div class="top"><b>Anita Desai</b><span class="badge" style="background: var(--brick-bg); color: var(--brick);">Overdue</span></div><small>the renewal · 28 Oct</small></div>
-          <div class="lead el" data-at="4.3" data-fx="left" id="rahulRow"><div class="top"><b>Rahul Verma</b><span class="badge" style="background: var(--car-bg); color: var(--car);">Due today</span></div><small>quotation #A-104 · 1 Nov</small><div class="msg" id="rahulMsg"></div><span class="wabtn" id="waBtn">Send on WhatsApp</span></div>
-          <div class="lead el" data-at="4.5" data-fx="left"><div class="top"><b>Vikram Singh</b><span class="badge" style="background: var(--latte-bg); color: var(--latte);">Upcoming</span></div><small>samples · 9 Nov</small></div>
-        </div>
+  <!-- Cold open, over sentence 0: what you'll build, and that you build it -->
+  <div id="hook">
+    <p class="hk">Build this in <em>15 min.</em><br>Zero coding.</p>
+    <div class="window paper" style="width: 780px;">
+      <div class="desk">
+        <div class="counts"><span style="background: var(--brick-bg); color: var(--brick);">1 overdue</span><span style="background: var(--car-bg); color: var(--car);">1 due today</span></div>
+        <div class="lead"><div class="top"><b>Rahul Verma</b><span class="badge" style="background: var(--car-bg); color: var(--car);">Due today</span></div><div class="msg" id="hookMsg"></div><span class="wabtn">Send on WhatsApp</span></div>
       </div>
     </div>
-    <svg class="cursor" id="cur" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 9.5-7 1.5 4 8-3 1.5-4-8L5 19z" fill="#FBF1E2" stroke="#241711" stroke-width="1.5" stroke-linejoin="round"/></svg>
-    <div class="ripple" id="rip"></div>
+  </div>
+
+  <!-- 1: what it does -->
+  <section class="scene" data-from="1" data-to="2" data-tr="zoom">
+    <div class="window paper el" data-at="1" data-fx="up">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name mono">WhatsApp follow-up desk</span></div>
+      <div class="desk">
+        <div class="counts"><span class="el" data-at="1.2" data-fx="pop" style="background: var(--brick-bg); color: var(--brick);">1 overdue</span><span class="el" data-at="1.35" data-fx="pop" style="background: var(--car-bg); color: var(--car);">1 due today</span><span class="el" data-at="1.5" data-fx="pop" style="background: var(--latte-bg); color: var(--latte);">3 in total</span></div>
+        <div class="lead el" data-at="1.25" data-fx="left"><div class="top"><b>Anita Desai</b><span class="badge" style="background: var(--brick-bg); color: var(--brick);">Overdue</span></div><small>the renewal · 28 Oct</small></div>
+        <div class="lead el" data-at="1.4" data-fx="left"><div class="top"><b>Rahul Verma</b><span class="badge" style="background: var(--car-bg); color: var(--car);">Due today</span></div><small>quotation #A-104 · 1 Nov</small></div>
+        <div class="lead el" data-at="1.55" data-fx="left"><div class="top"><b>Vikram Singh</b><span class="badge" style="background: var(--latte-bg); color: var(--latte);">Upcoming</span></div><small>samples · 9 Nov</small></div>
+      </div>
+    </div>
   </section>
 
-  <!-- 5-7: WhatsApp opens -->
-  <section class="scene" data-from="5" data-to="8" data-tr="zoom">
-    <div class="toggle el" data-at="6" data-fx="pop"><span id="tEn" class="on">English</span><span id="tHi">Hinglish</span></div>
-    <div class="chatphone el" data-at="5.1" data-fx="rise">
+  <!-- 2-3: you describe it, AI writes it -->
+  <section class="scene" data-from="2" data-to="4" data-tr="push">
+    <div class="bub you el" data-at="2" data-fx="right"><small>You, in plain English</small><span id="prompt"></span></div>
+    <div class="bub ai el" data-at="3" data-fx="left"><small>AI writes the tool</small><div class="codeflow" id="code"></div><div class="pbar"><i id="pbar"></i></div></div>
+  </section>
+
+  <!-- 4: one tap -->
+  <section class="scene" data-from="4" data-to="5" data-tr="zoom">
+    <div class="chatphone el" data-at="4" data-fx="rise">
       <div class="in">
         <div class="hd"><div class="av">R</div><div>Rahul Verma<small>+91 98XXX XXXXX</small></div></div>
         <div class="body"></div>
-        <div class="compose"><div class="box" id="box"></div><div class="send" id="sendBtn"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l.01 6.6L15 12 3.01 13.9z"/></svg></div></div>
+        <div class="compose"><div class="box" id="box"></div><div class="send"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l.01 6.6L15 12 3.01 13.9z"/></svg></div></div>
       </div>
     </div>
-    <p class="youpress el" data-at="7.2">You press send. <span class="amber">Nothing goes by mistake.</span></p>
   </section>
 
-  <!-- 8: free tool -->
-  <section class="scene" data-from="8" data-to="9" data-tr="rise">
-    <div class="phone el" data-at="8" data-fx="rise"><div class="screen"><img id="shot" src="../lib/tool-shots/whatsapp-follow-ups.jpg" alt=""></div></div>
-    <div class="side">
-      <div class="eyebrow el" data-at="8.1">Free tool</div>
-      <div class="chtitle fd el" data-at="8.2">WhatsApp follow-up desk</div>
-      <div class="badges"><span class="el" data-at="8.4" data-fx="pop">Free</span><span class="el" data-at="8.55" data-fx="pop">No sign-up</span><span class="el" data-at="8.7" data-fx="pop">Stays in your browser</span></div>
+  <!-- 5: AI's mistake, caught and fixed -->
+  <section class="scene" data-from="5" data-to="6" data-tr="glitch">
+    <div class="catch">
+      <div class="cut el" data-at="5" data-fx="up"><span class="tag" style="background: var(--brick);">AI's first try</span>Hi Rahul, just following up on quotation <span class="gone">#A-104. Is today a good time for a quick call?</span></div>
+      <div class="cut el" data-at="5.55" data-fx="up"><span class="tag" style="background: var(--sage);">You caught it. Fixed.</span><span id="fixed"></span></div>
     </div>
   </section>
 
-  <!-- 9: build it in Chapter 4 -->
-  <section class="scene" data-from="9" data-to="10" data-tr="push">
-    <div class="ch el" data-at="9" data-fx="up">
-      <div class="num">4</div>
-      <h3>Chapter 4: A tool that remembers</h3>
-      <p>Build it yourself, by describing it to AI:</p>
-      <div class="prompt" id="prompt"></div>
-    </div>
+  <!-- 6: the real skill -->
+  <section class="scene" data-from="6" data-to="7" data-tr="zoom">
+    <p class="big2 el" data-at="6" data-fx="pop">Not coding.</p>
+    <p class="big2 el amber" data-at="6.5" data-fx="pop">Checking.</p>
   </section>
 
-  <!-- 10: start free -->
-  <section class="scene end" data-from="10" data-to="99" data-tr="zoom">
-    <div class="logo el" data-at="10" data-fx="pop">
-      <div class="mark"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#241711" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg></div>
-      <span>All The Coffee</span>
+  <!-- 7-8: learn to build tools like this -->
+  <section class="scene cta2" data-from="7" data-to="99" data-tr="rise">
+    <p class="mid fd el" data-at="7" style="text-align: center;">Tools you'll build,<br><span class="amber">no coding:</span></p>
+    <div class="toolgrid">
+      <span class="el" data-at="7.2" data-fx="pop">💬 WhatsApp follow-ups</span><span class="el" data-at="7.3" data-fx="pop">💰 CTC to in-hand</span>
+      <span class="el" data-at="7.4" data-fx="pop">📄 Offer letters</span><span class="el" data-at="7.5" data-fx="pop">🧾 Invoice PDFs to Excel</span>
+      <span class="el" data-at="7.6" data-fx="pop">⚖️ Contract checker</span><span class="el" data-at="7.7" data-fx="pop">🔁 GSTR-2B reconciler</span>
     </div>
-    <p class="mid fd el" data-at="10.15" style="margin-top: 36px;">From AI-anxious to builder.</p>
-    <div class="url el" data-at="10.3" data-fx="pop" id="url"> </div>
+    <div class="free el" data-at="8" data-fx="pop">Chapters 0 to 3 free</div>
+    <div class="url el" data-at="8.3" data-fx="pop" id="url"> </div>
   </section>
-
 
   <div id="ring"><img id="face" src="../../avatar-test/portrait.png" alt=""></div>
   <div id="ai">AI-generated presenter</div>
@@ -141,64 +119,44 @@
 <script src="../lib/reel-engine.js"></script>
 <script>
   const D = window.DATA, R = window.REEL, $ = R.$;
-  const NOTES = [
-    ["Call Rahul re quote", "#FFE38A", 40, 30, -6], ["Anita: renewal??", "#FFC9A8", 520, 10, 5], ["Send Vikram samples", "#C8EBC1", 300, 230, -3],
-    ["Follow up Neha, invoice", "#CFE3FF", 20, 420, 4], ["Priya, demo date", "#FFE38A", 560, 380, -5], ["Remind Arjun: PO", "#F9D2E8", 260, 560, 3],
+  $('hookMsg').textContent = D.english;
+  $('box').textContent = D.english;
+  // An excerpt of the Chapter 4 prompt
+  const PROMPT = "Add a WhatsApp number to each follow-up, and a button that opens WhatsApp with my message already typed.";
+  const CODE = [
+    '<span class="k">function</span> openWhatsApp(followUp) {',
+    '  <span class="k">const</span> phone = cleanNumber(followUp.phone);',
+    '  <span class="k">const</span> msg = <span class="s">`Hi ${firstName}, just following up on ${about}.`</span>;',
+    '  <span class="k">const</span> link = <span class="s">"https://wa.me/"</span> + phone +',
+    '    <span class="s">"?text="</span> + encodeURIComponent(msg);',
+    '  window.open(link);',
+    '}',
+    '<span class="k">function</span> status(f) {',
+    '  <span class="k">if</span> (f.due &lt; today) <span class="k">return</span> <span class="s">"Overdue"</span>;',
+    '  <span class="k">if</span> (f.due === today) <span class="k">return</span> <span class="s">"Due today"</span>;',
+    '  <span class="k">return</span> <span class="s">"Upcoming"</span>;',
+    '}',
   ];
-  $('notes').innerHTML = NOTES.map(([t, c, x, y, r], i) => `<div class="note" id="n${i}" style="background:${c}; left:${x}px; top:${y}px; rotate:${r}deg;">${t}</div>`).join('');
-  const PROMPT = "Add a WhatsApp number to each follow-up, and a button that opens WhatsApp with this message already typed...";
-  const typeInto = (id, text, t0, t1, t) => { const n = Math.round(R.clamp((t - t0) / (t1 - t0)) * text.length); $(id).textContent = text.slice(0, n); return n; };
-
   REEL.init({
+    hookEnd: window.TIMINGS[1].start - 0.05,
     captions: [
-      "Quick question. How many people are you supposed to follow up with today?",
-      "And how many will you actually remember?",
-      "Here's a tiny tool that fixes that.",
-      "Add a name, a number, and what it's about.",
-      "It shows you who's overdue, and who's due today.",
-      "One tap, and WhatsApp opens with your message already written.",
-      "In English, or in Hinglish. Your choice.",
-      "You still press send yourself, so nothing goes out by mistake.",
-      "It's free on All The Coffee. No sign-up.",
-      "And in Chapter 4, you build it yourself, just by describing it to AI.",
-      "Start free at allthecoffee.in",
+      "You can build this in 15 minutes, without writing a single line of code.",
+      "A WhatsApp follow-up tool that knows who's overdue.",
+      "You just describe it to AI, in plain English.",
+      "And AI writes the whole thing.",
+      "One tap, and WhatsApp opens with your message already typed.",
+      "And when AI gets something wrong, like a message cut in half, you learn to spot it and fix it.",
+      "That's the real skill. Not coding. Checking.",
+      "Learn to build tools like this for your own job.",
+      "Chapters 0 to 3 are free. Start at allthecoffee.in",
     ],
-    onSeek(t, sv, scenes) {
-      const { at, clamp, easeOut, back } = R;
-      // Sticky notes land one by one, then all but one fall away
-      NOTES.forEach((_, i) => {
-        const el = $('n' + i), p = (t - at(0.15) - i * 0.18) / 0.4, f = easeOut((t - at(1.3) - i * 0.06) / 0.5);
-        const keep = i === 0;
-        el.style.opacity = clamp(p * 3) * (keep ? 1 : 1 - f);
-        el.style.transform = `scale(${0.6 + 0.4 * back(p)}) translateY(${keep ? 0 : 500 * f * f}px)`;
-      });
-      // The form fills in, then becomes the list
-      const placeholder = (id, ph, text, a, b) => { const n = typeInto(id, text, at(a), at(b), t); if (!n) { $(id).textContent = ph; $(id).classList.add('ph'); } else $(id).classList.remove('ph'); };
-      placeholder('fName', 'Name', 'Rahul Verma', 3.05, 3.3);
-      placeholder('fPhone', 'WhatsApp number', '+91 98XXX XXXXX', 3.35, 3.6);
-      placeholder('fAbout', 'About', 'quotation #A-104', 3.65, 3.9);
-      const listOn = t >= at(4.0);
-      $('form').style.display = listOn ? 'none' : 'block';
-      $('list').style.display = listOn ? 'block' : 'none';
-      $('rahulMsg').textContent = D.english;
-      if (sv[1]) {
-        const target = listOn ? $('waBtn') : $('addBtn');
-        const k = R.click($('cur'), $('rip'), scenes[1], target, listOn ? at(4.6) : at(3.85), listOn ? at(4.95) : at(3.97), t);
-        target.style.transform = `scale(${k})`;
-      }
-      // WhatsApp opens with the message typed; then the language switches
-      const hi = t >= at(6.45);
-      $('tEn').classList.toggle('on', !hi); $('tHi').classList.toggle('on', hi);
-      $('box').textContent = hi ? D.hinglish : D.english;
-      const sb = (t - at(7.4)) % 1.2;
-      $('sendBtn').style.boxShadow = t > at(7.3) && t < at(8) ? `0 0 0 ${8 + 10 * Math.sin(sb * Math.PI)}px rgba(242, 189, 124, 0.6)` : '';
-      if (sv[3]) $('shot').style.transform = `translateY(${-200 * R.easeInOut((t - at(8.2)) / 2)}px)`;
-      typeInto('prompt', PROMPT, at(9.35), at(9.95), t);
-      const U = 'allthecoffee.in';
-      const n = Math.round(clamp((t - at(10.35)) / (at(10.9) - at(10.35))) * U.length);
-      $('url').textContent = U.slice(0, n) || ' ';
-      const pulse = t > at(10.9) ? 0.5 + 0.5 * Math.sin((t - at(10.9)) * 5) : 0;
-      $('url').style.boxShadow = `0 0 ${20 + 30 * pulse}px rgba(242, 189, 124, ${0.25 + 0.35 * pulse})`;
+    onSeek(t) {
+      const { at } = R;
+      R.type('prompt', PROMPT, at(2.05), at(2.95), t);
+      R.stream('code', CODE, at(3.0), at(3.9), t);
+      $('pbar').style.width = `${100 * R.clamp((t - at(3.0)) / (at(3.95) - at(3.0)))}%`;
+      R.type('fixed', D.english, at(5.6), at(5.95), t);
+      R.cta(t, at(8.35));
     },
   });
 </script>

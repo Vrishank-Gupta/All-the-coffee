@@ -132,7 +132,7 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] Reel 1: Intro
 - [ ] Reel 2: Chapter 9, merge 12 sales sheets (AI info label on)
 - [ ] Reel 3: Chapter 5, GSTR-2B reconciler, Hinglish (AI info label on: AI voice)
-- [ ] Reel 4: CTC calculator, Hinglish (AI info label on)
+- [x] Reel 4: CTC calculator, Hinglish (AI info label on), 1 Nov 2026: instagram.com/reel/DfMuUvSlJFL, facebook.com/reel/3594653750689938
 - [ ] Reel 5: WhatsApp follow-ups, English, presenter (AI info label on)
 - [ ] Reel 6: Bulk offer letters, Hinglish (AI info label on)
 - [ ] Reel 7: Invoice PDFs to Excel, English, presenter (AI info label on)
