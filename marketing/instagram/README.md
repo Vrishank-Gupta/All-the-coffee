@@ -143,6 +143,17 @@ From Reel 2 on, reels are a tool demo on screen with the AI presenter small in a
 
 Each reel has its own folder, e.g. `reels/ch9-merge/`: `script.txt` (the voiceover, one sentence per line), `ch9-reel.html` (the animated screens, captions and presenter ring, timed from the voice; open it in a browser to preview), the demo's real code, `site/` (phone screenshots of allthecoffee.in from `reels/site-shots.py`), and `build.sh`, which makes the voice, animates the presenter (about 50 minutes on the desktop GPU), gets word timings (`reels/word-timings.py`), and renders `ch9-reel.mp4` with her inside the page (about 3 minutes). Changing only the animations needs just that last render. It needs `avatar-test/scripts/setup.sh` and a running ComfyUI server, as in `avatar-test/NOTES.md`. Captions are burned in, so it works muted; pick the cover frame from the end card.
 
+## Scheduled posting (with this PC off)
+
+Photos and Stories can be queued in `schedule.json`: each item has a time (`at`, with +05:30 for IST), a `kind` (`photo` or `story`) and the same arguments as `publish.py`. The GitHub Actions workflow `.github/workflows/post-queue.yml` runs every 15 minutes, posts what's due to Instagram and the Facebook Page, and commits the result back to `schedule.json` (with `[skip ci]`, so Netlify doesn't rebuild). GitHub can start a run a few minutes late, so a 19:00 post goes out between about 19:00 and 19:20.
+
+- The image must already be deployed in `public/ig/`, and the caption must be in `captions.md`.
+- It needs two repository secrets, `IG_ACCESS_TOKEN` and `IG_USER_ID` (the values in `PRIVATE-HANDOFF.md`). Without them every run does nothing. When the token is renewed, update the secret too.
+- To test: Actions tab, "Post queue", "Run workflow" with dry run ticked. It checks the token and lists what's due without posting.
+- To pause everything: set a repository variable `POST_QUEUE_OFF` to `true`.
+- Reels can't be queued (the video files aren't in git). For a Facebook reel, `publish.py fbreel --at=...` schedules on Facebook's side.
+- An item more than 6 hours late is marked missed rather than posted; a failure stops the queue so nothing posts out of order. Tick the posting log below after checking it went out.
+
 ## Posting log
 
 Check items off here as you post them, and commit, so the other laptop can see what's already live and what's still queued.

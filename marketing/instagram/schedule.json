@@ -1,0 +1,14 @@
+[
+  {
+    "at": "2026-11-03T19:00:00+05:30",
+    "kind": "photo",
+    "args": ["https://allthecoffee.in/ig/brief-builder-feed.jpg", "Post 19"],
+    "note": "Post 19: Brief Builder, feed on Instagram and Facebook"
+  },
+  {
+    "at": "2026-11-03T19:00:00+05:30",
+    "kind": "story",
+    "args": ["https://allthecoffee.in/ig/brief-builder-story.jpg"],
+    "note": "Post 19's Story, on Instagram and Facebook"
+  }
+]

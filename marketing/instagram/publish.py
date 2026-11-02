@@ -6,6 +6,7 @@ Usage:
   python publish.py fbreel VIDEO.mp4 "Reel 3" [--ai] [--at=2026-11-01T19:30+05:30] [--yes]
   python publish.py photo IMAGE_URL "Post name" [--yes]        feed photo on Instagram and the Facebook Page
   python publish.py story MEDIA [--ai] [--yes]                 Story on Instagram and the Facebook Page
+  python publish.py due [--yes]                                 post whatever schedule.json says is due
 
 photo   IMAGE_URL must be a public https JPEG (e.g. one placed in public/ig/ and deployed); the
         caption comes from captions.md like reels do.
@@ -13,6 +14,11 @@ story   MEDIA is a local .mp4 (up to 60 s) or a public https JPEG. Stories have 
         link stickers can't be added through the API: add one in the app if you want a link.
 
 check   shows which account the token reaches, to test the setup.
+due     posts every item in schedule.json whose time has come and that isn't done yet, in order, and
+        records the result in the file. The GitHub Actions workflow .github/workflows/post-queue.yml runs it
+        every 15 minutes, so posts go out with this PC off. Only photos and Stories from public URLs can
+        be queued (reels need the local video file). An item more than 6 hours late is marked missed, not
+        posted; after a failure the queue stops, so nothing posts out of order.
 reel    uploads VIDEO.mp4 straight from this machine (resumable upload, no public URL needed)
         with the caption from the captions.md section whose heading starts with the given name,
         e.g. "Reel 3". --ai turns on Instagram's "AI info" label (is_ai_generated); use it for
@@ -26,12 +32,15 @@ fbreel   posts the same video and caption as a reel on the Facebook Page linked 
         (10 minutes to 29 days ahead); without it, it's published straight away. Facebook wants stereo
         AAC audio and a keyframe every 2 to 5 seconds: upload the -upload.mp4 copy (see README).
 
-The token and account ID are read from PRIVATE-HANDOFF.md (gitignored, section 6). A token from
+The token and account ID come from the IG_ACCESS_TOKEN and IG_USER_ID environment variables if set
+(GitHub Actions secrets), otherwise from PRIVATE-HANDOFF.md (gitignored, section 6). A token from
 "API setup with Instagram login" (starts with IG) talks to graph.instagram.com and needs no
 Facebook Page; a Facebook-login token (starts with EAA) talks to graph.facebook.com and reaches the
 account only through a Facebook Page linked to it. Standard library only, so it runs with any Python 3.
 """
+import datetime
 import json
+import os
 import pathlib
 import re
 import sys
@@ -42,9 +51,12 @@ import urllib.request
 
 API = "v23.0"
 HERE = pathlib.Path(__file__).resolve().parent
-handoff = (HERE.parents[1] / "PRIVATE-HANDOFF.md").read_text()
-TOKEN = re.search(r"^IG_ACCESS_TOKEN=(\S+)", handoff, re.M).group(1)
-IG_USER = re.search(r"^IG_USER_ID=(\d+)", handoff, re.M).group(1)
+if os.environ.get("IG_ACCESS_TOKEN"):
+    TOKEN, IG_USER = os.environ["IG_ACCESS_TOKEN"], os.environ["IG_USER_ID"]
+else:
+    handoff = (HERE.parents[1] / "PRIVATE-HANDOFF.md").read_text()
+    TOKEN = re.search(r"^IG_ACCESS_TOKEN=(\S+)", handoff, re.M).group(1)
+    IG_USER = re.search(r"^IG_USER_ID=(\d+)", handoff, re.M).group(1)
 HOST = "graph.instagram.com" if TOKEN.startswith("IG") else "graph.facebook.com"
 if HOST == "graph.instagram.com":
     IG_USER = "me"  # the token is for one account; its ID there differs from Business settings
@@ -212,6 +224,41 @@ def story(media, ai, yes):
     print("Facebook story:", r)
 
 
+def due(yes):
+    path = HERE / "schedule.json"
+    queue = json.loads(path.read_text())
+    now = datetime.datetime.now(datetime.timezone.utc)
+    for item in queue:
+        if item.get("done") or item.get("failed") or item.get("missed"):
+            continue
+        at = datetime.datetime.fromisoformat(item["at"])
+        if at > now:
+            continue
+        label = f'{item["kind"]} {" ".join(item["args"])}'
+        if now - at > datetime.timedelta(hours=6):
+            print(f"Missed (more than 6 hours late), not posting: {label}")
+            item["missed"] = now.isoformat(timespec="minutes")
+            continue
+        print(f"Due since {item['at']}: {label}")
+        if not yes:
+            print("Dry run: nothing posted.")
+            continue
+        try:
+            if item["kind"] == "photo":
+                photo(item["args"][0], item["args"][1], True)
+            elif item["kind"] == "story":
+                story(item["args"][0], item.get("ai", False), True)
+            else:
+                sys.exit(f"Can't queue {item['kind']}: only photo and story")
+            item["done"] = now.isoformat(timespec="minutes")
+        except SystemExit as e:
+            item["failed"] = str(e)
+            print(f"FAILED: {e}. Stopping the queue here.")
+            break
+    if yes:
+        path.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n")
+
+
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if args[:1] == ["check"]:
@@ -224,6 +271,8 @@ if __name__ == "__main__":
         fb_reel(args[1], args[2], "--ai" in sys.argv, "--yes" in sys.argv, at)
     elif args[:1] == ["photo"] and len(args) == 3:
         photo(args[1], args[2], "--yes" in sys.argv)
+    elif args[:1] == ["due"]:
+        due("--yes" in sys.argv)
     elif args[:1] == ["story"] and len(args) == 2:
         story(args[1], "--ai" in sys.argv, "--yes" in sys.argv)
     else:

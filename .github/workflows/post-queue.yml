@@ -1,0 +1,62 @@
+# Posts queued Instagram and Facebook photos and Stories at their scheduled time, with no PC switched on.
+# The queue is marketing/instagram/schedule.json; publish.py's "due" command posts what's due and marks
+# it done, and this workflow commits that back with [skip ci] so Netlify doesn't rebuild the site.
+# Secrets: IG_ACCESS_TOKEN and IG_USER_ID (repo Settings > Secrets and variables > Actions).
+name: Post queue
+
+on:
+  schedule:
+    - cron: "*/15 * * * *" # every 15 minutes; GitHub may start a run a few minutes late
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only show what's due and check the token, post nothing"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: post-queue
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+    # Until the two secrets are set, every step is skipped and the run passes quietly
+    if: ${{ vars.POST_QUEUE_OFF != 'true' }}
+    steps:
+      - name: Secrets present?
+        id: ready
+        run: '[ -n "$IG_ACCESS_TOKEN" ] && [ -n "$IG_USER_ID" ] && echo "ok=true" >> "$GITHUB_OUTPUT" || echo "Secrets not set yet: nothing to do."'
+      - uses: actions/checkout@v4
+        if: steps.ready.outputs.ok == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          python-version: "3.12"
+      - name: Check the token reaches the account
+        if: steps.ready.outputs.ok == 'true' && github.event_name == 'workflow_dispatch'
+        run: python marketing/instagram/publish.py check
+      - name: Post what's due
+        if: steps.ready.outputs.ok == 'true'
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            python marketing/instagram/publish.py due
+          else
+            python marketing/instagram/publish.py due --yes
+          fi
+      - name: Record what was posted
+        if: always() && steps.ready.outputs.ok == 'true'
+        run: |
+          git diff --quiet marketing/instagram/schedule.json && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add marketing/instagram/schedule.json
+          git commit -m "Post queue: record what was posted [skip ci]"
+          git pull --rebase origin main && git push origin main
