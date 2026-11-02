@@ -125,6 +125,12 @@ export const PRODUCT: Playbook = {
   tagline: "Turn a pile of feedback into themes you can defend, rank the roadmap with numbers, and write release notes customers can read.",
   forWho: "Product managers, product owners, founders, customer success leads",
   toolSlug: "rice-prioritiser",
+  yourTurn: [
+    "A weekly metrics digest from your analytics export",
+    "A survey cross-tab: answers split by customer segment",
+    "A bug triage list from a support inbox export",
+    "A changelog formatter for your WhatsApp community or newsletter",
+  ],
   builds: [
     {
       id: "product-themes", title: "Feedback theme finder that proves every quote", minutes: "35 min", where: "ai-inside",
@@ -146,6 +152,7 @@ to real comments.
 What to avoid: never count a quote that isn't really in the feedback.`,
       check: "Using the sample AI reply (ai-reply.txt): 2 quotes are not found. \"We would pay more if it had integrations\" was invented, and \"Clean and simple, my team learned it fast\" is a rewording of comment 10. Verified themes: Slow performance 3, Excel export 2, Price 2, Design 1, Reliability 1. One comment (number 10) isn't covered.",
       trap: {
+        pattern: "invented",
         title: "A quote that's almost right",
         text: "The invented quote is easy to spot once you look. The reworded one isn't: \"my team learned it fast\" sounds exactly like \"my team picked it up quickly\". If it's in a slide as a customer quote, it's a quote no customer gave. That's why the check matches the exact words, not the meaning.",
         fix: `I expected: 2 quotes marked "Not found".
@@ -178,6 +185,7 @@ the same way (80 percent).
 What to avoid: don't change the numbers in the file.`,
       check: "Dark mode first (675), then Excel export (640), WhatsApp alerts (437.5), Bulk upload (180) and SSO login (133.3).",
       trap: {
+        pattern: "units",
         title: "80 percent isn't 80",
         text: "If SSO login or Excel export suddenly tops the list with a score in the tens of thousands, the tool read \"100\" or \"80%\" as the number 100 or 80 instead of a percentage. Real spreadsheets mix 80%, 80 and 0.8 in the same column, and a ranking built on that is confidently wrong.",
         fix: `I expected: Dark mode first, with 675.
@@ -211,6 +219,7 @@ ticket system.
 What to avoid: never include unfinished or internal work.`,
       check: "5 notes. New: Excel export, WhatsApp alerts. Improved: faster search. Fixed: the dashboard timeout, the GST total with discounts. Left out: Dark mode (still in progress) and the two internal tickets.",
       trap: {
+        pattern: "scope",
         title: "Announcing work that isn't shipped",
         text: "If Dark mode appears under New, your notes announce a feature customers can't use yet. If \"Refactor auth middleware\" appears, they read about your internals. Both come from the same gap: the brief said which tickets to include, and the first build didn't apply both rules.",
         fix: `I expected: 5 notes, without Dark mode or any internal ticket.

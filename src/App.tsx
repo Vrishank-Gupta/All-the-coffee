@@ -23,6 +23,8 @@ import OfferLettersTool from "./pages/tools/OfferLettersTool";
 import InvoiceTool from "./pages/tools/InvoiceTool";
 import ContractTool from "./pages/tools/ContractTool";
 import PlaybookTool from "./pages/tools/PlaybookTool";
+import BriefBuilderTool from "./pages/tools/BriefBuilderTool";
+import Method from "./pages/Method";
 import ChapterZero from "./pages/ChapterZero";
 import ChapterOne from "./pages/ChapterOne";
 import ChapterTwo from "./pages/ChapterTwo";
@@ -70,7 +72,9 @@ export default function App() {
             <Route path="/tools/offer-letters" element={<OfferLettersTool />} />
             <Route path="/tools/invoice-reader" element={<InvoiceTool />} />
             <Route path="/tools/contract-check" element={<ContractTool />} />
+            <Route path="/tools/brief-builder" element={<BriefBuilderTool />} />
             <Route path="/tools/:slug" element={<PlaybookTool />} />
+            <Route path="/method" element={<Method />} />
             <Route path="/chapter/0" element={<ChapterZero />} />
             <Route path="/chapter/1" element={<ChapterOne />} />
             <Route path="/chapter/2" element={<Protected><ChapterTwo /></Protected>} />

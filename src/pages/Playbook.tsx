@@ -5,6 +5,7 @@ import { SiteFooter } from "../components/layout/SiteFooter";
 import { BuildLesson } from "../components/playbooks/BuildLesson";
 import { FoundingOfferBox } from "../components/demo/FoundingOfferBox";
 import { Callout } from "../components/chapter/Callout";
+import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { useDocumentMeta } from "../lib/useDocumentMeta";
 import { useProgress } from "../lib/progress";
 import { playbookBySlug } from "../lib/playbooks";
@@ -46,6 +47,22 @@ export default function Playbook() {
               tools unless your company allows it.
             </Callout>
             {p.builds.map((b, i) => <BuildLesson key={b.id} build={b} n={i + 1} />)}
+            <SectionEyebrow n={String(p.builds.length + 1).padStart(2, "0")} label="Your turn: a tool for your own job" />
+            <p>
+              The three builds above are practice. The real goal is the tool nobody wrote a brief for: one for your own
+              work. Some ideas for {p.role.toLowerCase()} work:
+            </p>
+            <ul className="mt-2 list-disc space-y-1.5 pl-5 marker:text-caramel-500">
+              {p.yourTurn.map((idea) => <li key={idea}>{idea}</li>)}
+            </ul>
+            <p className="mt-3">
+              Pick one, or your own, and take it through{" "}
+              <Link to="/method" className="font-semibold text-caramel-700 underline">the Builder's Method</Link>: is it worth a
+              tool, what's the smallest useful version, where should it live, what's the brief, and what's the right answer
+              for a small sample. The{" "}
+              <Link to="/tools/brief-builder" className="font-semibold text-caramel-700 underline">Brief Builder</Link> walks you
+              through it and lists the traps to test for. Then build it the way you just built three.
+            </p>
             {tool && (
               <p className="mt-8">
                 Want a ready-made version for a colleague? <a href={`/tools/${tool.slug}`} className="font-semibold text-caramel-700 underline">{tool.name}</a> is free

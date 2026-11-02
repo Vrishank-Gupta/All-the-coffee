@@ -17,7 +17,8 @@ export default function Playbooks() {
         <p className="mt-2 max-w-2xl text-espresso-700/80">
           {PLAYBOOKS.length} playbooks, {BUILD_COUNT()} builds, each one a real tool for a real part of your job. Every build
           has sample files, a brief to paste, a known answer to check against, and one place where AI tends to go
-          wrong, so you learn to catch it. Included with Chapters 4 to 11, no extra payment.
+          wrong, so you learn to catch it. Each playbook ends with a tool of your own, built with{" "}
+          <Link to="/method" className="font-semibold text-caramel-700 underline">the Builder's Method</Link>. Included with Chapters 4 to 11, no extra payment.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {PLAYBOOKS.map((p) => (

@@ -159,6 +159,12 @@ export const FINANCE: Playbook = {
   tagline: "Who owes what and since when, where the money went last month, and which expense claims break policy, each one checkable to the rupee.",
   forWho: "Accounts, finance, founders and anyone who chases payments",
   toolSlug: "payment-ageing",
+  yourTurn: [
+    "A payment run: which vendor invoices to pay this week, by due date and cash available",
+    "A duplicate invoice finder across a year of payments",
+    "Budget versus actual by department, from two exports",
+    "A petty cash register with a running balance and missing-receipt flags",
+  ],
   builds: [
     {
       id: "finance-ageing", title: "Payment ageing with polite reminders", minutes: "35 min", where: "browser",
@@ -180,6 +186,7 @@ every total can be checked by hand.
 What to avoid: never include an invoice that's fully paid.`,
       check: "Outstanding ₹2,78,100, of which ₹2,30,900 is overdue. Buckets: not yet due ₹47,200; 1 to 30 days ₹74,400; 31 to 60 days ₹1,18,000; 61 to 90 days ₹0; over 90 days ₹38,500. Reminders go to Acme Foods (₹1,57,000 on INV-301 and INV-322), Coastal Hotels (₹38,500) and Delta Logistics (₹35,400). BlueStone's paid invoice doesn't appear.",
       trap: {
+        pattern: "totals",
         title: "Chasing money that's already been paid",
         text: "If your total is ₹5,84,100, the tool ignored the paid column: it's chasing BlueStone for ₹2,36,000 they've already paid, and Acme and Coastal for their full amounts. Sending that reminder is how you lose a good customer's goodwill.",
         fix: `I expected: total outstanding of ₹2,78,100.
@@ -215,6 +222,7 @@ What to avoid: keep it simple, with a short comment above each part.
 Tell me which libraries I need and the exact command to install them.`,
       check: "Income ₹85,000. Spending ₹29,519: Rent ₹22,000, Travel ₹2,440, Shopping ₹2,200, Food ₹1,520, Bills ₹799, Uncategorised ₹560 (RAMESH KIRANA). Left over ₹55,481.",
       trap: {
+        pattern: "totals",
         title: "A refund counted as spending",
         text: "Amazon refunded ₹1,299 on 14 October. If Shopping shows ₹4,798, the refund was added as if it were another purchase. If it shows ₹3,499, the refund was ignored. Either way you'd think you spent more than you did. A credit in a spending category is money coming back.",
         fix: `I expected: Shopping of ₹2,200.
@@ -249,6 +257,7 @@ What good looks like: I only have to look at the flagged lines.
 What to avoid: don't reject anything automatically; just flag it.`,
       check: "Claimed ₹18,260; over policy ₹1,270; within policy ₹16,990. Three flags: Priya's meals on 14 October (₹770, over the ₹600 day limit by ₹170), Rahul's hotel in Nashik (₹4,200 against ₹3,500, over by ₹700) and Anita's hotel in Bengaluru (₹6,400 against ₹6,000, over by ₹400).",
       trap: {
+        pattern: "scope",
         title: "A daily limit checked one meal at a time",
         text: "If Priya isn't flagged, the tool checked each meal separately: ₹350 and ₹420 are each under ₹600. But the limit is per day, and together they're ₹770. Policies are full of \"per day\" and \"per trip\" rules, and AI often checks one line at a time unless told.",
         fix: `I expected: Priya flagged for 14 October, ₹170 over.

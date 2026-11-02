@@ -28,7 +28,7 @@ export interface Build {
   files: BuildFile[]; // sample files, made up, downloadable; also the runner's inputs
   prompt: string; // the brief to paste into the AI chat
   check: string; // the known answer, in words
-  trap: { title: string; text: string; fix: string };
+  trap: { pattern: string; title: string; text: string; fix: string }; // pattern: a trap id from src/lib/method.ts
   run: (inputs: string[]) => RunResult;
   tryIt: string[];
 }
@@ -41,4 +41,5 @@ export interface Playbook {
   forWho: string;
   builds: Build[];
   toolSlug?: string; // the free tool this playbook powers, if any
+  yourTurn: string[]; // ideas for a tool of the learner's own, built with the Builder's Method
 }

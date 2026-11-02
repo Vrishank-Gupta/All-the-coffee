@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -270,6 +271,13 @@ else:
           You also learned a habit developers use constantly: when you're not sure what code does, change one small
           thing, predict, and run. It's a safe way to learn, because you can always change it back.
         </p>
+
+        <BuilderHabit steps={["sceptic"]}>
+
+          Predict, then run: reading code well enough to expect a result, then checking it, is testing like a sceptic.
+
+        </BuilderHabit>
+
 
         <SectionEyebrow n="08" label="What you can skip" />
         <p>

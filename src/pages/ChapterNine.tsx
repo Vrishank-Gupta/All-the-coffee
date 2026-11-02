@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -374,6 +375,13 @@ export default function ChapterNine() {
         <div className="my-5">
           <OfferLetters />
         </div>
+
+        <BuilderHabit steps={["answer"]}>
+
+          96 rows and ₹43,92,000 were the known answer, and the July file was trap 11 in the catalogue: one file is different from the rest.
+
+        </BuilderHabit>
+
 
         <SectionEyebrow n="10" label="What you can skip" />
         <p>

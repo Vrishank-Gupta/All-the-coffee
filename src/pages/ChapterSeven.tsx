@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -226,6 +227,13 @@ export default function ChapterSeven() {
         Anyone you share it with needs their own Claude account, and their use comes out of their own Claude
         allowance, not yours.
       </p>
+
+      <BuilderHabit steps={["real"]}>
+
+        The safety checklist before sharing is the last step of every build: is it safe to use on real work, and to share?
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="09" label="What you can skip" />
       <p>

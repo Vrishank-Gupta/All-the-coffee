@@ -105,6 +105,12 @@ export const OPS: Playbook = {
   tagline: "Pick the vendor that's actually cheapest, reorder before you run out, and see who on the team is overloaded this week.",
   forWho: "Operations, admin, procurement, team leads and managers",
   toolSlug: "vendor-quotes",
+  yourTurn: [
+    "A service schedule for vehicles, ACs or other equipment",
+    "A daily attendance summary from the biometric export",
+    "A courier cost comparison per shipment",
+    "A meeting room booking clash checker",
+  ],
   builds: [
     {
       id: "ops-vendor-quotes", title: "Vendor quote comparator", minutes: "25 min", where: "browser",
@@ -124,6 +130,7 @@ reality are both visible.
 What to avoid: don't leave out freight or the GST on it.`,
       check: "Alpha Furniture is cheapest at ₹14,63,200 landed. Beta Seating has the lowest unit price (₹2,380) but its ₹60,000 freight makes it ₹14,75,000, ₹11,800 more. Comfort Works is ₹14,86,800 (free delivery, but a higher price), with the longest payment terms (45 days).",
       trap: {
+        pattern: "unstated",
         title: "The cheapest price isn't the cheapest buy",
         text: "If Beta Seating comes out on top, the tool compared unit prices only, or left freight out. ₹70 less per chair looks like a win until ₹60,000 of freight (₹70,800 with GST) arrives on the invoice.",
         fix: `I expected: Alpha Furniture cheapest, at ₹14,63,200.
@@ -158,6 +165,7 @@ What good looks like: I can paste the list straight into a purchase order.
 What to avoid: never order a part of a pack.`,
       check: "3 items to reorder: A4 paper 150 reams (30 packs of 5), printer toner 5, and hand sanitiser 36 bottles (3 cartons of 12). Coffee beans (12 kg, reorder point 11) and paper cups (900, reorder point 750) are fine.",
       trap: {
+        pattern: "units",
         title: "Ordering 28 bottles from a supplier who sells 12 at a time",
         text: "If hand sanitiser says 28, the maths is right and the order is wrong: the supplier sells cartons of 12, so you'll either get 24 and run short, or a phone call asking what you meant. Rounding up to whole packs is the rule a first build usually forgets.",
         fix: `I expected: hand sanitiser 36 bottles (3 packs of 12).
@@ -189,6 +197,7 @@ What good looks like: I can see at a glance who to give the next task to.
 What to avoid: never read 2d as 2 hours.`,
       check: "Week of 2 Nov: Anita 44h (over 40), Priya 40h, Rahul 6h (light), Mohammed 0h. Week of 9 Nov: Rahul 24h, Mohammed 16h, Anita 4h, Priya 0h.",
       trap: {
+        pattern: "units",
         title: "2 days read as 2 hours",
         text: "If nobody looks busy, the tool read 2d as 2 hours: Anita drops from 44 hours to 23, and the one person who needs help looks free. Task estimates mix hours and days everywhere, so the tool has to read both.",
         fix: `I expected: Anita at 44 hours in the week of 2 November.

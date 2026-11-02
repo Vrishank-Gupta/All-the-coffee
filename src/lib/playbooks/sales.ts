@@ -134,6 +134,12 @@ export const SALES: Playbook = {
   tagline: "Find the deals going cold, send GST-correct quotes in minutes, and know which leads to call first.",
   forWho: "Sales reps, account managers, inside sales, founders who sell",
   toolSlug: "gst-quotation",
+  yourTurn: [
+    "A weekly pipeline summary for your manager, from your CRM export",
+    "A commission calculator for your own slab structure",
+    "A repeat-order quote from your price list and a customer's last order",
+    "A call-notes tracker that lists who you promised to call back, and when",
+  ],
   builds: [
     {
       id: "sales-stale-deals", title: "Stale-deal finder", minutes: "30 min", where: "browser",
@@ -159,6 +165,7 @@ What to avoid: never guess a value you can't read; list that row as
 "couldn't read" instead.`,
       check: "4 deals need attention, worth ₹6,40,000 in total: BlueStone pilot (no activity for 28 days), Coastal Hotels (43 days), FreshMart chain (21 days) and Delta Logistics (its close date passed 8 days ago). By owner: Anita ₹4,35,000, Rahul ₹1,20,000, Priya ₹85,000.",
       trap: {
+        pattern: "formats",
         title: "1.2L is not ₹1.20",
         text: "If your total looks like ₹4,35,086, the tool read 1.2L as 1.2 and 85K as 85. Indian sales files are full of lakh and thousand shorthand, and a tool built on Western examples treats them as plain numbers. No error, just a pipeline that's quietly under by lakhs.",
         fix: `I expected: total value at risk of ₹6,40,000.
@@ -194,6 +201,7 @@ What good looks like: every number can be checked with a calculator.
 What to avoid: don't invent GST rates; use the rate in the file.`,
       check: "Taxable value ₹44,266.00; GST ₹6,238.88; round off +₹0.12; total ₹50,505, in words \"Rupees Fifty Thousand Five Hundred Five Only\". Because the supplier is in Maharashtra and the customer in Karnataka, the tax is IGST, not CGST + SGST.",
       trap: {
+        pattern: "unstated",
         title: "The right tax, under the wrong name",
         text: "Most first builds split the tax into CGST and SGST every time. The total is the same, so it looks fine. But between two states, GST is charged as IGST, and a quote or invoice with the wrong tax heads causes trouble for the customer's input tax credit. The brief never mentioned states, so the AI guessed.",
         fix: `I expected: IGST of ₹6,238.88, because the customer is in Karnataka
@@ -232,6 +240,7 @@ What good looks like: I can see exactly why each lead got its score.
 What to avoid: don't add rules I didn't ask for.`,
       check: "Apex Manufacturing first with 110. Then Crescent Pharma and Fusion Textiles, both 75 (each has a blank budget, scored 10 as unknown). Then Dune Logistics 65, Echo Studios 60 and Bright Retail 30.",
       trap: {
+        pattern: "blank",
         title: "Unknown is not zero",
         text: "If Crescent Pharma and Fusion Textiles show 70 instead of 75, the tool treated a blank budget as zero budget. Blank means nobody asked yet, which is a reason to call, not a reason to rank lower. AI fills gaps with whatever seems tidy unless you say what a gap means.",
         fix: `I expected: Crescent Pharma and Fusion Textiles at 75.

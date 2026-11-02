@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -238,6 +239,13 @@ export default function ChapterFive() {
         first pass: your CA or tax team has the final word on what credit you claim. The real portal file has more
         columns than the sample; if your tool expects the sample's layout, tell the AI which columns your file has.
       </p>
+
+      <BuilderHabit steps={["answer", "sceptic"]}>
+
+        The known answer (10 rows, Priya on 3 April) is what caught the date trap. It"s trap 1 in the catalogue: Indian formats read the Western way.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="07" label="What you can skip" />
       <p>

@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -302,6 +303,13 @@ Today is the day I stopped being scared of code.`}
           On a work laptop, check your company's AI policy first. It's optional. Everything in Module C works
           without it.
         </p>
+
+        <BuilderHabit steps={["choose"]}>
+
+          Your own computer is a new place to build. From now on, part of every idea is choosing where it should live: browser, script, or AI inside.
+
+        </BuilderHabit>
+
 
         <SectionEyebrow n="09" label="What you can skip" />
         <p>

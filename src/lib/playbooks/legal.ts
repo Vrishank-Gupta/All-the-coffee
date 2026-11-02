@@ -139,6 +139,12 @@ export const LEGAL: Playbook = {
   tagline: "See exactly what changed between two contract drafts, never miss a renewal notice again, and check every case a draft cites.",
   forWho: "In-house legal, compliance, contract managers, founders who sign",
   toolSlug: "contract-compare",
+  yourTurn: [
+    "An NDA register that shows which NDAs expire this quarter",
+    "A compliance calendar from a list of filings and due dates",
+    "A clause finder: your standard clause for each topic, from past contracts",
+    "A hearing-date tracker from your matter list",
+  ],
   builds: [
     {
       id: "legal-compare", title: "What changed between two drafts", minutes: "35 min", where: "browser",
@@ -158,6 +164,7 @@ changes.
 What to avoid: a line break or extra space is not a change.`,
       check: "Unchanged: Term, Fees and Jurisdiction (3). Changed: Payment (30 → 15 days) and Notice (60 → 90 days). Removed: Termination for convenience. Added: Renewal (it now renews automatically).",
       trap: {
+        pattern: "matching",
         title: "Fooled by renumbering and line breaks",
         text: "If Fees shows as changed, the tool counted a line break as an edit. If Jurisdiction shows as changed, it compared clause 5 with clause 5, which are different clauses now that one was deleted. Meanwhile the change that matters, the new auto-renewal, can get lost in the noise.",
         fix: `I expected: Fees and Jurisdiction unchanged.
@@ -193,6 +200,7 @@ What to avoid: don't be off by a day; the last day to give notice
 matters.`,
       check: "Missed: Housekeeping (deadline 1 Sep 2026, 62 days ago: it renews automatically) and Office lease (2 Oct 2026, 31 days ago: decide now). Act soon: Software licence by 15 Dec 2026 (43 days) and Annual maintenance by 30 Dec 2026 (58 days). Later: Courier services, 1 May 2027.",
       trap: {
+        pattern: "offbyone",
         title: "Off by one day",
         text: "If the Housekeeping deadline shows 2 September, the tool ended the term on 1 December 2026 instead of 30 November. A 12-month term starting 1 December ends the day before the anniversary. One day sounds trivial, until it's the day your notice arrives late.",
         fix: `I expected: the Housekeeping notice deadline to be 1 September 2026.
@@ -227,6 +235,7 @@ What good looks like: nothing goes out with an unchecked citation.
 What to avoid: "v.", "v" and "vs" mean the same thing.`,
       check: "4 citations. Verified: Mehra v. Union Textiles (2019) and Iyer vs Coastal Shipping (2015). Year differs: Kapoor v. State Bank Staff Union (your list says 2016, the draft says 2017). Not found: Rao v. Deccan Mills (2021). All the cases here are invented for practice.",
       trap: {
+        pattern: "matching",
         title: "\"vs\" isn't a different case",
         text: "If Iyer vs Coastal Shipping shows as not found, the tool compared the text exactly, and \"vs\" doesn't match \"v.\". A checker that cries wolf gets ignored, which is worse than no checker. Make it match the way lawyers actually write citations.",
         fix: `I expected: Iyer vs Coastal Shipping (2015) marked Verified.

@@ -124,6 +124,12 @@ export const MARKETING: Playbook = {
   tagline: "Tracking links your analytics can actually group, one honest ROAS number across Meta and Google, and captions that never invent a claim.",
   forWho: "Marketers, social media managers, growth and performance teams",
   toolSlug: "utm-builder",
+  yourTurn: [
+    "A content calendar checker: which days have nothing scheduled",
+    "An influencer shortlist scorer from a sheet of handles, followers and rates",
+    "A monthly social report from each platform's export",
+    "A pre-posting checker for caption length, hashtags and links",
+  ],
   builds: [
     {
       id: "marketing-utm", title: "UTM link builder and naming checker", minutes: "25 min", where: "browser",
@@ -145,6 +151,7 @@ all become diwali-sale.
 What to avoid: don't change the base URL itself.`,
       check: "6 links. Campaign spellings go from 4 to 1 (diwali-sale), sources from 6 to 5 (ig and Instagram become instagram), and all 6 rows needed tidying. The newsletter link keeps its ?ref=home and adds the tracking with &: https://allthecoffee.in/tools?ref=home&utm_source=newsletter&utm_medium=email&utm_campaign=diwali-sale&utm_content=top-banner",
       trap: {
+        pattern: "unstated",
         title: "Two question marks",
         text: "Look at the newsletter link. If it reads ...tools?ref=home?utm_source=..., it's broken: a link can only have one question mark, and everything after the second is lost or mangled. Your newsletter clicks then show up as untracked, and nobody notices for a month.",
         fix: `I expected: the newsletter link to keep ?ref=home and add the UTM
@@ -179,6 +186,7 @@ What good looks like: one table, numbers I can check with a calculator.
 What to avoid: don't guess numbers; if a value can't be read, say so.`,
       check: "Total spend ₹58,250, revenue ₹1,54,730, overall ROAS 2.66x. Best: Search - Brand at 7.33x, then Diwali Retargeting 5.69x. Below the 2x target: Diwali Prospecting is fine at 2.27x, but Performance Max (1.55x), Search - Generic (1.36x) and Brand Awareness (0, an awareness campaign) are below it.",
       trap: {
+        pattern: "totals",
         title: "The Total row counted as a campaign",
         text: "Meta's export ends with a Total row. If your spend shows ₹91,900, the tool added Total as if it were a campaign, so every Meta rupee was counted twice. The overall ROAS barely moves (2.71x instead of 2.66x), which is exactly why it slips through: your spend report is ₹33,650 too high, and Meta looks like 73% of the budget instead of 58%.",
         fix: `I expected: total spend of ₹58,250.
@@ -212,6 +220,7 @@ What good looks like: I only copy captions that passed both checks.
 What to avoid: never let AI's text go out unchecked.`,
       check: "Using the sample AI reply (ai-reply.txt): option 1 is ready to use. Option 2 fails twice: \"10000\" isn't in your draft, and it uses the banned word \"best\". Option 3 fails twice: the banned word \"guaranteed\", and \"15\" isn't in your draft (the offer ends on 12 November, not 15).",
       trap: {
+        pattern: "invented",
         title: "A believable wrong date",
         text: "Option 3 sounds fine until you notice the offer now ends on 15 November. Invented numbers are easy to spot when they're big (10,000+ customers) and easy to miss when they're small. That's why the check looks at every number, not just the impressive ones.",
         fix: `I expected: option 3 flagged, because "15 November" isn't in my draft.

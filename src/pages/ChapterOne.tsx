@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -149,6 +150,13 @@ export default function ChapterOne() {
         check yourself is how you catch mistakes, just like sanity-checking a colleague's spreadsheet.
       </p>
       <DescribeBuildCheckLoop filled={{ prompt: "Your prompt", code: "The code", result: "₹4,800 ✓" }} />
+
+      <BuilderHabit steps={["answer"]}>
+
+        You checked the calculator against ₹4,800 worked out by hand. That"s the habit behind every tool in this course: know the right answer before you trust the tool.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="06" label="What you can skip" />
       <p>

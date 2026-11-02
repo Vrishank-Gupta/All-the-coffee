@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { useState } from "react";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
@@ -182,6 +183,13 @@ export default function ChapterTwo() {
         skill. You're not supposed to read every line; searching for what you need and ignoring the rest is the
         whole trick.
       </p>
+
+      <BuilderHabit steps={["choose"]}>
+
+        Knowing what a tool is made of and where it lives is what lets you choose where to build each new idea: a page in the browser, a script on your computer, or something else.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="08" label="What you can skip" />
       <p>

@@ -16,6 +16,15 @@ export interface ToolInfo {
 
 export const TOOLS: ToolInfo[] = [
   {
+    slug: "brief-builder",
+    title: "Brief Builder: Turn Any Work Task into an AI Tool Brief",
+    name: "Brief Builder",
+    description:
+      "Describe a task you repeat at work and get: is it worth a tool, where to build it, a ready-to-paste brief for any AI chat, a way to check its answer, and the traps to test for. Free.",
+    forWho: "Anyone with a repetitive task, in any role",
+    chapter: 3,
+  },
+  {
     slug: "ctc-calculator",
     title: "CTC to In-Hand Salary Calculator (FY 2026-27)",
     name: "CTC to in-hand calculator",

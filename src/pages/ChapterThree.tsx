@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -114,8 +115,8 @@ export default function ChapterThree() {
       <p>
         This is the last chapter of Module A. Today you'll break things on purpose (twice), then fix them calmly,
         using a simple three-step method you'll use for the rest of this course, and probably the rest of your
-        career. At the end there's an optional bonus on writing prompts that get better results the first time, and an
-        optional build that puts everything together: a calculator for what your CTC really pays each month.
+        career. Then you'll learn to stop most bugs before they start, by briefing AI like a new intern. At the end
+        there's an optional build that puts everything together: a calculator for what your CTC really pays each month.
       </p>
 
       <Callout variant="worry">
@@ -220,10 +221,10 @@ export default function ChapterThree() {
         </li>
       </ul>
 
-      <SectionEyebrow n="07" label="Bonus: better prompts, brief it like a new intern" />
-      <Callout variant="tip" title="Optional: read this when you're ready">
-        This section is a bonus. You've already done this chapter's one big idea, the fix loop. Skip ahead if
-        you've had enough for today, and come back to this before Chapter 4, which builds on it.
+      <SectionEyebrow n="07" label="Prevent bugs: brief it like a new intern" />
+      <Callout variant="tip" title="The other half of fixing bugs">
+        The fix loop deals with bugs after they happen. This one stops most of them happening at all, and every
+        chapter from here uses it. If you need a break, take it here and come back before Chapter 4.
       </Callout>
       <p>
         Many bugs come from vague prompts. Imagine briefing a smart new intern: quick and eager, but they know
@@ -241,6 +242,12 @@ export default function ChapterThree() {
         </div>
       </div>
       <p>The second prompt takes one extra minute to write and usually saves ten minutes of back-and-forth.</p>
+      <p className="mt-3">
+        The rule of thumb: every rule you leave out, the AI guesses. So write down the rules you'd explain to a new
+        colleague, especially the obvious ones. When you have a task of your own in mind, the free{" "}
+        <a href="/tools/brief-builder" className="font-semibold text-caramel-700 underline">Brief Builder</a> walks you
+        through it and writes the brief with you.
+      </p>
 
       <SectionEyebrow n="08" label="Optional build: your real salary, and two traps" />
       <p>
@@ -249,7 +256,7 @@ export default function ChapterThree() {
         everything in this chapter, because tax rules change and the AI doesn't always know.
       </p>
       <Step n={1} title="Start a new chat and paste this brief">
-        It uses the intern brief from the bonus section. Notice what it doesn't say: the tax slabs and the PF
+        It uses the intern brief from the section above. Notice what it doesn't say: the tax slabs and the PF
         ceiling. Those are left to the AI, on purpose.
       </Step>
       <CopyBlock label="CTC to in-hand prompt">{CTC_PROMPT}</CopyBlock>
@@ -292,6 +299,13 @@ export default function ChapterThree() {
         Module A. From now on, when something breaks, you'll have a method instead of a panic.
       </p>
 
+      <BuilderHabit steps={["brief", "sceptic"]}>
+
+        Two habits you"ll use in every chapter from here: brief it like a new intern, and test like a sceptic, because the wrong answer is the bug that never announces itself.
+
+      </BuilderHabit>
+
+
       <SectionEyebrow n="10" label="What you can skip" />
       <p>
         The different types of errors (there are dozens), how to find hidden errors using developer tools in your
@@ -322,7 +336,7 @@ export default function ChapterThree() {
 
       <SectionEyebrow n="11" label="Try it yourself" />
       <TryItYourself>
-        <p className="mb-2"><strong>1. Bonus: rewrite a vague prompt.</strong> If you read the intern section, take "Make a tool to split a restaurant bill" and rewrite it using the four-part intern brief. Then build and test it with numbers you can check.</p>
+        <p className="mb-2"><strong>1. Rewrite a vague prompt.</strong> Take "Make a tool to split a restaurant bill" and rewrite it using the four-part intern brief. Then build and test it with numbers you can check.</p>
         <p>
           <strong>2. Read an error.</strong> Translate this into plain English:{" "}
           <code className="rounded bg-latte px-1 text-[13px]">TypeError: Cannot read properties of undefined (reading 'name')</code>

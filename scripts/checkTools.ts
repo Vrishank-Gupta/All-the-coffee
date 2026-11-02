@@ -7,6 +7,7 @@ import { readInvoiceText, parseAmount, checkText } from "../src/lib/tools/invoic
 import { findFlags, SAMPLE_CONTRACT } from "../src/lib/tools/contract.ts";
 import { PLAYBOOKS } from "../src/lib/playbooks/index.ts";
 import { parseMoney, parseDate } from "../src/lib/playbooks/common.ts";
+import { buildBrief, EMPTY_BRIEF } from "../src/lib/tools/brief.ts";
 import { normalizePhone, whatsappLink, fillTemplate, statusOf, sortLeads, type Lead } from "../src/lib/tools/whatsapp.ts";
 
 let failed = 0;
@@ -159,6 +160,16 @@ eq("citations", B["legal-citations"].rows.map((r) => `${r[0]} | ${r[2]}`), [
 eq("vendors", B["ops-vendor-quotes"].rows.map((r) => `${r[0]} ${r[3]}`), ["Alpha Furniture ₹14,63,200", "Beta Seating ₹14,75,000", "Comfort Works ₹14,86,800"]);
 eq("reorder", B["ops-reorder"].rows.map((r) => `${r[0]} ${r[3]}`), ["A4 paper 150 ream", "Printer toner 5 piece", "Hand sanitiser 36 bottle"]);
 eq("workload", B["ops-workload"].rows.map((r) => r.join(" ")), ["Priya 40h 0h (light)", "Rahul 6h (light) 24h", "Anita 44h (over) 4h (light)", "Mohammed 0h (light) 16h (light)"]);
+
+// --- Brief Builder: weekly 45 minutes = 37.5 hours a year (rounded 38); monthly 10 minutes = 2 hours
+const bb = buildBrief({ ...EMPTY_BRIEF, task: "Combine the weekly sales files", role: "Sales operations", frequency: "weekly", minutes: 45,
+  inputs: "Five CSV files from the regions", rules: "- total per region\n- skip the Total row", outputs: "One Excel file", good: "Total ₹4,20,000",
+  avoid: "changing amounts", newFiles: true, data: ["money", "totals", "manyFiles"], size: [] });
+eq("brief: worth it", [bb.hoursPerYear, bb.verdict.level, bb.where.kind], [38, "build", "python"]);
+eq("brief: traps", bb.traps.map((t) => t.trap.id), ["formats", "totals", "scope", "unstated", "oddfile"]);
+eq("brief: text", bb.brief.split("\n").slice(0, 6), ["Who it's for: Sales operations. Combine the weekly sales files, weekly, by hand today.", "", "What it does: Five CSV files from the regions", "The rules:", "- total per region", "- skip the Total row"]);
+const small = buildBrief({ ...EMPTY_BRIEF, frequency: "monthly", minutes: 10, data: ["aiText"], size: ["multiUser"] });
+eq("brief: small task, AI, too big", [small.hoursPerYear, small.verdict.level, small.where.kind, small.tooBig.length], [2, "skip", "ai", 1]);
 
 if (failed) {
   console.log(`\n${failed} check(s) failed`);

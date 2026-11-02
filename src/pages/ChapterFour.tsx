@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -344,6 +345,13 @@ export default function ChapterFour() {
       <div className="my-5">
         <WhatsAppDesk />
       </div>
+
+      <BuilderHabit steps={["slices"]}>
+
+        You got the tracker working first, then gave it a memory. Building in slices, one working piece at a time, is how bigger tools stay fixable.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="08" label="What you can skip" />
       <p>

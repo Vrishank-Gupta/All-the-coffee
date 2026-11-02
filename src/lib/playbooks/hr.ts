@@ -120,6 +120,12 @@ export const HR: Playbook = {
   tagline: "Payroll-ready loss-of-pay numbers, interview notes summarised without names getting in the way, and leave balances everyone can check.",
   forWho: "HR generalists, payroll, people managers, founders who hire",
   toolSlug: "lop-calculator",
+  yourTurn: [
+    "A probation end-date and confirmation tracker",
+    "An interview schedule from each panelist's free slots",
+    "An exit-interview theme finder, with the quote check",
+    "Birthday and work anniversary reminders for the month",
+  ],
   builds: [
     {
       id: "hr-lop", title: "Attendance to loss-of-pay", minutes: "30 min", where: "browser",
@@ -141,6 +147,7 @@ What good looks like: I can check any row with a calculator.
 What to avoid: don't round anything until the final deduction.`,
       check: "Three people have loss of pay: Arjun Malhotra 2.5 days, ₹7,258.06; Kavya Reddy 2 days, ₹2,903.23; Vikram Singh 1 day, ₹1,225.81. Total ₹11,387.10. Priya and Mohammed are covered by their leave.",
       trap: {
+        pattern: "offbyone",
         title: "Dividing by 30 in a 31-day month",
         text: "If the total is ₹11,766.67, the tool divided by 30 every month. Plenty of payroll habits do, but the brief said calendar days, and October has 31. Each deduction is off by a little; across a company and a year it's real money, and it's the kind of error an employee will find before you do.",
         fix: `I expected: total deduction of ₹11,387.10.
@@ -175,6 +182,7 @@ What good looks like: no name or gendered pronoun reaches the AI.
 What to avoid: the key (Candidate A = who) never leaves my screen.`,
       check: "With the sample notes: 4 names hidden (each full name once, each first name once) and 3 pronouns made neutral (She, He, his), with 0 names still visible. The AI reads \"Candidate A: ... They explained the variance analysis clearly. Candidate A asked good questions...\"",
       trap: {
+        pattern: "unstated",
         title: "The first name slips through",
         text: "If the cleaned text still says \"Riya asked good questions\", the tool only replaced full names. People write full names once, then first names for the rest of the notes. One leftover name undoes the whole point.",
         fix: `I expected: no names left in the cleaned text.
@@ -210,6 +218,7 @@ What good looks like: anyone can check their own balance from the table.
 What to avoid: half days (like 4.5) must stay exact.`,
       check: "Priya Nair 20.5 (10 carried after the cap + 15 earned - 4.5 taken), Arjun Malhotra 4 (joined 15 June: July to October, 6 earned - 2), Kavya Reddy 7 (April to October, 10.5 - 3.5), Mohammed Khan 10.5 (1.5 + 15 - 6), Vikram Singh 0 (joined 20 October: no full month yet).",
       trap: {
+        pattern: "unstated",
         title: "The cap that wasn't applied",
         text: "If Priya shows 22.5, the tool added all 12 carried-forward days, ignoring the cap of 10. If Arjun shows 5.5, it counted June even though he joined mid-month. Both are rules written in the brief; both are easy for a first build to skip.",
         fix: `I expected: Priya 20.5 and Arjun 4.

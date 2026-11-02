@@ -24,6 +24,10 @@ export const PAGE_META = {
     title: "Blog",
     description: "Weekly, practical AI insights for HR, finance, ops, sales and marketing professionals. No hype, no jargon.",
   },
+  "/method": {
+    title: "The Builder's Method: How to Build Any Tool with AI",
+    description: "Eight steps for turning any repetitive task into a tool you can trust, and the 11 ways AI-built tools go quietly wrong. Free.",
+  },
   "/playbooks": {
     title: "Role Playbooks: AI Tools for Your Job",
     description: "Real tools for sales, marketing, finance, HR, product, legal and operations work, each built with AI and checked against a known answer. Included with the course.",

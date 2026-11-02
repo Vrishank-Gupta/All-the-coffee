@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { Link } from "react-router-dom";
 import { Award } from "lucide-react";
 import { ChapterShell } from "../components/chapter/ChapterShell";
@@ -484,6 +485,13 @@ export default function ChapterEleven() {
         bigger in the real world, but the shape stays the same. Next time someone in a meeting talks about scope,
         requirements, test cases or an MVP, you'll know exactly what they mean, because you've done it.
       </p>
+
+      <BuilderHabit steps={["spot", "size", "choose", "brief", "answer", "slices", "sceptic", "real"]}>
+
+        You"ve just used every step. Keep the method page handy: it"s how you"ll build the next tool, and the one after that, without a chapter to follow.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="12" label="What you can skip" />
       <p>

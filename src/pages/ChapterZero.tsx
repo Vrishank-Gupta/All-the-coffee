@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -76,6 +77,7 @@ export default function ChapterZero() {
       <SectionEyebrow n="04" label="What you'll be able to do by the end" />
       <ul className="list-disc space-y-2 pl-5 marker:text-caramel-500">
         <li>Build small tools that help with your actual job, like a spreadsheet cleaner or a notes summariser.</li>
+        <li>Turn a task this course never covers into a tool you can trust, using one method you'll practise in every chapter.</li>
         <li>Read an error message without panicking, and know how to get it fixed.</li>
         <li>Understand the words tech teams use, so you can follow and contribute in those conversations.</li>
         <li>Automate at least one boring, repetitive task you do today.</li>
@@ -97,6 +99,7 @@ export default function ChapterZero() {
         <li>Read on your phone, build on a laptop. Reading parts work fine on mobile, but when a chapter says "Build it," use a laptop.</li>
         <li>Do the exercises, even small ones. Reading about building is like reading about swimming.</li>
         <li>Use your personal email for the AI tools. Keep your learning separate from work systems for now.</li>
+        <li>Look for the "Builder's habit" box near the end of each chapter. It names the step of <a href="/method" className="font-semibold text-caramel-700 underline">the Builder's Method</a> you just practised, so by the end you can build tools nobody wrote a brief for.</li>
       </ul>
 
       <Callout variant="reassurance">
@@ -106,6 +109,13 @@ export default function ChapterZero() {
 
       <SectionEyebrow n="07" label="One honest check-in" />
       <NervousCheckIn point="start" />
+
+      <BuilderHabit steps={["spot"]}>
+
+        The boring task you wrote down above is step 1: spotting a task worth a tool. Keep it: in Chapter 11 you build it.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="08" label="Try it yourself" />
       <TryItYourself>

@@ -1,3 +1,4 @@
+import { BuilderHabit } from "../components/chapter/BuilderHabit";
 import { ChapterShell } from "../components/chapter/ChapterShell";
 import { SectionEyebrow } from "../components/chapter/SectionEyebrow";
 import { Callout } from "../components/chapter/Callout";
@@ -230,6 +231,13 @@ export default function ChapterSix() {
       <div className="my-5">
         <ContractCheck />
       </div>
+
+      <BuilderHabit steps={["sceptic"]}>
+
+        The empty box and the honesty test are you trying to break your own tool, especially where AI might fill a gap with something it made up.
+
+      </BuilderHabit>
+
 
       <SectionEyebrow n="08" label="What you can skip" />
       <p>
