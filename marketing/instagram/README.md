@@ -133,7 +133,7 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] Reel 2: Chapter 9, merge 12 sales sheets (AI info label on)
 - [ ] Reel 3: Chapter 5, GSTR-2B reconciler, Hinglish (AI info label on: AI voice)
 - [x] Reel 4: CTC calculator, Hinglish (AI info label on), 1 Nov 2026: instagram.com/reel/DfMuUvSlJFL, facebook.com/reel/3594653750689938
-- [ ] Reel 5: WhatsApp follow-ups, English, presenter (AI info label on)
+- [x] Reel 5: WhatsApp follow-ups, English, presenter (AI info label on), v2 "build it yourself" with soundtrack, 2 Nov 2026: instagram.com/reel/DfO_XnNgEvQ, facebook.com/reel/1629570138671260, plus Stories on both
 - [ ] Reel 6: Bulk offer letters, Hinglish (AI info label on)
 - [ ] Reel 7: Invoice PDFs to Excel, English, presenter (AI info label on)
 - [ ] Reel 8: Contract red flags, Hinglish (AI info label on)
@@ -151,7 +151,7 @@ Check items off here as you post them, and commit, so the other laptop can see w
 - [ ] Highlight covers set up (Start / Certificate / Pricing / FAQ) with their stories attached
 - [ ] ByteFact1 posted
 - [ ] ByteFact2 posted
-- [ ] ByteFact3 posted
+- [x] ByteFact3 posted, 2 Nov 2026: feed instagram.com/p/DfO_uBcjFSE and Facebook, plus Stories on both
 - [ ] ByteFact4 posted
 - [ ] ByteFact5 posted
 - [ ] ByteFact6 posted

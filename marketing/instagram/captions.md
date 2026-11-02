@@ -449,17 +449,19 @@ Estimate hai, final word aapki payslip ka. (The voice in this video is AI-genera
 Video: `reels/new-reels/reel-5-whatsapp-follow-ups-english.mp4` · Link: allthecoffee.in/tools/whatsapp-follow-ups · Turn on the "AI info" label: the presenter and voice are AI-generated.
 
 ```
-You can build this in 15 minutes. Without writing a single line of code. 👇
+You can build this WhatsApp follow-up tool in 15 minutes, without writing a single line of code 👇
 
-A WhatsApp follow-up tool: it shows who's overdue and who's due today, and one tap opens WhatsApp with your message already typed. You describe it to AI in plain English, and AI writes it.
+It shows who's overdue and who's due today, and one tap opens WhatsApp with your message already typed. You describe it to AI in plain English, and AI writes it.
 
-The real skill isn't coding, it's checking. When AI gets something wrong (like a message cut in half), you learn to spot it and fix it. That's Chapter 4.
+The real skill isn't coding, it's checking. When AI gets something wrong (like a message cut in half), you learn to spot it and fix it. That's Chapter 4 of All The Coffee.
 
-Learn to build tools like this for your own job. Chapters 0 to 3 are free: link in bio.
+Learn to build AI tools for your own job, no coding background needed. Chapters 0 to 3 are free: link in bio.
 
-Save this for the next time you think "I'm not a tech person". (The presenter in this video is AI-generated.)
+How many follow-ups are you carrying in your head right now? Tell me below 👇
 
-#nocode #aitools #whatsappbusiness #learnai #AllTheCoffee
+(The presenter and voice in this video are AI-generated.)
+
+#nocode #aitools #whatsapptips #salestips #learnai
 ```
 
 ## Reel 6: Bulk offer letters (Hinglish, free tool, Chapter 9)
@@ -521,13 +523,15 @@ Legal advice nahi hai. (The voice in this video is AI-generated.)
 Image: `project/ByteFact3Feed.html` (feed, 1080x1350) and `project/ByteFact3.dc.html` (Story). Hosted for the API at allthecoffee.in/ig/.
 
 ```
-AI's knowledge has an expiry date. It just won't tell you that upfront. ⏳
+AI's knowledge has an expiry date. It just won't tell you that upfront ⏳
 
-Every AI model is trained up to a certain date, then frozen. Real example: ask an AI about the PF wage ceiling and it may still say ₹15,000. It's been ₹25,000 since 17 September 2026.
+Every AI model (ChatGPT, Claude, Gemini) is trained up to a certain date, then frozen. Real example: ask an AI about the PF wage ceiling and it may still say ₹15,000. It's been ₹25,000 since 17 September 2026.
 
 The fix is simple: for anything recent (tax rules, PF, prices, policies), tell it the current rule, or check before you trust the answer.
 
-Save this for the next time AI sounds very sure about something recent. Follow for more small facts like this.
+What's one thing AI told you very confidently that turned out wrong? Drop it below 👇
+
+Save this, and follow for more small AI facts for work.
 
 #aitips #chatgpttips #learnai #aiatwork #AllTheCoffee
 ```

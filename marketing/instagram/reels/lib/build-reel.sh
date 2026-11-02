@@ -41,6 +41,8 @@ else
 fi
 mkdir -p ../new-reels
 OUT=../new-reels/${FINAL[$R]}.mp4
-ffmpeg -y -loglevel error -i $V/out/$N-screens.mp4 -i voice.wav -filter_complex "[1:a]apad[a]" \
-  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT"
+# 5. The soundtrack (generated music, whooshes, dings) mixed under the voice, then the final video
+$V/venv-tts/bin/python ../lib/soundtrack.py "$PAGE" voice.wav timings.js $V/out/$N-mix.wav
+ffmpeg -y -loglevel error -i $V/out/$N-screens.mp4 -i $V/out/$N-mix.wav \
+  -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT"
 echo "Wrote $(cd ../new-reels && pwd)/${FINAL[$R]}.mp4"

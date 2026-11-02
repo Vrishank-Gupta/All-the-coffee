@@ -1,9 +1,9 @@
 You can build this in fifteen minutes, without writing a single line of code. | You can build this in 15 minutes, without writing a single line of code. | 0.35
 A WhatsApp follow-up tool that knows who's overdue. | A WhatsApp follow-up tool that knows who's overdue. | 0.3
 You just describe it to AI, in plain English. | You just describe it to AI, in plain English. | 0.25
-And AI writes the whole thing. | And AI writes the whole thing. | 0.4
+And A I writes the whole thing. | And AI writes the whole thing. | 0.4
 One tap, and WhatsApp opens with your message already typed. | One tap, and WhatsApp opens with your message already typed. | 0.4
-And when AI gets something wrong, like a message cut in half, you learn to spot it and fix it. | And when AI gets something wrong, like a message cut in half, you learn to spot it and fix it. | 0.35
+And when the A I gets something wrong, like a message cut in half, you learn to spot it and fix it. | And when the AI gets something wrong, like a message cut in half, you learn to spot it and fix it. | 0.35
 That's the real skill. Not coding. Checking. | That's the real skill. Not coding. Checking. | 0.45
 Learn to build tools like this for your own job. | Learn to build tools like this for your own job. | 0.3
 Chapters zero to three are free. Start at all the coffee dot in. | Chapters 0 to 3 are free. Start at all the coffee dot in. | 0.5
