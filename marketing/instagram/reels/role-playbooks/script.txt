@@ -1,5 +1,5 @@
 Pick your job. Here are tools you could build for it this week, without writing any code. | Pick your job. Here are tools you could build for it this week, without writing any code. | 0.35
-Sales: a G S T quotation that knows when to charge I G S T. | Sales: a GST quotation that knows when to charge IGST. | 0.3
+For sales, a G S T quotation that knows when to charge I G S T. | For sales, a GST quotation that knows when to charge IGST. | 0.3
 Finance: payment reminders that never chase an invoice that's already paid. | Finance: payment reminders that never chase an invoice that's already paid. | 0.3
 H R: loss of pay that knows October has thirty one days. | HR: loss of pay that knows October has 31 days. | 0.35
 Marketing, legal, operations, product. Seven roles, twenty one builds. | Marketing, legal, operations, product. 7 roles, 21 builds. | 0.35

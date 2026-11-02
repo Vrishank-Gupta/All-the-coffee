@@ -145,14 +145,14 @@ Each reel has its own folder, e.g. `reels/ch9-merge/`: `script.txt` (the voiceov
 
 ## Scheduled posting (with this PC off)
 
-Photos and Stories can be queued in `schedule.json`: each item has a time (`at`, with +05:30 for IST), a `kind` (`photo` or `story`) and the same arguments as `publish.py`. The GitHub Actions workflow `.github/workflows/post-queue.yml` runs every 15 minutes, posts what's due to Instagram and the Facebook Page, and commits the result back to `schedule.json` (with `[skip ci]`, so Netlify doesn't rebuild). GitHub can start a run a few minutes late, so a 19:00 post goes out between about 19:00 and 19:20.
+Reels, photos and Stories can be queued in `schedule.json`: each item has a time (`at`, with +05:30 for IST), a `kind` (`reel` for Instagram, `fbreel` for the Facebook Page, `photo`, or `story`) and the same arguments as `publish.py`; set `"ai": true` on every reel (the AI info label). The GitHub Actions workflow `.github/workflows/post-queue.yml` runs every 15 minutes, posts what's due to Instagram and the Facebook Page, and commits the result back to `schedule.json` (with `[skip ci]`, so Netlify doesn't rebuild). GitHub can start a run a few minutes late, so a 19:00 post goes out between about 19:00 and 19:20.
 
 - The image must already be deployed in `public/ig/`, and the caption must be in `captions.md`.
 - It needs two repository secrets, `IG_ACCESS_TOKEN` and `IG_USER_ID` (the values in `PRIVATE-HANDOFF.md`). Without them every run does nothing. When the token is renewed, update the secret too.
 - To test: Actions tab, "Post queue", "Run workflow" with dry run ticked. It checks the token and lists what's due without posting.
 - To pause everything: set a repository variable `POST_QUEUE_OFF` to `true`.
-- Reels can't be queued (the video files aren't in git). For a Facebook reel, `publish.py fbreel --at=...` schedules on Facebook's side.
-- An item more than 6 hours late is marked missed rather than posted; a failure stops the queue so nothing posts out of order. Tick the posting log below after checking it went out.
+- Reel videos aren't in git: upload the `-upload.mp4` copy to the GitHub release "reels" (`gh release upload reels FILE --clobber`) and queue it by file name. The job downloads it when it's due.
+- An item more than 6 hours late is marked missed rather than posted. A failed item is recorded in `schedule.json` and never retried (so nothing posts twice); the others still go out, and GitHub emails you that the run failed. Tick the posting log below after checking it went out.
 
 ## Posting log
 

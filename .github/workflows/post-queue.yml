@@ -1,4 +1,4 @@
-# Posts queued Instagram and Facebook photos and Stories at their scheduled time, with no PC switched on.
+# Posts queued Instagram and Facebook reels, photos and Stories at their scheduled time, with no PC switched on.
 # The queue is marketing/instagram/schedule.json; publish.py's "due" command posts what's due and marks
 # it done, and this workflow commits that back with [skip ci] so Netlify doesn't rebuild the site.
 # Secrets: IG_ACCESS_TOKEN and IG_USER_ID (repo Settings > Secrets and variables > Actions).
@@ -24,10 +24,11 @@ concurrency:
 jobs:
   post:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60 # Instagram can take a while to process a reel
     env:
       IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
       IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      GH_TOKEN: ${{ github.token }} # to download reel videos from the "reels" release
     # Until the two secrets are set, every step is skipped and the run passes quietly
     if: ${{ vars.POST_QUEUE_OFF != 'true' }}
     steps:

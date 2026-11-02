@@ -685,16 +685,16 @@ Tag someone in your team who needs one of these 👇
 #nocode #aitools #sales #finance #hr #AllTheCoffee
 ```
 
-## Post 22: 13 free tools for office work
+## Post 22: 14 free tools for office work
 
 Image: `project/ShowcaseFreeToolsFeed.html` (feed) and `ShowcaseFreeToolsStory.html` (Story). Hosted at allthecoffee.in/ig/free-tools-feed.jpg and free-tools-story.jpg.
 
 ```
-13 free tools for office work. No sign-up 🎁
+14 free tools for office work. No sign-up 🎁
 
-Brief Builder · CTC to in-hand · WhatsApp follow-ups · Bulk offer letters · Invoice PDFs to Excel · Contract red flags · GST quotation · UTM builder · Payment ageing · RICE prioritiser · Loss of pay · Compare contract drafts · Vendor quotes
+Brief Builder · CTC to in-hand · WhatsApp follow-ups · Bulk offer letters · Invoice PDFs to Excel · Contract red flags · GST quotation · UTM builder · Payment ageing · RICE prioritiser · Loss of pay · Compare contract drafts · Vendor quotes · Can I paste this into AI?
 
-Every one of them is also a build in the course. Use the tool today, then learn to make your own.
+Twelve of them are builds in the course. Use the tool today, then learn to make your own.
 
 All free at allthecoffee.in/tools
 
@@ -719,4 +719,50 @@ What's a rule in your job that "everyone just knows"? 👇
 Follow for more small AI facts for work.
 
 #aitips #chatgpttips #gst #aiatwork #AllTheCoffee
+```
+
+## Reel 12: Can I paste this into AI? (Hinglish, free tool)
+
+Video: `reels/new-reels/reel-12-paste-checker-hinglish.mp4` · Link: allthecoffee.in/tools/paste-check · Turn on the "AI info" label: the voice is AI-generated.
+
+```
+Ye data AI mein paste karna safe hai? 🤔 Paste karne se pehle, ye 4 sawaal poochiye 👇
+
+1. Isme kisi asli insaan ka naam, number ya salary toh nahi?
+2. Koi password ya API key toh nahi? Woh kabhi nahi.
+3. Company ka approved tool hai, ya personal account?
+4. Aapki company ki policy iski ijaazat deti hai?
+
+Shak ho, toh naam hata do: "Customer A", "Employee 3".
+
+Free paste checker 30 second mein verdict deta hai, kuch save nahi hota: allthecoffee.in/tools/paste-check
+
+AI se tools banana safely seekhiye. Chapters 0 se 3 free: link in bio.
+
+General guidance hai, legal advice nahi. (The voice in this video is AI-generated.)
+
+#aitools #dataprivacy #aiatwork #DPDP #AllTheCoffee
+```
+
+## Post 24: Free tool, Can I paste this into AI?
+
+Image: `project/ShowcasePasteCheckFeed.html` (feed) and `ShowcasePasteCheckStory.html` (Story). Hosted at allthecoffee.in/ig/paste-check-feed.jpg and paste-check-story.jpg.
+
+```
+Before you paste work data into ChatGPT, Claude or Gemini, ask these 4 questions 🛡️
+
+1. Real people? Names, phone numbers, salaries, Aadhaar or PAN.
+2. Secrets? Passwords or API keys never go in. Ever.
+3. Which account? Your company's approved tool, on your work login, or a personal one?
+4. Your policy? Does your company allow this tool for this work?
+
+Unsure? Replace names with "Customer A" or "Employee 3", or describe the situation instead of pasting it.
+
+Our free checker gives you a verdict and a safer way in 30 seconds. Nothing you tick is saved: allthecoffee.in/tools/paste-check
+
+General guidance, not legal advice. Your company's policy has the final word.
+
+Save this for your team 📌
+
+#dataprivacy #aitools #aiatwork #chatgpttips #AllTheCoffee
 ```

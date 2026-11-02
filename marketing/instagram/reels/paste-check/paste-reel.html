@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Soundtrack dings (lib/soundtrack.py): "kabhi nahi", the names replaced, the verdicts -->
+<meta name="sfx-ding" content="2.6, 5.5, 6.4">
+<title>Reel: Can I Paste This into AI?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lib/reel.css">
+<style>
+  /* Reel 12: four questions before you paste work data into AI, and the free paste checker. Hinglish
+     voice, no presenter. The verdicts come from data.js (the tool's own code); the people are made up. */
+  .chatbox { width: 880px; background: #fff; color: var(--ink); border-radius: 26px; padding: 26px 30px; font: 500 30px/1.5 'Inter', sans-serif; box-shadow: 0 30px 70px rgba(0,0,0,0.45); }
+  .chatbox small { display: block; font-size: 22px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6B5444; margin-bottom: 10px; }
+  .hl { background: var(--brick-bg); color: var(--brick); border-radius: 6px; padding: 0 6px; box-shadow: 0 0 0 2px #EDBBAA; }
+  .ok { background: var(--sage-bg); color: var(--sage); border-radius: 6px; padding: 0 6px; }
+  .q { font: 700 34px 'Inter', sans-serif; color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 26px; text-align: center; }
+  .card { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 30px 34px; width: 880px; box-sizing: border-box; font: 600 36px/1.4 'Inter', sans-serif; box-shadow: 0 24px 60px rgba(0,0,0,0.4); text-align: center; }
+  .card .big { display: block; font: 700 64px/1.15 'Fraunces', serif; margin-top: 10px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 880px; }
+  .two div { border-radius: 24px; padding: 30px 24px; font: 700 34px/1.3 'Inter', sans-serif; text-align: center; }
+  .verdicts { display: flex; flex-direction: column; gap: 18px; width: 880px; }
+  .verdicts div { border-radius: 22px; padding: 22px 28px; font: 700 34px/1.3 'Inter', sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+  .verdicts small { display: block; font: 600 24px 'Inter', sans-serif; opacity: 0.75; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+  <div id="progress"></div>
+  <div id="brand"><span>All The Coffee · AI at work, safely</span><span>Free tool</span></div>
+
+  <!-- Cold open, over sentence 0 -->
+  <div id="hook">
+    <p class="hk red">Ye AI mein<br><em>paste karein?</em></p>
+    <div class="chatbox">
+      <small>Message ChatGPT</small>
+      Summarise this appraisal: <span class="hl">Priya Nair</span>, <span class="hl">+91 98XXX XXX12</span>, CTC <span class="hl">₹14,50,000</span>...
+    </div>
+  </div>
+
+  <!-- 1: real people -->
+  <section class="scene" data-from="1" data-to="2" data-tr="push">
+    <p class="q el" data-at="1">Sawaal 1</p>
+    <div class="card el" data-at="1.05" data-fx="up">Asli insaan ka<span class="big">naam · number · salary?</span></div>
+  </section>
+
+  <!-- 2: secrets -->
+  <section class="scene" data-from="2" data-to="3" data-tr="glitch">
+    <p class="q el" data-at="2">Sawaal 2</p>
+    <div class="card el" data-at="2.05" data-fx="up">Password ya API key?<span class="big" style="color: var(--brick);">Kabhi nahi.</span></div>
+  </section>
+
+  <!-- 3: which account -->
+  <section class="scene" data-from="3" data-to="4" data-tr="push">
+    <p class="q el" data-at="3">Sawaal 3</p>
+    <div class="two">
+      <div class="el" data-at="3.2" data-fx="left" style="background: var(--sage-bg); color: var(--sage);">✓ Company ka approved tool, work login</div>
+      <div class="el" data-at="3.5" data-fx="right" style="background: var(--car-bg); color: var(--car);">? Personal account (free ya paid)</div>
+    </div>
+  </section>
+
+  <!-- 4: policy -->
+  <section class="scene" data-from="4" data-to="5" data-tr="push">
+    <p class="q el" data-at="4">Sawaal 4</p>
+    <div class="card el" data-at="4.05" data-fx="up">Aapki company ki<span class="big">AI policy kya kehti hai?</span></div>
+  </section>
+
+  <!-- 5: strip the names -->
+  <section class="scene" data-from="5" data-to="6" data-tr="zoom">
+    <div class="chatbox el" data-at="5" data-fx="up">
+      <small>Shak ho? Naam hatao</small>
+      Summarise this appraisal: <span id="name" class="hl">Priya Nair</span>, <span id="phone" class="hl">+91 98XXX XXX12</span>, CTC <span id="ctc" class="hl">₹14,50,000</span>...
+    </div>
+  </section>
+
+  <!-- 6: the free checker -->
+  <section class="scene" data-from="6" data-to="7" data-tr="rise">
+    <div class="verdicts">
+      <div class="el" data-at="6" data-fx="left" style="background: var(--sage-bg); color: var(--sage);"><small>Apna draft, work tool</small><span id="v1"></span></div>
+      <div class="el" data-at="6.2" data-fx="left" style="background: var(--car-bg); color: var(--car);"><small>Customer ka naam, personal account</small><span id="v2"></span></div>
+      <div class="el" data-at="6.4" data-fx="left" style="background: var(--brick-bg); color: var(--brick);"><small>API key</small><span id="v3"></span></div>
+    </div>
+  </section>
+
+  <!-- 7: start free -->
+  <section class="scene cta2" data-from="7" data-to="99" data-tr="rise">
+    <p class="mid fd el" data-at="7" style="text-align: center;">AI se tools banana seekhiye,<br><span class="amber">safely, bina coding ke</span></p>
+    <div class="free el" data-at="7.2" data-fx="pop">Chapters 0 to 3 free</div>
+    <div class="url el" data-at="7.35" data-fx="pop" id="url"> </div>
+  </section>
+
+  <div id="caption" class="fd"><p id="cap"></p></div>
+</div>
+<script src="timings.js"></script>
+<script src="words.js"></script>
+<script src="data.js"></script>
+<script src="../lib/reel-engine.js"></script>
+<script>
+  const D = window.DATA, R = window.REEL, $ = R.$;
+  $('v1').textContent = D.draft; $('v2').textContent = D.people; $('v3').textContent = D.secrets;
+  const swap = (id, from, to, t0, t) => { const on = t >= t0; $(id).textContent = on ? to : from; $(id).className = on ? 'ok' : 'hl'; };
+  REEL.init({
+    hookEnd: window.TIMINGS[1].start - 0.05,
+    captions: [
+      "Ye data AI mein paste karna safe hai? Paste karne se pehle, ye 4 sawaal poochiye.",
+      "Pehla: isme kisi asli insaan ka naam, number ya salary toh nahi?",
+      "Doosra: koi password ya API key toh nahi? Woh kabhi nahi.",
+      "Teesra: aap company ka approved tool use kar rahe ho, ya personal account?",
+      "Chautha: kya aapki company ki policy iski ijaazat deti hai?",
+      "Shak ho, toh naam hata do: Customer A, Employee 3.",
+      "Free paste checker se 30 second mein check karo, aur AI se tool banana safely seekho.",
+      "Chapters 0 se 3 free hain. allthecoffee.in par shuru kijiye!",
+    ],
+    onSeek(t) {
+      const { at } = R;
+      swap('name', 'Priya Nair', 'Employee 3', at(5.35), t);
+      swap('phone', '+91 98XXX XXX12', '[phone removed]', at(5.5), t);
+      swap('ctc', '₹14,50,000', '[salary removed]', at(5.65), t);
+      R.cta(t, at(7.4));
+    },
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+Mary speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.00 6.7s | This tool just turned 1.2 lakh rupees into 1 rupee 20 and it didn't tell you.
+[0.1] wer=0.12 6.4s | This tool just turned 1.2 lakh rupees into 1.20 rupees and it didn't tell you.
+[0.2] wer=0.00 6.5s | This tool just turned 1.2 lakh rupees into 1 rupee 20 and it didn't tell you.
+[0.3] wer=0.00 6.6s | This tool just turned 1.2 lakh rupees into 1 rupee 20 and it didn't tell you.
+[0.4] wer=0.12 6.7s | This tool just turned 1.2 lakh rupees into 1.20 rupees and it didn't tell you.
+  -> sentence 0 keeps take 0 (wer 0.00)
+[1.0] wer=0.00 4.6s | Tools built with AI rarely crash. They go quietly wrong.
+[1.1] wer=0.00 4.6s | Tools built with AI rarely crash, they go quietly wrong.
+[1.2] wer=0.00 4.7s | Tools built with AI rarely crash. They go quietly wrong.
+[1.3] wer=0.00 4.1s | Tools built with AI rarely crash. They go quietly wrong.
+[1.4] wer=0.00 4.2s | Tools built with AI rarely crash. They go quietly wrong.
+  -> sentence 1 keeps take 0 (wer 0.00)
+[2.0] wer=0.00 6.7s | A date read the American way. A total row counted twice. Two days read as two hours.
+[2.1] wer=0.00 6.7s | A date read the American way. A total row counted twice. Two days read as two hours.
+[2.2] wer=0.00 6.4s | A date read the American way. A total row counted twice, two days read as two hours.
+[2.3] wer=0.00 6.7s | A date read the American way, a total row counted twice. Two days read as two hours.
+[2.4] wer=0.00 6.4s | A date read the American way. A total row counted twice. Two days read as two hours.
+  -> sentence 2 keeps take 0 (wer 0.00)
+[3.0] wer=0.00 4.3s | So before you build anything, you work out the right answer by hand.
+[3.1] wer=0.00 4.2s | So before you build anything, you work out the right answer by hand.
+[3.2] wer=0.00 4.2s | So before you build anything, you work out the right answer by hand.
+[3.3] wer=0.00 4.4s | So before you build anything, you work out the right answer by hand.
+[3.4] wer=0.00 3.8s | So before you build anything, you work out the right answer by hand.
+  -> sentence 3 keeps take 0 (wer 0.00)
+[4.0] wer=0.13 6.8s | Here it's 6 lakh, 40,000 rupees. A first build says 4 lakh, 35,000.
+[4.1] wer=0.27 6.0s | Here it's 6,40,000 rupees. A first build says 4,35,000.
+[4.2] wer=0.27 6.5s | Here it's 6,40,000 rupees. A first build says 4,35,000.
+[4.3] wer=0.27 6.4s | Here it's 6,40,000 rupees. A first build says 4,35,000.
+[4.4] wer=0.27 6.1s | Here it's 6,40,000 rupees. A first build says 4,35,000.
+  -> sentence 4 keeps take 0 (wer 0.13)
+[5.0] wer=0.00 5.1s | We've collected 11 traps like this and every chapter teaches you to catch them.
+[5.1] wer=0.00 5.3s | We've collected 11 traps like this and every chapter teaches you to catch them.
+[5.2] wer=0.00 5.3s | We've collected 11 traps like this and every chapter teaches you to catch them.
+[5.3] wer=0.00 4.8s | We've collected 11 traps like this and every chapter teaches you to catch them.
+[5.4] wer=0.00 4.8s | We've collected 11 traps like this and every chapter teaches you to catch them.
+  -> sentence 5 keeps take 0 (wer 0.00)
+[6.0] wer=0.00 2.5s | No coding, just clear thinking.
+[6.1] wer=0.00 2.5s | No coding, just clear thinking.
+[6.2] wer=0.00 2.4s | No coding, just clear thinking.
+[6.3] wer=0.00 2.5s | No coding, just clear thinking.
+[6.4] wer=0.00 2.6s | No coding, just clear thinking.
+  -> sentence 6 keeps take 0 (wer 0.00)
+[7.0] wer=0.08 4.7s | Chapters 0-3 are free. Start at allthecoffee.in
+[7.1] wer=0.00 4.5s | Chapters 0 to 3 are free. Start at all the coffee.in
+[7.2] wer=0.15 4.4s | chapters 0-3 are free. Start it all the coffee.in
+[7.3] wer=0.08 4.7s | Chapters 0-3 are free. Start at all the coffee.in
+[7.4] wer=0.08 4.6s | Chapters 0-3 are free. Start at all the coffee.in
+  -> sentence 7 keeps take 1 (wer 0.00)

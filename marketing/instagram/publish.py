@@ -16,9 +16,12 @@ story   MEDIA is a local .mp4 (up to 60 s) or a public https JPEG. Stories have 
 check   shows which account the token reaches, to test the setup.
 due     posts every item in schedule.json whose time has come and that isn't done yet, in order, and
         records the result in the file. The GitHub Actions workflow .github/workflows/post-queue.yml runs it
-        every 15 minutes, so posts go out with this PC off. Only photos and Stories from public URLs can
-        be queued (reels need the local video file). An item more than 6 hours late is marked missed, not
-        posted; after a failure the queue stops, so nothing posts out of order.
+        every 15 minutes, so posts go out with this PC off. Kinds: photo and story (public image URLs),
+        reel (Instagram) and fbreel (Facebook Page), whose video is a file name in reels/new-reels/; if it
+        isn't there, it's downloaded from the GitHub release "reels" (gh release upload reels FILE).
+        An item more than 6 hours late is marked missed, not posted. A failed item is recorded and never
+        retried (so nothing posts twice), the rest still go out, and the command exits with an error so
+        the GitHub run is marked failed and you get an email.
 reel    uploads VIDEO.mp4 straight from this machine (resumable upload, no public URL needed)
         with the caption from the captions.md section whose heading starts with the given name,
         e.g. "Reel 3". --ai turns on Instagram's "AI info" label (is_ai_generated); use it for
@@ -224,8 +227,18 @@ def story(media, ai, yes):
     print("Facebook story:", r)
 
 
+def _video(name):
+    """A reel video in reels/new-reels/, downloaded from the GitHub release "reels" if it isn't here."""
+    import subprocess
+    path = HERE / "reels" / "new-reels" / name
+    if not path.exists():
+        subprocess.run(["gh", "release", "download", "reels", "-p", name, "-D", str(path.parent)], check=True)
+    return path
+
+
 def due(yes):
     path = HERE / "schedule.json"
+    failed = 0
     queue = json.loads(path.read_text())
     now = datetime.datetime.now(datetime.timezone.utc)
     for item in queue:
@@ -243,20 +256,30 @@ def due(yes):
         if not yes:
             print("Dry run: nothing posted.")
             continue
+        item["failed"] = "started, did not finish"  # overwritten below; stops a crash mid-post from being retried
+        path.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n")
         try:
             if item["kind"] == "photo":
                 photo(item["args"][0], item["args"][1], True)
             elif item["kind"] == "story":
                 story(item["args"][0], item.get("ai", False), True)
+            elif item["kind"] in ("reel", "fbreel"):
+                video = _video(item["args"][0])
+                if item["kind"] == "reel":
+                    reel(video, item["args"][1], item.get("ai", False), True, item.get("cover_ms"))
+                else:
+                    fb_reel(video, item["args"][1], item.get("ai", False), True)
             else:
-                sys.exit(f"Can't queue {item['kind']}: only photo and story")
+                sys.exit(f"Can't queue {item['kind']}: only photo, story, reel and fbreel")
             item["done"] = now.isoformat(timespec="minutes")
-        except SystemExit as e:
-            item["failed"] = str(e)
-            print(f"FAILED: {e}. Stopping the queue here.")
-            break
-    if yes:
-        path.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n")
+            item.pop("failed", None)
+        except (SystemExit, Exception) as e:
+            item["failed"] = str(e) or type(e).__name__
+            failed += 1
+            print(f"FAILED: {item['failed']}. Not retried; carrying on with the rest.")
+        path.write_text(json.dumps(queue, indent=2, ensure_ascii=False) + "\n")  # record each one as it happens
+    if failed:
+        sys.exit(f"{failed} item(s) failed: see schedule.json")
 
 
 if __name__ == "__main__":

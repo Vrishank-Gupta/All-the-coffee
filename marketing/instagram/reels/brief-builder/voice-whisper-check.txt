@@ -1,0 +1,78 @@
+Rani speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.35 5.7s | हर हफ़ते वही boring काम, उसका tool आप खुद बना सकते हो बिना coding की।
+[0.1] wer=0.04 5.8s | हर हफ़ते वही बोरिंग काम, उसका टूल आप खुद बना सकते हो बिना कोडिंग के.
+[0.2] wer=0.35 5.6s | हर हफ़ते वहीं boring काम, उसका tool आप खुद बना सकते हो, बिना coding के,
+[0.3] wer=0.33 5.4s | हर हफ़ते वही boring काम, उसका tool आप खुद बना सकते हो बिना coding के.
+[0.4] wer=0.07 5.5s | हर हफ़ते वही बोरिंग काम उसका ठूल आप खुद वना सकते हो बिना कोडिंग के
+  -> sentence 0 keeps take 1 (wer 0.04)
+[1.0] wer=0.00 3.6s | पहले चेक करो कि ये टूल बनाने लायक है भी या नहीं.
+[1.1] wer=0.00 3.5s | पहले चेक करो कि ये टूल बनाने लायक है भी या नहीं.
+[1.2] wer=0.00 3.6s | पहले चेक करो कि ये टूल बनाने लायक है भी या नहीं.
+[1.3] wer=0.00 3.7s | पहले चेक करो कि ये टूल बनाने लायक है भी या नहीं.
+[1.4] wer=0.94 0.2s | झाल
+  -> sentence 1 keeps take 0 (wer 0.00)
+[2.0] wer=0.41 3.9s | 45 मिनट हर हफ़ते यानि साल के 38 घंटे
+[2.1] wer=0.44 3.8s | 35 मिनट हर हफ़ते यानि साल के 38 घंडे
+[2.2] wer=0.41 4.0s | 45 मिनट हर हफ़ते यानि साल के 38 घंटे
+[2.3] wer=0.41 3.9s | 45 मिनट हर हफ़ते यानि साल के 38 घंटे
+[2.4] wer=0.41 3.7s | 45 मिनट हर हफ़ते यानि साल के 38 घंटे
+  -> sentence 2 keeps take 0 (wer 0.41)
+[3.0] wer=0.00 4.9s | फिर AI को एक नए इंटर्न की तरह समझाओ, हर रूल लिख के.
+[3.1] wer=0.00 5.2s | फिर AI को एक नए इंटर्न की तरह समझाओ, हर रूल लिख के।
+[3.2] wer=0.05 5.1s | फिर AI को एक नए इंटन की तरह समझाओ, हर रूल लिख के.
+[3.3] wer=0.00 5.0s | फिर AI को एक नए इंटर्न की तरह समझाओ, हर रूल लिखके।
+[3.4] wer=0.00 4.7s | फिर AI को एक नए इंटर्न की तरह समझाओ, हर रूल लिखके.
+  -> sentence 3 keeps take 0 (wer 0.00)
+[4.0] wer=0.47 3.5s | Brief Builder ये Brief आपके लिए तयार कर देता है।
+[4.1] wer=0.47 3.5s | Brief Builder ये Brief आपके लिए तयार कर देता है.
+[4.2] wer=0.47 3.8s | Brief Builder ये Brief आपके लिए तयार कर देता है।
+[4.3] wer=0.47 3.6s | Brief Builder ये Brief आपके लिए तयार कर देता है।
+[4.4] wer=0.50 3.5s | Brief Builder ये Brief आके लिए तयार कर देता है।
+  -> sentence 4 keeps take 0 (wer 0.47)
+[5.0] wer=0.06 3.7s | और पहले से बता देता है कि AI कहां गलती करेगा
+[5.1] wer=0.06 3.7s | और पहले से बता देता है कि AI कहां गलती करेगा
+[5.2] wer=0.06 3.8s | और पहले से बता देता है कि AI कहां गलती करेगा
+[5.3] wer=0.09 3.9s | और पहले से बता देता है कि AI कहां अलती करेगा
+[5.4] wer=0.06 3.8s | और पहले से बता देता है कि AI कहां गलती करेगा
+  -> sentence 5 keeps take 0 (wer 0.06)
+[6.0] wer=0.37 4.0s | जैसे 1.12 को एक रुपया 20 पैसे पढ़ लेना।
+[6.1] wer=0.55 4.2s | जैसे 1.2L को 1.20 पैसे पढ़ लेना,
+[6.2] wer=0.55 4.3s | जैसे 1.2L को 1.20 पैसे पढ़ लेना,
+[6.3] wer=0.55 4.4s | जैसे 1.2L को 1.20 पैसे पढ़ लेना,
+[6.4] wer=0.55 3.9s | जैसे 1.2L को 1.20 पैसे पढ़ लेना
+  -> sentence 6 keeps take 0 (wer 0.37)
+[7.0] wer=0.36 4.3s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं
+[7.1] wer=0.36 4.9s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं
+[7.2] wer=0.06 4.4s | ग्रीफ बिल्डर फ्री है और ये सोच पूरे कोर्स में सिखाते हैं
+[7.3] wer=0.36 4.5s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं।
+[7.4] wer=0.36 4.5s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं
+  -> sentence 7 keeps take 2 (wer 0.06)
+[8.0] wer=0.33 4.9s | चैप्टर जीरो से थ्री फ्री हैं, All the coffee.in पर शुरू कीजिए.
+[8.1] wer=0.33 4.9s | चैप्टर जीरो से थ्री फ्री हैं. All the coffee.in पर शुरू कीजिए.
+[8.2] wer=0.33 4.6s | चैप्टर जीरो से थ्री फ्री हैं, AllTheCoffee.in पर शुरू कीजिए.
+[8.3] wer=0.33 4.6s | चैप्टर जीरो से थ्री फी हैं, All the coffee.in पर शुरू कीजिए.
+[8.4] wer=0.40 4.7s | चाप्टिर्स जीरो से थ्री फ्री हैं, all the coffee.in पर शुरू कीजिए।
+  -> sentence 8 keeps take 0 (wer 0.33)
+
+Sentence 6 replaced by a new take (4.1s):
+Rani speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.10 4.4s | जैसे 1.2 L को 1 रुपया 20 पैसे पढ़ लिना।
+[0.1] wer=0.00 4.5s | जैसे 1.2L को एक रुपया 20 पैसे पढ़ लेना
+[0.2] wer=0.24 4.1s | जैसे 1.2L को 1.20 पैसे पढ़ लेना
+[0.3] wer=0.00 4.4s | जैसे 1.2L को एक रुपया 20 पैसे पढ़ लेना
+[0.4] wer=0.24 4.1s | जैसे 1.2L को 1.20 पैसे पढ़ लेना
+[0.5] wer=0.31 4.1s | जैसे 1.12 को 1.20 पैसे पढ़ लेना
+  -> sentence 0 keeps take 1 (wer 0.00)
+
+Sentence 7 replaced by a new take (3.9s):
+Rani speaks in a cheerful, warm and lively voice with a moderate pace and expressive intonation, like a friendly presenter. The recording is of very high quality, close-mic, with no background noise.
+
+[0.0] wer=0.13 4.2s | Brief Builder Free हैं और ये सोच पूरे कोर्स में सिखाते हैं
+[0.1] wer=0.11 4.3s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं।
+[0.2] wer=0.13 4.6s | Brief Builder Free है और ये सूच पूरे कोर्स में सिखाते हैं।
+[0.3] wer=0.11 4.4s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं।
+[0.4] wer=0.11 4.5s | Brief Builder Free है और ये सोच पूरे कोर्स में सिखाते हैं।
+[0.5] wer=0.13 3.9s | Brief Builder Free है और ये सोच पूरी कोर्स में सिखाते हैं।
+  -> sentence 0 keeps take 1 (wer 0.11)

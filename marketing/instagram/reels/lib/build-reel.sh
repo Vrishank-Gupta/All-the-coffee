@@ -14,9 +14,9 @@ R=$1; PAGE=$2; SPK=$3; LANG=$4; HOLD=${5:-0}
 [ "$HOLD" = 0 ] && [ -f "$R/hold-frame" ] && HOLD=$(cat "$R/hold-frame")
 V=~/.cache/atc-avatar
 export PATH=~/.cache/atc-node/bin:$PATH HIP_VISIBLE_DEVICES=0
-declare -A NAME=([ctc-salary]=ctc [whatsapp-desk]=wa [offer-letters]=letters [invoice-reader]=inv [contract-check]=contract [brief-builder]=brief [trap-catalogue]=trap [role-playbooks]=playbooks)
+declare -A NAME=([ctc-salary]=ctc [whatsapp-desk]=wa [offer-letters]=letters [invoice-reader]=inv [contract-check]=contract [brief-builder]=brief [trap-catalogue]=trap [role-playbooks]=playbooks [paste-check]=paste)
 # The finished videos all go in reels/new-reels, named by reel number
-declare -A FINAL=([ctc-salary]=reel-4-ctc-calculator-hinglish [whatsapp-desk]=reel-5-whatsapp-follow-ups-english [offer-letters]=reel-6-offer-letters-hinglish [invoice-reader]=reel-7-invoice-pdfs-english [contract-check]=reel-8-contract-check-hinglish [brief-builder]=reel-9-brief-builder-hinglish [trap-catalogue]=reel-10-trap-catalogue-english [role-playbooks]=reel-11-role-playbooks-english)
+declare -A FINAL=([ctc-salary]=reel-4-ctc-calculator-hinglish [whatsapp-desk]=reel-5-whatsapp-follow-ups-english [offer-letters]=reel-6-offer-letters-hinglish [invoice-reader]=reel-7-invoice-pdfs-english [contract-check]=reel-8-contract-check-hinglish [brief-builder]=reel-9-brief-builder-hinglish [trap-catalogue]=reel-10-trap-catalogue-english [role-playbooks]=reel-11-role-playbooks-english [paste-check]=reel-12-paste-checker-hinglish)
 N=${NAME[$R]}
 cd "$R"
 

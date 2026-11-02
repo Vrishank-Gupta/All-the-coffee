@@ -4,6 +4,6 @@ You describe it to AI, in plain English, and AI writes it. | You describe it to 
 Every GSTIN, every invoice number, every total. | Every GSTIN, every invoice number, every total. | 0.3
 And it checks every total. This one is a thousand rupees more than it should be. | And it checks every total. This one is a thousand rupees more than it should be. | 0.35
 This one is a scan, so it tells you, instead of skipping it quietly. | This one is a scan, so it tells you, instead of skipping it quietly. | 0.45
-That's what we teach. Build with AI, then check its work. | That's what we teach. Build with AI, then check its work. | 0.35
+That's what we teach. Build with A I, then check its work. | That's what we teach. Build with A I, then check its work. | 0.35
 In the capstone, you build one for your own job. | In the capstone, you build one for your own job. | 0.3
 Chapters zero to three are free. Start at all the coffee dot in. | Chapters 0 to 3 are free. Start at all the coffee dot in. | 0.5

@@ -36,7 +36,7 @@ ROLES = [("📈 Sales", "Stale-deal finder · GST quotation · Lead scorer"), ("
 
 TOOLS = ["📝 Brief Builder", "💰 CTC to in-hand", "💬 WhatsApp follow-ups", "📄 Bulk offer letters", "🧾 Invoice PDFs to Excel",
          "⚖️ Contract red flags", "🧾 GST quotation", "🔗 UTM builder", "📊 Payment ageing", "🧭 RICE prioritiser",
-         "🗓 Loss of pay", "🔍 Compare contract drafts", "📦 Vendor quotes"]
+         "🗓 Loss of pay", "🔍 Compare contract drafts", "📦 Vendor quotes", "🛡 Can I paste this into AI?"]
 
 BOARDS = {
     "Method": dict(
@@ -69,11 +69,22 @@ BOARDS = {
             f'<b style="font-size:{30 if story else 27}px;color:#FBF1E2;">{r}</b><span style="display:block;margin-top:4px;font-size:{25 if story else 23}px;color:#E9C79B;">{t}</span></div>' for r, t in ROLES) + '</div>',
         foot="In the full course. Start free.", cta="allthecoffee.in/playbooks"),
     "FreeTools": dict(
-        title="13 free tools", eyebrow="Free tools",
-        h1="13 tools for office work.", sub="Free. No sign-up. Built for Indian offices.",
+        title="14 free tools", eyebrow="Free tools",
+        h1="14 tools for office work.", sub="Free. No sign-up. Built for Indian offices.",
         body=lambda story: chips(TOOLS, 30 if story else 27) +
-            f'<p style="margin:{40 if story else 30}px 0 0;font-size:{33 if story else 30}px;line-height:1.45;color:#E5D6C3;">Every one of them is also a build in the course. Use the tool today, then learn to make your own.</p>',
+            f'<p style="margin:{40 if story else 30}px 0 0;font-size:{33 if story else 30}px;line-height:1.45;color:#E5D6C3;">Twelve of them are builds in the course. Use the tool today, then learn to make your own.</p>',
         foot="Use them free", cta="allthecoffee.in/tools"),
+    "PasteCheck": dict(
+        title="Free tool: Can I paste this into AI?", eyebrow="Free tool · Nothing saved",
+        h1="Before you paste work data into AI", sub="Ask these 4 questions.",
+        body=lambda story: numbered([
+            ("1", "Real people?", "Names, phone numbers, salaries, Aadhaar or PAN."),
+            ("2", "Secrets?", "Passwords or API keys never go in. Ever."),
+            ("3", "Which account?", "Your company's approved tool, on your work login, or a personal one?"),
+            ("4", "Your policy?", "Does your company allow this tool for this work?"),
+        ], 30 if not story else 33, 16 if not story else 26) +
+            f'<p style="margin:{40 if story else 30}px 0 0;font-size:{33 if story else 30}px;line-height:1.45;color:#E5D6C3;">Unsure? Replace names with "Customer A" or "Employee 3", or describe instead of pasting. The free checker gives you a verdict in 30 seconds.</p>',
+        foot="Free, nothing saved", cta="allthecoffee.in/tools/paste-check"),
     "ByteFact8": dict(
         title="Byte-sized fact: AI fills the gaps", eyebrow="Byte-sized AI fact",
         h1="AI fills every gap in your brief with a guess.", sub="And the guess usually looks fine.",
