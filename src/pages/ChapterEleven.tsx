@@ -601,6 +601,13 @@ export default function ChapterEleven() {
         )}
       </div>
 
+      <Callout variant="tip" title="What next: the Role Playbooks">
+        Seven playbooks, 21 builds, each a real tool for one part of your job: sales, marketing, finance, product,
+        HR, legal and operations. Same method you've just used, with sample files, a known answer and one trap per
+        build. They're included with what you've already unlocked.{" "}
+        <Link to="/playbooks" className="font-semibold underline underline-offset-2">Open the Role Playbooks</Link>.
+      </Callout>
+
       <NextUpTeaser
         label="Tier 2: Builder"
         hook="One growing project, teaching how real software is put together: servers, databases, integrations and deployment."

@@ -2,10 +2,10 @@ import { LegalPageLayout } from "../components/layout/LegalPageLayout";
 
 export default function RefundPolicy() {
   return (
-    <LegalPageLayout page="/refund-policy" lastUpdated="17 October 2026">
+    <LegalPageLayout page="/refund-policy" lastUpdated="2 November 2026">
       <p>
         If it isn't for you, you can get your ₹599 back. That one payment unlocks both Module B and Module C
-        together, and this policy covers all of it. This page explains exactly how and what to expect.
+        together, plus the Role Playbooks, and this policy covers all of it. This page explains exactly how and what to expect.
       </p>
 
       <h2>The promise</h2>

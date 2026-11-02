@@ -280,8 +280,8 @@ export default function Landing() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-espresso-950 font-display text-sm font-bold text-caramel-100">2</span>
             <p className="mt-3 font-display text-base font-semibold text-espresso-950">Decide if it's worth it</p>
             <p className="mt-1.5 text-[13.5px] leading-snug text-espresso-700/75">
-              If it clicks, unlock Modules B and C for ₹599: three more tools, publishing one live, and your own
-              coding workshop.
+              If it clicks, unlock Modules B and C for ₹599: three more tools, publishing one live, your own
+              coding workshop, and seven Role Playbooks for your job.
             </p>
           </div>
           <div className="rounded-2xl border border-caramel-300/50 bg-caramel-50 p-5">

@@ -18,6 +18,7 @@ const UNLOCKS_NOW = [
   "Chapter 9: Your first automation script",
   "Chapter 10: Reading code like a recipe",
   "Chapter 11: Capstone, plus your certificate",
+  "Role Playbooks: 21 builds for sales, marketing, finance, product, HR, legal and operations",
 ];
 
 export function FoundingOfferBox() {
@@ -38,7 +39,7 @@ export function FoundingOfferBox() {
       </div>
       <p className="mt-1 text-sm text-caramel-100/70">
         All-inclusive, no hidden charges. Unlocks Modules B and C together: three more real tools, publishing one
-        live, a real coding workshop, and your own capstone project.
+        live, a real coding workshop, your own capstone project, and seven Role Playbooks with 21 builds for your job.
       </p>
       <p className="mt-2 text-sm font-medium text-brick-200">
         Capped at 100 founding seats, ever. This founding price is limited-time, not guaranteed to last.

@@ -2,7 +2,7 @@ import { LegalPageLayout } from "../components/layout/LegalPageLayout";
 
 export default function Terms() {
   return (
-    <LegalPageLayout page="/terms" lastUpdated="17 October 2026">
+    <LegalPageLayout page="/terms" lastUpdated="2 November 2026">
       <p>
         All The Coffee is run by an individual based in India, not a registered company. These
         terms apply whenever you create an account or make a payment on this site. By using All The Coffee, you're
@@ -12,7 +12,7 @@ export default function Terms() {
       <h2>What you're getting</h2>
       <p>
         All The Coffee is an online course. Chapters 0–3 (Module A) are free for anyone with an account, no payment
-        required. Chapters 4–11 (Modules B and C) unlock with the same one-time payment, currently ₹599 as part of
+        required. Chapters 4–11 (Modules B and C) and the Role Playbooks unlock with the same one-time payment, currently ₹599 as part of
         a capped, 100-seat Founding Batch; see the Course Map for current status. A further Tier 2 is planned but
         not yet built. Nothing on this site promises Tier 2 access to past buyers at any particular price. If that
         changes, it will be announced here first.

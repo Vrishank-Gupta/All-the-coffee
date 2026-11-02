@@ -6,6 +6,7 @@ import { useDocumentMeta } from "../lib/useDocumentMeta";
 import { PAGE_META } from "../lib/pageMeta";
 import { TOOLS } from "../lib/tools/registry";
 import { chapterById } from "../lib/courseData";
+import { playbookBySlug } from "../lib/playbooks";
 
 export default function Tools() {
   useDocumentMeta(PAGE_META["/tools"].title, PAGE_META["/tools"].description);
@@ -29,7 +30,7 @@ export default function Tools() {
               <p className="mt-3 font-display text-lg font-semibold text-espresso-950 group-hover:text-caramel-700">{t.name}</p>
               <p className="mt-1.5 flex-1 text-sm leading-snug text-espresso-700/75">{t.description}</p>
               <p className="mt-3 flex items-center gap-1 text-xs font-semibold text-caramel-700">
-                For: {t.forWho} · Built in Chapter {t.chapter}, {chapterById(t.chapter)!.title} <ArrowRight className="h-3 w-3" />
+                For: {t.forWho} · {t.chapter !== undefined ? `Built in Chapter ${t.chapter}, ${chapterById(t.chapter)!.title}` : `Built in the ${playbookBySlug(t.playbook!)!.title}`} <ArrowRight className="h-3 w-3" />
               </p>
             </Link>
           ))}

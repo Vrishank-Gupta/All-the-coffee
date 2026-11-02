@@ -5,6 +5,8 @@ import { incomeTax, slabTax, ctcToInHand, CTC_DEFAULTS } from "../src/lib/tools/
 import { indianWords, rupeesInWords, inr, longDate, parseCsv, makeLetters, SAMPLE_JOINERS_CSV, DEFAULT_TEMPLATE } from "../src/lib/tools/letters.ts";
 import { readInvoiceText, parseAmount, checkText } from "../src/lib/tools/invoices.ts";
 import { findFlags, SAMPLE_CONTRACT } from "../src/lib/tools/contract.ts";
+import { PLAYBOOKS } from "../src/lib/playbooks/index.ts";
+import { parseMoney, parseDate } from "../src/lib/playbooks/common.ts";
 import { normalizePhone, whatsappLink, fillTemplate, statusOf, sortLeads, type Lead } from "../src/lib/tools/whatsapp.ts";
 
 let failed = 0;
@@ -107,6 +109,56 @@ eq("sample contract flags", flags, [
 ]);
 eq("confidentiality and notices are not flagged", findFlags(SAMPLE_CONTRACT).some((f) => ["7", "10", "1"].includes(f.clause)), false);
 eq("other wording", findFlags("This agreement shall auto-renew yearly. Disputes go to arbitration in Delhi.").map((f) => f.key), ["auto-renewal", "jurisdiction"]);
+
+// --- Role Playbooks: each build's reference answer, on its own sample files ---
+const B = Object.fromEntries(PLAYBOOKS.flatMap((p) => p.builds).map((b) => [b.id, b.run(b.files.map((f) => f.content))]));
+const stat = (id: string, label: string) => B[id].stats.find((x) => x.label === label)?.value;
+for (const [t, want] of [["₹4,50,000", 450000], ["1.2L", 120000], ["2.5 L", 250000], ["85K", 85000], ["1.5 Cr", 15000000], ["3 lakh", 300000], ["", null], ["n/a", null]] as const)
+  eq(`money "${t}"`, parseMoney(t), want);
+eq("dates: ISO and day-first", [parseDate("2026-11-02")?.toISOString().slice(0, 10), parseDate("02/11/2026")?.toISOString().slice(0, 10), parseDate("31/02/2026")], ["2026-11-02", "2026-11-02", null]);
+// Sales 1: worked by hand and in a separate Python check
+eq("stale deals", [stat("sales-stale-deals", "Deals needing attention"), stat("sales-stale-deals", "Value at risk"), stat("sales-stale-deals", "Anita"), stat("sales-stale-deals", "Rahul"), stat("sales-stale-deals", "Priya")],
+  ["4", "₹6,40,000", "₹4,35,000", "₹1,20,000", "₹85,000"]);
+// Sales 2: taxable 13,491 + 17,475 + 13,300; GST 2,428.38 + 3,145.50 + 665.00
+eq("gst quote", [stat("sales-gst-quote", "Taxable value"), stat("sales-gst-quote", "IGST"), stat("sales-gst-quote", "Round off"), stat("sales-gst-quote", "Total")],
+  ["₹44,266.00", "₹6,238.88", "₹0.12", "₹50,505"]);
+eq("gst quote words", B["sales-gst-quote"].notes?.[1], "Amount in words: Rupees Fifty Thousand Five Hundred Five Only.");
+// Sales 3: Apex 30+20+25+25+10; Crescent 20+20+15+10+10; Fusion 30+20+10+10+5; Dune 30+20+0+15+0; Echo 10+0+25+15+10; Bright 10+0+10+5+5
+eq("lead order", B["sales-lead-score"].rows.map((r) => `${r[1]} ${r[2]}`), ["Apex Manufacturing 110", "Crescent Pharma 75", "Fusion Textiles 75", "Dune Logistics 65", "Echo Studios 60", "Bright Retail 30"]);
+
+// Marketing: 4 campaign spellings to 1; sources 6 to 5
+eq("utm", [stat("marketing-utm", "Campaign spellings"), stat("marketing-utm", "Sources"), stat("marketing-utm", "Rows tidied")], ["4 → 1", "6 → 5", "6"]);
+eq("utm keeps ?ref with &", B["marketing-utm"].rows[2][0], "https://allthecoffee.in/tools?ref=home&utm_source=newsletter&utm_medium=email&utm_campaign=diwali-sale&utm_content=top-banner");
+eq("roas", [stat("marketing-roas", "Total spend"), stat("marketing-roas", "Revenue from ads"), stat("marketing-roas", "Overall ROAS"), stat("marketing-roas", "Below 2x")], ["₹58,250", "₹1,54,730", "2.66x", "3"]);
+eq("claims", [stat("marketing-captions", "Ready to use"), B["marketing-captions"].rows.map((r) => r[2])], ["1 of 3", ["ready to use", `"10000" isn't in your draft; banned word "best"`, `"15" isn't in your draft; banned word "guaranteed"`]]);
+// Finance
+eq("ageing", ["Outstanding", "Overdue", "Not yet due", "1 to 30 days", "31 to 60 days", "61 to 90 days", "Over 90 days"].map((l) => stat("finance-ageing", l)),
+  ["₹2,78,100", "₹2,30,900", "₹47,200", "₹74,400", "₹1,18,000", "₹0", "₹38,500"]);
+eq("ageing reminders", B["finance-ageing"].notes?.length, 3);
+eq("statement", [stat("finance-statement", "Income"), stat("finance-statement", "Spending"), stat("finance-statement", "Left over"), B["finance-statement"].rows.find((r) => r[0] === "Shopping")?.[1]], ["₹85,000", "₹29,519", "₹55,481", "₹2,200"]);
+eq("expenses", [stat("finance-expenses", "Claimed"), stat("finance-expenses", "Over policy"), stat("finance-expenses", "Within policy"), B["finance-expenses"].rows.length], ["₹18,260", "₹1,270", "₹16,990", 3]);
+// Product
+eq("themes", [stat("product-themes", "Quotes not found"), stat("product-themes", "Comments not covered"), stat("product-themes", "Slow performance"), stat("product-themes", "Price")], ["2", "1", "3 comments", "2 comments"]);
+eq("rice order", B["product-rice"].rows.map((r) => `${r[1]} ${r[6]}`), ["Dark mode 675", "Excel export 640", "WhatsApp alerts 437.5", "Bulk upload 180", "SSO login 133.3"]);
+eq("release notes", [B["product-release-notes"].rows.map((r) => r[2]), stat("product-release-notes", "Left out")], [["ATC-101", "ATC-108", "ATC-105", "ATC-103", "ATC-107"], "3"]);
+// HR
+eq("lop", [stat("hr-lop", "Total deduction"), B["hr-lop"].rows.map((r) => r[4])], ["₹11,387.10", ["₹0.00", "₹7,258.06", "₹2,903.23", "₹0.00", "₹1,225.81"]]);
+eq("blind notes", [stat("hr-blind-notes", "Names hidden"), stat("hr-blind-notes", "Pronouns made neutral"), stat("hr-blind-notes", "Names still visible")], ["4", "3", "0"]);
+eq("blind text", B["hr-blind-notes"].rows[0][0], "Candidate A: Strong on Excel modelling. They explained the variance analysis clearly. Candidate A asked good questions about the team.");
+eq("leave", B["hr-leave"].rows.map((r) => `${r[0]} ${r[4]}`), ["Priya Nair 20.5", "Arjun Malhotra 4", "Kavya Reddy 7", "Mohammed Khan 10.5", "Vikram Singh 0"]);
+// Legal
+eq("compare", ["Unchanged", "Changed", "Added", "Removed"].map((l) => stat("legal-compare", l)), ["3", "2", "1", "1"]);
+eq("compare detail", B["legal-compare"].rows.map((r) => `${r[0]}: ${r[1]}${r[1] === "Changed" ? " " + r[2] : ""}`), ["Payment: Changed 30 → 15", "Notice: Changed 60 → 90", "Termination for convenience: Removed", "Renewal: Added"]);
+eq("renewals", B["legal-renewals"].rows.map((r) => `${r[0]} ${r[3]} ${r[4]}`), [
+  "Housekeeping 1 Sep 2026 Missed by 62 days: renews automatically", "Office lease 2 Oct 2026 Missed by 31 days: decide now",
+  "Software licence 15 Dec 2026 Act within 43 days", "Annual maintenance 30 Dec 2026 Act within 58 days", "Courier services 1 May 2027 Later"]);
+eq("citations", B["legal-citations"].rows.map((r) => `${r[0]} | ${r[2]}`), [
+  "Mehra v. Union Textiles | Verified", "Kapoor v. State Bank Staff Union | Year differs: your list says 2016",
+  "Rao v. Deccan Mills | Not found in your verified list", "Iyer vs Coastal Shipping | Verified"]);
+// Operations
+eq("vendors", B["ops-vendor-quotes"].rows.map((r) => `${r[0]} ${r[3]}`), ["Alpha Furniture ₹14,63,200", "Beta Seating ₹14,75,000", "Comfort Works ₹14,86,800"]);
+eq("reorder", B["ops-reorder"].rows.map((r) => `${r[0]} ${r[3]}`), ["A4 paper 150 ream", "Printer toner 5 piece", "Hand sanitiser 36 bottle"]);
+eq("workload", B["ops-workload"].rows.map((r) => r.join(" ")), ["Priya 40h 0h (light)", "Rahul 6h (light) 24h", "Anita 44h (over) 4h (light)", "Mohammed 0h (light) 16h (light)"]);
 
 if (failed) {
   console.log(`\n${failed} check(s) failed`);

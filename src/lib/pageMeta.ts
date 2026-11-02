@@ -24,6 +24,10 @@ export const PAGE_META = {
     title: "Blog",
     description: "Weekly, practical AI insights for HR, finance, ops, sales and marketing professionals. No hype, no jargon.",
   },
+  "/playbooks": {
+    title: "Role Playbooks: AI Tools for Your Job",
+    description: "Real tools for sales, marketing, finance, HR, product, legal and operations work, each built with AI and checked against a known answer. Included with the course.",
+  },
   "/tools": {
     title: "Free Tools for Office Work",
     description: "Free tools for real office work: salary, follow-ups, letters, invoices, contracts. No sign-up. Each one is also a build in the course.",

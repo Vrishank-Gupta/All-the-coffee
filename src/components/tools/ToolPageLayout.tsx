@@ -5,13 +5,16 @@ import { SiteHeader } from "../layout/SiteHeader";
 import { SiteFooter } from "../layout/SiteFooter";
 import { useDocumentMeta } from "../../lib/useDocumentMeta";
 import { chapterById } from "../../lib/courseData";
+import { playbookBySlug } from "../../lib/playbooks";
 import type { ToolInfo } from "../../lib/tools/registry";
 
 // A free tool page: the working tool first, then how it works, then the chapter where you
 // build it yourself.
 export function ToolPageLayout({ tool, intro, children, howItWorks }: { tool: ToolInfo; intro: ReactNode; children: ReactNode; howItWorks: ReactNode }) {
   useDocumentMeta(tool.title, tool.description);
-  const chapter = chapterById(tool.chapter)!;
+  const chapter = tool.chapter !== undefined ? chapterById(tool.chapter) : undefined;
+  const playbook = tool.playbook ? playbookBySlug(tool.playbook) : undefined;
+  const where = chapter ? <>Chapter {chapter.id}: {chapter.title}</> : <>the {playbook?.title}</>;
 
   return (
     <div className="min-h-screen bg-paper bg-grain">
@@ -33,7 +36,7 @@ export function ToolPageLayout({ tool, intro, children, howItWorks }: { tool: To
               <Hammer className="h-5 w-5 text-caramel-700" /> Build this yourself
             </p>
             <p className="mt-2 text-sm leading-relaxed text-espresso-800">
-              No coding background? That's who this is for. In <strong>Chapter {chapter.id}: {chapter.title}</strong>,
+              No coding background? That's who this is for. In <strong>{where}</strong>,
               you describe this tool to AI in plain English, then test it against a known answer, so you can trust
               what it tells you.
             </p>

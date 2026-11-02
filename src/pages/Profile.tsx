@@ -91,7 +91,7 @@ export default function Profile() {
           <div className="mt-4 rounded-2xl border border-caramel-300/50 bg-caramel-50 p-4 text-sm text-espresso-800">
             <p className="font-semibold text-espresso-950">You're a founding member of Modules B and C.</p>
             <p className="mt-1 text-espresso-700/80">
-              Your ₹599 payment unlocked permanent access to Chapters 4–11. Questions about your payment?{" "}
+              Your ₹599 payment unlocked permanent access to Chapters 4–11 and the <a href="/playbooks" className="font-semibold underline underline-offset-2">Role Playbooks</a>. Questions about your payment?{" "}
               <a href="mailto:info@allthecoffee.in" className="font-semibold underline underline-offset-2">info@allthecoffee.in</a>.
             </p>
           </div>

@@ -5,6 +5,7 @@ import { BLOG_POSTS } from "../src/lib/blogData.ts";
 import { CHAPTERS, chapterPageMeta } from "../src/lib/courseData.ts";
 import { PAGE_META } from "../src/lib/pageMeta.ts";
 import { TOOLS } from "../src/lib/tools/registry.ts";
+import { PLAYBOOKS } from "../src/lib/playbooks/index.ts";
 
 // Link previews (WhatsApp, LinkedIn, X, Slack) and search crawlers read the
 // raw HTML and never run our JavaScript, so without this every URL would show
@@ -41,7 +42,8 @@ function collectPreviews(): Preview[] {
   }));
   const chapters = CHAPTERS.filter((c) => c.live).map((c) => ({ path: c.path, ...chapterPageMeta(c) }));
   const tools = TOOLS.map((t) => ({ path: `/tools/${t.slug}`, title: t.title, description: t.description }));
-  return [...pages, ...posts, ...chapters, ...tools];
+  const playbooks = PLAYBOOKS.map((pb) => ({ path: `/playbooks/${pb.slug}`, title: `${pb.title}: ${pb.builds.length} AI tools for ${pb.role.toLowerCase()} work`, description: pb.tagline }));
+  return [...pages, ...posts, ...chapters, ...tools, ...playbooks];
 }
 
 // Replaces exactly one match, so a template change that breaks a pattern
