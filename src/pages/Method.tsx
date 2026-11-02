@@ -4,7 +4,8 @@ import { SiteHeader } from "../components/layout/SiteHeader";
 import { SiteFooter } from "../components/layout/SiteFooter";
 import { useDocumentMeta } from "../lib/useDocumentMeta";
 import { PAGE_META } from "../lib/pageMeta";
-import { STEPS, TRAPS } from "../lib/method";
+import { STEPS, TRAPS, AFTERCARE, TOOL_CARD } from "../lib/method";
+import { CopyBlock } from "../components/chapter/CopyBlock";
 
 export default function Method() {
   useDocumentMeta(PAGE_META["/method"].title, PAGE_META["/method"].description);
@@ -28,6 +29,9 @@ export default function Method() {
           </a>
           <Link to="/practice" className="inline-flex items-center gap-1.5 rounded-xl border border-espresso-900/15 px-5 py-2.5 text-sm font-semibold text-espresso-800 hover:bg-latte/50">
             Practise: spot the trap
+          </Link>
+          <Link to="/cheat-sheet" className="inline-flex items-center gap-1.5 rounded-xl border border-espresso-900/15 px-5 py-2.5 text-sm font-semibold text-espresso-800 hover:bg-latte/50">
+            One-page cheat sheet
           </Link>
         </div>
 
@@ -78,8 +82,23 @@ export default function Method() {
         </div>
         <p className="mt-5 text-espresso-800">
           Try them on real examples: <Link to="/practice" className="font-semibold text-caramel-700 underline">Spot the trap</Link> has
-          twelve short drills covering all eleven patterns, free.
+          short drills on all eleven patterns, plus drills set in your own job, free.
         </p>
+
+        <h2 id="after" className="mt-14 scroll-mt-20 font-display text-3xl font-semibold text-espresso-950">After it works: looking after your tool</h2>
+        <p className="mt-2 max-w-2xl text-espresso-700/80">
+          Once people rely on a tool, it needs a little care. Rules change, files move, and someone else may need to
+          run it. Seven habits keep it trustworthy.
+        </p>
+        <ol className="mt-5 grid gap-3 sm:grid-cols-2">
+          {AFTERCARE.map((a, i) => (
+            <li key={a.title} className="rounded-2xl border border-espresso-900/10 bg-cream p-4">
+              <p className="font-semibold text-espresso-950"><span className="mr-1.5 font-display text-caramel-600">{i + 1}.</span>{a.title}</p>
+              <p className="mt-1 text-[14.5px] leading-relaxed text-espresso-800">{a.text}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-5"><CopyBlock label="Tool card template" mono>{TOOL_CARD}</CopyBlock></div>
 
         <div className="mt-12 rounded-2xl border border-caramel-300/60 bg-caramel-100/40 p-6">
           <p className="font-display text-xl font-semibold text-espresso-950">Learn it by doing it</p>

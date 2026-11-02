@@ -63,6 +63,11 @@ export default function Playbook() {
               <Link to="/tools/brief-builder" className="font-semibold text-caramel-700 underline">Brief Builder</Link> walks you
               through it and lists the traps to test for. Then build it the way you just built three.
             </p>
+            <p className="mt-3">
+              Sharpen your eye first:{" "}
+              <Link to={`/practice?role=${p.slug}`} className="font-semibold text-caramel-700 underline">two Spot the trap drills for {p.role}</Link>,
+              new cases you haven't seen in this playbook.
+            </p>
             {tool && (
               <p className="mt-8">
                 Want a ready-made version for a colleague? <a href={`/tools/${tool.slug}`} className="font-semibold text-caramel-700 underline">{tool.name}</a> is free

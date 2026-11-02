@@ -10,6 +10,7 @@ import { Checkpoint } from "../components/chapter/Checkpoint";
 import { Troubleshooting } from "../components/chapter/Troubleshooting";
 import { WordsTable } from "../components/chapter/WordsTable";
 import { CHAPTER_WORDS } from "../lib/glossary";
+import { AFTERCARE, TOOL_CARD } from "../lib/method";
 import { ChapterComplete } from "../components/chapter/ChapterComplete";
 import { NextUpTeaser } from "../components/chapter/NextUpTeaser";
 import { DownloadButton } from "../components/chapter/DownloadButton";
@@ -460,7 +461,8 @@ export default function ChapterEleven() {
         </li>
         <li>
           <strong>Personal and confidential data.</strong> Customer details, salaries, health information and
-          similar data need extra care and usually explicit permission.
+          similar data need extra care and usually explicit permission. Unsure about something you're about to paste?
+          Run it through the free <a href="/tools/paste-check" className="font-semibold text-caramel-700 underline">paste checker</a>.
         </li>
         <li>
           <strong>Keep a manual check for a while.</strong> For the first few real uses, check the tool's result
@@ -479,7 +481,18 @@ export default function ChapterEleven() {
         in, what happens, what comes out, and which parts AI built.
       </Callout>
 
-      <SectionEyebrow n="11" label="What just happened" />
+      <SectionEyebrow n="11" label="After the demo: looking after your tool" />
+      <p>
+        Once someone relies on your tool, it needs a little care. Rules change, files move, and one day someone
+        else will run it. These habits keep it trustworthy:
+      </p>
+      <ul className="list-disc space-y-2 pl-5 marker:text-caramel-500">
+        {AFTERCARE.map((a) => <li key={a.title}><strong>{a.title}.</strong> {a.text}</li>)}
+      </ul>
+      <p>Fill in a tool card for your capstone now, while you remember the rules and the known answer:</p>
+      <CopyBlock label="Tool card template" mono>{TOOL_CARD}</CopyBlock>
+
+      <SectionEyebrow n="12" label="What just happened" />
       <p>
         You didn't just build a tool. You followed the same path real software projects follow: define the problem,
         size it, write a brief, build in small pieces, test, check safety, and present it. The tools and teams get
@@ -494,7 +507,7 @@ export default function ChapterEleven() {
       </BuilderHabit>
 
 
-      <SectionEyebrow n="12" label="What you can skip" />
+      <SectionEyebrow n="13" label="What you can skip" />
       <p>
         Making it look polished, logins, sharing it with your whole team, connecting it to company systems, and
         everything on your Later list. You also don't need to understand every line the AI wrote. If it passes your
@@ -526,7 +539,7 @@ export default function ChapterEleven() {
         ]}
       />
 
-      <SectionEyebrow n="13" label="Starter projects" />
+      <SectionEyebrow n="14" label="Starter projects" />
       <p>
         If you'd rather start from a ready-made idea, pick one of these. Each has a brief you can paste straight into
         Step 5, and a known answer to test against.
@@ -569,15 +582,17 @@ export default function ChapterEleven() {
         <a href="/tools/invoice-reader" className="font-semibold text-caramel-700 underline">allthecoffee.in/tools/invoice-reader</a>.
       </Callout>
 
-      <SectionEyebrow n="14" label="Words you can now use" />
+      <SectionEyebrow n="15" label="Words you can now use" />
       <WordsTable words={CHAPTER_WORDS[11]} />
 
-      <SectionEyebrow n="15" label="The Core course, complete" />
+      <SectionEyebrow n="16" label="The Core course, complete" />
       <p>
         Look back at everything since Chapter 0: a calculator, a tracker, a data cleaner, a tool with real AI inside
         it, something published live, a real coding workshop, an automation script, reading code like a recipe, and
         now a tool you sized, scoped and built yourself for your own job. None of that was luck. It's a repeatable
         method now.
+        Keep it to hand: the <a href="/cheat-sheet" className="font-semibold text-caramel-700 underline">one-page cheat sheet</a> has
+        the brief, the fix loop, the 8 steps and the 11 traps, ready to print.
       </p>
       <ModuleCompleteBadge
         title="The Core course: complete"

@@ -78,7 +78,7 @@ export const STEPS: MethodStep[] = [
       "Check your company's policy before real data goes near an AI tool. Keep confidential data out unless it's allowed.",
       "Check a few real results by hand before you rely on it, and tell people it's a first version.",
     ],
-    practised: [{ label: "Chapter 7: the safety checklist", href: "/chapter/7" }, { label: "Chapter 11, step 7", href: "/chapter/11" }],
+    practised: [{ label: "Chapter 7: the safety checklist", href: "/chapter/7" }, { label: "Chapter 11, step 7", href: "/chapter/11" }, { label: "Free tool: Can I paste this into AI?", href: "/tools/paste-check" }, { label: "After it works", href: "/method#after" }],
   },
 ];
 
@@ -129,3 +129,23 @@ export const TRAPS: TrapPattern[] = [
 
 export const trapById = (id: string) => TRAPS.find((t) => t.id === id);
 export const stepById = (id: string) => STEPS.find((s) => s.id === id);
+
+// After it works: looking after a tool once people rely on it. Shown on /method and in Chapter 11.
+export const AFTERCARE: { title: string; text: string }[] = [
+  { title: "Keep the last working version", text: "Before any change, save a copy with a version in the name, like leave-tracker-v2.html. If the change breaks something, you go back in seconds." },
+  { title: "Keep the known answer with the tool", text: "Save your sample file and its right answer next to the tool. Run it again after every change, however small. It takes a minute and catches most breakages." },
+  { title: "Put the rules that change in one place", text: "Ask the AI to put tax rates, limits and dates at the top of the file as settings, with the date you last checked them. Then an update is one line, not a hunt through the code." },
+  { title: "Recheck when the rules change", text: "The Union Budget in February, the new financial year in April, a new company policy: each can quietly make a tool wrong. Update the setting, then rerun the known answer." },
+  { title: "Write a tool card", text: "One short note: what it does, its rules, its known answer, where it lives and who looks after it. It's what lets a colleague, or you in six months, trust it." },
+  { title: "Hand it over properly", text: "Give the next person the tool card, the sample file and the known answer, and show them the fix loop. A tool only you can fix is a tool that dies when you go on leave." },
+  { title: "Know when to retire it", text: "If it gives a wrong answer you can't fix, or the task has changed, stop using it and tell the people who rely on it. A trusted tool that's quietly wrong is worse than no tool." },
+];
+
+export const TOOL_CARD = `Tool: [name], version [2], [date]
+What it does: [one sentence]
+Who uses it: [you, or your team]
+Where it lives: [the file or link], and where its data is kept
+The rules it follows: [the main ones]
+Rules that change: [e.g. PF wage ceiling ₹25,000, last checked 1 Nov 2026]
+Known answer: with [sample file], it should show [the right result]
+Looked after by: [your name]. Check again: [when a rule changes, or every quarter]`;

@@ -88,7 +88,8 @@ export default function ChapterSeven() {
       </p>
       <p className="mt-3">
         Run through this every time you share anything you've built. For this chapter, use your Meeting Cost
-        Calculator from Chapter 1, since it passes every item easily.
+        Calculator from Chapter 1, since it passes every item easily. For what's safe to paste into an AI chat in
+        the first place, there's a free <a href="/tools/paste-check" className="font-semibold text-caramel-700 underline">paste checker</a>.
       </p>
       <SafetyChecklist
         items={[

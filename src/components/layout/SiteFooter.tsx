@@ -10,6 +10,7 @@ export function SiteFooter() {
         <Link to="/practice" className="hover:text-espresso-900 hover:underline">Spot the trap</Link>
         <Link to="/fix-it" className="hover:text-espresso-900 hover:underline">Fix-it guide</Link>
         <Link to="/glossary" className="hover:text-espresso-900 hover:underline">Glossary</Link>
+        <Link to="/cheat-sheet" className="hover:text-espresso-900 hover:underline">Cheat sheet</Link>
         <Link to="/terms" className="hover:text-espresso-900 hover:underline">Terms of Service</Link>
         <Link to="/privacy" className="hover:text-espresso-900 hover:underline">Privacy Policy</Link>
         <Link to="/refund-policy" className="hover:text-espresso-900 hover:underline">Refund Policy</Link>

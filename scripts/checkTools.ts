@@ -8,7 +8,8 @@ import { findFlags, SAMPLE_CONTRACT } from "../src/lib/tools/contract.ts";
 import { PLAYBOOKS } from "../src/lib/playbooks/index.ts";
 import { parseMoney, parseDate } from "../src/lib/playbooks/common.ts";
 import { buildBrief, EMPTY_BRIEF } from "../src/lib/tools/brief.ts";
-import { DRILLS } from "../src/lib/practice.ts";
+import { DRILLS, ROLE_DRILLS } from "../src/lib/practice.ts";
+import { checkPaste, EMPTY_PASTE } from "../src/lib/tools/paste.ts";
 import { TRAPS } from "../src/lib/method.ts";
 import { normalizePhone, whatsappLink, fillTemplate, statusOf, sortLeads, type Lead } from "../src/lib/tools/whatsapp.ts";
 
@@ -183,6 +184,32 @@ eq("practice: totals, units, scope", [12000 + 3000 + 5000 + 20000, 3 * 8 + 4 + 2
 eq("practice: PF old and new ceiling, IGST", [0.12 * 15000, 0.12 * 25000, 0.18 * 50000, 50000 * 1.18], [1800, 3000, 9000, 59000]);
 const end = new Date(2026, 10, 1); end.setMonth(end.getMonth() + 12); end.setDate(end.getDate() - 1);
 eq("practice: 12-month term from 1 Nov 2026", end.toDateString(), "Sun Oct 31 2027");
+
+// --- Can I paste this into AI?: the verdict for each kind of case
+const paste = (o: Partial<typeof EMPTY_PASTE>) => checkPaste({ ...EMPTY_PASTE, ...o }).level;
+eq("paste: verdicts", [
+  paste({}),                                                                   // own draft, nothing flagged
+  paste({ content: ["secrets"], account: "work", policy: "yes" }),             // keys: always stop
+  paste({ policy: "no", account: "work" }),                                    // policy says no
+  paste({ content: ["people"], account: "personal", policy: "yes" }),          // real people, personal account
+  paste({ content: ["people"], account: "work", policy: "yes" }),              // real people, approved work tool
+  paste({ content: ["sensitive"], account: "personal", policy: "yes" }),       // salary or Aadhaar, personal account
+  paste({ content: ["people"], account: "work", policy: "unknown" }),          // not sure of the policy
+  paste({ content: ["people"], account: "work", policy: "yes", sharing: true }), // inside a page you share
+], ["go", "stop", "stop", "strip", "care", "stop", "strip", "stop"]);
+
+// --- Role drills: two per playbook, and each one's numbers
+eq("role drills: two per playbook", PLAYBOOKS.map((p) => ROLE_DRILLS.filter((d) => d.role === p.slug).length), PLAYBOOKS.map(() => 2));
+eq("role drills: valid traps, answers, unique ids", ROLE_DRILLS.every((d) => TRAPS.some((t) => t.id === d.trap) && d.answer < d.options.length)
+  && new Set([...DRILLS, ...ROLE_DRILLS].map((d) => d.id)).size === DRILLS.length + ROLE_DRILLS.length, true);
+eq("role drills: commission (right, wrong)", [(200000 + 300000) * 0.05, 200000 * 0.05], [25000, 10000]);
+eq("role drills: CTR overall and averaged (%)", [Math.round((50 + 90) / (1000 + 9000) * 1000) / 10, (5 + 1) / 2], [1.4, 3]);
+eq("role drills: GST 18% and x18", [10000 * 0.18, 10000 * 18], [1800, 180000]);
+eq("role drills: spending, all added, net", [25000 + 7000, 25000 + 3000 + 7000, 25000 + 7000 - 3000], [32000, 35000, 29000]);
+eq("role drills: cartons of 24 for a shortfall of 60", [Math.ceil((100 - 40) / 24), Math.ceil((100 - 40) / 24) * 24], [3, 72]);
+eq("role drills: vendor with GST, leave pro-rata", [Math.round(9000 * 1.18), 12 * 6 / 12], [10620, 6]);
+const prob = new Date(2026, 0, 15); prob.setMonth(prob.getMonth() + 6); prob.setDate(prob.getDate() - 1);
+eq("role drills: probation from 15 Jan 2026", prob.toDateString(), "Tue Jul 14 2026");
 
 if (failed) {
   console.log(`\n${failed} check(s) failed`);

@@ -29,12 +29,16 @@ export const PAGE_META = {
     description: "Eight steps for turning any repetitive task into a tool you can trust, and the 11 ways AI-built tools go quietly wrong. Free.",
   },
   "/practice": {
-    title: "Spot the Trap: 12 Drills for Checking AI-Built Tools",
-    description: "Twelve tools built with AI give confident, wrong answers. Find what went wrong and the line that prevents it. Free, no sign-up.",
+    title: "Spot the Trap: Drills for Checking AI-Built Tools",
+    description: "Tools built with AI give confident, wrong answers. Find what went wrong and the line that prevents it: 12 drills on the 11 traps, plus 2 for each of 7 job roles. Free.",
   },
   "/fix-it": {
     title: "Fix-it Guide: When Your AI-Built Tool Breaks",
     description: "Blank page, lost data, python not recognized, a link that asks for a password: the common problems, by symptom, with what to do.",
+  },
+  "/cheat-sheet": {
+    title: "Cheat Sheet: Building Tools with AI on One Page",
+    description: "The four-part brief, the fix loop, the 8 steps and the 11 traps on one printable A4 page. Free.",
   },
   "/glossary": {
     title: "Glossary: Tech Words in Plain English",

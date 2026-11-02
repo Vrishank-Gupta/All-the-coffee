@@ -12,6 +12,7 @@ export interface ToolInfo {
   build?: string; // for playbook tools: the build whose reference implementation runs the tool
   intro?: string; // for playbook tools: the page's opening line
   how?: string[]; // for playbook tools: "How it works" paragraphs
+  learn?: string; // for tools that aren't a build: what the chapter teaches instead (replaces "you describe this tool to AI")
 }
 
 export const TOOLS: ToolInfo[] = [
@@ -23,6 +24,17 @@ export const TOOLS: ToolInfo[] = [
       "Describe a task you repeat at work and get: is it worth a tool, where to build it, a ready-to-paste brief for any AI chat, a way to check its answer, and the traps to test for. Free.",
     forWho: "Anyone with a repetitive task, in any role",
     chapter: 3,
+    learn: "you learn to brief AI like a new intern and to test a tool against a known answer, the thinking this tool walks you through",
+  },
+  {
+    slug: "paste-check",
+    title: "Can I Paste This into AI? A Data Safety Check for Work",
+    name: "Can I paste this into AI?",
+    description:
+      "Four questions before you paste work data into ChatGPT, Claude or Gemini: is it fine, what to strip out first, and a safer way to get the same help. Free, nothing saved.",
+    forWho: "Anyone using AI at work",
+    chapter: 7,
+    learn: "you learn the safety checklist behind this tool: what never goes into a page you share, and how to take something down",
   },
   {
     slug: "ctc-calculator",

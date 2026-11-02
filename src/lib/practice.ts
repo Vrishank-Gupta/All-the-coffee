@@ -1,9 +1,11 @@
 // Spot the Trap (/practice): short drills where a tool built with AI gives a confident, wrong answer
-// and the learner works out why. One drill per trap pattern in src/lib/method.ts, plus a second on
-// Indian formats because it's the most common. Every number is worked out in scripts/checkTools.ts.
+// and the learner works out why. DRILLS has one per trap pattern in src/lib/method.ts, plus a second
+// on Indian formats because it's the most common; ROLE_DRILLS has two per Role Playbook, set in that
+// job's own work. Every number is worked out in scripts/checkTools.ts.
 
 export interface Drill {
   id: string;
+  role?: string; // a playbook slug, for ROLE_DRILLS
   trap: string; // a trap id from src/lib/method.ts
   title: string;
   brief: string; // what the tool was asked to do
@@ -135,5 +137,148 @@ export const DRILLS: Drill[] = [
     answer: 1,
     why: "\"Combined 12 files\" sounds reassuring, but July's amounts sit in a column called Amt, so the tool found nothing to add. A month at ₹0 is the clue. A good tool says which file or row it couldn't read instead of carrying on.",
     brief_fix: "If a file is missing a column or a value can't be read, stop and tell me which file and row.",
+  },
+];
+
+export const ROLE_DRILLS: Drill[] = [
+  {
+    id: "sales-commission", role: "sales", trap: "offbyone", title: "The quarter's commission",
+    brief: "Commission is 5% of deals closed in Q2 (July to September 2026).",
+    input: { columns: ["Deal", "Value", "Closed"], rows: [["Apex Foods", "₹2,00,000", "12/08/2026"], ["Zenith Labs", "₹3,00,000", "30/09/2026"], ["Orbit Retail", "₹1,00,000", "02/10/2026"]] },
+    output: "Q2 commission: ₹10,000 (Apex Foods only).",
+    options: ["Orbit Retail should be included", "Zenith Labs closed on the last day of the quarter and was left out", "₹10,000 is right"],
+    answer: 1,
+    why: "\"July to September\" includes 30 September. The tool checked for dates before 30/09 instead of on or before it, so Zenith Labs dropped out. Right: (₹2,00,000 + ₹3,00,000) × 5% = ₹25,000. Orbit Retail closed in October, so it's next quarter.",
+    brief_fix: "A quarter includes its first and last day: Q2 is 1 July to 30 September, both included.",
+  },
+  {
+    id: "sales-dupes", role: "sales", trap: "matching", title: "The lead count",
+    brief: "How many unique leads came from the trade show?",
+    input: { columns: ["Name", "Email"], rows: [["Ravi Kumar", "ravi.kumar@acme.in"], ["Meera Shah", "meera@lotus.co.in"], ["Ravi Kumar ", "RAVI.KUMAR@ACME.IN"]] },
+    output: "3 unique leads.",
+    options: ["2: Ravi Kumar is in twice, with a trailing space and a capitalised email", "3 is right: the rows are different", "1: they're from the same event"],
+    answer: 0,
+    why: "Emails aren't case-sensitive, and a trailing space is invisible. The tool compared the text exactly, so the same person counted twice. Two salespeople may now call Ravi on the same day.",
+    brief_fix: "Treat emails as the same regardless of capitals, and trim spaces before comparing names or emails.",
+  },
+  {
+    id: "marketing-ctr", role: "marketing", trap: "scope", title: "The overall click-through rate",
+    brief: "What's our overall click-through rate (clicks ÷ impressions) across both campaigns?",
+    input: { columns: ["Campaign", "Impressions", "Clicks", "CTR"], rows: [["Diwali reel", "1,000", "50", "5%"], ["Search ads", "9,000", "90", "1%"]] },
+    output: "Overall CTR: 3%",
+    options: ["It averaged the two rates instead of dividing total clicks by total impressions: it's 1.4%", "3% is right", "CTR can't be combined"],
+    answer: 0,
+    why: "Averaging 5% and 1% treats a small campaign the same as one nine times bigger. Overall: 140 clicks ÷ 10,000 impressions = 1.4%. A report saying 3% would more than double the real result.",
+    brief_fix: "Overall rates are total clicks ÷ total impressions. Never average the campaign percentages.",
+  },
+  {
+    id: "marketing-spec", role: "marketing", trap: "invented", title: "The product comparison",
+    brief: "Write a product page comparison from our spec sheet. Use only what's in it.",
+    input: { columns: ["Spec sheet"], rows: [["Battery: up to 18 hours. Weight: 1.2 kg. Warranty: 1 year."]] },
+    output: "Lasts two full days on a charge, weighs just 1.2 kg, and comes with a 2-year warranty.",
+    options: ["\"Two full days\" and \"2-year warranty\" aren't in the spec sheet", "The weight is wrong", "It's fine: it's marketing copy"],
+    answer: 0,
+    why: "The spec says up to 18 hours and a 1-year warranty. The copy promises two days and two years: claims a customer could hold you to. The weight is right, which makes the rest look trustworthy.",
+    brief_fix: "Every number in the copy must appear in the spec sheet. List any that don't.",
+  },
+  {
+    id: "finance-gst-rate", role: "finance", trap: "units", title: "The GST on an invoice",
+    brief: "Work out GST for each invoice line. The rate column is a percentage.",
+    input: { columns: ["Item", "Taxable value", "GST rate"], rows: [["Consulting", "₹10,000", "18"]] },
+    output: "GST: ₹1,80,000",
+    options: ["It used 18 as a multiplier instead of 18%: it's ₹1,800", "GST on services is 12%", "₹1,80,000 is right"],
+    answer: 0,
+    why: "The rate column says 18, meaning 18%. The tool multiplied by 18 instead of 0.18: ₹10,000 × 18 = ₹1,80,000. Right: ₹10,000 × 18% = ₹1,800. An absurd number is easy to catch; 18% read as 1.8% wouldn't be.",
+    brief_fix: "The rate column is a percentage: 18 means 18%.",
+  },
+  {
+    id: "finance-refund", role: "finance", trap: "totals", title: "This month's spending",
+    brief: "How much did we spend this month? Dr is money out, Cr is money in.",
+    input: { columns: ["Description", "Amount", "Dr/Cr"], rows: [["Office rent", "25,000", "Dr"], ["Supplier refund", "3,000", "Cr"], ["Stationery", "7,000", "Dr"]] },
+    output: "Total spending: ₹35,000",
+    options: ["The refund was added as spending: spending is ₹32,000, and ₹3,000 came back", "Rent shouldn't count", "₹35,000 is right"],
+    answer: 0,
+    why: "The refund is money coming in (Cr), but the tool added every amount. Spending is ₹25,000 + ₹7,000 = ₹32,000; with the refund, the net outflow is ₹29,000. Money flowing the other way is the classic way a total gets counted wrong.",
+    brief_fix: "Dr is money out and Cr is money in. Add only Dr to spending, and show Cr separately.",
+  },
+  {
+    id: "product-reach", role: "product", trap: "units", title: "The feature ranking",
+    brief: "Rank the features by how many users they reach.",
+    input: { columns: ["Feature", "Reach"], rows: [["Bulk export", "2k"], ["Dark mode", "1,500"]] },
+    output: "1. Dark mode (1,500)  2. Bulk export (2)",
+    options: ["It read 2k as 2: Bulk export reaches 2,000 and should be first", "Dark mode is first because it's more popular", "Reach should be a percentage"],
+    answer: 0,
+    why: "k means thousand, so 2k is 2,000. The tool kept only the number, ranked Bulk export last, and a roadmap decision rests on it. One unit letter, no error.",
+    brief_fix: "Reach may be written as 2k (thousand) or 1.5L (lakh). Convert to plain numbers before ranking.",
+  },
+  {
+    id: "product-blank", role: "product", trap: "blank", title: "The public release notes",
+    brief: "Write public release notes from the tickets marked Customer-facing.",
+    input: { columns: ["Ticket", "Title", "Customer-facing"], rows: [["APP-210", "Faster PDF export", "Yes"], ["APP-214", "Migrate billing database", ""], ["APP-219", "Internal admin audit log", "No"]] },
+    output: "Release notes: Faster PDF export. Billing database migrated.",
+    options: ["APP-214's Customer-facing field is blank, and the tool treated blank as Yes", "APP-219 should be included", "Release notes should list every ticket"],
+    answer: 0,
+    why: "Blank means nobody decided, not Yes. Now customers read about a billing migration nobody meant to announce. When a field is empty, the safe move is to leave it out and ask.",
+    brief_fix: "Include only tickets marked Yes. List the blank ones separately for me to decide.",
+  },
+  {
+    id: "hr-probation", role: "hr", trap: "offbyone", title: "The probation end date",
+    brief: "Probation is 6 months from the date of joining. When does it end?",
+    input: { columns: ["Employee", "Joined"], rows: [["Kavya Rao", "15 Jan 2026"]] },
+    output: "Probation ends: 15 Jul 2026",
+    options: ["It ends on 14 Jul 2026: six months from 15 Jan runs to the day before 15 Jul", "15 Jul 2026 is right", "It ends on 30 Jun 2026"],
+    answer: 0,
+    why: "Six months starting 15 January cover up to 14 July; 15 July is the first day after probation. A one-day slip matters when a confirmation letter, a notice period or a policy depends on it.",
+    brief_fix: "A period of N months from a date ends the day before the same date N months later.",
+  },
+  {
+    id: "hr-prorata", role: "hr", trap: "unstated", title: "The leave balance",
+    brief: "Show each employee's casual leave for 2026. Everyone gets 12 days a year.",
+    input: { columns: ["Employee", "Joined"], rows: [["Arjun Mehta", "1 Jul 2026"]] },
+    output: "Arjun Mehta: 12 days of casual leave.",
+    options: ["Our policy pro-rates leave for joiners, but the brief never said so: it should be 6 days", "12 is right: everyone gets 12", "He gets none in his first year"],
+    answer: 0,
+    why: "The tool followed the brief exactly. The policy everyone in HR knows, pro-rating by joining month, was never written down, so the AI couldn't apply it. Joining in July leaves 6 months: 12 × 6 ÷ 12 = 6 days.",
+    brief_fix: "The leave year is January to December. Joiners get leave pro-rated by full months left in the year.",
+  },
+  {
+    id: "legal-shall-may", role: "legal", trap: "matching", title: "The redline check",
+    brief: "Compare draft 1 and draft 2. Ignore formatting changes. List what changed.",
+    input: { columns: ["Draft", "Clause 9"], rows: [["Draft 1", "The Vendor shall indemnify the Client."], ["Draft 2", "The Vendor may indemnify the Client."]] },
+    output: "No changes found in clause 9 (wording only).",
+    options: ["\"Shall\" became \"may\": the obligation is now optional, a real change", "It's only wording, so the tool is right", "Indemnity clauses can't change between drafts"],
+    answer: 0,
+    why: "\"Ignore formatting\" was read too loosely, as \"ignore small word changes\". But one word turned a duty into an option. Some differences can be fuzzy (spacing, numbering); in a contract, the words must match exactly.",
+    brief_fix: "Ignore only spacing, line breaks and clause numbering. Any change to a word is a real change.",
+  },
+  {
+    id: "legal-notice", role: "legal", trap: "invented", title: "The contract summary",
+    brief: "Summarise the termination clause in one line.",
+    input: { columns: ["Clause 14"], rows: [["Either party may terminate this agreement by giving sixty (60) days' written notice."]] },
+    output: "Either party can exit with 30 days' notice.",
+    options: ["The clause says 60 days, not 30", "It should say \"written\" notice, otherwise it's fine", "30 days is the legal default"],
+    answer: 0,
+    why: "30 appears nowhere in the clause. The AI wrote a typical-sounding number instead of the real one. A tool that checks every number in the summary against the source catches this every time.",
+    brief_fix: "Every number and duration in the summary must appear in the clause. Quote it if in doubt.",
+  },
+  {
+    id: "ops-cartons", role: "operations", trap: "units", title: "The reorder quantity",
+    brief: "Stock up to 100 units. The supplier sells in cartons of 24.",
+    input: { columns: ["Item", "In stock", "Target"], rows: [["Hand sanitiser", "40", "100"]] },
+    output: "Order 60 units.",
+    options: ["60 units isn't orderable: it needs 3 cartons (72 units)", "It should order 100", "60 is right"],
+    answer: 0,
+    why: "The shortfall is 60, but the supplier only sells cartons of 24: 60 ÷ 24 = 2.5, so 3 cartons, 72 units. An order for 60 gets rejected or quietly rounded down to 2 cartons, leaving you short.",
+    brief_fix: "Round each order up to whole cartons, and show cartons and units.",
+  },
+  {
+    id: "ops-gst-basis", role: "operations", trap: "unstated", title: "The cheapest vendor",
+    brief: "Which vendor is cheapest for the job?",
+    input: { columns: ["Vendor", "Quote"], rows: [["Shree Services", "₹10,000 (incl. GST)"], ["Metro Facility", "₹9,000 + GST 18%"]] },
+    output: "Cheapest: Metro Facility at ₹9,000.",
+    options: ["Metro's quote is before GST: ₹10,620 in total, so Shree is cheaper", "Metro is cheaper by ₹1,000", "GST doesn't matter for comparison"],
+    answer: 0,
+    why: "The quotes are on different bases. Metro's ₹9,000 + 18% GST is ₹10,620, more than Shree's ₹10,000 all-in. Everyone in purchase compares like with like; nobody told the AI.",
+    brief_fix: "Compare every quote including GST. If a quote says + GST, add it before comparing.",
   },
 ];

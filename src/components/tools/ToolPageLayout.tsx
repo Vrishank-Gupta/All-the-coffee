@@ -36,9 +36,8 @@ export function ToolPageLayout({ tool, intro, children, howItWorks }: { tool: To
               <Hammer className="h-5 w-5 text-caramel-700" /> Build this yourself
             </p>
             <p className="mt-2 text-sm leading-relaxed text-espresso-800">
-              No coding background? That's who this is for. In <strong>{where}</strong>,
-              you describe this tool to AI in plain English, then test it against a known answer, so you can trust
-              what it tells you.
+              No coding background? That's who this is for. In <strong>{where}</strong>,{" "}
+              {tool.learn ?? "you describe this tool to AI in plain English, then test it against a known answer, so you can trust what it tells you"}.
             </p>
             <Link
               to="/chapter/0"
