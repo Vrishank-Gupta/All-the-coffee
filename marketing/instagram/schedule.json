@@ -127,7 +127,8 @@
       "Reel 11"
     ],
     "ai": true,
-    "note": "Reel 11 on Instagram, AI info on"
+    "note": "Reel 11 on Instagram, AI info on",
+    "done": "2026-11-05T16:49+00:00"
   },
   {
     "at": "2026-11-05T19:00:00+05:30",
@@ -137,7 +138,8 @@
       "Reel 11"
     ],
     "ai": true,
-    "note": "Reel 11 on the Facebook Page, AI info on"
+    "note": "Reel 11 on the Facebook Page, AI info on",
+    "failed": "Graph API error 400: Unsupported get request. Object with ID '1998758184137407' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api (code 100, subcode 33)"
   },
   {
     "at": "2026-11-05T19:00:00+05:30",
@@ -146,7 +148,8 @@
       "reel-11-role-playbooks-english-upload.mp4"
     ],
     "ai": true,
-    "note": "Reel 11 as a Story on Instagram and Facebook, AI info on"
+    "note": "Reel 11 as a Story on Instagram and Facebook, AI info on",
+    "done": "2026-11-05T16:49+00:00"
   },
   {
     "at": "2026-11-05T19:00:00+05:30",
@@ -155,7 +158,8 @@
       "https://allthecoffee.in/ig/playbooks-feed.jpg",
       "Post 21"
     ],
-    "note": "Post 21 on Instagram and Facebook"
+    "note": "Post 21 on Instagram and Facebook",
+    "done": "2026-11-05T16:49+00:00"
   },
   {
     "at": "2026-11-05T19:00:00+05:30",
@@ -163,7 +167,8 @@
     "args": [
       "https://allthecoffee.in/ig/playbooks-story.jpg"
     ],
-    "note": "Post 21's Story on Instagram and Facebook"
+    "note": "Post 21's Story on Instagram and Facebook",
+    "done": "2026-11-05T16:49+00:00"
   },
   {
     "at": "2026-11-05T19:00:00+05:30",
@@ -171,7 +176,8 @@
     "args": [
       "https://allthecoffee.in/ig/prompt-sales-story.jpg"
     ],
-    "note": "Standalone Story (prompt-sales) on Instagram and Facebook"
+    "note": "Standalone Story (prompt-sales) on Instagram and Facebook",
+    "done": "2026-11-05T16:49+00:00"
   },
   {
     "at": "2026-11-06T19:00:00+05:30",
