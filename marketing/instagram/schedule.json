@@ -247,7 +247,8 @@
       "Reel 7"
     ],
     "ai": true,
-    "note": "Reel 7 on Instagram, AI info on"
+    "note": "Reel 7 on Instagram, AI info on",
+    "done": "2026-11-07T14:29+00:00"
   },
   {
     "at": "2026-11-07T19:00:00+05:30",
@@ -257,7 +258,8 @@
       "Reel 7"
     ],
     "ai": true,
-    "note": "Reel 7 on the Facebook Page, AI info on"
+    "note": "Reel 7 on the Facebook Page, AI info on",
+    "done": "2026-11-07T14:29+00:00"
   },
   {
     "at": "2026-11-07T19:00:00+05:30",
@@ -266,7 +268,8 @@
       "reel-7-invoice-pdfs-english-upload.mp4"
     ],
     "ai": true,
-    "note": "Reel 7 as a Story on Instagram and Facebook, AI info on"
+    "note": "Reel 7 as a Story on Instagram and Facebook, AI info on",
+    "failed": "Graph API error 400: None (code None, subcode None)"
   },
   {
     "at": "2026-11-07T19:00:00+05:30",
@@ -275,7 +278,8 @@
       "https://allthecoffee.in/ig/method-feed.jpg",
       "Post 18"
     ],
-    "note": "Post 18 on Instagram and Facebook"
+    "note": "Post 18 on Instagram and Facebook",
+    "done": "2026-11-07T14:29+00:00"
   },
   {
     "at": "2026-11-07T19:00:00+05:30",
@@ -283,7 +287,8 @@
     "args": [
       "https://allthecoffee.in/ig/method-story.jpg"
     ],
-    "note": "Post 18's Story on Instagram and Facebook"
+    "note": "Post 18's Story on Instagram and Facebook",
+    "done": "2026-11-07T14:29+00:00"
   },
   {
     "at": "2026-11-07T19:00:00+05:30",
@@ -291,7 +296,8 @@
     "args": [
       "https://allthecoffee.in/ig/bytefact2-story.jpg"
     ],
-    "note": "Standalone Story (bytefact2) on Instagram and Facebook"
+    "note": "Standalone Story (bytefact2) on Instagram and Facebook",
+    "done": "2026-11-07T14:29+00:00"
   },
   {
     "at": "2026-11-08T19:00:00+05:30",
