@@ -307,7 +307,8 @@
       "Reel 8"
     ],
     "ai": true,
-    "note": "Reel 8 on Instagram, AI info on"
+    "note": "Reel 8 on Instagram, AI info on",
+    "failed": "Graph API error 400: None (code None, subcode None)"
   },
   {
     "at": "2026-11-08T19:00:00+05:30",
@@ -317,7 +318,8 @@
       "Reel 8"
     ],
     "ai": true,
-    "note": "Reel 8 on the Facebook Page, AI info on"
+    "note": "Reel 8 on the Facebook Page, AI info on",
+    "done": "2026-11-08T14:46+00:00"
   },
   {
     "at": "2026-11-08T19:00:00+05:30",
@@ -326,7 +328,8 @@
       "reel-8-contract-check-hinglish-upload.mp4"
     ],
     "ai": true,
-    "note": "Reel 8 as a Story on Instagram and Facebook, AI info on"
+    "note": "Reel 8 as a Story on Instagram and Facebook, AI info on",
+    "done": "2026-11-08T14:46+00:00"
   },
   {
     "at": "2026-11-08T19:00:00+05:30",
@@ -335,7 +338,8 @@
       "https://allthecoffee.in/ig/free-tools-feed.jpg",
       "Post 22"
     ],
-    "note": "Post 22 on Instagram and Facebook"
+    "note": "Post 22 on Instagram and Facebook",
+    "done": "2026-11-08T14:46+00:00"
   },
   {
     "at": "2026-11-08T19:00:00+05:30",
@@ -343,7 +347,8 @@
     "args": [
       "https://allthecoffee.in/ig/free-tools-story.jpg"
     ],
-    "note": "Post 22's Story on Instagram and Facebook"
+    "note": "Post 22's Story on Instagram and Facebook",
+    "done": "2026-11-08T14:46+00:00"
   },
   {
     "at": "2026-11-08T19:00:00+05:30",
@@ -351,7 +356,8 @@
     "args": [
       "https://allthecoffee.in/ig/prompt-legal-story.jpg"
     ],
-    "note": "Standalone Story (prompt-legal) on Instagram and Facebook"
+    "note": "Standalone Story (prompt-legal) on Instagram and Facebook",
+    "done": "2026-11-08T14:46+00:00"
   },
   {
     "at": "2026-11-09T19:00:00+05:30",
